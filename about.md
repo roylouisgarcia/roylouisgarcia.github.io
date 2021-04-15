@@ -1,13 +1,11 @@
 ---
 layout: page
-title: About
+title: About My Blog
 permalink: /about/
 ---
 
 
-This blog contains some of my raw thoughts and projects relating to topics I am passionate about. 
-
-Topics include:
+**WARNING**: This blog may contain some raw and unfiltered thoughts. I do try to refine and present my ideas as succinct as I can, but forgive me if I fail in doing so. The pages of this blog contain topics ranging from: 
   * Administration
   * Data Science
   * Programming
@@ -17,6 +15,10 @@ Topics include:
 
 **History of my Pseudonyms**:
 
+## "Be like water .." - Bruce Lee: ##
+
+
+
 As an entrepreneur, I constantly reinvent my branding strategies to remain fresh and relevant. **NostradmsX Designs** and **Redbox Designs** were offered products and services related to web development. **DMSX Solutions** and **Journey in Learning** helped with social media marketing, SEO (Search Engine Optimization), branding, datascraping, sentiment analysis, and social media administration. Lastly, **Journey in Learning** and **Privasecurity** pushed to advance issues relating to _inclusive learning_, _assistive technology_, _privacy_, _computer security_ and others. 
 
 Also, as a _perpetual learner and technology tinker_, I enrolled in some MOOC (Massive Open Online Courses) in order to remain relevant in the IT industry. I created course reviews and tutorials to help other learners like me.
@@ -25,24 +27,9 @@ I try to disassociate my professional work from my personal projects. Doing paid
 
 Security, anonymity, and privacy needs prompted me to create other pseudonyms, such as **Radyouloroy**, **Andyroid**, and others in order to compartmentalize the various IT disciplines I dabble into without compromising my private life. 
 
-**My Online Portofolio @ NostradmsX.com**:
 
-You can find out more about me at [www.nostradmsx.com][my-online-portfolio]. 
+# [NOSTRADMSX](/2011/02/11/nostradmsx.html)> [JOURNEYLEARNER](/2012/12/01/journeylearner.html) > PRIVASECURITY > TECHENTHUSIA > ...  #
 
-**Tools Used to Create These Blog**
+You can find out more about me at [https://portfolio.dmsx.tech][my-online-portfolio]. 
 
-This blog is written in Jekyll and is using the default Minima theme. I have overridden the main.css file to make a dark theme version of Minima.
-
-You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
-[my-online-portfolio]: http://www.nostradmsx.com
+[my-online-portfolio]: https://portfolio.dmsx.tech/
