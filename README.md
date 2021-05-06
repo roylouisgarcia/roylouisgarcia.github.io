@@ -1,8 +1,9 @@
-# NostrA.blog - a Jekyll powered site
+## NostrA.blog - a Jekyll powered site
 
-## Screenshot:
+## Screenshots:
 
-![Screenshot of the Blog](blog_screenshot.jpg)
+![Screenshot of the Blog](ss_1.jpg)
+![Screenshot of the Blog](ss_2.jpg)
 
 
 
