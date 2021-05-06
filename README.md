@@ -40,10 +40,19 @@ You can find the source code for Jekyll at GitHub:
 
 ## Links:
 
-[nostra-blog]: https://nostra.dmsx.tech/	"NostrA Blog"
+My [NostrA Blog][ nostra-blog ].
 
+My [Online Portfolio][ my-online-portfolio].
 
+My [Linkedin Profile.][ my-linkedin-profile]
 
+My [Twitter Page.][ my-twitter ]
 
-[my-online-portfolio]: https://portfolio.dmsx.tech/	"My Online Portfolio"
-[jekyll-organization]: https://github.com/jekyll	"Jekyll Repo"
+My [Github Page.][ my-github-page ]
+
+[nostra-blog]: https://nostra.dmsx.tech/        "NostrA Blog"
+[my-online-portfolio]: https://portfolio.dmsx.tech/     "My Online Portfolio"
+[my-linkedin-profile]: https://www.linkedin.com/in/roylouisgarcia/
+[my-twitter]: https://twitter.com/roylouisgarcia/
+[my-github-page]: https://github.com/roylouisgarcia
+[jekyll-organization]: https://github.com/jekyll  
