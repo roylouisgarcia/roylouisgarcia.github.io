@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-10T14:06:46-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">NoStrA Blog</title><subtitle>A repository of my numerous failed attempts to be succinct and discernible</subtitle><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><entry><title type="html">Learning iOS Development</title><link href="http://localhost:4000/2023/03/01/learning-ios-development.html" rel="alternate" type="text/html" title="Learning iOS Development" /><published>2023-03-01T00:00:00-08:00</published><updated>2023-03-01T00:00:00-08:00</updated><id>http://localhost:4000/2023/03/01/learning-ios-development</id><content type="html" xml:base="http://localhost:4000/2023/03/01/learning-ios-development.html"><![CDATA[<h1 id="title-a-new-journey---learning-ios-development">Title: A New Journey - Learning iOS Development</h1>
+
+<h2 id="inspiration">Inspiration:</h2>
+
+<p>My experience in web development gave me an insight on how important it is for my clients to not only have a full-blown website that is viewable from personal computers and laptops. They reiterated that they want their customers to view their websites from mobile devices. So, I developed websites that are portable, responsive and mobile-friendly, I had used JavaScript Frameworks like Meteor, Adobe PhoneGap, jQuery Mobile and React Native.</p>
+
+<h4 id="android-development"><em>Android Development:</em></h4>
+
+<p>In 2017, I successfully completed an Android native development course from Udacity and created some apps for Android devices:</p>
+
+<p><img src="/assets/images/iosdev/udacity_android_basics.png" alt="" /></p>
+
+<p><a href="https://confirm.udacity.com/WDDGH7DN">check out this certificate</a></p>
+
+<p><img src="/assets/images/iosdev/androidstudtio.jpg" alt="" /></p>
+
+<p><img src="/assets/images/iosdev/resubmittedvertical.png" alt="resubmittedvertical" /></p>
+
+<p><a href="https://github.com/roylouisgarcia/ABNProject1Final">check out this project</a></p>
+
+<p><img src="/assets/images/iosdev/screenshot2.gif" alt="" /></p>
+
+<p><a href="https://github.com/roylouisgarcia/ABNProject3">check out my this project</a></p>
+
+<h4 id="journey-in-learning-ios-development"><em>Journey in Learning: iOS Development</em></h4>
+
+<p>I had enrolled in Coursera’s iOS Development Professional Certificate program that is offered by Meta or Facebook. The certification may take a year and a half to finish, but I may be able to take courses that are not prerequisites of each other simultaneously:</p>
+
+<p><img src="/assets/images/iosdev/meta-overview.png" alt="" />SPECIALIZATION: Meta iOS Development Professional Certificate</p>
+
+<p>link: <a href="https://www.coursera.org/professional-certificates/meta-ios-developer">https://www.coursera.org/professional-certificates/meta-ios-developer</a></p>
+
+<h5 id="course-1-introduction-to-ios-mobile-application-development">Course 1: Introduction to iOS Mobile Application Development</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/introduction-to-ios-mobile-application-development?specialization=meta-ios-developer">https://www.coursera.org/learn/introduction-to-ios-mobile-application-development?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-2-version-control">Course 2: Version Control</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/introduction-to-version-control?specialization=meta-ios-developer">https://www.coursera.org/learn/introduction-to-version-control?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-3-programming-fundamentals-in-swift">Course 3: Programming Fundamentals in Swift</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/programming-fundamentals-swift?specialization=meta-ios-developer">https://www.coursera.org/learn/programming-fundamentals-swift?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-4-principles-of-uxui-design">Course 4: Principles of UX/UI Design</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/principles-of-ux-ui-design?specialization=meta-ios-developer">https://www.coursera.org/learn/principles-of-ux-ui-design?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-5-create-the-user-interface-with-swiftui">Course 5: Create the User Interface with SwiftUI</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/create-the-user-interface-with-swiftui?specialization=meta-ios-developer">https://www.coursera.org/learn/create-the-user-interface-with-swiftui?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-6-advanced-programming-in-swift">Course 6: Advanced Programming in Swift</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/advanced-programming-in-swift?specialization=meta-ios-developer">https://www.coursera.org/learn/advanced-programming-in-swift?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-7-working-with-data-in-ios">Course 7: Working with Data in iOS</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/working-with-data-in-ios?specialization=meta-ios-developer">https://www.coursera.org/learn/working-with-data-in-ios?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-8-mobile-development-and-javascript">Course 8: Mobile Development and JavaScript</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/mobile-development-and-javascript?specialization=meta-ios-developer">https://www.coursera.org/learn/mobile-development-and-javascript?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-9-react-basics">Course 9: React Basics</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/react-basics?specialization=meta-ios-developer">https://www.coursera.org/learn/react-basics?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-10-react-native">Course 10: React Native</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/react-native-course?specialization=meta-ios-developer">https://www.coursera.org/learn/react-native-course?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-11-ios-app-capstone">Course 11: iOS App Capstone</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/ios-app-capstone?specialization=meta-ios-developer">https://www.coursera.org/learn/ios-app-capstone?specialization=meta-ios-developer</a></p>
+
+<h5 id="course-12-coding-interview-preparation">Course 12: Coding Interview Preparation</h5>
+
+<p>link: <a href="https://www.coursera.org/learn/coding-interview-preparation?specialization=meta-ios-developer">https://www.coursera.org/learn/coding-interview-preparation?specialization=meta-ios-developer</a></p>
+
+<h4 id="the-x-code-ide"><em>The X Code IDE:</em></h4>
+
+<p>So far, I am impressed with the straight-forwardness of the user interface for iOS IDE (Integrated Development Environment): the X Code. Here are some screenshots:</p>
+
+<p><img src="/assets/images/iosdev/ios1.png" alt="" /></p>
+
+<p><img src="/assets/images/iosdev/ios2.png" alt="ios2" /></p>
+
+<p><img src="/assets/images/iosdev/ios3.png" alt="ios3" /></p>
+
+<p><img src="/assets/images/iosdev/ios4.png" alt="ios4" /></p>
+
+<p><img src="/assets/images/iosdev/ios5.png" alt="ios5" /></p>
+
+<h4 id="my-development-machines">My Development Machines:</h4>
+
+<p>For this journey, I will be using my Macbook Air that I normally use to create my music: I am excited to start, learn and create Apps for Apple, soon.</p>
+
+<p><img src="/assets/images/iosdev/IMG_0849.jpg" alt="" /></p>
+
+<p><img src="/assets/images/iosdev/IMG_0850.jpg" alt="IMG_0850" /></p>
+
+<p><img src="/assets/images/iosdev/new.jpg" alt="" /></p>
+
+<h1 id="next-steps">Next Steps:</h1>
+
+<p>I also enrolled in four other Meta certificates offered by Udacity:</p>
+
+<p><img src="/assets/images/iosdev/meta-android-dev-prof-cert.png" alt="" /></p>
+
+<p><img src="/assets/images/iosdev/meta-backend.png" alt="meta-backend" /></p>
+
+<p><img src="/assets/images/iosdev/meta-database-front-end.png" alt="meta-database-front-end" /></p>
+
+<p>I am assured that learning these will help me learn a wide spectrum of mobile development stack and along with my cybersecurity and DevOps experience, I hope to expand my professional horizons.</p>
+
+<p><img src="/assets/images/iosdev/IBM-cybersec.png" alt="" /></p>
+
+<p><img src="/assets/images/iosdev/IBM-devops.png" alt="IBM-devops" /></p>]]></content><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><summary type="html"><![CDATA[Title: A New Journey - Learning iOS Development]]></summary></entry><entry><title type="html">Applying Machine Learning in IT:</title><link href="http://localhost:4000/2022/07/20/machine-learning-it-anomaly_detection.html" rel="alternate" type="text/html" title="Applying Machine Learning in IT:" /><published>2022-07-20T00:00:00-07:00</published><updated>2022-07-20T00:00:00-07:00</updated><id>http://localhost:4000/2022/07/20/machine-learning-it-anomaly_detection</id><content type="html" xml:base="http://localhost:4000/2022/07/20/machine-learning-it-anomaly_detection.html"><![CDATA[<p>Collecting logs is a standard practice in IT. Normally, giving storage space to newer data is a prirority that is why most systems clean up their logs or historical data for after some time. The decrease in cost of storage devices made possible to keep historical logs longer than usual.</p>
+
+<p>The abundance of log files can be utilized to learn about the baseline behavior of ones system and also learn about anomalies that occur historically and use what is learned to predict or assess system behavior.</p>
+
+<p>In this post, I employ the process of “Anomaly Detection”, which is a kind of unsupervised machine learning approach.</p>
+
+<h2 id="anomaly-detection-unsupervised-learning-approach">Anomaly Detection Unsupervised Learning Approach:</h2>
+
+<p>An anomaly detection algorithm to detect anomalous behavior in server computers will be utilized using a dataset that contains two features -</p>
+
+<ol>
+  <li>throughput (mb/s) and</li>
+  <li>latency (ms) of response of each server.</li>
+</ol>
+
+<p>As our servers operate, I collected 𝑚=307
+examples of how they were behaving, and thus have an unlabeled dataset {𝑥(1),…,𝑥(𝑚)}</p>
+
+<p>.</p>
+
+<p>The vast majority of these examples are “normal” (non-anomalous) examples of the servers operating normally, but there might also be some examples of servers acting anomalously within this dataset.</p>
+
+<p>I will use a Gaussian model to detect anomalous examples in this dataset.</p>
+
+<p>I will first start on a 2D dataset that will allow me to visualize what the algorithm is doing.</p>
+
+<p>On that dataset I will fit a Gaussian distribution and then find values that have very low probability and hence can be considered anomalies.</p>
+
+<h2 id="the-dataset">The Dataset:</h2>
+
+<p>We will load X_train, X_val and y_val from the dataset.</p>
+
+<p>using X_train to fit a Gaussian distribution
+using X_val and y_val as a cross validation set to select a threshold and determine anomalous vs normal examples</p>
+
+<p><img src="/assets/images/image-20220819183628891.png" alt="image-20220819183628891" /></p>
+
+<h2 id="visualize-the-data">Visualize the Data:</h2>
+
+<p><img src="/assets/images/image-20220819183716699.png" alt="image-20220819183716699" /></p>
+
+<h2 id="gaussian-distribution-normal-or-bell-curve">Gaussian Distribution (Normal or Bell Curve):</h2>
+
+<p><img src="/assets/images/image-20220819184200745.png" alt="image-20220819184200745" /></p>
+
+<h2 id="code-to-estimate-the-parameters-for-gaussian">Code to Estimate the Parameters for Gaussian:</h2>
+
+<p><img src="/assets/images/image-20220819184620554.png" alt="image-20220819184620554" /></p>
+
+<h2 id="plotting-with-estimate-against-a-gaussian-contour">Plotting with Estimate against a Gaussian Contour:</h2>
+
+<p>Plotting this estimate shows that most of the examples are in the region with the highest probability, while the anomalous examples are in the regions with lower probabilities.</p>
+
+<p><img src="/assets/images/image-20220819184836393.png" alt="image-20220819184836393" /></p>
+
+<h2 id="selecting-the-threshold">Selecting the Threshold:</h2>
+
+<p><img src="/assets/images/image-20220819185614210.png" alt="image-20220819185614210" /></p>
+
+<h2 id="the-classified-anomalies">The Classified Anomalies</h2>
+
+<p><img src="/assets/images/image-20220819185803387.png" alt="image-20220819185803387" /></p>
+
+<h2 id="summary">Summary:</h2>
+
+<p>Extracting valuable information from historical data that is continuously collected can be valuable to detect problems in any IT system. Even with a real-time dashboard that can be viewed by IT administrators, it would be a challenge to be vigilant in finding anomalies by merely observing certain metrics visually. IT systems produce a stream of events that need to be sorted out prior to effectively find some valuable insights and machine learning can be employed to help.</p>
+
+<p>This post shows an example of when data about the throughput and latency of a system can be analyzed to sort out potential problems. Other metrics can be utilized and analyzed and fed into an unsupervised learning “Anomaly Detection” program such as demonstrated in this post.</p>]]></content><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><summary type="html"><![CDATA[Collecting logs is a standard practice in IT. Normally, giving storage space to newer data is a prirority that is why most systems clean up their logs or historical data for after some time. The decrease in cost of storage devices made possible to keep historical logs longer than usual.]]></summary></entry><entry><title type="html">Installing Samba Server on Ubuntu/PopOS</title><link href="http://localhost:4000/administration/2021/05/17/installing-samba-server-on-ubuntu.html" rel="alternate" type="text/html" title="Installing Samba Server on Ubuntu/PopOS" /><published>2021-05-17T00:00:00-07:00</published><updated>2021-05-17T00:00:00-07:00</updated><id>http://localhost:4000/administration/2021/05/17/installing-samba-server-on-ubuntu</id><content type="html" xml:base="http://localhost:4000/administration/2021/05/17/installing-samba-server-on-ubuntu.html"><![CDATA[<h1 id="goal">Goal:</h1>
+
+<p>Ultimately, I aim to be able to map a PopOS folder to my Windows 10 machine. I do not want to keep syncing these two machines and keeping track of duplicate copies. I want to designate a folder on my PopOS machine where I can move, edit and save files to from any computer. This way, any changes I do to files and directories on this Samba folder from my Windows 10 machine will be saved on the PopOS machine. Lastly, I do not need to keep any copy of files on my Windows 10 machine. How do I accomplish this?</p>
+
+<h1 id="solution">Solution:</h1>
+<p>It is time to learn about Samba by installing it on my PopOS machine, creating a Samba user and designating a Samba private folder that I can later map from my Windows 10 machine. I followed the instructions from this site: <a href="https://www.linuxbabe.com/ubuntu/install-samba-server-file-share">https://www.linuxbabe.com/ubuntu/install-samba-server-file-share</a></p>
+
+<h1 id="installation">Installation:</h1>
+
+<p>I was able to run <code class="language-plaintext highlighter-rouge">sudo apt install samba samba-common-bin</code> and got these errors:</p>
+
+<p><img src="/assets/images/01_samba_installation_error.jpg" alt="samba installation error" /></p>
+
+<p>Despite the above errors, I was able to I check for the version <code class="language-plaintext highlighter-rouge">smbd --version</code> and got <code class="language-plaintext highlighter-rouge">Version 4.12.5-Ubuntu</code>. This is a good sign that Samba  server was installed on my Ubuntu/PopOS machine:</p>
+
+<p>One way to verify is to see if the daemon necessary for Samba works by running: <code class="language-plaintext highlighter-rouge">sudo systemctl status smbd nmbd</code>. This results:</p>
+
+<p><img src="/assets/images/02_samba_systemctl_status.jpg" alt="systemctl status to check samba" /></p>
+
+<p>I was able to start Samba using: <code class="language-plaintext highlighter-rouge">sudo systemctl start smbd nmbd</code></p>
+
+<p>I then proceeded adding a Samba user and Samba group:</p>
+
+<p><img src="/assets/images/03_samba_user_add.jpg" alt="adding the user and samba folder" /></p>
+
+<p>Also, I created the Samba folder and configured Samba:</p>
+
+<p><img src="/assets/images/04_samba_folder_add.jpg" alt="Creating the samba folder" /></p>
+
+<p>Restarting Samba using the command: <code class="language-plaintext highlighter-rouge">sudo systemctl restart smbd nmbd</code></p>
+
+<h1 id="mapping-the-samba-folder-in-windows-10-machine">Mapping the samba folder in Windows 10 machine</h1>
+
+<p>Using Windows Explorer, we type <code class="language-plaintext highlighter-rouge">\\10.0.0.152\Private</code> on the address bar and we will be asked to sign in as the Samba user that was created:</p>
+
+<p><img src="/assets/images/05_samba_windows_map.jpg" alt="mapping the samba folder in Windows 10" /></p>
+
+<h1 id="conclusion">Conclusion:</h1>
+
+<p>Samba is one way that Linux machines interoperate with Windows machines. By following the above steps, I am now capable of working on my PopOS Samba folder from any machine that supports Samba and I am able to minimize my workflow by not needing to  worry about redundancies and keenly keeping track of two versions on two machines. I know that there are other and better ways of doing what I wanted to accomplish, but I will explore and write about them next time.</p>
+
+<h1 id="references">References:</h1>
+
+<ol>
+  <li>About Samba: <a href="https://www.samba.org/samba/what_is_samba.html">https://www.samba.org/samba/what_is_samba.html</a></li>
+  <li>Installing Samba: <a href="https://www.linuxbabe.com/ubuntu/install-samba-server-file-share">https://www.linuxbabe.com/ubuntu/install-samba-server-file-share</a></li>
+</ol>]]></content><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><category term="administration" /><summary type="html"><![CDATA[Goal:]]></summary></entry><entry><title type="html">Simple Comparison: Bash versus PowerShell</title><link href="http://localhost:4000/2018/11/17/scripting-comparison-bash-powershelll.html" rel="alternate" type="text/html" title="Simple Comparison: Bash versus PowerShell" /><published>2018-11-17T00:00:00-08:00</published><updated>2018-11-17T00:00:00-08:00</updated><id>http://localhost:4000/2018/11/17/scripting-comparison-bash-powershelll</id><content type="html" xml:base="http://localhost:4000/2018/11/17/scripting-comparison-bash-powershelll.html"><![CDATA[<p>This is just a simple glimpse into how I use Bash scripts and/or PowerShell scripts on my Windows 10 machine to automate my workflow and do more than one thing at a time.</p>
+
+<p>I normally start my console emulator, <em>cmder</em>, as a Bash admin, but sometimes, I open a new tab as a PowerShell admin.</p>
+
+<p><img src="/assets/images/tutorials/cmderinit.png" width="500px" /></p>
+
+<p>As you can see from the above image, I wrote the following scripts to quickly set me up for work:</p>
+<ol>
+  <li>change my directory from the <em>cmder</em> to one of my destination work folders: my product reviews, local git repositories, and nodejs development folder.</li>
+  <li>open the destination folder in Sublime</li>
+  <li>open the destination folder in Windows Explorer</li>
+  <li>show the path to the current (which was also the destination) folder</li>
+</ol>
+
+<p>Here is the simple PowerShell script:</p>
+
+<p><img src="/assets/images/tutorials/gotoreviewps1.png" width="500px" /></p>
+
+<p>to run it on <em>cmder</em>, I just type:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gotoreview.ps1
+</code></pre></div></div>
+
+<p>Here is the simple Bash script:</p>
+
+<p><img src="/assets/images/tutorials/gotoreviewsh.png" width="500px" /></p>
+
+<p>to run it on <em>cmder</em>, I just type:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source gotoreview.sh
+</code></pre></div></div>
+<p>or</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. gotoreview.sh
+</code></pre></div></div>
+
+<p><em>Notes</em>: When running the <em>Bash</em> version of the program from cmder, <em>always</em> precede the filename with “source” or a “.” in order for change directory to work. Without it, the sublime command will run and windows explorer will open, but on you will not change directory to your TARGET folder. See the images below:</p>
+
+<p><em>Incorrect</em>:</p>
+
+<p><img src="/assets/images/tutorials/aftermathgotoreviewsh.png" /></p>
+
+<p><em>Correct</em>:</p>
+
+<p><img src="/assets/images/tutorials/aftermathgotoreviewsh2.png" /></p>
+
+<p><strong>Further Learning</strong></p>
+
+<p>There are lots of websites that can help you learn either Bash or PowerShell scripting:</p>
+
+<p>For PowerShell:</p>
+<ol>
+  <li><a href="https://docs.microsoft.com/en-us/PowerShell/scripting/PowerShell-Scripting?view=PowerShell-5.1">Microsoft Documentation Page</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/PowerShell/">Another Microsoft PowerShell Documentation</a></li>
+  <li><a href="https://www.computerworld.com/article/2879205/data-center/PowerShell-for-beginners-scripts-and-loops.html?page=3">A PowerShell Primer article written by Jonathan Hassell for ComputerWorld.com</a></li>
+</ol>
+
+<p>For Bash Scripting:</p>
+<ol>
+  <li><a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html">Bash Beginners Guide by Machtelt Garrels</a></li>
+  <li><a href="https://www.tldp.org/LDP/abs/html/">Advanced Bash Scripting Guide by Mendel Cooper</a></li>
+  <li><a href="https://www.udemy.com/courses/search/?src=ukw&amp;q=bash+">Udemy Courses</a></li>
+</ol>
+
+<p>If you are interested in <em>cmder</em>, a powerful, portable console emulator for Windows, visit their site on <a href="http://cmder.net/">cmder.net</a>.</p>
+
+<p><img src="/assets/images/tutorials/cmderdotnet.png" /></p>]]></content><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><summary type="html"><![CDATA[This is just a simple glimpse into how I use Bash scripts and/or PowerShell scripts on my Windows 10 machine to automate my workflow and do more than one thing at a time.]]></summary></entry><entry><title type="html">Git it?</title><link href="http://localhost:4000/2018/10/26/git-it.html" rel="alternate" type="text/html" title="Git it?" /><published>2018-10-26T01:22:01-07:00</published><updated>2018-10-26T01:22:01-07:00</updated><id>http://localhost:4000/2018/10/26/git-it</id><content type="html" xml:base="http://localhost:4000/2018/10/26/git-it.html"><![CDATA[<p><code class="language-plaintext highlighter-rouge">“It is not the strongest or the most intelligent who will survive, but those who can best manage change.” - Charles Darwin.
+</code></p>
+
+<p>As a <strong>designer</strong>, developer and even a self-proclaimed artist, I often struggle with finalizing any project or creation that I have to offer to clients, students, or audience. The notion of change, movement, refactoring, versioning, evolution and other variation of not being complacent with the “current moment” engulf my mind. Even when I find the clarity to put a period, deadline or finality on whatever I am saying, working on, or creating, something at the back of my mind expects that one day I would have to revisit these <em>obra maestro</em>.</p>
+
+<p>As a <strong>programmer</strong>, I flood my codes with comments and instructions to my future self. As a <strong>musician</strong>, I record or transcibe various versions of my music. As a <strong>learner</strong>, I take notes, keep all the revisions I make on assignments, and save local copies of files I submit to my instructors.</p>
+
+<p>Most of these works are time-stamped and I can try to go back and compare the differences if I make any errors on the most recent copy. Doing this manually is really hard and this is where version control systems like git can help.</p>
+
+<p>If anyone asks me why I need to learn <strong>git</strong> and point out some existing commands on Windows like fc = file change or diff in Mac OSX or Linux, I find myself typing the few <em>git commands</em> I know by heart to demonstrate its superiority over existing commands. I know that the creators of these commands meant well, but in terms of comparing minute differences between files in a large scale development or production environment, git works best.</p>
+
+<p>Git enables its user to view historical versions of the file and every commit to any change has to be logged. Of course, the quality of comments you attached to every change matters, but you can also review the actual differences within the file. Having accesss to the entire history of a file help make a programmer efficient by giving a sense of comfort that even if the program breaks, the code that caused the break can be easily located and corrected.</p>
+
+<p>If you wish to dive into the world of Git, there is a free online book written by Scott Chacon and Ben Straub and published by Apress: <a href="https://git-scm.com/book/en/v2">CLICK HERE</a> to view the online book entitled <em>Pro Git</em>.</p>]]></content><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><summary type="html"><![CDATA[“It is not the strongest or the most intelligent who will survive, but those who can best manage change.” - Charles Darwin.]]></summary></entry><entry><title type="html">Methodology: Obtaining and Cleaning Data</title><link href="http://localhost:4000/2016/08/09/methodology-obtaining-and-cleaning-data.html" rel="alternate" type="text/html" title="Methodology: Obtaining and Cleaning Data" /><published>2016-08-09T00:00:00-07:00</published><updated>2016-08-09T00:00:00-07:00</updated><id>http://localhost:4000/2016/08/09/methodology-obtaining-and-cleaning-data</id><content type="html" xml:base="http://localhost:4000/2016/08/09/methodology-obtaining-and-cleaning-data.html"><![CDATA[<p><strong>PART ONE</strong></p>
+
+<p>Prior to data analysis, acquiring data and preparing them to be analyzed requires the following procedures:</p>
+
+<p><em>Raw Data -&gt; Processing Script -&gt; Tidy Data -&gt; Data Analysis -&gt; Data Communication</em></p>
+
+<p>The raw data for this project will be exported as Comma Separated Values or CSV files from exports of a computer firewall and a packet capture tool, like Wireshark. It is important to make sure that the data is ideal to be imported to data analysis tools. Ideal data to be used for analysis has the following requirements:</p>
+
+<ul>
+  <li>Every single row has an observation</li>
+  <li>Every single column has one variable</li>
+</ul>
+
+<p>Definition of Data: “Data are values of qualitative or quantitative variables, belonging to a set of items.” (wikipedia).</p>
+
+<p>set of items = population or set of objects of interest
+values = variables that we want to measure
+qualitative:  what types of protocol: TCP, FIX, or UDP; source IP Address: 192.168.32.0
+quantitative:  measurable data like time, detla time, number of bytes, etc..</p>
+
+<p>As we can see with the case of IP Addresses, not all numbers are quantitative in nature. Processing data from raw data to tidy data is done using packages in R. All steps in data processing should be recorded and this can be done via Git or Github,</p>
+
+<p>www.howtogeek.com has a page devoted to explaining what Git or Github is: “Git is an open-source version control system that was started by Linus Trovalds – the same person who created Linux. Git is similar to other version control systems – Subversion, CVS, and Mercurial to name a few.”</p>
+
+<p>It is critical to pay attention to what is happening to the data while going through processing is crucial to analysis, so any tools that help preserve the history of the data that is being processed will help in times we need to present that data has not been altered or reconfigured, revert back to an older version, etc…</p>
+
+<p>Changes in data, especially data related to computing, may be hard to monitor by human senses. However, machine learning procedures or data analysis can use the combination of tools to analyze each stages or changing variables that may later form the signature corresponding to a particular exploitation.</p>
+
+<p><strong>PART TWO</strong></p>
+
+<p>For this project, data coming from various sources are added frequently. At minimal, getting enough data to get some meaningful analysis will just be packet capture lasting a few minutes since storing these logs is dependent on how big the storage is. Real-time analysis can be limited to “the past 30 minutes of packet capture” for this project, but ultimately, data should be streaming to R. It still needs to be processed:</p>
+
+<p>The original source data -&gt; few R programs responsible to process data -&gt; from raw data, a small subset will be cleaned to get ready for analysis -&gt; (output) subset data that will be inputted to R programs responsible for explanatory analysis</p>
+
+<p>One process for tidying up data may include specification of variables, elimination of information that are not needed, computation of derive information, and checking if data can be managed by the computer’s memory. All these may also involve merging, sub-setting, and transformation of data. It is critical to pay attention and record all the steps done to the data.</p>
+
+<p><img src="/assets/images/datascience/dataprocessingdiagram.jpg" alt="data pipeline" /></p>
+
+<p>In the end of data clean up, Exploratory Data Analysis (EDA) input should have:</p>
+<ol>
+  <li>Original Raw Data</li>
+  <li>Processed or tidy data
+    <ul>
+      <li>each variable measured in one column</li>
+      <li>each observation of variable in one row</li>
+      <li>one table for each “kind” of variable</li>
+      <li>multiple tables should be linked by a variable</li>
+    </ul>
+  </li>
+  <li>metadata = describes the relationship between values and variables</li>
+  <li>version/history print = footprints of how data evolved from raw to tidy, algorithm from 1 to next steps.. so forth..</li>
+  <li>Save one file per table</li>
+</ol>
+
+<p><strong>PART THREE</strong></p>
+
+<p>Most raw data come from various sources, including servers located online. Although it is easy to right click and download a file to a local folder and fetch those files from that folder, it is better to actually include the download script within the R script that will be using the data.</p>
+
+<p>A review of R commands that might be helpful in the creation of automated scripts is listed below:</p>
+
+<p><img src="/assets/images/datascience/downloadingcsv1.PNG" alt="R commands" /></p>]]></content><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><summary type="html"><![CDATA[PART ONE]]></summary></entry><entry><title type="html">Journey In Learning: Data Scientist</title><link href="http://localhost:4000/2016/08/08/jil-data-scientist.html" rel="alternate" type="text/html" title="Journey In Learning: Data Scientist" /><published>2016-08-08T00:00:00-07:00</published><updated>2016-08-08T00:00:00-07:00</updated><id>http://localhost:4000/2016/08/08/jil-data-scientist</id><content type="html" xml:base="http://localhost:4000/2016/08/08/jil-data-scientist.html"><![CDATA[<p><img src="/assets/images/datascience/jildatascience.jpg" alt="Journey in Learning: Data Science" /></p>
+
+<p>In my journey to become a data scientist, I was able to learn from various introduction courses using MOOCs or Massive Open Online Courses. I started with Coursera’s offering from the John Hopkins’ Data Science Specialization: <a href="https://www.coursera.org/specializations/jhudatascience">link to the Data Science course in coursera.org</a></p>
+
+<p><img src="/assets/images/datascience/jilcoursera.JPG" alt="John Hopkins Universeity Data Science course list" /></p>
+
+<p>They provide certifications that you can attach to your Linkedin’s profile. I learned a lot from the courses regarding the application of Data Science in various scientific fields. We learned how to input datasets of various forms: CSV, JSON’s, HDFS, and also from different API’s. Here is one example of a project I had finished from the courses:</p>
+
+<p><a href="http://rpubs.com/journeylearner/">link to my Rpubs page</a></p>
+
+<p>We learned the R programming language, which is often preferred by most data scientists as a language to learn. However, this is not the only programming language to learn. A lot of Data Scientists uses Microsoft’s Excel, especially if you will be involved in business. Data scientists use programming and presentation skills to tell a story about how important a certain study of data is to finding business opportunities, and/or creating real-time decisions to create an advantage over competition: A MOOC that I would suggest in addition to the above data science specialization is offered by Duke University: <a href="https://www.coursera.org/specializations/excel-mysql">link here</a>.</p>
+
+<p>In this class, the professor provides a thorough study on what it takes to be a data science, and even provide enough information on how his students got their jobs within the data science industry. He would have guest speakers from former students that are currently working as data scientists, business analysts, and business data analysts. There is even enough information to distinguish a data scientist’s job from a software engineer’s, or how a data scientist works along side the other three jobs. Here are sample screenshots from this course:</p>
+
+<p><strong>Below are some infographics that compare some various Data Science related careers</strong>:</p>
+
+<p><img src="/assets/images/datascience/jilbusinessdataanalystversusbusinessanalyst.JPG" alt="Business Data vs Business Data Analyst" />
+<img src="/assets/images/datascience/jildatascientistskills.JPG" alt="Data Scientist vs Business Data Analyst" /></p>]]></content><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Exploratory Data Analysis on Computer Security</title><link href="http://localhost:4000/2016/08/08/exploratory-data-analysis-on-computer-security.html" rel="alternate" type="text/html" title="Exploratory Data Analysis on Computer Security" /><published>2016-08-08T00:00:00-07:00</published><updated>2016-08-08T00:00:00-07:00</updated><id>http://localhost:4000/2016/08/08/exploratory-data-analysis-on-computer-security</id><content type="html" xml:base="http://localhost:4000/2016/08/08/exploratory-data-analysis-on-computer-security.html"><![CDATA[<p><strong>Modeling Strategies for Security Dashboard</strong></p>
+
+<p>The goal of the experiment is to be able to provide a Real-time Automated Dashboard (RAD) that security analysts can observe to look at visuals describing the security state of a certain systems observed. The visuals will be properly labeled and make use of colors to distinguish normal state versus “possible exploited” state. Ideally, all graphs will be created from R objects that have been cleaned and processed for exploration. The aim is to be able to create meaningful information that can be used for decisions and further understand the system in real-time.</p>
+
+<p>Another goal of the experiment is to create standard R-packages that would aid in creating exploratory graphs. The design would take all variables in consideration and provide the user to choose which variable goes on the x or y axis at a specified scope in time. Graphics can then be displayed to alongside each other for comparison, as long as the user specifies a slice or scope of time to be observed: varies from real-time minus delay or exploratory for historical data.</p>
+
+<p>RAD will compose of multiple views of multi-variable data. A set of presets can be defaulted to having three sets of  2 x 2 graphs that shows random combination of variables from a certain R dataset. The user can then select particular variables to show up for customized graph for observation: below are sample graphs created by an R package ggplot. For more information, visit <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current/</a>.</p>
+
+<p>sample dashboard panel:</p>
+
+<p><img src="/assets/images/datascience/dashboard2.jpg" alt="sample dashboard panel" /></p>
+
+<p>RAD will be composed of visual graphics created from R data sets and they provide summary of the data in real-time and historically. Analysts can use these to further look into certain data that collaborates their hypothesis or establish doubts and provide enough evidence to rule out some generalizations.</p>
+
+<p>One-dimensional summaries of data include: boxplots, histograms, density plot, and bar plots:</p>
+
+<p><img src="/assets/images/datascience/1boxplots.PNG" alt="sample dashboard panel" /></p>
+
+<p><img src="/assets/images/datascience/2histograms2.PNG" alt="sample dashboard panel" /></p>
+
+<p><img src="/assets/images/datascience/2histograms.PNG" alt="sample dashboard panel" /></p>
+
+<p>Two-dimensional summaries of data include:</p>
+
+<ul>
+  <li>overlayed 1-dimensional - overlay shows other variables along with any of the previously listed 1-dimensional summaries in order to provide visual basis for comparison</li>
+</ul>
+
+<p><img src="/assets/images/datascience/3-2dhistogramsoverlayed.PNG" alt="sample dashboard panel" /></p>
+
+<ul>
+  <li>scatterplots, smooth scatterplots</li>
+</ul>
+
+<p><img src="/assets/images/datascience/4scatterplots.PNG" alt="sample dashboard panel" /></p>
+
+<p><img src="/assets/images/datascience/4scatterplots2.PNG" alt="sample dashboard panel" /></p>]]></content><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><summary type="html"><![CDATA[Modeling Strategies for Security Dashboard]]></summary></entry><entry><title type="html">Learning Some Linux Basic Commands</title><link href="http://localhost:4000/2015/10/03/learning-some-linux-basics.html" rel="alternate" type="text/html" title="Learning Some Linux Basic Commands" /><published>2015-10-03T00:00:00-07:00</published><updated>2015-10-03T00:00:00-07:00</updated><id>http://localhost:4000/2015/10/03/learning-some-linux-basics</id><content type="html" xml:base="http://localhost:4000/2015/10/03/learning-some-linux-basics.html"><![CDATA[<p><strong>Some Useful Commands</strong></p>
+
+<ol>
+  <li>To list directory contents, * The options (letters preceded by a <em>tack</em> or <em>dash</em> symbol ‘-‘) modify the behavior of commands:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls -a #  includes hidden files and directories
+ls -l #  lists all contents in long format
+ls -t #  orders files and directories by the time they were last modified
+ls -alt #  Multiple options can be used together
+</code></pre></div></div>
+
+<ol>
+  <li>To copy, move, and remove files and directories:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp #copies files
+mv #moves and renames files
+rm #removes files
+rm -r #removes directories
+</code></pre></div></div>
+
+<p>Here are a few other commands:</p>
+
+<p><img src="/assets/images/computersecurity/linuxcommands.jpg" alt="sample dashboard panel" /></p>]]></content><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><summary type="html"><![CDATA[Some Useful Commands]]></summary></entry><entry><title type="html">Methodology of Observation</title><link href="http://localhost:4000/2015/08/08/methodology-of-observation.html" rel="alternate" type="text/html" title="Methodology of Observation" /><published>2015-08-08T00:00:00-07:00</published><updated>2015-08-08T00:00:00-07:00</updated><id>http://localhost:4000/2015/08/08/methodology-of-observation</id><content type="html" xml:base="http://localhost:4000/2015/08/08/methodology-of-observation.html"><![CDATA[<p>In exploring data from output of firewalls and packet analysis tools, it is important to set controls or defaults in which real-time data can be compared to. This means that in order to be able to explore what happens when a computer is being attacked by brute-force of password, something about the data needs to deviate from a predefined norm. The norm should be taken as a snapshot of when the network is working well, without any influence from exploit attempts. During the brute-force attack, changes in the R-plot analysis will be observed and analyzed. Certain alert and notification scheme will be implemented.</p>
+
+<p>The deviation will then be analyzed and all variable factors looked into in order for the security expert to come up with probing questions. From a technical view, a subset of the data that produces the anomaly will be preserved for real-time probing. Meanwhile, the automated process of looking at the system continues.</p>
+
+<p>Probing questions should be documented and disregarded if any turns out to be false negatives. Looking at various varying elements and views of computer security related concepts can help introduce further questions that are inclined to probing for causal hypothesis. For the example above, an “online” brute-force attacks will show login attempts from a single IP address and the small interval between login attempts should be observed from one of the R-plot analysis views. There should be a dataset that is created from counting authentication failures from either the firewall. This can easily detect visual changes when plotted on R.</p>
+
+<p>A not so direct approach is analyzing the packet logs and looking into communication protocol specific entries of the communication between a client’s IP and the login server. The packet behavior will provide visual cues that can help create a “brute-force” signature that can later be compared and analysed from various datasets created from other sources. The settings of how a web server can handle login attempts can also help create meaningful dataset elements to be observed. “HTTP 401 status code in your Web server logs” can be monitored as long as each login failed attempt is programmed to throw an HTTP 401.</p>
+
+<p>Observations that will be created should be multivariate or having more then two variables that will be considered. It is not enough to look for the obvious since other factors may tell a richer story that computer security experts have not considered before. This is the element where data science can use machine learning to help create some real-time and predictive. Automation and machine learning can handle more variable to be considered.</p>
+
+<p>Lastly, observations will be used to create analysis by integrating data graphics, words, numbers, images and diagrams. Some measurements of the strength of evidences will need to be factored into the analysis. Labeling plots are important in order to provide clear information and having enough sources should help improve credibility of the observations.</p>
+
+<p>Methodology used in this project is inspired by Johns Hopkin’s Roger D. Peng’s presentation entitled “Principles of Analytic Graphics” and Edward Tuftle’s principles as described in Beautiful Evidence.</p>
+
+<p>Resources:</p>
+
+<p>Peng, R. (2015). Principles of Analytic Graphics [video]. Retrieved from https://class.coursera.org/exdata-031/lecture/13</p>
+
+<p>Tufte, E. (2006). Beautiful Evidence, Graphics Press, LLC. Retrieved from www.edwardtufte.com</p>]]></content><author><name>NostradmsX</name><email>roygarcia201@gmail.com</email></author><summary type="html"><![CDATA[In exploring data from output of firewalls and packet analysis tools, it is important to set controls or defaults in which real-time data can be compared to. This means that in order to be able to explore what happens when a computer is being attacked by brute-force of password, something about the data needs to deviate from a predefined norm. The norm should be taken as a snapshot of when the network is working well, without any influence from exploit attempts. During the brute-force attack, changes in the R-plot analysis will be observed and analyzed. Certain alert and notification scheme will be implemented.]]></summary></entry></feed>

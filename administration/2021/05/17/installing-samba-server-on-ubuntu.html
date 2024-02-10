@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Installing Samba Server on Ubuntu/PopOS | NoStrA Blog</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Installing Samba Server on Ubuntu/PopOS" />
+<meta name="author" content="NostradmsX" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Goal:" />
+<meta property="og:description" content="Goal:" />
+<link rel="canonical" href="http://localhost:4000/administration/2021/05/17/installing-samba-server-on-ubuntu.html" />
+<meta property="og:url" content="http://localhost:4000/administration/2021/05/17/installing-samba-server-on-ubuntu.html" />
+<meta property="og:site_name" content="NoStrA Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-17T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Installing Samba Server on Ubuntu/PopOS" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"NostradmsX"},"dateModified":"2021-05-17T00:00:00-07:00","datePublished":"2021-05-17T00:00:00-07:00","description":"Goal:","headline":"Installing Samba Server on Ubuntu/PopOS","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/administration/2021/05/17/installing-samba-server-on-ubuntu.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/logo-dmsecurityx.png"},"name":"NostradmsX"},"url":"http://localhost:4000/administration/2021/05/17/installing-samba-server-on-ubuntu.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="NoStrA Blog" />
+</head>
+<body><header class="site-header" style="background-color: #1d2951;color: #d0e2bb;">
+<div class="banner">
+
+  <div class="wrapper"><div class="dmsecurityxlogo">
+      
+          <img class="dmsecurityxlogo" alt="logo" src="/assets/images/logo-dmsecurityx.png"/>
+      
+  </div>
+    <a class="site-title" style="color:#d0e2bb;"rel="author" href="/">NoStrA Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"></div>
+      </nav></div>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Installing Samba Server on Ubuntu/PopOS</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-05-17T00:00:00-07:00" itemprop="datePublished">
+        May 17, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="goal">Goal:</h1>
+
+<p>Ultimately, I aim to be able to map a PopOS folder to my Windows 10 machine. I do not want to keep syncing these two machines and keeping track of duplicate copies. I want to designate a folder on my PopOS machine where I can move, edit and save files to from any computer. This way, any changes I do to files and directories on this Samba folder from my Windows 10 machine will be saved on the PopOS machine. Lastly, I do not need to keep any copy of files on my Windows 10 machine. How do I accomplish this?</p>
+
+<h1 id="solution">Solution:</h1>
+<p>It is time to learn about Samba by installing it on my PopOS machine, creating a Samba user and designating a Samba private folder that I can later map from my Windows 10 machine. I followed the instructions from this site: <a href="https://www.linuxbabe.com/ubuntu/install-samba-server-file-share">https://www.linuxbabe.com/ubuntu/install-samba-server-file-share</a></p>
+
+<h1 id="installation">Installation:</h1>
+
+<p>I was able to run <code class="language-plaintext highlighter-rouge">sudo apt install samba samba-common-bin</code> and got these errors:</p>
+
+<p><img src="/assets/images/01_samba_installation_error.jpg" alt="samba installation error" /></p>
+
+<p>Despite the above errors, I was able to I check for the version <code class="language-plaintext highlighter-rouge">smbd --version</code> and got <code class="language-plaintext highlighter-rouge">Version 4.12.5-Ubuntu</code>. This is a good sign that Samba  server was installed on my Ubuntu/PopOS machine:</p>
+
+<p>One way to verify is to see if the daemon necessary for Samba works by running: <code class="language-plaintext highlighter-rouge">sudo systemctl status smbd nmbd</code>. This results:</p>
+
+<p><img src="/assets/images/02_samba_systemctl_status.jpg" alt="systemctl status to check samba" /></p>
+
+<p>I was able to start Samba using: <code class="language-plaintext highlighter-rouge">sudo systemctl start smbd nmbd</code></p>
+
+<p>I then proceeded adding a Samba user and Samba group:</p>
+
+<p><img src="/assets/images/03_samba_user_add.jpg" alt="adding the user and samba folder" /></p>
+
+<p>Also, I created the Samba folder and configured Samba:</p>
+
+<p><img src="/assets/images/04_samba_folder_add.jpg" alt="Creating the samba folder" /></p>
+
+<p>Restarting Samba using the command: <code class="language-plaintext highlighter-rouge">sudo systemctl restart smbd nmbd</code></p>
+
+<h1 id="mapping-the-samba-folder-in-windows-10-machine">Mapping the samba folder in Windows 10 machine</h1>
+
+<p>Using Windows Explorer, we type <code class="language-plaintext highlighter-rouge">\\10.0.0.152\Private</code> on the address bar and we will be asked to sign in as the Samba user that was created:</p>
+
+<p><img src="/assets/images/05_samba_windows_map.jpg" alt="mapping the samba folder in Windows 10" /></p>
+
+<h1 id="conclusion">Conclusion:</h1>
+
+<p>Samba is one way that Linux machines interoperate with Windows machines. By following the above steps, I am now capable of working on my PopOS Samba folder from any machine that supports Samba and I am able to minimize my workflow by not needing to  worry about redundancies and keenly keeping track of two versions on two machines. I know that there are other and better ways of doing what I wanted to accomplish, but I will explore and write about them next time.</p>
+
+<h1 id="references">References:</h1>
+
+<ol>
+  <li>About Samba: <a href="https://www.samba.org/samba/what_is_samba.html">https://www.samba.org/samba/what_is_samba.html</a></li>
+  <li>Installing Samba: <a href="https://www.linuxbabe.com/ubuntu/install-samba-server-file-share">https://www.linuxbabe.com/ubuntu/install-samba-server-file-share</a></li>
+</ol>
+
+
+  </div><a class="u-url" href="/administration/2021/05/17/installing-samba-server-on-ubuntu.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card"style="background-color: #1d2951;color: aqua;">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="http://localhost:4000/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <!-- <li class="p-name">NostradmsX</li> -->
+            <li class="p-name">&#169; NostradmsX 2024</li>
+          <li><a class="u-email" href="mailto:roygarcia201@gmail.com">roygarcia201@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>A repository of my numerous failed attempts to be succinct and discernible</p>
+        <ul class="contact-list">
+          <li><a class="u-facebook_username" href="https://www.facebook.com/dmsxpage" target="_blank"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#facebook"></use></svg>facebook.com/dmsxpage</a></li>
+          <li><a class="u-github_username" href="https://www.github.com/roylouisgarcia" target="_blank"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg>github.com/roylouisgarcia</a></li>
+          <li><a class="u-twitter_username" href="https://www.twitter.com/dmsecurityx" target="_blank"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg>twitter.com/dmsecurityx</a></li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="social-links"><!---->
+
+<ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
