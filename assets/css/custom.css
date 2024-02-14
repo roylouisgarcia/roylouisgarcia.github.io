@@ -1,3 +1,41 @@
-body{
-    background-color: aqua;
+header a, header a:visited, footer a, footer a:visited{
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+header a:hover, footer a:hover{
+    color:rgb(223, 230, 248);
+    text-decoration: solid;
+}
+
+footer, header{
+background-color: #1d2951;
+color: aqua;
+}
+
+.post-header{
+    background-color: rgb(238, 194, 0);
+    color: black;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+}
+
+.front-page-post{
+    background-color: #f6fae0;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.image-left{
+    float: left;
+    margin-right: 10px;
+}
+
+.read-more-button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
 }
