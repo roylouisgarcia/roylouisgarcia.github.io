@@ -10,18 +10,19 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The goal is to be able to reach certain directories of my Linux server from my Windows computer using Samba. This way I can transfer files between my server and any client computer that on my network." />
 <meta property="og:description" content="The goal is to be able to reach certain directories of my Linux server from my Windows computer using Samba. This way I can transfer files between my server and any client computer that on my network." />
-<link rel="canonical" href="http://0.0.0.0:4000/administration/2021/05/17/installing-samba-server-on-ubuntu.html" />
-<meta property="og:url" content="http://0.0.0.0:4000/administration/2021/05/17/installing-samba-server-on-ubuntu.html" />
+<link rel="canonical" href="https://roylouisgarcia.github.io/administration/2021/05/17/installing-samba-server-on-ubuntu.html" />
+<meta property="og:url" content="https://roylouisgarcia.github.io/administration/2021/05/17/installing-samba-server-on-ubuntu.html" />
 <meta property="og:site_name" content="NoStrA Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-05-17T00:00:00-07:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Installing Samba Server on Ubuntu/PopOS" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"NostradmsX"},"dateModified":"2021-05-17T00:00:00-07:00","datePublished":"2021-05-17T00:00:00-07:00","description":"The goal is to be able to reach certain directories of my Linux server from my Windows computer using Samba. This way I can transfer files between my server and any client computer that on my network.","headline":"Installing Samba Server on Ubuntu/PopOS","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/administration/2021/05/17/installing-samba-server-on-ubuntu.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/logo-dmsecurityx.png"},"name":"NostradmsX"},"url":"http://0.0.0.0:4000/administration/2021/05/17/installing-samba-server-on-ubuntu.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"NostradmsX"},"dateModified":"2021-05-17T00:00:00-07:00","datePublished":"2021-05-17T00:00:00-07:00","description":"The goal is to be able to reach certain directories of my Linux server from my Windows computer using Samba. This way I can transfer files between my server and any client computer that on my network.","headline":"Installing Samba Server on Ubuntu/PopOS","mainEntityOfPage":{"@type":"WebPage","@id":"https://roylouisgarcia.github.io/administration/2021/05/17/installing-samba-server-on-ubuntu.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://roylouisgarcia.github.io/logo-dmsecurityx.png"},"name":"NostradmsX"},"url":"https://roylouisgarcia.github.io/administration/2021/05/17/installing-samba-server-on-ubuntu.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/custom.css"><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="NoStrA Blog" />
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/navigation.css"><link type="application/atom+xml" rel="alternate" href="https://roylouisgarcia.github.io/feed.xml" title="NoStrA Blog" />
 </head>
 <body><header class="site-header">
 <div class="banner">
@@ -44,8 +45,17 @@
         <div class="trigger"></div>
       </nav></div>
   </div>
-</header>
-<main class="page-content" aria-label="Content">
+</header><div id="horizontal-navigation">
+<ul>
+
+<li><a href="/"  alt="Home">Home</a></li>
+
+<li><a href="/about/"  alt="About NostradmsX">About NostradmsX</a></li>
+
+<li><a href="https://www.dmsecurityx.com/"  alt="DMSecurityX">DMSecurityX</a></li>
+
+ </ul>
+</div><main class="page-content" aria-label="Content">
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -61,13 +71,13 @@
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="/assets/images/05_samba_windows_map.jpg" alt="mapping the samba folder in Windows 10" />The goal is to be able to reach certain directories of my Linux server from my Windows computer using Samba. This way I can transfer files between my server and any client computer that on my network.</p>
 
-<h2 id="problem">Problem:</h2>
+<h4 id="problem">Problem:</h4>
 <p>I do not want to keep syncing these two machines and keeping track of duplicate copies. I want to designate a folder on my PopOS machine where I can move, edit and save files to from any computer. This way, any changes I do to files and directories on this Samba folder from my Windows 10 machine will be saved on the PopOS machine. Lastly, I do not need to keep any copy of files on my Windows 10 machine. How do I accomplish this?</p>
 
-<h2 id="solution">Solution:</h2>
+<h4 id="solution">Solution:</h4>
 <p>It is time to learn about Samba by installing it on my PopOS machine, creating a Samba user and designating a Samba private folder that I can later map from my Windows 10 machine. I followed the instructions from this site: <a href="https://www.linuxbabe.com/ubuntu/install-samba-server-file-share">https://www.linuxbabe.com/ubuntu/install-samba-server-file-share</a></p>
 
-<h2 id="installation">Installation:</h2>
+<h4 id="installation">Installation:</h4>
 
 <p>I was able to run <code class="language-plaintext highlighter-rouge">sudo apt install samba samba-common-bin</code> and got these errors:</p>
 
@@ -91,17 +101,17 @@
 
 <p>Restarting Samba using the command: <code class="language-plaintext highlighter-rouge">sudo systemctl restart smbd nmbd</code></p>
 
-<h2 id="mapping-the-samba-folder-in-windows-10-machine">Mapping the samba folder in Windows 10 machine</h2>
+<h4 id="mapping-the-samba-folder-in-windows-10-machine">Mapping the samba folder in Windows 10 machine</h4>
 
 <p>Using Windows Explorer, we type <code class="language-plaintext highlighter-rouge">\\10.0.0.152\Private</code> on the address bar and we will be asked to sign in as the Samba user that was created:</p>
 
 <p><img src="/assets/images/05_samba_windows_map.jpg" alt="mapping the samba folder in Windows 10" /></p>
 
-<h2 id="conclusion">Conclusion:</h2>
+<h4 id="conclusion">Conclusion:</h4>
 
 <p>Samba is one way that Linux machines interoperate with Windows machines. By following the above steps, I am now capable of working on my PopOS Samba folder from any machine that supports Samba and I am able to minimize my workflow by not needing to  worry about redundancies and keenly keeping track of two versions on two machines. I know that there are other and better ways of doing what I wanted to accomplish, but I will explore and write about them next time.</p>
 
-<h2 id="references">References:</h2>
+<h4 id="references">References:</h4>
 
 <ol>
   <li>About Samba: <a href="https://www.samba.org/samba/what_is_samba.html">https://www.samba.org/samba/what_is_samba.html</a></li>
@@ -120,7 +130,7 @@
     <div class="footer-col-wrapper">
       <div class="footer-col">
         <p class="feed-subscribe">
-          <a href="http://0.0.0.0:4000/feed.xml">
+          <a href="https://roylouisgarcia.github.io/feed.xml">
             <svg class="svg-icon orange">
               <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
             </svg><span>Subscribe</span>

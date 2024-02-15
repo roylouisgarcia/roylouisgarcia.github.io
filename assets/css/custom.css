@@ -1,3 +1,8 @@
+body{
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    font-size: small;
+}
 header a, header a:visited, footer a, footer a:visited{
     color: #4CAF50;
     text-decoration: none;
@@ -21,21 +26,99 @@ color: aqua;
     text-align: center;
 }
 
+.post-content{
+        background-color: #1d2951;
+        padding: 10px;
+}
+
+
+.max-width-image{
+    /* max-width: 400px; */
+    min-width: 100px;
+}
+.post-content a{
+    color:rgb(238, 194, 0);
+
+}
+
 .front-page-post{
-    background-color: #f6fae0;
+    background-color: #ffffff;
+    color: #000;
     padding: 15px;
     border-radius: 15px;
+}
+.home{
+    background-color: #1d2951;
+    padding: 20px;
+    border-radius: 15px;
+}
+.home-article-title{
+    font-size: large;
 }
 
 .image-left{
     float: left;
-    margin-right: 10px;
+    margin-right: 20px;
+}
+
+.written, .post-meta{
+    font-size: small;
 }
 
 .read-more-button{
-    background-color: #4CAF50;
+    background-color: #f1b204;
     color: white;
     padding: 10px;
     border: none;
     cursor: pointer;
+}
+
+code{
+    color: rgb(92, 12, 12);
+}
+
+.read-more-button:hover{
+    background-color: #1d2951;
+    color: #f1b204;
+    
+}
+
+
+@media only screen and (max-width: 500px) {
+  body {
+    font-size: small;
+  }
+
+  h1.post-title{
+    font-size:small;
+    margin: 10px 0px 5px 0px;
+  }
+
+  .post-content{
+    background-color: #1d2951;
+    font-size: small;
+  }
+
+ .dt-published, .p-author{
+    font-size: x-small;
+ } 
+
+  .post-header, .post-meta{
+    background-color: #fff;
+    padding:1px;
+    font-size: xx-small;
+  }
+.home-article-title{
+    font-size: small;
+}
+
+.front-page-post{
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 15px;
+}
+.read-more-button{
+    padding: 2px;
+}
+
 }

@@ -10,18 +10,19 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Collecting logs is a standard practice in IT. Normally, giving storage space to newer data is a prirority that is why most systems clean up their logs or historical data for after some time. The decrease in cost of storage devices made possible to keep historical logs longer than usual." />
 <meta property="og:description" content="Collecting logs is a standard practice in IT. Normally, giving storage space to newer data is a prirority that is why most systems clean up their logs or historical data for after some time. The decrease in cost of storage devices made possible to keep historical logs longer than usual." />
-<link rel="canonical" href="http://0.0.0.0:4000/2022/07/20/machine-learning-it-anomaly_detection.html" />
-<meta property="og:url" content="http://0.0.0.0:4000/2022/07/20/machine-learning-it-anomaly_detection.html" />
+<link rel="canonical" href="https://roylouisgarcia.github.io/2022/07/20/machine-learning-it-anomaly_detection.html" />
+<meta property="og:url" content="https://roylouisgarcia.github.io/2022/07/20/machine-learning-it-anomaly_detection.html" />
 <meta property="og:site_name" content="NoStrA Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-07-20T00:00:00-07:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Applying Machine Learning in IT:" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"NostradmsX"},"dateModified":"2022-07-20T00:00:00-07:00","datePublished":"2022-07-20T00:00:00-07:00","description":"Collecting logs is a standard practice in IT. Normally, giving storage space to newer data is a prirority that is why most systems clean up their logs or historical data for after some time. The decrease in cost of storage devices made possible to keep historical logs longer than usual.","headline":"Applying Machine Learning in IT:","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2022/07/20/machine-learning-it-anomaly_detection.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/logo-dmsecurityx.png"},"name":"NostradmsX"},"url":"http://0.0.0.0:4000/2022/07/20/machine-learning-it-anomaly_detection.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"NostradmsX"},"dateModified":"2022-07-20T00:00:00-07:00","datePublished":"2022-07-20T00:00:00-07:00","description":"Collecting logs is a standard practice in IT. Normally, giving storage space to newer data is a prirority that is why most systems clean up their logs or historical data for after some time. The decrease in cost of storage devices made possible to keep historical logs longer than usual.","headline":"Applying Machine Learning in IT:","mainEntityOfPage":{"@type":"WebPage","@id":"https://roylouisgarcia.github.io/2022/07/20/machine-learning-it-anomaly_detection.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://roylouisgarcia.github.io/logo-dmsecurityx.png"},"name":"NostradmsX"},"url":"https://roylouisgarcia.github.io/2022/07/20/machine-learning-it-anomaly_detection.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/custom.css"><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="NoStrA Blog" />
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/navigation.css"><link type="application/atom+xml" rel="alternate" href="https://roylouisgarcia.github.io/feed.xml" title="NoStrA Blog" />
 </head>
 <body><header class="site-header">
 <div class="banner">
@@ -44,8 +45,17 @@
         <div class="trigger"></div>
       </nav></div>
   </div>
-</header>
-<main class="page-content" aria-label="Content">
+</header><div id="horizontal-navigation">
+<ul>
+
+<li><a href="/"  alt="Home">Home</a></li>
+
+<li><a href="/about/"  alt="About NostradmsX">About NostradmsX</a></li>
+
+<li><a href="https://www.dmsecurityx.com/"  alt="DMSecurityX">DMSecurityX</a></li>
+
+ </ul>
+</div><main class="page-content" aria-label="Content">
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -65,7 +75,7 @@
 
 <p>In this post, I employ the process of “Anomaly Detection”, which is a kind of unsupervised machine learning approach.</p>
 
-<h2 id="anomaly-detection-unsupervised-learning-approach">Anomaly Detection Unsupervised Learning Approach:</h2>
+<h4 id="anomaly-detection-unsupervised-learning-approach">Anomaly Detection Unsupervised Learning Approach:</h4>
 
 <p>An anomaly detection algorithm to detect anomalous behavior in server computers will be utilized using a dataset that contains two features -</p>
 
@@ -87,7 +97,7 @@ examples of how they were behaving, and thus have an unlabeled dataset {𝑥(1),
 
 <p>On that dataset I will fit a Gaussian distribution and then find values that have very low probability and hence can be considered anomalies.</p>
 
-<h2 id="the-dataset">The Dataset:</h2>
+<h4 id="the-dataset">The Dataset:</h4>
 
 <p>We will load X_train, X_val and y_val from the dataset.</p>
 
@@ -96,33 +106,33 @@ using X_val and y_val as a cross validation set to select a threshold and determ
 
 <p><img src="/assets/images/image-20220819183628891.png" alt="image-20220819183628891" /></p>
 
-<h2 id="visualize-the-data">Visualize the Data:</h2>
+<h4 id="visualize-the-data">Visualize the Data:</h4>
 
 <p><img src="/assets/images/image-20220819183716699.png" alt="image-20220819183716699" /></p>
 
-<h2 id="gaussian-distribution-normal-or-bell-curve">Gaussian Distribution (Normal or Bell Curve):</h2>
+<h4 id="gaussian-distribution-normal-or-bell-curve">Gaussian Distribution (Normal or Bell Curve):</h4>
 
 <p><img src="/assets/images/image-20220819184200745.png" alt="image-20220819184200745" /></p>
 
-<h2 id="code-to-estimate-the-parameters-for-gaussian">Code to Estimate the Parameters for Gaussian:</h2>
+<h4 id="code-to-estimate-the-parameters-for-gaussian">Code to Estimate the Parameters for Gaussian:</h4>
 
 <p><img src="/assets/images/image-20220819184620554.png" alt="image-20220819184620554" /></p>
 
-<h2 id="plotting-with-estimate-against-a-gaussian-contour">Plotting with Estimate against a Gaussian Contour:</h2>
+<h4 id="plotting-with-estimate-against-a-gaussian-contour">Plotting with Estimate against a Gaussian Contour:</h4>
 
 <p>Plotting this estimate shows that most of the examples are in the region with the highest probability, while the anomalous examples are in the regions with lower probabilities.</p>
 
 <p><img src="/assets/images/image-20220819184836393.png" alt="image-20220819184836393" /></p>
 
-<h2 id="selecting-the-threshold">Selecting the Threshold:</h2>
+<h4 id="selecting-the-threshold">Selecting the Threshold:</h4>
 
 <p><img src="/assets/images/image-20220819185614210.png" alt="image-20220819185614210" /></p>
 
-<h2 id="the-classified-anomalies">The Classified Anomalies</h2>
+<h4 id="the-classified-anomalies">The Classified Anomalies</h4>
 
 <p><img src="/assets/images/image-20220819185803387.png" alt="image-20220819185803387" /></p>
 
-<h2 id="summary">Summary:</h2>
+<h4 id="summary">Summary:</h4>
 
 <p>Extracting valuable information from historical data that is continuously collected can be valuable to detect problems in any IT system. Even with a real-time dashboard that can be viewed by IT administrators, it would be a challenge to be vigilant in finding anomalies by merely observing certain metrics visually. IT systems produce a stream of events that need to be sorted out prior to effectively find some valuable insights and machine learning can be employed to help.</p>
 
@@ -139,7 +149,7 @@ using X_val and y_val as a cross validation set to select a threshold and determ
     <div class="footer-col-wrapper">
       <div class="footer-col">
         <p class="feed-subscribe">
-          <a href="http://0.0.0.0:4000/feed.xml">
+          <a href="https://roylouisgarcia.github.io/feed.xml">
             <svg class="svg-icon orange">
               <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
             </svg><span>Subscribe</span>
