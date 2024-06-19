@@ -1,0 +1,7 @@
+<div id="horizontal-navigation">
+<ul>
+{% for item in site.data.navigation %}
+<li><a href="{{item.url}}" {% if page.url == item.url %} id="current-page" {% endif %} alt="{{item.title}}">{{item.title}}</a></li>
+{% endfor %}
+ </ul>
+</div>
