@@ -1,7 +1,7 @@
 body{
     background-color: rgb(0, 0, 0);
     color: #ffffff;
-    font-size: small;
+    font-size: 20px;
 }
 header a, header a:visited, footer a, footer a:visited{
     color: #4CAF50;
@@ -86,7 +86,7 @@ code{
 
 @media only screen and (max-width: 500px) {
   body {
-    font-size: small;
+    font-size: 16px;
   }
 
   h1.post-title{
