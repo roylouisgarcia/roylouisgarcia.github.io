@@ -357,18 +357,37 @@ pre > code {
 }
 
 /**
- * Wrapper
+ * NavWrapper
  */
-.wrapper {
-  max-width: calc(800px - (30px));
+.navwrapper {
+  width: 100%;
+  max-width: calc(900px - (30px));
   margin-right: auto;
   margin-left: auto;
   padding-right: 15px;
   padding-left: 15px;
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 900px) {
+  .navwrapper {
+    max-width: calc(900px - 30px * 2);
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+/**
+ * Wrapper
+ */
+.wrapper {
+  max-width: calc(900px - (30px));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+@media screen and (min-width: 900px) {
   .wrapper {
-    max-width: calc(800px - 30px * 2);
+    max-width: calc(900px - 30px * 2);
     padding-right: 30px;
     padding-left: 30px;
   }
@@ -377,7 +396,7 @@ pre > code {
 /**
  * Clearfix
  */
-.wrapper:after {
+.navwrapper:after, .wrapper:after {
   content: "";
   display: table;
   clear: both;
@@ -426,7 +445,7 @@ table th {
 table td {
   border: 1px solid #e8e8e8;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   table {
     display: block;
     overflow-x: auto;
@@ -453,7 +472,7 @@ table td {
   margin-bottom: 0;
   float: left;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .site-title {
     padding-right: 45px;
   }
@@ -511,7 +530,7 @@ table td {
 .site-nav .page-link:not(:last-child) {
   margin-right: 0;
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 700px) {
   .site-nav {
     position: static;
     float: right;
@@ -580,7 +599,7 @@ table td {
   width: calc(100% - 30px / 2);
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 900px) {
   .footer-col-1 {
     width: calc(35% - 30px / 2);
   }
@@ -591,7 +610,7 @@ table td {
     width: calc(45% - 30px / 2);
   }
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 700px) {
   .footer-col-wrapper {
     display: flex;
   }
@@ -655,7 +674,7 @@ table td {
   letter-spacing: -1px;
   line-height: 1.15;
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 900px) {
   .post-title,
   .post-content h1 {
     font-size: 2.625rem;
@@ -671,7 +690,7 @@ table td {
 .post-content h2 {
   font-size: 1.75rem;
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 900px) {
   .post-content h2 {
     font-size: 2rem;
   }
@@ -679,7 +698,7 @@ table td {
 .post-content h3 {
   font-size: 1.375rem;
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 900px) {
   .post-content h3 {
     font-size: 1.625rem;
   }
@@ -738,7 +757,7 @@ table td {
 /**
  * Grid helpers
  */
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 900px) {
   .one-half {
     width: calc(50% - 30px / 2);
   }

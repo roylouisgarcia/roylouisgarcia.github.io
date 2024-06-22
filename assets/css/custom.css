@@ -18,6 +18,24 @@ background-color: #1d2951;
 color: aqua;
 }
 
+
+.home img{
+    width: 70%;
+    height: auto;
+    display: flex;
+    margin-left: 15%;
+    margin-top:15px;
+    justify-content: center;
+}
+.internship{
+    width: 70%;
+    height: auto;
+    display: flex;
+    margin-left: 15%;
+    margin-top:15px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
 .post-header{
     background-color: rgb(238, 194, 0);
     color: black;
@@ -53,12 +71,14 @@ color: aqua;
     border-radius: 15px;
 }
 .home-article-title{
-    font-size: large;
+    font-size: x-large;
+    font-weight: bolder;
 }
 
 .image-left{
     float: left;
-    margin-right: 20px;
+    margin-right: 10px;
+    padding-right: 10px;
 }
 
 .written, .post-meta{
@@ -89,6 +109,12 @@ code{
     font-size: 16px;
   }
 
+  .navwrapper{
+    font-size: xx-small;
+    padding: 0px;
+  }
+
+
   h1.post-title{
     font-size:small;
     margin: 10px 0px 5px 0px;
@@ -109,7 +135,8 @@ code{
     font-size: xx-small;
   }
 .home-article-title{
-    font-size: small;
+    font-size: medium;
+    font-weight: bolder;
 }
 
 .front-page-post{
