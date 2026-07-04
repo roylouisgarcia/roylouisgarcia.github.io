@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form 2 Lua</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">  
+
+</head>
+
+<body>
+    <!-- start jumbotron -->
+    <div class="jumbotron text-center">
+        <h1>Unofficial<img src="images/wiki.png" />2Lua</h1>
+    </div>
+    <!-- end jumbotron -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>Use the form to create a pre-populated LeaguePedia's Lua template to embed battle information. </p>
+            <p>This is a personal project and not affliliated with LeaguePedia. Logo is trademarked to GamePedia or LeaguePedia</p>
+        </div>
+    </div>
+
+
+    <!-- start container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 groupDesign">
+                <h3>Game Info</h3>
+
+                <div class="form-group row gameinfo">
+                    <label for="team1" class="col-xs-3 col-form-label">Team 1</label>
+                    <div class="col-xs-9">
+                        <input class="form-control" type="text" value="" id="team1">
+                    </div>
+                </div>
+                <div class="form-group row gameinfo">
+                    <label for="team1" class="col-xs-3 col-form-label">Team 2</label>
+                    <div class="col-xs-9">
+                        <input class="form-control" type="text" value="" id="team2">
+                    </div>
+                </div>
+                <div class="form-group row gameinfo">
+                    <label for="winner" class="col-xs-3 col-form-label">Winner</label>
+                    <div class="col-xs-9">
+                        <input class="form-control" type="text" value="" id="winner">
+                    </div>
+                </div>
+                <div class="form-group row gameinfo">
+                    <label for="tournament" class="col-xs-3 col-form-label">Tournament</label>
+                    <div class="col-xs-9">
+                        <input class="form-control" type="text" value="" id="tournament">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="date" class="col-xs-2 col-form-label">Date/Time</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="datetime-local" value="2017-01-01T13:45:00" id="date">
+                    </div>
+
+                </div>
+                
+                <div class="form-group" row>
+                    <div class="col-xs-4">
+                    <label for="dst">DST:</label>
+                    <select class="form-control" id="dst">
+                        <option>yes</option>
+                        <option>no</option>
+                    </select>
+                    </div>
+                     <div class="col-xs-8">
+                    <label for="gamelen" class="col-xs-3 col-form-label">Length</label>
+                        <input class="form-control" type="text" value="HH:MM:SS" id="length">
+                    </div>
+                </div>
+
+                <h3>Team Bans</h3>
+                <div class="form-group row teambans">
+                    <div class="col-xs-6">
+                        <label> Team 1 Bans</label>
+                        <input class="form-control" type="text" value="" id="t1ban1">
+                        <input class="form-control" type="text" value="" id="t1ban2">
+                        <input class="form-control" type="text" value="" id="t1ban3">
+                        <input class="form-control" type="text" value="" id="t1ban4">
+                        <input class="form-control" type="text" value="" id="t1ban5">
+                    </div>
+                    <div class="col-xs-6">
+                        <label> Team 2 Bans</label>
+                        <input class="form-control" type="text" value="" id="t2ban1">
+                        <input class="form-control" type="text" value="" id="t2ban2">
+                        <input class="form-control" type="text" value="" id="t2ban3">
+                        <input class="form-control" type="text" value="" id="t2ban4">
+                        <input class="form-control" type="text" value="" id="t2ban5">
+                    </div>
+                </div>
+                <h3>Team Picks</h3>
+                <div class="form-group row teampicks">
+                    <div class="col-xs-6">
+                        <label> Team 1 Picks</label>
+                        <input class="form-control" type="text" value="" id="t1pick1">
+                        <input class="form-control" type="text" value="" id="t1pick2">
+                        <input class="form-control" type="text" value="" id="t1pick3">
+                        <input class="form-control" type="text" value="" id="t1pick4">
+                        <input class="form-control" type="text" value="" id="t1pick5">
+                    </div>
+                    <div class="col-xs-6">
+                        <label> Team 2 Picks</label>
+                        <input class="form-control" type="text" value="" id="t2pick1">
+                        <input class="form-control" type="text" value="" id="t2pick2">
+                        <input class="form-control" type="text" value="" id="t2pick3">
+                        <input class="form-control" type="text" value="" id="t2pick4">
+                        <input class="form-control" type="text" value="" id="t2pick5">
+                    </div>
+                </div>
+                <div class="form-group row ending">
+                    <div class="col-xs-12">
+                        <label> vod </label>
+                        <input class="form-control" type="text" value="" id="gamevod">
+                    </div>
+                    <div class="col-xs-12">
+                        <label> match history</label>
+                        <input class="form-control" type="text" value="" id="gamematchhist">
+                    </div>
+                    <div class="col-xs-12">
+                        <label> end </label>
+                        <input class="form-control" type="text" value="" id="gameend">
+                    </div>
+                </div>                
+                
+
+            </div>
+            <div class="col-sm-4 blueDesign">
+            <h3>Team 1</h3>
+            <button class="btn btn-default" id="b1">1</button><button class="btn btn-default" id="b2">2</button><button class="btn btn-default" id="b3">3</button><button class="btn btn-default" id="b4">4</button><button class="btn btn-default" id="b5">5</button>        
+
+                <div class="form-group row blue1">
+                    <h4>Player 1</h4>
+                    <label class="col-xs-12 col-form-label">Summoner's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="blue1">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Champion's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="blue1champion">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Spells:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="blue1spell1">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="blue1spell2">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="blue1km" id="blue1km">
+                    </div>
+                    <label class="col-xs-12 col-form-label">kda - gold -gs :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="k/d/a" id="blue1kda">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="gold" id="blue1gold">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="cs" id="blue1cs">
+                    </div>                   
+                    <label class="col-xs-12 col-form-label">Items :</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 1" id="blue1item1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 2" id="blue1item2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 3" id="blue1item3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 4" id="blue1item4">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 5" id="blue1item5">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 6" id="blue1item6">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Trinket :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="trinket" id="blue1trinket">
+                    </div>       
+                                        
+                                                            
+                                                                                                    
+                </div>
+                
+                
+                 <div class="form-group row blue2">
+                    <h4>Player 2</h4>
+                    <label class="col-xs-12 col-form-label">Summoner's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="blue2">
+                    </div>
+                    <label for="blue2champion" class="col-xs-12 col-form-label">Champion's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="blue2champion">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Spells:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="blue2spell1">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="blue2spell2">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="blue2km" id="blue2km">
+                    </div>
+                    <label class="col-xs-12 col-form-label">kda - gold -gs :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="k/d/a" id="blue2kda">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="gold" id="blue2gold">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="cs" id="blue2cs">
+                    </div>                   
+                    <label class="col-xs-12 col-form-label">Items :</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 1" id="blue2item1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 2" id="blue2item2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 3" id="blue2item3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 4" id="blue2item4">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 5" id="blue2item5">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 6" id="blue2item6">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Trinket :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="trinket" id="blue2trinket">
+                    </div>       
+                                        
+                                                            
+                                                                                                    
+                </div>
+                                
+                
+               <div class="form-group row blue3">
+                    <h4>Player 3</h4>
+                    <label for="blue3" class="col-xs-12 col-form-label">Summoner's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="blue3">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Champion's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="blue3champion">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Spells:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="blue3spell1">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="blue3spell2">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="blue3km" id="blue3km">
+                    </div>
+                    <label class="col-xs-12 col-form-label">kda - gold -gs :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="k/d/a" id="blue3kda">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="gold" id="blue3gold">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="cs" id="blue3cs">
+                    </div>                   
+                    <label class="col-xs-12 col-form-label">Items :</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 1" id="blue3item1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 2" id="blue3item2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 3" id="blue3item3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 4" id="blue3item4">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 5" id="blue3item5">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 6" id="blue3item6">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Trinket :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="trinket" id="blue3trinket">
+                    </div>       
+                                        
+                                                            
+                                                                                                    
+                </div>
+                                          
+               <div class="form-group row blue4">
+                    <h4>Player 4</h4>
+                    <label class="col-xs-12 col-form-label">Summoner's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="blue4">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Champion's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="blue4champion">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Spells:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="blue4spell1">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="blue4spell2">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="blue4km" id="blue4km">
+                    </div>
+                    <label class="col-xs-12 col-form-label">kda - gold -gs :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="k/d/a" id="blue4kda">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="gold" id="blue4gold">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="cs" id="blue4cs">
+                    </div>                   
+                    <label class="col-xs-12 col-form-label">Items :</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 1" id="blue4item1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 2" id="blue4item2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 3" id="blue4item3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 4" id="blue4item4">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 5" id="blue4item5">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 6" id="blue4item6">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Trinket :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="trinket" id="blue4trinket">
+                    </div>       
+                                                                                    
+                </div>
+                
+                
+                                                          
+               <div class="form-group row blue5">
+                    <h4>Player 5</h4>
+                    <label class="col-xs-12 col-form-label">Summoner's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="blue5">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Champion's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="blue5champion">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Spells:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="blue5spell1">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="blue5spell2">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="blue5km" id="blue5km">
+                    </div>
+                    <label class="col-xs-12 col-form-label">kda - gold -gs :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="k/d/a" id="blue5kda">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="gold" id="blue5gold">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="cs" id="blue5cs">
+                    </div>                   
+                    <label class="col-xs-12 col-form-label">Items :</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 1" id="blue5item1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 2" id="blue5item2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 3" id="blue5item3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 4" id="blue5item4">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 5" id="blue5item5">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 6" id="blue5item6">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Trinket :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="trinket" id="blue5trinket">
+                    </div>       
+                                                                                    
+                </div>
+                
+                
+            </div>
+            <div class="col-sm-4 purpleDesign">
+             <h3>Team 2</h3>
+    <button class="btn btn-default" id="p1">1</button><button class="btn btn-default" id="p2">2</button><button class="btn btn-default" id="p3">3</button><button class="btn btn-default" id="p4">4</button><button class="btn btn-default" id="p5">5</button> 
+                <div class="form-group row purple1">
+                    <h4>Player 1</h4>
+                    <label class="col-xs-12 col-form-label">Summoner's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="purple1">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Champion's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="purple1champion">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Spells:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="purple1spell1">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="purple1spell2">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="purple1km" id="purple1km">
+                    </div>
+                    <label class="col-xs-12 col-form-label">kda - gold -gs :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="k/d/a" id="purple1kda">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="gold" id="purple1gold">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="cs" id="purple1cs">
+                    </div>                   
+                    <label class="col-xs-12 col-form-label">Items :</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 1" id="purple1item1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 2" id="purple1item2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 3" id="purple1item3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 4" id="purple1item4">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 5" id="purple1item5">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 6" id="purple1item6">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Trinket :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="trinket" id="purple1trinket">
+                    </div>       
+                                        
+                                                            
+                                                                                                    
+                </div>
+                
+                
+                 <div class="form-group row purple2">
+                    <h4>Player 2</h4>
+                    <label class="col-xs-12 col-form-label">Summoner's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="purple2">
+                    </div>
+                    <label for="purple2champion" class="col-xs-12 col-form-label">Champion's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="purple2champion">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Spells:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="purple2spell1">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="purple2spell2">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="purple2km" id="purple2km">
+                    </div>
+                    <label class="col-xs-12 col-form-label">kda - gold -gs :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="k/d/a" id="purple2kda">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="gold" id="purple2gold">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="cs" id="purple2cs">
+                    </div>                   
+                    <label class="col-xs-12 col-form-label">Items :</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 1" id="purple2item1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 2" id="purple2item2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 3" id="purple2item3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 4" id="purple2item4">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 5" id="purple2item5">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 6" id="purple2item6">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Trinket :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="trinket" id="purple2trinket">
+                    </div>       
+                                        
+                                                            
+                                                                                                    
+                </div>
+                                
+                
+               <div class="form-group row purple3">
+                    <h4>Player 3</h4>
+                    <label for="purple3" class="col-xs-12 col-form-label">Summoner's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="purple3">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Champion's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="purple3champion">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Spells:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="purple3spell1">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="purple3spell2">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="purple3km" id="purple3km">
+                    </div>
+                    <label class="col-xs-12 col-form-label">kda - gold -gs :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="k/d/a" id="purple3kda">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="gold" id="purple3gold">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="cs" id="purple3cs">
+                    </div>                   
+                    <label class="col-xs-12 col-form-label">Items :</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 1" id="purple3item1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 2" id="purple3item2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 3" id="purple3item3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 4" id="purple3item4">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 5" id="purple3item5">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 6" id="purple3item6">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Trinket :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="trinket" id="purple3trinket">
+                    </div>       
+                                        
+                                                            
+                                                                                                    
+                </div>
+                                          
+               <div class="form-group row purple4">
+                    <h4>Player 4</h4>
+                    <label class="col-xs-12 col-form-label">Summoner's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="purple4">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Champion's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="purple4champion">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Spells:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="purple4spell1">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="purple4spell2">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="purple4km" id="purple4km">
+                    </div>
+                    <label class="col-xs-12 col-form-label">kda - gold -gs :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="k/d/a" id="purple4kda">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="gold" id="purple4gold">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="cs" id="purple4cs">
+                    </div>                   
+                    <label class="col-xs-12 col-form-label">Items :</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 1" id="purple4item1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 2" id="purple4item2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 3" id="purple4item3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 4" id="purple4item4">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 5" id="purple4item5">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 6" id="purple4item6">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Trinket :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="trinket" id="purple4trinket">
+                    </div>       
+                                                                                    
+                </div>
+                
+                
+                                                          
+               <div class="form-group row purple5">
+                    <h4>Player 5</h4>
+                    <label class="col-xs-12 col-form-label">Summoner's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="purple5">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Champion's Name:</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="" id="purple5champion">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Spells:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="purple5spell1">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="" id="purple5spell2">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="purple5km" id="purple5km">
+                    </div>
+                    <label class="col-xs-12 col-form-label">kda - gold -gs :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="k/d/a" id="purple5kda">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="gold" id="purple5gold">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="cs" id="purple5cs">
+                    </div>                   
+                    <label class="col-xs-12 col-form-label">Items :</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 1" id="purple5item1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 2" id="purple5item2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 3" id="purple5item3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 4" id="purple5item4">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 5" id="purple5item5">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" value="item 6" id="purple5item6">
+                    </div>
+                    <label class="col-xs-12 col-form-label">Trinket :</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" value="trinket" id="purple5trinket">
+                    </div>       
+                                                                                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button id="submit">Submit</button>
+
+    <div class="col-sm-12 rawbox">
+        <p id="results"></p>
+
+    </div>
+
+
+    <!-- end container -->
+    <!-- start footer -->
+    <div class="panel-footer"><img id="logo" src="images/favicon.ico" /></div>
+
+    <!-- end footer -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>

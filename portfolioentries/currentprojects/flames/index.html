@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>FLAMES</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+</head>
+
+<body>
+    <!-- start jumbotron -->
+    <div class="jumbotron jumbotron-text text-center">
+        <h1 class="jumbotron-text">FLAMES</h1>
+    </div>
+    <!-- end jumbotron -->
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h2>The Rules of the Game</h2></div>
+        <div class="panel-body">
+
+            <p>Enter the your name and another person's name..  </p>
+
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <input id="p1Name" type="text" class="form-control" size="50" placeholder="Enter Your Name Here">
+                </div>
+                <div class="form-group">
+                    <input id="p2Name" type="text" class="form-control" size="50" placeholder="Enter Person 2's Name Here">
+                </div>
+                <button id="submit" type="button" class="btn btn-danger">Submit</button>
+            </form>
+            <p>
+                <br> Press "Submit" to see if you two are a match.</p>
+        </div>
+    </div>
+
+
+    <!-- start container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <h3>Fate's Message</h3>
+                <img id="cupid" type="submit" src="images/cupid.jpeg" />
+                <p id="fatesComment"></p>
+
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <h3 id="yourname">Your name</h3>
+                <p id="lover1"></p>
+
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <h3 id="person2">Person 2's name</h3>
+                <p id="lover2"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <button id="continuebtn" class="btn btn-danger">Continue</button>
+                <a href="index.html"><button id="finishbtn" class="btn btn-danger">Finish</button></a>
+            </div>
+        </div>
+
+    </div>
+    <!-- end container -->
+    <!-- start footer -->
+    <div class="panel-footer">radyouloroy &copy; <img src="images/favicon.png"/></div>
+    <!-- end footer -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>

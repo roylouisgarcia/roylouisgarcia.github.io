@@ -1,0 +1,220 @@
+/* CSS Document */
+
+BODY {
+	background-color: #EDBF89;
+	top: 0px;
+	bottom: 0px;
+	margin: 0px;
+}
+#window{
+	background-color: #FFFFFF;
+	height: 488px;
+	width: 650px;
+	background-image:  url(../pictures/bground.jpg);
+	background-repeat: no-repeat;
+}
+#contents{
+	height: 360px;
+	width: 600px;
+	border: thin solid #EDBF89;
+	top: 50px;
+	position: relative;
+	text-align: left;
+
+
+}
+#contentscontact{
+	height: 360px;
+	width: 600px;
+	border: thin solid #EDBF89;
+	top: 50px;
+	position: relative;
+	text-align: left;
+	background-image: url(../pictures/CONTACT.jpg);
+	background-repeat: no-repeat;
+}
+
+#contents p{
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	font-weight: normal;
+	color: #FFFFFF;
+	text-align: left;
+	margin-top: 20px;
+	margin-right: 300px;
+	margin-left: 15px;
+	line-height: 13px;
+}
+#contents h1{
+	font-family: "Century Gothic";
+	font-size: 20px;
+	color: #FFFFFF;
+	text-align: left;
+	margin-left: 15px;
+} 
+#contents h1.design{
+	text-align: left;
+	margin-left: 15px;
+	background-image: url(../pictures/designs.gif);
+	background-repeat: no-repeat;
+	height: 38px;
+	width: 96px;
+} 
+#contents h1.beadit{
+	text-align: left;
+	margin-left: 15px;
+	background-image: url(../pictures/beadit.gif);
+	background-repeat: no-repeat;
+	height: 30px;
+	width: 105px;
+} 
+#contents h1.signature{
+	text-align: left;
+	margin-left: 15px;
+	background-image: url(../pictures/signature.gif);
+	background-repeat: no-repeat;
+	height: 8px;
+	width: 74px;
+} 
+#contents h1.moredesign{
+	text-align: left;
+	margin-left: 15px;
+	background-image: url(../pictures/moredesigns.gif);
+	background-repeat: no-repeat;
+	height: 38px;
+	width: 187px;
+} 
+#contents h1.eshop{
+	text-align: left;
+	margin-left: 15px;
+	background-image: url(../pictures/eshopheadings.gif);
+	height: 32px;
+	width: 88px;
+} 
+
+#contents h2{
+	font-family: "Century Gothic";
+	color: #FFFFFF;
+	text-align: left;
+	margin-left: 15px;
+} 
+
+
+#contents img{
+	float: right;
+	position: static;
+	margin: 0px 25px 0px 0px;
+
+}
+
+
+#contents p.moredesigns{
+	margin: 0px 0px 0px 15px;
+
+
+
+	
+}
+
+#contents object{
+	float: right;
+	margin-right: 15px;
+	position: static;
+	height: auto;
+
+}
+#image img{
+	float: right;
+	z-index: 3;
+	position: absolute;
+	left: 325px;
+	top: 195px;
+
+}
+#imagesoon img{
+	float: right;
+	margin-right: 25px;
+	z-index: 3;
+	margin-top: 8px;
+}
+
+#moredesigns{
+	z-index: 3;
+	overflow: auto;
+	height: 200px;
+	width: auto;
+	margin: 30px 0px 0px;
+	padding: 0px;
+	visibility: visible;
+	scrollbar-3d-light-color: #ffffff;
+	scrollbar-arrow-color: #ffffff;
+	scrollbar-base-color: #ffffff;
+	scrollbar-dark-shadow-color: #ffffff;
+	scrollbar-face-color: #ED8989;
+	scrollbar-highlight-color: #ED8989;
+	scrollbar-shadow-color: #ffffff;
+}
+
+#navigators a{
+	font-weight: bold;
+	color: #DC5757;
+	text-decoration: none;
+	position: relative;
+
+
+
+}
+
+
+#navigators{
+	height: 	37px;
+	width: 600px;
+	border: thin solid #EDBF89;
+	position: static;
+	text-align: left;
+	background-color: #EDBF89;
+	margin-top: 65px;
+	top: 57px;
+
+}
+
+
+#contents a.more{
+	font-family: "Trebuchet MS", Tahoma, Arial;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #EDBF89;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: relative;
+	height: auto;
+	width: auto;
+	left: 15px;
+	text-decoration: none;
+
+	
+} 
+
+#contents a.more:hover{
+	font-family: "Trebuchet MS", Tahoma, Arial;
+	font-size: 18px;
+	font-weight: bold;
+	color: #DC5757;
+	background-color: #EDBF89;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: relative;
+	height: auto;
+	width: auto;
+	left: 15px;
+	
+}
+
+#contents signature{
+	font-family: "Century Gothic";
+	font-size: 18px;
+	font-weight: bolder;
+	color: #FFFFFF;
+	
+}

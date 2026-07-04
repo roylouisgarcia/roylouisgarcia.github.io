@@ -1,0 +1,24 @@
+.battlefield{
+  text-align:center;
+}
+.handIcon{
+  margin-top: 20px;
+  width: 100px;
+}
+.computerIcon{
+  width: 70px;
+  margin-top: 10px;
+}
+.btninline button{
+  text-align: center;
+  color: #000;
+}
+#reset{
+  display: none;
+}
+#playmore{
+  display: none; 
+}
+.refIcon{
+  max-height: 100px;
+}

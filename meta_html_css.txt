@@ -1,0 +1,14 @@
+Name: Little Lemon Restaurant
+logo: certs_project/foos.gif
+app: certs_project/1_little_lemon.png
+url: https://roylouisgarcia.github.io/meta-coursera-html-css-project/littlelemon.html
+
+Name: Lucky Shrub Garden Design
+logo: certs_project/foos_garden.gif
+app: certs_project/luckshrub.png
+url: https://roylouisgarcia.github.io/meta-coursera-html-css-project/luckyshrub.html
+
+Name: Little Lemon Restaurant
+logo: certs_project/foos_jewelry.gif
+app: certs_project/gallo.png
+url: https://roylouisgarcia.github.io/meta-coursera-html-css-project/mangata.html

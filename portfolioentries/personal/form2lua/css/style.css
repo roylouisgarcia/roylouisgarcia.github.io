@@ -1,0 +1,72 @@
+.jumbotron{
+  background-color: #220011;
+  color: white;
+  display: none;
+
+}
+.blue2, .blue3, .blue4, .blue5{
+    display: none;
+}
+
+#logo{
+    width: 5%;
+}
+
+.purple2, .purple3, .purple4, .purple5{
+    display: none;
+}
+#b1, #b2, #b3, #b4, #b5{
+    margin-right: 5px;
+}
+#p1, #p2, #p3, #p4, #p5{
+    margin-right: 5px;
+}
+
+.container{
+  background-image: linear-gradient(-90deg, rebeccapurple, dodgerblue);
+
+}
+body {
+  background-color:darkgrey;  
+}
+
+.panel-footer{
+  background-color: #220011;
+  color: #ffffff;
+}
+.panel-body{
+  background-image: linear-gradient(-90deg, rebeccapurple, dodgerblue);
+  color:aliceblue;
+  text-align: center;
+  
+}
+
+@import 'bootstrap.less';
+.container{
+   border-top-radius: @radius;
+}
+
+.gameinfo{
+    margin-top: 4px;
+    padding-left: 2px;
+}
+
+.rawbox{
+    background-color: #fff;
+    height: auto;
+    width: 100%;
+}
+.groupDesign{
+  background-color: #220011;
+    color:aliceblue;
+}
+
+.blueDesign{
+    background-color:dodgerblue;
+    color:whitesmoke;
+}
+
+.purpleDesign{
+    background-color:rebeccapurple;
+    color:aliceblue;
+}

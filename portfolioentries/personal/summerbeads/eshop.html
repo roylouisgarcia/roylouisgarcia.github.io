@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>[ summerbeads ]</title>
+<script type="text/javascript">
+<!--
+
+function newImage(arg) {
+	if (document.images) {
+		rslt = new Image();
+		rslt.src = arg;
+		return rslt;
+	}
+}
+
+function changeImages() {
+	if (document.images && (preloadFlag == true)) {
+		for (var i=0; i<changeImages.arguments.length; i+=2) {
+			document[changeImages.arguments[i]].src = changeImages.arguments[i+1];
+		}
+	}
+}
+
+var preloadFlag = false;
+function preloadImages() {
+	if (document.images) {
+		home_over = newImage("images/home-over.gif");
+		design_over = newImage("images/design-over.gif");
+		eshop_over = newImage("images/eshop-over.gif");
+		contact_over = newImage("images/contact-over.gif");
+		preloadFlag = true;
+	}
+}
+
+// -->
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="css/summerbeads.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="preloadImages();">
+<center><div id="window">
+    <div id="contents"> 
+      <div id=imagesoon> 
+        <center>
+          <img src="pictures/soon.jpg"/> 
+        </center>
+      </div>
+      <h1 class="eshop"></h1>
+    </div>
+    <div id="navigators"><table id="Table_01" width="600" height="37" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		  <td rowspan="2"> <a href="home.html" target="_self"
+				onmouseover="changeImages('home', 'images/home-over.gif'); return true;"
+				onmouseout="changeImages('home', 'images/home.gif'); return true;"
+				onmousedown="changeImages('home', 'images/home-over.gif'); return true;"
+				onmouseup="changeImages('home', 'images/home-over.gif'); return true;"> 
+            <img name="home" src="images/home.gif" width="85" height="37" border="0" alt=""></a></td>
+		<td rowspan="2">
+			<img src="images/background_02.gif" width="72" height="37" alt=""></td>
+		  <td rowspan="2"> <a href="design.html" target="_self"
+				onmouseover="changeImages('design', 'images/design-over.gif'); return true;"
+				onmouseout="changeImages('design', 'images/design.gif'); return true;"
+				onmousedown="changeImages('design', 'images/design-over.gif'); return true;"
+				onmouseup="changeImages('design', 'images/design-over.gif'); return true;"> 
+            <img name="design" src="images/design.gif" width="98" height="37" border="0" alt=""></a></td>
+		<td rowspan="2">
+			<img src="images/background_04.gif" width="87" height="37" alt=""></td>
+		  <td rowspan="2"> <a href="eshop.html" target="_self"
+				onmouseover="changeImages('eshop', 'images/eshop-over.gif'); return true;"
+				onmouseout="changeImages('eshop', 'images/eshop.gif'); return true;"
+				onmousedown="changeImages('eshop', 'images/eshop-over.gif'); return true;"
+				onmouseup="changeImages('eshop', 'images/eshop-over.gif'); return true;"> 
+            <img name="eshop" src="images/eshop.gif" width="96" height="37" border="0" alt=""></a></td>
+		<td colspan="2">
+			<img src="images/background_06.gif" width="162" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/background_07.gif" width="75" height="36" alt=""></td>
+		  <td> <a href="contact.html" target="_self"
+				onmouseover="changeImages('contact', 'images/contact-over.gif'); return true;"
+				onmouseout="changeImages('contact', 'images/contact.gif'); return true;"
+				onmousedown="changeImages('contact', 'images/contact-over.gif'); return true;"
+				onmouseup="changeImages('contact', 'images/contact-over.gif'); return true;"> 
+            <img name="contact" src="images/contact.gif" width="87" height="36" border="0" alt=""></a></td>
+	</tr>
+</table></div>  		
+  </div>
+
+  </center>
+
+</body>
+</html>

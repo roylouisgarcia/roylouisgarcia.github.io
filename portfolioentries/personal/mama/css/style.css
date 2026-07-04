@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "jd";
+  src: url("jd.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "mystyle";
+  src: url("mystyle.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "typewriter";
+  src: url("typewriter.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#psnote, #letter, #poem{
+    display: none;
+    
+}
+
+.clearfont{
+    font-family: 'typewriter';
+}
+
+p{
+    text-indent: 30px;
+}
+.message{
+    text-align: left;
+    padding: 70px;
+    font-size: 1.4em;
+    width: 100%;
+    line-height: 1.5em;
+    color: black;
+}
+
+.highlighted{
+    background-color: #FFFF00;
+    color: black;
+}
+
+apart{
+    margin-left: 10px;
+    border: 1px;
+    border-style: inset;
+    border-color: burlywood;
+}
+
+video#bgvid { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(polina.jpg) no-repeat;
+    background-size: cover; 
+}
+
+
+.container{
+    font-family: "mystyle";     
+}
+
+body{
+    background-color: #000;
+   
+}
+
+
+@media screen and (max-width: 480px) {
+.message{
+    margin-top: 10px;
+    text-align: left;
+    padding: 10px;
+    font-size: .9em;
+    width: 100%;
+    line-height: 1.6em;
+}
+}

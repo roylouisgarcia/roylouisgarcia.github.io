@@ -1,0 +1,311 @@
+$(document).ready(function () {
+    $(".jumbotron").fadeIn("slow");
+    $(".blue1").fadeIn("slow");
+    $(".purple1").fadeIn("slow");
+
+});
+
+$("#b1").on("click", function () {
+   $(".blue1").toggle("slow");
+   $(".blue2").hide("slow"); 
+   $(".blue3").hide("slow"); 
+   $(".blue4").hide("slow"); 
+   $(".blue5").hide("slow"); 
+});
+
+$("#b2").on("click", function () {
+   $(".blue2").toggle("slow");
+   $(".blue1").hide("slow"); 
+   $(".blue3").hide("slow"); 
+   $(".blue4").hide("slow"); 
+   $(".blue5").hide("slow");     
+});
+$("#b3").on("click", function () {
+   $(".blue3").toggle("slow");
+   $(".blue2").hide("slow"); 
+   $(".blue1").hide("slow"); 
+   $(".blue4").hide("slow"); 
+   $(".blue5").hide("slow");     
+});
+$("#b4").on("click", function () {
+   $(".blue4").toggle("slow");
+   $(".blue2").hide("slow"); 
+   $(".blue3").hide("slow"); 
+   $(".blue1").hide("slow"); 
+   $(".blue5").hide("slow");     
+});
+$("#b5").on("click", function () {
+   $(".blue5").toggle("slow");
+   $(".blue2").hide("slow"); 
+   $(".blue3").hide("slow"); 
+   $(".blue4").hide("slow"); 
+   $(".blue1").hide("slow");     
+});
+
+
+$("#p1").on("click", function () {
+   $(".purple1").toggle("slow");
+   $(".purple2").hide("slow"); 
+   $(".purple3").hide("slow"); 
+   $(".purple4").hide("slow"); 
+   $(".purple5").hide("slow"); 
+});
+
+$("#p2").on("click", function () {
+   $(".purple2").toggle("slow");
+   $(".purple1").hide("slow"); 
+   $(".purple3").hide("slow"); 
+   $(".purple4").hide("slow"); 
+   $(".purple5").hide("slow");     
+});
+$("#p3").on("click", function () {
+   $(".purple3").toggle("slow");
+   $(".purple2").hide("slow"); 
+   $(".purple1").hide("slow"); 
+   $(".purple4").hide("slow"); 
+   $(".purple5").hide("slow");     
+});
+$("#p4").on("click", function () {
+   $(".purple4").toggle("slow");
+   $(".purple2").hide("slow"); 
+   $(".purple3").hide("slow"); 
+   $(".purple1").hide("slow"); 
+   $(".purple5").hide("slow");     
+});
+$("#p5").on("click", function () {
+   $(".purple5").toggle("slow");
+   $(".purple2").hide("slow"); 
+   $(".purple3").hide("slow"); 
+   $(".purple4").hide("slow"); 
+   $(".purple1").hide("slow");     
+});
+
+
+
+
+$("#submit").on("click", function () {
+    
+    var start = "{{Match recap<br>|team1=";
+    var end = "<br>}}";
+
+    var team1 = document.getElementById("team1").value;
+    var team2 = document.getElementById("team2").value;
+    var t1ban1 = document.getElementById("t1ban1").value;
+    var t1ban2 = document.getElementById("t1ban2").value;
+    var t1ban3 = document.getElementById("t1ban3").value;
+    var t1ban4 = document.getElementById("t1ban4").value;
+    var t1ban5 = document.getElementById("t1ban5").value;
+    var t2ban1 = document.getElementById("t2ban1").value;
+    var t2ban2 = document.getElementById("t2ban2").value;
+    var t2ban3 = document.getElementById("t2ban3").value;
+    var t2ban4 = document.getElementById("t2ban4").value;
+    var t2ban5 = document.getElementById("t2ban5").value;
+    var t1pick1 = document.getElementById("t1pick1").value;
+    var t1pick2 = document.getElementById("t1pick2").value;
+    var t1pick3 = document.getElementById("t1pick3").value;
+    var t1pick4 = document.getElementById("t1pick4").value;
+    var t1pick5 = document.getElementById("t1pick5").value;
+    var t2pick1 = document.getElementById("t2pick1").value;
+    var t2pick2 = document.getElementById("t2pick2").value;
+    var t2pick3 = document.getElementById("t2pick3").value;
+    var t2pick4 = document.getElementById("t2pick4").value;
+    var t2pick5 = document.getElementById("t2pick5").value;
+    var winner = document.getElementById("winner").value;
+    var tournament = document.getElementById("tournament").value;
+    var date = document.getElementById("date").value;
+    var dstSelect = document.getElementById("dst").value;
+    var length = document.getElementById("length").value;
+    var gamevod = document.getElementById("gamevod").value;
+    var gamematchhist = document.getElementById("gamematchhist").value;
+    var gameend = document.getElementById("gameend").value;
+    //blue team player 1
+    var blue1 = document.getElementById("blue1").value;
+    var blue1champion = document.getElementById("blue1champion").value;
+    var blue1spell1 = document.getElementById("blue1spell1").value;
+    var blue1spell2 = document.getElementById("blue1spell2").value;
+    var blue1km = document.getElementById("blue1km").value;
+    var blue1kda = document.getElementById("blue1kda").value;
+    var blue1gold = document.getElementById("blue1gold").value;
+    var blue1cs = document.getElementById("blue1cs").value;
+    var blue1item1 = document.getElementById("blue1item1").value;
+    var blue1item2 = document.getElementById("blue1item2").value;
+    var blue1item3 = document.getElementById("blue1item3").value;
+    var blue1item4 = document.getElementById("blue1item4").value;
+    var blue1item5 = document.getElementById("blue1item5").value;
+    var blue1item6 = document.getElementById("blue1item6").value;
+    var blue1trinket = document.getElementById("blue1trinket").value;
+    //blue team player 2
+    var blue2 = document.getElementById("blue2").value;
+    var blue2champion = document.getElementById("blue2champion").value;
+    var blue2spell1 = document.getElementById("blue2spell1").value;
+    var blue2spell2 = document.getElementById("blue2spell2").value;
+    var blue2km = document.getElementById("blue2km").value;
+    var blue2kda = document.getElementById("blue2kda").value;
+    var blue2gold = document.getElementById("blue2gold").value;
+    var blue2cs = document.getElementById("blue2cs").value;
+    var blue2item1 = document.getElementById("blue2item1").value;
+    var blue2item2 = document.getElementById("blue2item2").value;
+    var blue2item3 = document.getElementById("blue2item3").value;
+    var blue2item4 = document.getElementById("blue2item4").value;
+    var blue2item5 = document.getElementById("blue2item5").value;
+    var blue2item6 = document.getElementById("blue2item6").value;
+    var blue2trinket = document.getElementById("blue2trinket").value;
+    //blue team player 3
+    var blue3 = document.getElementById("blue3").value;
+    var blue3champion = document.getElementById("blue3champion").value;
+    var blue3spell1 = document.getElementById("blue3spell1").value;
+    var blue3spell2 = document.getElementById("blue3spell2").value;
+    var blue3km = document.getElementById("blue3km").value;
+    var blue3kda = document.getElementById("blue3kda").value;
+    var blue3gold = document.getElementById("blue3gold").value;
+    var blue3cs = document.getElementById("blue3cs").value;
+    var blue3item1 = document.getElementById("blue3item1").value;
+    var blue3item2 = document.getElementById("blue3item2").value;
+    var blue3item3 = document.getElementById("blue3item3").value;
+    var blue3item4 = document.getElementById("blue3item4").value;
+    var blue3item5 = document.getElementById("blue3item5").value;
+    var blue3item6 = document.getElementById("blue3item6").value;
+    var blue3trinket = document.getElementById("blue3trinket").value;    
+    //blue team player 4
+    var blue4 = document.getElementById("blue4").value;
+    var blue4champion = document.getElementById("blue4champion").value;
+    var blue4spell1 = document.getElementById("blue4spell1").value;
+    var blue4spell2 = document.getElementById("blue4spell2").value;
+    var blue4km = document.getElementById("blue4km").value;
+    var blue4kda = document.getElementById("blue4kda").value;
+    var blue4gold = document.getElementById("blue4gold").value;
+    var blue4cs = document.getElementById("blue4cs").value;
+    var blue4item1 = document.getElementById("blue4item1").value;
+    var blue4item2 = document.getElementById("blue4item2").value;
+    var blue4item3 = document.getElementById("blue4item3").value;
+    var blue4item4 = document.getElementById("blue4item4").value;
+    var blue4item5 = document.getElementById("blue4item5").value;
+    var blue4item6 = document.getElementById("blue4item6").value;
+    var blue4trinket = document.getElementById("blue4trinket").value;
+    //blue team player 5
+    var blue5 = document.getElementById("blue5").value;
+    var blue5champion = document.getElementById("blue5champion").value;
+    var blue5spell1 = document.getElementById("blue5spell1").value;
+    var blue5spell2 = document.getElementById("blue5spell2").value;
+    var blue5km = document.getElementById("blue5km").value;
+    var blue5kda = document.getElementById("blue5kda").value;
+    var blue5gold = document.getElementById("blue5gold").value;
+    var blue5cs = document.getElementById("blue5cs").value;
+    var blue5item1 = document.getElementById("blue5item1").value;
+    var blue5item2 = document.getElementById("blue5item2").value;
+    var blue5item3 = document.getElementById("blue5item3").value;
+    var blue5item4 = document.getElementById("blue5item4").value;
+    var blue5item5 = document.getElementById("blue5item5").value;
+    var blue5item6 = document.getElementById("blue5item6").value;
+    var blue5trinket = document.getElementById("blue5trinket").value;
+    
+
+    //purple team player 1
+    var purple1 = document.getElementById("purple1").value;
+    var purple1champion = document.getElementById("purple1champion").value;
+    var purple1spell1 = document.getElementById("purple1spell1").value;
+    var purple1spell2 = document.getElementById("purple1spell2").value;
+    var purple1km = document.getElementById("purple1km").value;
+    var purple1kda = document.getElementById("purple1kda").value;
+    var purple1gold = document.getElementById("purple1gold").value;
+    var purple1cs = document.getElementById("purple1cs").value;
+    var purple1item1 = document.getElementById("purple1item1").value;
+    var purple1item2 = document.getElementById("purple1item2").value;
+    var purple1item3 = document.getElementById("purple1item3").value;
+    var purple1item4 = document.getElementById("purple1item4").value;
+    var purple1item5 = document.getElementById("purple1item5").value;
+    var purple1item6 = document.getElementById("purple1item6").value;
+    var purple1trinket = document.getElementById("purple1trinket").value;
+    //purple team player 2
+    var purple2 = document.getElementById("purple2").value;
+    var purple2champion = document.getElementById("purple2champion").value;
+    var purple2spell1 = document.getElementById("purple2spell1").value;
+    var purple2spell2 = document.getElementById("purple2spell2").value;
+    var purple2km = document.getElementById("purple2km").value;
+    var purple2kda = document.getElementById("purple2kda").value;
+    var purple2gold = document.getElementById("purple2gold").value;
+    var purple2cs = document.getElementById("purple2cs").value;
+    var purple2item1 = document.getElementById("purple2item1").value;
+    var purple2item2 = document.getElementById("purple2item2").value;
+    var purple2item3 = document.getElementById("purple2item3").value;
+    var purple2item4 = document.getElementById("purple2item4").value;
+    var purple2item5 = document.getElementById("purple2item5").value;
+    var purple2item6 = document.getElementById("purple2item6").value;
+    var purple2trinket = document.getElementById("purple2trinket").value;
+    //purple team player 3
+    var purple3 = document.getElementById("purple3").value;
+    var purple3champion = document.getElementById("purple3champion").value;
+    var purple3spell1 = document.getElementById("purple3spell1").value;
+    var purple3spell2 = document.getElementById("purple3spell2").value;
+    var purple3km = document.getElementById("purple3km").value;
+    var purple3kda = document.getElementById("purple3kda").value;
+    var purple3gold = document.getElementById("purple3gold").value;
+    var purple3cs = document.getElementById("purple3cs").value;
+    var purple3item1 = document.getElementById("purple3item1").value;
+    var purple3item2 = document.getElementById("purple3item2").value;
+    var purple3item3 = document.getElementById("purple3item3").value;
+    var purple3item4 = document.getElementById("purple3item4").value;
+    var purple3item5 = document.getElementById("purple3item5").value;
+    var purple3item6 = document.getElementById("purple3item6").value;
+    var purple3trinket = document.getElementById("purple3trinket").value;    
+    //purple team player 4
+    var purple4 = document.getElementById("purple4").value;
+    var purple4champion = document.getElementById("purple4champion").value;
+    var purple4spell1 = document.getElementById("purple4spell1").value;
+    var purple4spell2 = document.getElementById("purple4spell2").value;
+    var purple4km = document.getElementById("purple4km").value;
+    var purple4kda = document.getElementById("purple4kda").value;
+    var purple4gold = document.getElementById("purple4gold").value;
+    var purple4cs = document.getElementById("purple4cs").value;
+    var purple4item1 = document.getElementById("purple4item1").value;
+    var purple4item2 = document.getElementById("purple4item2").value;
+    var purple4item3 = document.getElementById("purple4item3").value;
+    var purple4item4 = document.getElementById("purple4item4").value;
+    var purple4item5 = document.getElementById("purple4item5").value;
+    var purple4item6 = document.getElementById("purple4item6").value;
+    var purple4trinket = document.getElementById("purple4trinket").value;
+    //purple team player 5
+    var purple5 = document.getElementById("purple5").value;
+    var purple5champion = document.getElementById("purple5champion").value;
+    var purple5spell1 = document.getElementById("purple5spell1").value;
+    var purple5spell2 = document.getElementById("purple5spell2").value;
+    var purple5km = document.getElementById("purple5km").value;
+    var purple5kda = document.getElementById("purple5kda").value;
+    var purple5gold = document.getElementById("purple5gold").value;
+    var purple5cs = document.getElementById("purple5cs").value;
+    var purple5item1 = document.getElementById("purple5item1").value;
+    var purple5item2 = document.getElementById("purple5item2").value;
+    var purple5item3 = document.getElementById("purple5item3").value;
+    var purple5item4 = document.getElementById("purple5item4").value;
+    var purple5item5 = document.getElementById("purple5item5").value;
+    var purple5item6 = document.getElementById("purple5item6").value;
+    var purple5trinket = document.getElementById("purple5trinket").value;    
+    
+    
+    var d = new Date( date );
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    month++;
+    month = month < 10 ? '0' + month : month;
+    var day = d.getDate();
+    day = day < 10 ? '0' + day : day;    
+    var hours = d.getHours();
+    hours += 8;
+    if (hours >= 24) hours-=24;
+        
+    hours = hours < 10 ? '0' + hours : hours;
+    var minutes = d.getMinutes();
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    
+    
+    document.getElementById("results").innerHTML = start +  team1 + " |team2=" + team2 
+       + "<br>|team1bans=" + t1ban1 + ", " + t1ban2 + ", " + t1ban3 + ", " + t1ban4 + ", " + t1ban5 
+        + " |team2bans=" + t2ban1 + ", " + t2ban2 + ", " + t2ban3 + ", " + t2ban4 + ", " + t2ban5 
+        + "<br>|team1picks=" + t1pick1 + ", " +t1pick2 + ", " +t1pick3 + ", " +t1pick4 + ", " +t1pick5
+        + " |team2picks=" + t2pick1 + ", " +t2pick2 + ", " +t2pick3 + ", " +t2pick4 + ", " +t2pick5
+        + "<br>|winner=" + winner + "<br>|tournament=" + tournament
+        + "<br>|date=" + year + "-" + month + "-" + day + " |KST=" + hours + ":" + minutes + " |DST=" + dstSelect + " |length="
+        + "<br><br>|blue1="+ blue1 + "<br>|blue1champion=" + blue1champion + " |blue1spells=" + blue1spell1 + ", " + blue1spell2 + " |blue1km=" + blue1km + "<br>|blue1kda=" + blue1kda + " |blue1gold=" + blue1gold + "  |blue1cs=" + blue1cs + " |blue1items=" + blue1item1 + ", " + blue1item2 + ", " + blue1item3 + ", " + blue1item4 + ", " + blue1item5 + ", " + blue1item2 + " |blue1trinket=" + blue1trinket + "<br>|blue2="+ blue2 + "<br>|blue2champion=" + blue2champion + " |blue2spells=" + blue2spell1 + ", " + blue2spell2 + " |blue2km=" + blue2km + "<br>|blue2kda=" + blue2kda + " |blue2gold=" + blue2gold + "  |blue2cs=" + blue2cs + " |blue2items=" + blue2item1 + ", " + blue2item2 + ", " + blue2item3 + ", " + blue2item4 + ", " + blue2item5 + ", " + blue2item2 + " |blue2trinket=" + blue2trinket + "<br>|blue3="+ blue3 + "<br>|blue3champion=" + blue3champion + " |blue3spells=" + blue3spell1 + ", " + blue3spell2 + " |blue3km=" + blue3km + "<br>|blue3kda=" + blue3kda + " |blue3gold=" + blue3gold + "  |blue3cs=" + blue3cs + " |blue3items=" + blue3item1 + ", " + blue3item2 + ", " + blue3item3 + ", " + blue3item4 + ", " + blue3item5 + ", " + blue3item2 + " |blue3trinket=" + blue3trinket + "<br>|blue4="+ blue4 + "<br>|blue4champion=" + blue4champion + " |blue4spells=" + blue4spell1 + ", " + blue4spell2 + " |blue4km=" + blue4km + "<br>|blue4kda=" + blue4kda + " |blue4gold=" + blue4gold + "  |blue4cs=" + blue4cs + " |blue4items=" + blue4item1 + ", " + blue4item2 + ", " + blue4item3 + ", " + blue4item4 + ", " + blue4item5 + ", " + blue4item2 + " |blue4trinket=" + blue4trinket + "<br>|blue5="+ blue5 + "<br>|blue5champion=" + blue5champion + " |blue5spells=" + blue5spell1 + ", " + blue5spell2 + " |blue5km=" + blue5km + "<br>|blue5kda=" + blue5kda + " |blue5gold=" + blue5gold + "  |blue5cs=" + blue5cs + " |blue5items=" + blue5item1 + ", " + blue5item2 + ", " + blue5item3 + ", " + blue5item4 + ", " + blue5item5 + ", " + blue5item2 + " |blue5trinket=" + blue5trinket + "<br><br>|purple1="+ purple1 + "<br>|purple1champion=" + purple1champion + " |purple1spells=" + purple1spell1 + ", " + purple1spell2 + " |purple1km=" + purple1km + "<br>|purple1kda=" + purple1kda + " |purple1gold=" + purple1gold + "  |purple1cs=" + purple1cs + " |purple1items=" + purple1item1 + ", " + purple1item2 + ", " + purple1item3 + ", " + purple1item4 + ", " + purple1item5 + ", " + purple1item2 + " |purple1trinket=" + purple1trinket + "<br>|purple2="+ purple2 + "<br>|purple2champion=" + purple2champion + " |purple2spells=" + purple2spell1 + ", " + purple2spell2 + " |purple2km=" + purple2km + "<br>|purple2kda=" + purple2kda + " |purple2gold=" + purple2gold + "  |purple2cs=" + purple2cs + " |purple2items=" + purple2item1 + ", " + purple2item2 + ", " + purple2item3 + ", " + purple2item4 + ", " + purple2item5 + ", " + purple2item2 + " |purple2trinket=" + purple2trinket + "<br>|purple3="+ purple3 + "<br>|purple3champion=" + purple3champion + " |purple3spells=" + purple3spell1 + ", " + purple3spell2 + " |purple3km=" + purple3km + "<br>|purple3kda=" + purple3kda + " |purple3gold=" + purple3gold + "  |purple3cs=" + purple3cs + " |purple3items=" + purple3item1 + ", " + purple3item2 + ", " + purple3item3 + ", " + purple3item4 + ", " + purple3item5 + ", " + purple3item2 + " |purple3trinket=" + purple3trinket + "<br>|purple4="+ purple4 + "<br>|purple4champion=" + purple4champion + " |purple4spells=" + purple4spell1 + ", " + purple4spell2 + " |purple4km=" + purple4km + "<br>|purple4kda=" + purple4kda + " |purple4gold=" + purple4gold + "  |purple4cs=" + purple4cs + " |purple4items=" + purple4item1 + ", " + purple4item2 + ", " + purple4item3 + ", " + purple4item4 + ", " + purple4item5 + ", " + purple4item2 + " |purple4trinket=" + purple4trinket + "<br>|purple5="+ purple5 + "<br>|purple5champion=" + purple5champion + " |purple5spells=" + purple5spell1 + ", " + purple5spell2 + " |purple5km=" + purple5km + "<br>|purple5kda=" + purple5kda + " |purple5gold=" + purple5gold + "  |purple5cs=" + purple5cs + " |purple5items=" + purple5item1 + ", " + purple5item2 + ", " + purple5item3 + ", " + purple5item4 + ", " + purple5item5 + ", " + purple5item2 + " |purple5trinket=" + purple5trinket + "<br><br>|vod=" + gamevod + "<br>|matchhistory=" + gamematchhist + "<br>|end=" + gameend + end;
+    
+    
+});

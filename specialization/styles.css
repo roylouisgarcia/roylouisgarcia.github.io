@@ -1,0 +1,243 @@
+/* Specialization Section Styles */
+#specialization {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px 0;
+    display: none; /* Hidden by default */
+}
+
+/* Hide the jumbotron before specialization section by default */
+.jumbotron-before-specialization {
+    display: none;
+}
+
+#specialization .slideshow-container {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+#specialization .slideshow-wrapper {
+    position: relative;
+    max-width: 100%;
+}
+
+#specialization .slideshow-wrapper::after {
+    content: "🔗 Click to verify certificate";
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+#specialization .slideshow-wrapper:hover::after {
+    opacity: 1;
+}
+
+#specialization .slides {
+    display: none;
+}
+
+#specialization .slides img {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#specialization .slides img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#specialization .nav-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 10px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+}
+
+#specialization .next-btn {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+#specialization .prev-btn {
+    left: 0;
+}
+
+#specialization .slide-counter {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+#specialization .thumbnail-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+#specialization .thumbnail-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+#specialization .thumbnail-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#specialization .thumbnail-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+#specialization .thumbnail-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#specialization .thumb {
+    cursor: pointer;
+    height: 50px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+    flex-shrink: 0;
+    border-radius: 4px;
+}
+
+#specialization .thumb:hover, #specialization .active {
+    opacity: 1;
+}
+
+#specialization .thumb.current-thumb {
+    opacity: 1;
+    box-shadow: 0 0 5px #63615f, 0 0 8px #FFA500;
+    border: 1px solid #FFD700;
+    border-radius: 4px;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+#specialization .thumb.current-thumb.specialization {
+    box-shadow: 0 0 5px #22375f, 0 0 8px #70b0fa;
+    border: 1px solid #4b60db;
+}
+
+#specialization .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#specialization .control-btn {
+    padding: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+#specialization .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.9); 
+}
+
+#specialization .modal-content {
+    max-width: 100%;
+    margin: auto;
+    display: block;
+}
+
+#specialization .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#specialization .close:hover, #specialization .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    #specialization .controls {
+        margin-top: 10px;
+    }
+    
+    #specialization .slide-counter {
+        margin: 10px 0;
+        font-size: 16px;
+    }
+    
+    #specialization .slideshow-container {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #specialization .controls {
+        margin-top: 5px;
+    }
+    
+    #specialization .slide-counter {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+    
+    #specialization .slideshow-container {
+        width: 98%;
+        padding: 10px;
+    }
+    
+    #specialization .control-btn {
+        padding: 8px;
+        margin: 0 5px;
+        font-size: 14px;
+    }
+}

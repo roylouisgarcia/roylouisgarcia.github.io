@@ -1,0 +1,29 @@
+/* CSS Document */
+
+BODY {
+	background-color: #EDBF89;
+	top: 0px;
+	bottom: 0px;
+	margin: 0px;
+	background-repeat: repeat-x;
+	background-position: center center;
+	background-image: url(../pictures/strip.jpg);
+
+}
+#link {
+	text-align: center;
+	position: relative;
+	background-position: center center;
+	margin: 400px 0px 0px;
+
+
+
+}
+#link a {
+	font-family: "Century Gothic";
+	font-size: 16px;
+	color: #FFFFFF;
+	background-position: center center;
+	text-align: center;
+	text-decoration: none;
+}
