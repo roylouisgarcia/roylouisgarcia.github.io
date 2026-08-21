@@ -834,14 +834,14 @@ function initializeMoocSlideshow() {
   if (prevBtn) prevBtn.onclick = prevMoocSlide;
 }
 
-// MOOC slideshow is always visible, so load it immediately. This is its own
-// ready block (rather than being called from the top of the first one) so
-// that it runs after moocData/moocSlides are declared further up the file --
-// calling it too early threw a ReferenceError (TDZ) that silently broke
-// every click handler registered after it in that block.
-$(document).ready(function(){
-  initializeMoocSlideshow();
-});
+// MOOC slideshow is always visible, so load it immediately. Called as a
+// plain statement, not wrapped in $(document).ready(...): this script tag
+// is the last thing in <body>, so the DOM is already fully parsed by the
+// time execution reaches this line -- ready() is unnecessary here, and
+// relying on it caused browser-dependent timing bugs (a ReferenceError in
+// some cases, a silent no-op in Firefox) depending on exactly when each
+// browser considered the document "ready".
+initializeMoocSlideshow();
 
 // Featured slideshow variables
 let currentFeaturedSlideIndex = 0;
