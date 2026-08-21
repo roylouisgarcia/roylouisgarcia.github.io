@@ -1,12 +1,13 @@
 /* Optimized Google Fonts - Reduced from 500KB+ to ~50KB */
-@import url("https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Permanent+Marker&family=Indie+Flower&family=Kalam:wght@400;700&family=Courier+Prime&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Permanent+Marker&family=Kalam:wght@400;700&family=Courier+Prime&family=Roboto:wght@400;700&display=swap");
 
 /* Font fallbacks for local fonts - using optimized Google Fonts instead */
 /* Replaced typewriter.ttf (??KB) with Courier Prime */
-/* Replaced HomemadeApple.ttf (108KB) with Indie Flower */  
+/* Replaced HomemadeApple.ttf (108KB) with Kalam (Indie Flower was tried, then dropped as unused) */
 /* Replaced mystyle.ttf (??KB) with Kalam */
 /* Replaced comesinhandy.ttf (??KB) with Nothing You Could Do */
 /* Replaced letterpressed.ttf (322KB) with Permanent Marker */
+/* Added Roboto: declared as the body font below but was never actually loaded until now */
 
 /* PERFORMANCE OPTIMIZATION: Lazy Loading Styles */
 img.lazy {
@@ -1164,7 +1165,7 @@ h4 {
 }
 
 .panel-heading h1 {
-  font-family: "letterpressed", "PWSchoolScript", serif;
+  font-family: "Permanent Marker", serif;
   font-size: 1.8em;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -1232,7 +1233,7 @@ h4 {
 }
 
 .panel-interests h1 {
-  font-family: "letterpressed", "PWSchoolScript", serif;
+  font-family: "Permanent Marker", serif;
   font-size: 1.8em;
   margin-bottom: 25px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
