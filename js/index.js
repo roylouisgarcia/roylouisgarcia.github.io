@@ -1439,6 +1439,27 @@ let skillsSlides = [];
 // Skills data
 const skillsData = [
     {
+        title: "Product & Founder",
+        icon: "🚀",
+        skills: [
+            "Own the full product lifecycle: concept, front-end/back-end development, security architecture, SEO, and content",
+            "Modern full-stack development with Next.js (App Router, Server Components, Server Actions), React, and TypeScript",
+            "Supabase (Postgres, Auth, Storage, Row-Level Security) and Vercel deployment",
+            "Shipped and maintain a live product ecosystem under one philosophy — see the <a href='#projects'>Current Sites</a> tab above (Circal, Digitally, DMSecurityX, and related tools)"
+        ]
+    },
+    {
+        title: "Research, Learning and Teaching",
+        icon: "📚",
+        skills: [
+            "Ability to sort out needed information for any task at hand from knowledge-based repositories",
+            "Worked for brick-and-mortar academic institutions and distance learning environments",
+            "Adapted the concept of 'Information Literacy for Lifelong Learning' (see <strong><a href='https://files.eric.ed.gov/fulltext/ED084368.pdf' target='_blank'>Malcolm Knowles book</a></strong>)",
+            "Passing on knowledge to other people to enhance learning (see <strong>the power of Protege' Effect</strong> <a href='protege.pdf' target='_blank'>here</a>)",
+            "Reviewed available massive open online courses and platforms by <a href='https://sites.google.com/site/reflection4learning/why-reflect' target='_blank'>reflecting as a learner</a> (also, see a study by Jack Mezirow on Reflection Triggers <a href='portfolioentries/otherpeopleswork/reflectiontriggers.pdf' target='_blank'>here</a>)"
+        ]
+    },
+    {
         title: "Web Development",
         icon: "🌐",
         skills: [
@@ -1491,28 +1512,8 @@ const skillsData = [
             "promotes change management procedures to ease audit and compliance requirements",
             "Installation of hardware equipments and software upgrades and patches"
         ]
-    },
-    {
-        title: "Research, Learning and Teaching",
-        icon: "📚",
-        skills: [
-            "Ability to sort out needed information for any task at hand from knowledge-based repositories",
-            "Worked for brick-and-mortar academic institutions and distance learning environments",
-            "Adapted the concept of 'Information Literacy for Lifelong Learning' (see <strong><a href='https://files.eric.ed.gov/fulltext/ED084368.pdf' target='_blank'>Malcolm Knowles book</a></strong>)",
-            "Passing on knowledge to other people to enhance learning (see <strong>the power of Protege' Effect</strong> <a href='protege.pdf' target='_blank'>here</a>)",
-            "Reviewed available massive open online courses and platforms by <a href='https://sites.google.com/site/reflection4learning/why-reflect' target='_blank'>reflecting as a learner</a> (also, see a study by Jack Mezirow on Reflection Triggers <a href='portfolioentries/otherpeopleswork/reflectiontriggers.pdf' target='_blank'>here</a>)"
-        ]
-    },
-    {
-        title: "Product & Founder",
-        icon: "🚀",
-        skills: [
-            "Own the full product lifecycle: concept, front-end/back-end development, security architecture, SEO, and content",
-            "Modern full-stack development with Next.js (App Router, Server Components, Server Actions), React, and TypeScript",
-            "Supabase (Postgres, Auth, Storage, Row-Level Security) and Vercel deployment",
-            "Shipped and maintain a live product ecosystem under one philosophy — see the <a href='#projects'>Current Sites</a> tab above (Circal, Digitally, DMSecurityX, and related tools)"
-        ]
     }
+	
 ];
 
 // Load Skills slides dynamically
