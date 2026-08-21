@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     // Set default state - all project tabs hidden
     hideAllProjectTabs();
+    showCurrentSitesTab();
 
  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
@@ -444,7 +445,12 @@ let currentSitesSlides = [];
 
 // Current Sites data - screenshots from images/currentsites
 const currentSitesData = [
+  { title: "Deliberately Deliberate", image: "./images/currentsites/deliberatelydeliberate.jpg", url: "https://deliberatelydeliberate.com" },
   { title: "NostradmsX - Personal Blog", image: "./images/currentsites/nostradmsx.jpg", url: "https://nostradmsx.com" },
+  { title: "Deliberate Cybersecurity", image: "./images/currentsites/deliberatecybersecurity.jpg", url: "https://deliberatecybersecurity.com" },
+  { title: "Deliberate Digital Legacy", image: "./images/currentsites/deliberate-digital-legacy.jpg", url: "https://deliberate-digital-legacy.com" },
+  { title: "Deliberate Learners", image: "./images/currentsites/deliberatelearners.jpg", url: "https://deliberatelearners.com" },
+  { title: "Deliberate Learners - Tools", image: "./images/currentsites/deliberatelearners-tools.jpg", url: "https://deliberatelearners.com/tools" },
   { title: "DMSecurityX", image: "./images/currentsites/dmsecurityx-1.jpg", url: "https://dmsecurityx.com" },
   { title: "DMSecurityX", image: "./images/currentsites/dmsecurityx-2.jpg", url: "https://dmsecurityx.com" },
   { title: "DMSecurityX", image: "./images/currentsites/dmsecurityx-3.jpg", url: "https://dmsecurityx.com" },
@@ -456,12 +462,7 @@ const currentSitesData = [
   { title: "MyDigitally", image: "./images/currentsites/mydigitally_2.jpg", url: "https://mydigitally.app" },
   { title: "MyDigitally", image: "./images/currentsites/mydigitally_3.jpg", url: "https://mydigitally.app" },
   { title: "MyDigitally", image: "./images/currentsites/mydigitally_4.jpg", url: "https://mydigitally.app" },
-  { title: "MyDigitally", image: "./images/currentsites/mydigitally_5.jpg", url: "https://mydigitally.app" },
-  { title: "Deliberate Cybersecurity", image: "./images/currentsites/deliberatecybersecurity.jpg", url: "https://deliberatecybersecurity.com" },
-  { title: "Deliberate Digital Legacy", image: "./images/currentsites/deliberate-digital-legacy.jpg", url: "https://deliberate-digital-legacy.com" },
-  { title: "Deliberate Learners", image: "./images/currentsites/deliberatelearners.jpg", url: "https://deliberatelearners.com" },
-  { title: "Deliberate Learners - Tools", image: "./images/currentsites/deliberatelearners-tools.jpg", url: "https://deliberatelearners.com/tools" },
-  { title: "Deliberately Deliberate", image: "./images/currentsites/deliberatelydeliberate.jpg", url: "https://deliberatelydeliberate.com" }
+  { title: "MyDigitally", image: "./images/currentsites/mydigitally_5.jpg", url: "https://mydigitally.app" }
 ];
 
 // Load Current Sites slides dynamically
