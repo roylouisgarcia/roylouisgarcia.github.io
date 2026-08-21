@@ -2526,6 +2526,17 @@ figure video {
   color: white;
 }
 
+.project-btn-gold {
+  background-color: var(--brand-gold);
+  color: var(--brand-navy);
+}
+
+.project-btn-gold:hover {
+  background-color: var(--brand-navy);
+  color: var(--brand-gold);
+  text-decoration: none;
+}
+
 /* Container for project buttons */
 .project-btn-container {
   text-align: center;

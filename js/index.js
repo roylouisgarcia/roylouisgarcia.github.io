@@ -1,8 +1,8 @@
 $(document).ready(function(){
-    
+
     // Set default state - all project tabs hidden
     hideAllProjectTabs();
- 
+
  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
     // Auto-hide mobile menu after 3 seconds on smaller devices
@@ -605,6 +605,243 @@ function initializeCurrentSitesSlideshow() {
   if (nextBtn) nextBtn.onclick = nextCurrentSitesSlide;
   if (prevBtn) prevBtn.onclick = prevCurrentSitesSlide;
 }
+
+// MOOC / Specialization slideshow functionality
+let moocSlideIndex = 0;
+let moocSlides = [];
+
+const moocData = [
+  {
+    title: "Bertelsmann Technology Scholarship - Enterprise Security Nanodegree",
+    image: "specialization/images/Bertelsmann_nanodegree_enterprisesecurity.jpg",
+    description: "Advanced enterprise security nanodegree program focusing on cybersecurity frameworks, threat assessment, and security architecture design. Comprehensive coverage of enterprise-level security protocols and implementation strategies.",
+    readMore: "Technologies Used: Microsoft Azure services (Virtual Networks, Entra, Sentinel, Intune, Defender for Endpoint), ELK Stack (Elasticsearch, Logstash, Kibana, Filebeat), SIEM/SOAR platforms, EDR/IDS technologies. Key Features: Network defenses with DMZs and VPNs, Zero Trust security architecture, defense-in-depth strategies, compliance alignment with NIST 800-61r2 and TIC 3.0. Learning Outcomes: Enterprise security frameworks, threat assessment methodologies, cloud security implementation, risk management practices.",
+    isBertelsmann: true
+  },
+  {
+    title: "Video Pitch Adjuster GUI",
+    image: "https://github.com/roylouisgarcia/courses/raw/master/ss1.png",
+    githubUrl: "https://github.com/roylouisgarcia/videopitchshifter",
+    description: "A user-friendly GUI application that uses FFMPEG to adjust the pitch of audio in video files. This application extracts audio from video, adjusts the pitch by a specified amount, and merges the adjusted audio back with the original video.",
+    readMore: "Technologies Used: Python, Tkinter (GUI), FFMPEG (audio/video processing), subprocess module. Key Features: User-friendly graphical interface, audio extraction from video files, pitch adjustment capabilities, automatic audio-video merging, file selection dialogs. Learning Outcomes: GUI development with Tkinter, multimedia processing with FFMPEG, Python subprocess management, audio signal processing concepts."
+  },
+  {
+    title: "Coursera/Meta HTML and CSS in Depth",
+    image: "https://raw.githubusercontent.com/roylouisgarcia/meta-coursera-html-css-project/main/images/readme_wholepicture.jpg",
+    githubUrl: "https://github.com/roylouisgarcia/meta-coursera-html-css-project/tree/main",
+    actualSite: "https://roylouisgarcia.github.io/meta-coursera-html-css-project/",
+    description: "The project is a portfolio website as part of the Meta Front-End Developer Specialization course on Coursera, specifically for the HTML & CSS module.",
+    readMore: "Technologies Used: HTML5, CSS3, Flexbox, Grid Layout. Key Features: Responsive design, semantic HTML, modern CSS techniques. Learning Outcomes: Advanced CSS selectors, animations, and responsive web design principles."
+  },
+  {
+    title: "Android Programming - Court Counter",
+    image: "https://raw.githubusercontent.com/roylouisgarcia/ABNProject2/master/Capture.PNG",
+    githubUrl: "https://github.com/roylouisgarcia/ABNProject2",
+    description: "As part of the Grow With Google Challenge Scholarship course hosted in Udacity, this project explores the concept of Android XML Layouts and Java Programming.",
+    readMore: "Technologies Used: Java, Android SDK, XML Layouts. Key Features: Interactive UI, state management, basketball scoring system. Learning Outcomes: Mobile app development, Android lifecycle, UI/UX design."
+  },
+  {
+    title: "Exploring Python and Windows API",
+    image: "https://raw.githubusercontent.com/roylouisgarcia/python4windowsapi/main/images/00_helloworld_code.png",
+    githubUrl: "https://github.com/roylouisgarcia/python4windowsapi",
+    description: "A traditional HelloWorld script that explores the concept of Windows DLL, handles and the necessary parameters to call the Windows API call MessageBoxW(). A script that uses the Windows API calls or systems calls via Python Script in order to kill any Windows Process.",
+    readMore: "Technologies Used: Python, Windows API, ctypes library. Key Features: Direct system calls, process management, native Windows integration. Learning Outcomes: Low-level programming, system architecture, API interaction."
+  },
+  {
+    title: "My Coursera Certificate Slideshow",
+    image: "https://github.com/roylouisgarcia/courses/raw/master/ss1.png",
+    githubUrl: "https://github.com/roylouisgarcia/courses?tab=readme-ov-file",
+    description: "A dynamic, interactive web application showcasing my professional development journey through various online courses and certifications from top institutions including IBM, Google, Meta, Stanford, DeepLearning.AI, and more.",
+    readMore: "Technologies Used: HTML, CSS, and JavaScript. Key Features: Dynamic slideshow functionality, responsive design, interactive thumbnail navigation, professional certification showcase. Learning Outcomes: DOM manipulation, responsive web design, dynamic content loading, user interface development."
+  }
+];
+
+// Load MOOC slides dynamically
+function loadMoocSlides() {
+  const slidesContainer = document.getElementById('moocSlidesContainer');
+  const thumbnailContainer = document.getElementById('moocThumbnailContainer');
+
+  if (!slidesContainer || !thumbnailContainer) {
+    console.error('MOOC slideshow containers not found');
+    return;
+  }
+
+  slidesContainer.innerHTML = '';
+  thumbnailContainer.innerHTML = '';
+  moocSlides = [];
+
+  moocData.forEach((entry, index) => {
+    const slideDiv = document.createElement('div');
+    slideDiv.classList.add('cert-slides');
+
+    const slideContent = document.createElement('div');
+    slideContent.classList.add('cert-slide-content');
+
+    const titleElement = document.createElement('h2');
+    titleElement.textContent = entry.title;
+    titleElement.style.textAlign = 'center';
+    titleElement.style.marginBottom = '20px';
+    titleElement.style.color = '#333';
+    slideContent.appendChild(titleElement);
+
+    const img = document.createElement('img');
+    img.src = entry.image;
+    img.alt = entry.title;
+    img.onerror = function() {
+      console.error('Failed to load image:', entry.image);
+    };
+    slideContent.appendChild(img);
+
+    const descElement = document.createElement('p');
+    descElement.textContent = entry.description;
+    descElement.style.marginTop = '20px';
+    descElement.style.textAlign = 'justify';
+    descElement.style.lineHeight = '1.6';
+    slideContent.appendChild(descElement);
+
+    // Primary action + Read More buttons
+    const linkContainer = document.createElement('div');
+    linkContainer.classList.add('project-btn-container');
+
+    const primaryLink = document.createElement('a');
+    primaryLink.classList.add('project-btn', 'project-btn-github');
+    if (entry.isBertelsmann) {
+      primaryLink.href = '#';
+      primaryLink.textContent = 'See Projects';
+      primaryLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showBertelsmannProjects();
+      });
+    } else {
+      primaryLink.href = entry.githubUrl;
+      primaryLink.target = '_blank';
+      primaryLink.rel = 'noopener';
+      primaryLink.textContent = 'View on GitHub';
+    }
+    linkContainer.appendChild(primaryLink);
+
+    if (entry.actualSite) {
+      const demoLink = document.createElement('a');
+      demoLink.href = entry.actualSite;
+      demoLink.target = '_blank';
+      demoLink.rel = 'noopener';
+      demoLink.textContent = 'See Demo';
+      demoLink.classList.add('project-btn', 'project-btn-demo');
+      linkContainer.appendChild(demoLink);
+    }
+
+    let readMoreDetails = null;
+    let readMoreBtn = null;
+    if (entry.readMore) {
+      readMoreBtn = document.createElement('button');
+      readMoreBtn.textContent = 'Read More';
+      readMoreBtn.classList.add('project-btn', 'project-btn-readmore');
+      linkContainer.appendChild(readMoreBtn);
+    }
+
+    slideContent.appendChild(linkContainer);
+
+    if (entry.readMore) {
+      readMoreDetails = document.createElement('div');
+      readMoreDetails.classList.add('cert-read-more-content');
+      readMoreDetails.style.display = 'none';
+      readMoreDetails.style.marginTop = '20px';
+      readMoreDetails.style.padding = '20px';
+      readMoreDetails.style.backgroundColor = '#f8f9fa';
+      readMoreDetails.style.border = '1px solid #dee2e6';
+      readMoreDetails.style.borderRadius = '8px';
+      readMoreDetails.style.lineHeight = '1.6';
+      readMoreDetails.style.textAlign = 'justify';
+      readMoreDetails.textContent = entry.readMore;
+      slideContent.appendChild(readMoreDetails);
+
+      readMoreBtn.onclick = function() {
+        const isHidden = readMoreDetails.style.display === 'none';
+        readMoreDetails.style.display = isHidden ? 'block' : 'none';
+        readMoreBtn.textContent = isHidden ? 'Show Less' : 'Read More';
+      };
+    }
+
+    slideDiv.appendChild(slideContent);
+    slidesContainer.appendChild(slideDiv);
+
+    const thumb = document.createElement('img');
+    thumb.src = entry.image;
+    thumb.classList.add('cert-thumb');
+    thumb.title = entry.title;
+    thumb.onclick = () => setMoocSlide(index);
+    thumbnailContainer.appendChild(thumb);
+
+    moocSlides.push(slideDiv);
+  });
+
+  updateMoocSlideCounter();
+
+  if (moocSlides.length > 0) {
+    showMoocSlide(0);
+  }
+}
+
+function showMoocSlide(index) {
+  if (index >= moocSlides.length) {
+    moocSlideIndex = 0;
+  } else if (index < 0) {
+    moocSlideIndex = moocSlides.length - 1;
+  } else {
+    moocSlideIndex = index;
+  }
+
+  moocSlides.forEach((slide, i) => {
+    slide.style.display = i === moocSlideIndex ? 'block' : 'none';
+  });
+
+  const thumbnails = document.querySelectorAll('#moocThumbnailContainer .cert-thumb');
+  thumbnails.forEach((thumb, i) => {
+    thumb.classList.toggle('current-cert-thumb', i === moocSlideIndex);
+  });
+
+  updateMoocSlideCounter();
+}
+
+function nextMoocSlide() {
+  showMoocSlide(moocSlideIndex + 1);
+}
+
+function prevMoocSlide() {
+  showMoocSlide(moocSlideIndex - 1);
+}
+
+function setMoocSlide(index) {
+  showMoocSlide(index);
+}
+
+function updateMoocSlideCounter() {
+  const currentSlideEl = document.getElementById('moocCurrentSlide');
+  const totalSlidesEl = document.getElementById('moocTotalSlides');
+  if (currentSlideEl && totalSlidesEl) {
+    currentSlideEl.innerText = moocSlideIndex + 1;
+    totalSlidesEl.innerText = moocSlides.length.toString();
+  }
+}
+
+// Initialize the MOOC slideshow
+function initializeMoocSlideshow() {
+  loadMoocSlides();
+
+  const nextBtn = document.getElementById('moocNextBtn');
+  const prevBtn = document.getElementById('moocPrevBtn');
+  if (nextBtn) nextBtn.onclick = nextMoocSlide;
+  if (prevBtn) prevBtn.onclick = prevMoocSlide;
+}
+
+// MOOC slideshow is always visible, so load it immediately. This is its own
+// ready block (rather than being called from the top of the first one) so
+// that it runs after moocData/moocSlides are declared further up the file --
+// calling it too early threw a ReferenceError (TDZ) that silently broke
+// every click handler registered after it in that block.
+$(document).ready(function(){
+  initializeMoocSlideshow();
+});
 
 // Featured slideshow variables
 let currentFeaturedSlideIndex = 0;
