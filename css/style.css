@@ -594,13 +594,13 @@ h3.handwritten {
   color: aliceblue;
 }
 
-#link2Featured,
 #link2Academic,
 #link2Professional,
 #link2Personal,
 #link2CurrentSites {
   font-family: var(--font-mono);
-  font-size: 0.7em;
+  font-weight: 600;
+  font-size: 1.1em;
   border-top: 1px;
   border-right: 1px;
   border-color: var(--brand-navy);
@@ -632,7 +632,8 @@ h3.handwritten {
 
 .projecttext h3 {
   font-family: var(--font-mono);
-  font-size: 1.1em;
+  font-weight: 700;
+  font-size: 1.6em;
   text-align: left;
 }
 
@@ -644,7 +645,7 @@ h3.handwritten {
 
 .projecttail {
   font-family: var(--font-mono);
-  font-size: 0.9em;
+  font-size: 1.2em;
   padding-top: 200px;
   padding-bottom: 30px;
   text-align: left;
@@ -941,15 +942,6 @@ h4 {
   border-left: 3px solid #d4c4a8;
   margin: 20px 0;
   border-radius: 5px;
-}
-
-.featured {
-  display: none;
-  background-image: url("/images/spacewar.jpg");
-  background-repeat: repeat;
-  background-size: auto;
-  padding: 30px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .academic {
@@ -1755,7 +1747,7 @@ figure video {
 
   .projecttail {
     font-family: var(--font-mono);
-    font-size: 0.6em;
+    font-size: 0.95em;
     padding-top: 10px;
     padding-bottom: 10px;
   }
@@ -2564,120 +2556,6 @@ figure video {
   }
 }
 
-/* Certifications Slideshow Styles */
-.cert-slideshow-container {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.cert-slides-container {
-  position: relative;
-  width: 100%;
-  min-height: 500px;
-}
-
-.cert-slides {
-  display: none;
-  animation: fadeIn 0.5s;
-}
-
-.cert-slides.active {
-  display: block;
-}
-
-.cert-slide-content {
-  text-align: center;
-  padding: 20px;
-}
-
-.cert-slide-counter {
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin: 20px 0;
-}
-
-.cert-slide-counter {
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin: 20px 0;
-}
-
-.cert-thumbnail-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.cert-thumb {
-  width: 80px;
-  height: 60px;
-  object-fit: cover;
-  border: 2px solid transparent;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: 0.7;
-}
-
-.cert-thumb:hover {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
-.cert-thumb.current-cert-thumb {
-  border-color: var(--accent-blue);
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-/* Responsive styles for certifications */
-@media (max-width: 768px) {
-  .cert-slideshow-container {
-    padding: 15px;
-  }
-  
-  .cert-nav-counter-container {
-    gap: 15px;
-    margin: 15px 0;
-  }
-  
-  .cert-nav-btn {
-    padding: 8px;
-    font-size: 16px;
-  }
-  
-  .cert-thumb {
-    width: 60px;
-    height: 45px;
-  }
-  
-  .cert-slide-counter {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .cert-thumbnail-container {
-    gap: 5px;
-  }
-  
-  .cert-thumb {
-    width: 50px;
-    height: 38px;
-  }
-}
-
 /* Featured Projects Slideshow Styles */
 .featured-slideshow-container {
   position: relative;
@@ -2795,17 +2673,17 @@ figure video {
   .featured-slideshow-container {
     padding: 15px;
   }
-  
+
   .featured-nav-btn {
     padding: 8px;
     font-size: 16px;
   }
-  
+
   .featured-thumb {
     width: 60px;
     height: 45px;
   }
-  
+
   .featured-slide-counter {
     font-size: 16px;
   }
@@ -2815,7 +2693,7 @@ figure video {
   .featured-thumbnail-container {
     gap: 5px;
   }
-  
+
   .featured-thumb {
     width: 50px;
     height: 38px;

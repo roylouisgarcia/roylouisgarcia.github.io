@@ -80,61 +80,33 @@ $(document).ready(function(){
         }); 
     });
     
-  // Featured tab removed - content moved to Personal section
-  /*
-  $("#link2Featured").click(function(){  
-    $(".featured").show("fast", function(){
-      // Initialize the featured slideshow if not already done
-      if (!window.featuredInitialized) {
-        initializeFeaturedSlideshow();
-        window.featuredInitialized = true;
-      }
-    });  
-    $(".academic").hide("fast", function(){});
-    $(".professional").hide("fast", function(){});
-    $(".personal").hide("fast", function(){});
-    $(".currentsites").hide("fast", function(){});
-    $("#link2Featured").addClass("active");
-    $("#link2Academic").removeClass("active");
-    $("#link2Professional").removeClass("active");
-    $("#link2Personal").removeClass("active");
-    $("#link2CurrentSites").removeClass("active");  
-  });
-  */    
-    
-  
-  $("#link2Academic").click(function(){    
-    $(".featured").hide("fast", function(){});  
+  $("#link2Academic").click(function(){
     $(".academic").show("fast", function(){});
     $(".professional").hide("fast", function(){});
     $(".personal").hide("fast", function(){});
     $(".currentsites").hide("fast", function(){});
-    $("#link2Featured").removeClass("active");  
     $("#link2Academic").addClass("active");
     $("#link2Professional").removeClass("active");
     $("#link2Personal").removeClass("active");
-    $("#link2CurrentSites").removeClass("active");  
+    $("#link2CurrentSites").removeClass("active");
   });
 
   $("#link2Professional").click(function(){
-    $(".featured").hide("fast", function(){});      
     $(".academic").hide("fast", function(){});
     $(".professional").show("fast", function(){});
     $(".personal").hide("fast", function(){});
     $(".currentsites").hide("fast", function(){});
-    $("#link2Featured").removeClass("active");      
     $("#link2Academic").removeClass("active");
     $("#link2Professional").addClass("active");
     $("#link2Personal").removeClass("active");
-    $("#link2CurrentSites").removeClass("active");       
+    $("#link2CurrentSites").removeClass("active");
   });
 
-  $("#link2Personal").click(function(){    
-    $(".featured").hide("fast", function(){});      
+  $("#link2Personal").click(function(){
     $(".academic").hide("fast", function(){});
     $(".professional").hide("fast", function(){});
     $(".personal").show("fast", function(){
-      // Initialize the featured slideshow if not already done (since it's now in Personal section)
+      // Initialize the featured slideshow if not already done
       if (!window.featuredInitialized) {
         initializeFeaturedSlideshow();
         window.featuredInitialized = true;
@@ -145,15 +117,13 @@ $(document).ready(function(){
       });
     });
     $(".currentsites").hide("fast", function(){});
-    $("#link2Featured").removeClass("active");      
     $("#link2Academic").removeClass("active");
     $("#link2Professional").removeClass("active");
     $("#link2Personal").addClass("active");
-    $("#link2CurrentSites").removeClass("active");       
+    $("#link2CurrentSites").removeClass("active");
   });
 
-  $("#link2CurrentSites").click(function(){    
-    $(".featured").hide("fast", function(){});      
+  $("#link2CurrentSites").click(function(){
     $(".academic").hide("fast", function(){});
     $(".professional").hide("fast", function(){});
     $(".personal").hide("fast", function(){});
@@ -164,11 +134,10 @@ $(document).ready(function(){
         window.currentSitesInitialized = true;
       }
     });
-    $("#link2Featured").removeClass("active");      
     $("#link2Academic").removeClass("active");
     $("#link2Professional").removeClass("active");
     $("#link2Personal").removeClass("active");
-    $("#link2CurrentSites").addClass("active");       
+    $("#link2CurrentSites").addClass("active");
   });
     
   $("#associate").click(function () {
@@ -329,11 +298,9 @@ $(document).ready(function(){
    }
     
     function defaultProjects(){
-        $(".featured").hide("slow", function(){});
         $(".academic").hide("slow", function(){}); // Hide Academic by default now
         $(".professional").hide("slow", function(){});
         $(".personal").hide("slow", function(){});
-        $("#link2Featured").addClass("btnNonActive");
         $("#link2Academic").addClass("btnNonActive"); // Academic button inactive by default
         $("#link2Professional").addClass("btnNonActive");
         $("#link2Personal").addClass("btnNonActive"); 
@@ -403,12 +370,10 @@ $(document).ready(function(){
      }
 
      function hideAllProjectTabs(){
-        $(".featured").hide("fast", function(){});
         $(".academic").hide("fast", function(){});
         $(".professional").hide("fast", function(){});
         $(".personal").hide("fast", function(){});
         $(".currentsites").hide("fast", function(){});
-        $("#link2Featured").removeClass("active");
         $("#link2Academic").removeClass("active");
         $("#link2Professional").removeClass("active");
         $("#link2Personal").removeClass("active");
@@ -426,12 +391,10 @@ $(document).ready(function(){
      }
 
      function showAcademicTab(){
-        $(".featured").hide("fast", function(){});
         $(".academic").show("fast", function(){});
         $(".professional").hide("fast", function(){});
         $(".personal").hide("fast", function(){});
         $(".currentsites").hide("fast", function(){});
-        $("#link2Featured").removeClass("active");
         $("#link2Academic").addClass("active");
         $("#link2Professional").removeClass("active");
         $("#link2Personal").removeClass("active");
@@ -449,7 +412,6 @@ $(document).ready(function(){
      }
 
      function showCurrentSitesTab(){
-        $(".featured").hide("fast", function(){});
         $(".academic").hide("fast", function(){});
         $(".professional").hide("fast", function(){});
         $(".personal").hide("fast", function(){});
@@ -460,7 +422,6 @@ $(document).ready(function(){
             window.currentSitesInitialized = true;
           }
         });
-        $("#link2Featured").removeClass("active");
         $("#link2Academic").removeClass("active");
         $("#link2Professional").removeClass("active");
         $("#link2Personal").removeClass("active");
