@@ -112,10 +112,6 @@ $(document).ready(function(){
         initializeFeaturedSlideshow();
         window.featuredInitialized = true;
       }
-      // Automatically show personal details and update button text
-      $("#personalDetails").show("fast", function(){
-        $("#personalDetailsBtn").text("HIDE DETAILS");
-      });
     });
     $(".currentsites").hide("fast", function(){});
     $("#link2Academic").removeClass("active");
