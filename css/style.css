@@ -583,7 +583,7 @@ h3.handwritten {
 #link2Academic,
 #link2Professional,
 #link2Personal,
-#link2Certifications {
+#link2CurrentSites {
   font-family: "Courier Prime";
   font-size: 0.7em;
   border-top: 1px;
@@ -2320,7 +2320,7 @@ figure video {
   }
 }
 
-/* Certifications Slideshow Styles */
+/* Reusable project/site slideshow styles (used by the Current Sites tab) */
 .certifications-slideshow-container {
   width: 90%;
   max-width: 1000px;
@@ -2340,7 +2340,7 @@ figure video {
 }
 
 .certifications-slideshow-wrapper::after {
-  content: "🔗 Click to view GitHub repository";
+  content: "🔗 Click to visit site";
   position: absolute;
   bottom: 10px;
   right: 10px;

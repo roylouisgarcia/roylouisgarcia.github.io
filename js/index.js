@@ -30,7 +30,7 @@ $(document).ready(function(){
         $('#specialization').hide('fast');
         $('.jumbotron-before-specialization').hide('fast');
         // Show Featured tab when going to projects
-        showFeaturedTab();
+        showCurrentSitesTab();
       } else {
         // Hide specialization section and its jumbotron when navigating to other sections
         $('#specialization').hide('fast');
@@ -93,12 +93,12 @@ $(document).ready(function(){
     $(".academic").hide("fast", function(){});
     $(".professional").hide("fast", function(){});
     $(".personal").hide("fast", function(){});
-    $(".certifications").hide("fast", function(){});
+    $(".currentsites").hide("fast", function(){});
     $("#link2Featured").addClass("active");
     $("#link2Academic").removeClass("active");
     $("#link2Professional").removeClass("active");
     $("#link2Personal").removeClass("active");
-    $("#link2Certifications").removeClass("active");  
+    $("#link2CurrentSites").removeClass("active");  
   });
   */    
     
@@ -108,12 +108,12 @@ $(document).ready(function(){
     $(".academic").show("fast", function(){});
     $(".professional").hide("fast", function(){});
     $(".personal").hide("fast", function(){});
-    $(".certifications").hide("fast", function(){});
+    $(".currentsites").hide("fast", function(){});
     $("#link2Featured").removeClass("active");  
     $("#link2Academic").addClass("active");
     $("#link2Professional").removeClass("active");
     $("#link2Personal").removeClass("active");
-    $("#link2Certifications").removeClass("active");  
+    $("#link2CurrentSites").removeClass("active");  
   });
 
   $("#link2Professional").click(function(){
@@ -121,12 +121,12 @@ $(document).ready(function(){
     $(".academic").hide("fast", function(){});
     $(".professional").show("fast", function(){});
     $(".personal").hide("fast", function(){});
-    $(".certifications").hide("fast", function(){});
+    $(".currentsites").hide("fast", function(){});
     $("#link2Featured").removeClass("active");      
     $("#link2Academic").removeClass("active");
     $("#link2Professional").addClass("active");
     $("#link2Personal").removeClass("active");
-    $("#link2Certifications").removeClass("active");       
+    $("#link2CurrentSites").removeClass("active");       
   });
 
   $("#link2Personal").click(function(){    
@@ -144,31 +144,31 @@ $(document).ready(function(){
         $("#personalDetailsBtn").text("HIDE DETAILS");
       });
     });
-    $(".certifications").hide("fast", function(){});
+    $(".currentsites").hide("fast", function(){});
     $("#link2Featured").removeClass("active");      
     $("#link2Academic").removeClass("active");
     $("#link2Professional").removeClass("active");
     $("#link2Personal").addClass("active");
-    $("#link2Certifications").removeClass("active");       
+    $("#link2CurrentSites").removeClass("active");       
   });
 
-  $("#link2Certifications").click(function(){    
+  $("#link2CurrentSites").click(function(){    
     $(".featured").hide("fast", function(){});      
     $(".academic").hide("fast", function(){});
     $(".professional").hide("fast", function(){});
     $(".personal").hide("fast", function(){});
-    $(".certifications").show("fast", function(){
-      // Initialize the certifications slideshow if not already done
-      if (!window.certificationsInitialized) {
-        initializeCertificationsSlideshow();
-        window.certificationsInitialized = true;
+    $(".currentsites").show("fast", function(){
+      // Initialize the Current Sites slideshow if not already done
+      if (!window.currentSitesInitialized) {
+        initializeCurrentSitesSlideshow();
+        window.currentSitesInitialized = true;
       }
     });
     $("#link2Featured").removeClass("active");      
     $("#link2Academic").removeClass("active");
     $("#link2Professional").removeClass("active");
     $("#link2Personal").removeClass("active");
-    $("#link2Certifications").addClass("active");       
+    $("#link2CurrentSites").addClass("active");       
   });
     
   $("#associate").click(function () {
@@ -407,12 +407,12 @@ $(document).ready(function(){
         $(".academic").hide("fast", function(){});
         $(".professional").hide("fast", function(){});
         $(".personal").hide("fast", function(){});
-        $(".certifications").hide("fast", function(){});
+        $(".currentsites").hide("fast", function(){});
         $("#link2Featured").removeClass("active");
         $("#link2Academic").removeClass("active");
         $("#link2Professional").removeClass("active");
         $("#link2Personal").removeClass("active");
-        $("#link2Certifications").removeClass("active");
+        $("#link2CurrentSites").removeClass("active");
         $("#hartnell").hide("fast", function () {});
         $("#csumb").hide("fast", function () {});
         $("#capella").hide("fast", function () {});
@@ -430,12 +430,12 @@ $(document).ready(function(){
         $(".academic").show("fast", function(){});
         $(".professional").hide("fast", function(){});
         $(".personal").hide("fast", function(){});
-        $(".certifications").hide("fast", function(){});
+        $(".currentsites").hide("fast", function(){});
         $("#link2Featured").removeClass("active");
         $("#link2Academic").addClass("active");
         $("#link2Professional").removeClass("active");
         $("#link2Personal").removeClass("active");
-        $("#link2Certifications").removeClass("active");
+        $("#link2CurrentSites").removeClass("active");
         $("#hartnell").hide("fast", function () {});
         $("#csumb").hide("fast", function () {});
         $("#capella").hide("fast", function () {});
@@ -448,23 +448,23 @@ $(document).ready(function(){
         hideLyricsProjects();
      }
 
-     function showFeaturedTab(){
+     function showCurrentSitesTab(){
         $(".featured").hide("fast", function(){});
         $(".academic").hide("fast", function(){});
         $(".professional").hide("fast", function(){});
         $(".personal").hide("fast", function(){});
-        $(".certifications").show("fast", function(){
-          // Initialize the certifications slideshow if not already done
-          if (!window.certificationsInitialized) {
-            initializeCertificationsSlideshow();
-            window.certificationsInitialized = true;
+        $(".currentsites").show("fast", function(){
+          // Initialize the Current Sites slideshow if not already done
+          if (!window.currentSitesInitialized) {
+            initializeCurrentSitesSlideshow();
+            window.currentSitesInitialized = true;
           }
         });
         $("#link2Featured").removeClass("active");
         $("#link2Academic").removeClass("active");
         $("#link2Professional").removeClass("active");
         $("#link2Personal").removeClass("active");
-        $("#link2Certifications").addClass("active");
+        $("#link2CurrentSites").addClass("active");
         $("#hartnell").hide("fast", function () {});
         $("#csumb").hide("fast", function () {});
         $("#capella").hide("fast", function () {});
@@ -477,682 +477,172 @@ $(document).ready(function(){
         hideLyricsProjects();
      }
 
-// Certifications Slideshow functionality
-let currentCertSlideIndex = 0;
-let certSlides = [];
-let certificationsData = [];
-let certsProjectsMapping = {};
+// Current Sites slideshow functionality
+let currentSitesSlideIndex = 0;
+let currentSitesSlides = [];
 
-// Load and parse meta_html_css.txt to create title-to-image mapping
-function loadCertsProjectsMapping() {
-  return fetch('./meta_html_css.txt')
-    .then(response => response.text())
-    .then(content => {
-      const lines = content.split('\n');
-      let currentEntry = {};
-      
-      lines.forEach(line => {
-        line = line.trim();
-        if (line.startsWith('Name:')) {
-          // Save previous entry if complete
-          if (currentEntry.name && currentEntry.app) {
-            certsProjectsMapping[currentEntry.name.toLowerCase()] = currentEntry.app.replace('certs_project/', 'certs_projects/');
-          }
-          currentEntry = { name: line.substring(5).trim() };
-        } else if (line.startsWith('app:')) {
-          currentEntry.app = line.substring(4).trim();
-        } else if (line.startsWith('url:')) {
-          currentEntry.url = line.substring(4).trim();
-        } else if (line === '' && currentEntry.name && currentEntry.app) {
-          // End of entry
-          certsProjectsMapping[currentEntry.name.toLowerCase()] = currentEntry.app.replace('certs_project/', 'certs_projects/');
-          currentEntry = {};
-        }
-      });
-      
-      // Don't forget the last entry
-      if (currentEntry.name && currentEntry.app) {
-        certsProjectsMapping[currentEntry.name.toLowerCase()] = currentEntry.app.replace('certs_project/', 'certs_projects/');
-      }
-      
-      console.log('Loaded certs projects mapping:', certsProjectsMapping);
-      return certsProjectsMapping;
-    })
-    .catch(error => {
-      console.error('Error loading meta_html_css.txt:', error);
-      return {};
-    });
-}
+// Current Sites data - screenshots from images/currentsites
+const currentSitesData = [
+  { title: "NostradmsX - Personal Blog", image: "./images/currentsites/nostradmsx.jpg", url: "https://nostradmsx.com" },
+  { title: "DMSecurityX", image: "./images/currentsites/dmsecurityx-1.jpg", url: "https://dmsecurityx.com" },
+  { title: "DMSecurityX", image: "./images/currentsites/dmsecurityx-2.jpg", url: "https://dmsecurityx.com" },
+  { title: "DMSecurityX", image: "./images/currentsites/dmsecurityx-3.jpg", url: "https://dmsecurityx.com" },
+  { title: "TryCircal - Blueprints", image: "./images/currentsites/trycircal_blueprints.jpg", url: "https://trycircal.app" },
+  { title: "TryCircal - Calendar", image: "./images/currentsites/trycircal_calendar.jpg", url: "https://trycircal.app" },
+  { title: "TryCircal - Insights", image: "./images/currentsites/trycircal_insights.jpg", url: "https://trycircal.app" },
+  { title: "TryCircal - Settings", image: "./images/currentsites/trycircal_settings.jpg", url: "https://trycircal.app" },
+  { title: "MyDigitally", image: "./images/currentsites/mydigitally_1.jpg", url: "https://mydigitally.app" },
+  { title: "MyDigitally", image: "./images/currentsites/mydigitally_2.jpg", url: "https://mydigitally.app" },
+  { title: "MyDigitally", image: "./images/currentsites/mydigitally_3.jpg", url: "https://mydigitally.app" },
+  { title: "MyDigitally", image: "./images/currentsites/mydigitally_4.jpg", url: "https://mydigitally.app" },
+  { title: "MyDigitally", image: "./images/currentsites/mydigitally_5.jpg", url: "https://mydigitally.app" },
+  { title: "Deliberate Cybersecurity", image: "./images/currentsites/deliberatecybersecurity.jpg", url: "https://deliberatecybersecurity.com" },
+  { title: "Deliberate Digital Legacy", image: "./images/currentsites/deliberate-digital-legacy.jpg", url: "https://deliberate-digital-legacy.com" },
+  { title: "Deliberate Learners", image: "./images/currentsites/deliberatelearners.jpg", url: "https://deliberatelearners.com" },
+  { title: "Deliberate Learners - Tools", image: "./images/currentsites/deliberatelearners-tools.jpg", url: "https://deliberatelearners.com/tools" },
+  { title: "Deliberately Deliberate", image: "./images/currentsites/deliberatelydeliberate.jpg", url: "https://deliberatelydeliberate.com" }
+];
 
-// Function to find matching image for a project title
-function findImageForTitle(title) {
-  const lowerTitle = title.toLowerCase();
-  
-  // Direct title matches
-  for (const [mappedTitle, imagePath] of Object.entries(certsProjectsMapping)) {
-    if (lowerTitle === mappedTitle) {
-      return imagePath;
-    }
-  }
-  
-  // Specific matches for Meta/Coursera HTML CSS project
-  if (lowerTitle.includes('meta') && (lowerTitle.includes('html') || lowerTitle.includes('css'))) {
-    return 'certs_projects/readme_wholepicture.jpg'; // Use the Little Lemon image for Meta HTML/CSS
-  }
-  
-  // Specific matches based on project keywords
-  if (lowerTitle.includes('python') && lowerTitle.includes('windows')) {
-    return 'certs_projects/00_helloworld_code.png'; // Generic programming image
-  }
-  
-  if (lowerTitle.includes('android') && lowerTitle.includes('court')) {
-    return 'certs_projects/Capture.PNG'; // Generic mobile app image
-  }
-  
+// Load Current Sites slides dynamically
+function loadCurrentSitesSlides() {
+  const slidesContainer = document.getElementById('currentSitesSlides');
+  const thumbnailContainer = document.getElementById('currentSitesThumbnailContainer');
 
-  
-  // Ultimate fallback - use a generic project image
-  return 'certs_projects/meta_web_development.png';
-}
-
-// Function to format Read More content from text file into HTML
-function formatReadMoreContent(content) {
-  if (!content) return '';
-  
-  // Parse the content to extract structured information
-  let formattedContent = '';
-  
-  // Check if the content contains structured information with semicolons
-  if (content.includes('Technologies Used:') && content.includes(';')) {
-    // Parse structured content like "Technologies Used: HTML5, CSS3, Flexbox, Grid Layout; Key Features: ..."
-    const sections = content.split(';').map(s => s.trim());
-    
-    sections.forEach(section => {
-      if (section.includes('Technologies Used:')) {
-        const tech = section.replace('Technologies Used:', '').trim();
-        formattedContent += `
-          <h4 style="color: #007bff; margin-bottom: 15px; text-align: left;">Technologies Used</h4>
-          <p style="text-align: left; font-size: inherit; line-height: inherit;"><strong>${tech}</strong></p>
-        `;
-      } else if (section.includes('Key Features:')) {
-        const features = section.replace('Key Features:', '').trim();
-        formattedContent += `
-          <h4 style="color: #007bff; margin-bottom: 15px; margin-top: 20px; text-align: left;">Key Features</h4>
-          <p style="text-align: left; font-size: inherit; line-height: inherit;">${features}</p>
-        `;
-      } else if (section.includes('Learning Outcomes:')) {
-        const outcomes = section.replace('Learning Outcomes:', '').trim();
-        formattedContent += `
-          <h4 style="color: #007bff; margin-bottom: 15px; margin-top: 20px; text-align: left;">Learning Outcomes</h4>
-          <p style="text-align: left; font-size: inherit; line-height: inherit;">${outcomes}</p>
-        `;
-      }
-    });
-  } else {
-    // For unstructured content, format as a general project overview
-    let cleanContent = content
-      .replace(/\n\n/g, '</p><p style="margin: 10px 0; line-height: 1.6; text-align: justify;">')
-      .replace(/\n/g, ' ')
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    
-    formattedContent = `
-      <h4 style="color: #007bff; margin-bottom: 15px; text-align: left;">Project Overview</h4>
-      <p style="margin: 10px 0; line-height: 1.6; text-align: justify;">${cleanContent}</p>
-    `;
-  }
-  
-  return formattedContent;
-}
-
-// Function to get additional project information for Read More content
-function getAdditionalProjectInfo(title) {
-  const lowerTitle = title.toLowerCase();
-  
-  // Match based on project title keywords
-  if (lowerTitle.includes('meta') && (lowerTitle.includes('html') || lowerTitle.includes('css'))) {
-    return `
-      <h4 style="color: #007bff; margin-bottom: 15px; text-align: left;">Technologies Used</h4>
-      <p style="text-align: left; font-size: inherit; line-height: inherit;"><strong>HTML5, CSS3, Flexbox, Grid Layout</strong></p>
-      
-      <h4 style="color: #007bff; margin-bottom: 15px; margin-top: 20px; text-align: left;">Key Features</h4>
-      <ul style="margin-left: 20px; text-align: left; font-size: inherit; line-height: inherit;">
-        <li>Responsive design</li>
-        <li>Semantic HTML</li>
-        <li>Modern CSS techniques</li>
-      </ul>
-      
-      <h4 style="color: #007bff; margin-bottom: 15px; margin-top: 20px; text-align: left;">Learning Outcomes</h4>
-      <p style="text-align: left; font-size: inherit; line-height: inherit;">Advanced CSS selectors, animations, and responsive web design principles</p>
-    `;
-  }
-  
-  if (lowerTitle.includes('python') && lowerTitle.includes('windows')) {
-    return `
-      <h4 style="color: #007bff; margin-bottom: 15px; text-align: left;">Technologies Used</h4>
-      <p style="text-align: left; font-size: inherit; line-height: inherit;"><strong>Python, Windows API, ctypes library</strong></p>
-      
-      <h4 style="color: #007bff; margin-bottom: 15px; margin-top: 20px; text-align: left;">Key Features</h4>
-      <ul style="margin-left: 20px; text-align: left; font-size: inherit; line-height: inherit;">
-        <li>Direct system calls</li>
-        <li>Process management</li>
-        <li>Native Windows integration</li>
-      </ul>
-      
-      <h4 style="color: #007bff; margin-bottom: 15px; margin-top: 20px; text-align: left;">Learning Outcomes</h4>
-      <p style="text-align: left; font-size: inherit; line-height: inherit;">Low-level programming, system architecture, API interaction</p>
-    `;
-  }
-  
-  if (lowerTitle.includes('android') && lowerTitle.includes('court')) {
-    return `
-      <h4 style="color: #007bff; margin-bottom: 15px; text-align: left;">Technologies Used</h4>
-      <p style="text-align: left; font-size: inherit; line-height: inherit;"><strong>Java, Android SDK, XML Layouts</strong></p>
-      
-      <h4 style="color: #007bff; margin-bottom: 15px; margin-top: 20px; text-align: left;">Key Features</h4>
-      <ul style="margin-left: 20px; text-align: left; font-size: inherit; line-height: inherit;">
-        <li>Interactive UI</li>
-        <li>State management</li>
-        <li>Basketball scoring system</li>
-      </ul>
-      
-      <h4 style="color: #007bff; margin-bottom: 15px; margin-top: 20px; text-align: left;">Learning Outcomes</h4>
-      <p style="text-align: left; font-size: inherit; line-height: inherit;">Mobile app development, Android lifecycle, UI/UX design</p>
-    `;
-  }
-  
-  // Default content for other projects
-  return `
-    <h4 style="color: #007bff; margin-bottom: 15px; text-align: left;">Project Details</h4>
-    <p style="text-align: left; font-size: inherit; line-height: inherit;">This project showcases various programming concepts and technologies. Click "View on GitHub" to explore the source code and learn more about the implementation details.</p>
-    
-    <h4 style="color: #007bff; margin-bottom: 15px; margin-top: 20px; text-align: left;">Explore More</h4>
-    <p style="text-align: left; font-size: inherit; line-height: inherit;">Visit the GitHub repository to see the complete codebase, documentation, and additional project information.</p>
-  `;
-}
-
-// Parse mooc_projects.txt content into structured data
-function parseMoocProjectsData(content) {
-  const projects = [];
-  const lines = content.split('\n');
-  let currentProject = {};
-  
-  lines.forEach(line => {
-    line = line.trim();
-    
-    if (line === '') {
-      // Empty line might indicate end of project
-      if (currentProject.title && currentProject.githubUrl && currentProject.image1) {
-        projects.push({...currentProject});
-      }
-      // Reset for potential new project
-      if (Object.keys(currentProject).length > 3) {
-        currentProject = {};
-      }
-    } else if (line.includes(':')) {
-      const colonIndex = line.indexOf(':');
-      const key = line.substring(0, colonIndex).trim().toLowerCase();
-      const value = line.substring(colonIndex + 1).trim();
-      
-      if (key === 'title') {
-        // Start of new project
-        if (currentProject.title && currentProject.githubUrl && currentProject.image1) {
-          projects.push({...currentProject});
-        }
-        currentProject = { title: value };
-      } else if (key === 'github url') {
-        currentProject.githubUrl = value;
-      } else if (key === 'image 1') {
-        currentProject.image1 = value;
-      } else if (key === 'image 2') {
-        currentProject.image2 = value;
-      } else if (key === 'description') {
-        currentProject.description = value;
-      } else if (key === 'actual site') {
-        currentProject.actualSite = value;
-      } else if (key === 'read more' || key === 'read more:') {
-        currentProject.readMore = value;
-      }
-    }
-  });
-  
-  // Don't forget the last project
-  if (currentProject.title && currentProject.githubUrl && currentProject.image1) {
-    projects.push(currentProject);
-  }
-  
-  console.log('Parsed projects:', projects);
-  console.log('Projects with images:', projects.map(p => ({ title: p.title, image1: p.image1, image2: p.image2 })));
-  return projects;
-}
-
-// Load certifications data from mooc_projects.txt
-function loadCertificationsData() {
-  console.log('Loading certifications data...');
-  
-  // First load the certs projects mapping
-  loadCertsProjectsMapping()
-    .then(() => {
-      // Then load the mooc projects data
-      return fetch('./mooc_projects.txt');
-    })
-    .then(response => {
-      console.log('Fetch response:', response);
-      return response.text();
-    })
-    .then(content => {
-      console.log('File content loaded, length:', content.length);
-      certificationsData = parseMoocProjectsData(content);
-      console.log('Loaded certifications data:', certificationsData);
-      loadCertSlides();
-    })
-    .catch(error => {
-      console.error('Error loading mooc_projects.txt:', error);
-    });
-}
-
-// Load slides dynamically based on parsed data
-function loadCertSlides() {
-  const slidesContainer = document.getElementById('certificationsSlides');
-  const thumbnailContainer = document.getElementById('certThumbnailContainer');
-  
   if (!slidesContainer || !thumbnailContainer) {
-    console.error('Certifications slideshow containers not found');
+    console.error('Current Sites slideshow containers not found');
     return;
   }
-
-  console.log('Loading certification slides:', certificationsData.length, 'projects');
 
   // Clear existing content
   slidesContainer.innerHTML = '';
   thumbnailContainer.innerHTML = '';
-  certSlides = [];
+  currentSitesSlides = [];
 
-  certificationsData.forEach((project, index) => {
-    // Determine which image to use:
-    // 1. If project.image1 exists and is not empty, use it
-    // 2. Otherwise, fallback to findImageForTitle
-    let localImage;
-    
-    if (project.image1 && project.image1.trim() !== '' && project.image1 !== '#') {
-      localImage = project.image1;
-    } else {
-      localImage = findImageForTitle(project.title);
-    }
-    
-    console.log(`Project "${project.title}":`, {
-      image1: project.image1,
-      image2: project.image2,
-      finalImage: localImage
-    });
-    
+  currentSitesData.forEach((site, index) => {
     // Create slide
     const slideDiv = document.createElement('div');
     slideDiv.classList.add('cert-slides');
 
-    // Create slide content
     const slideContent = document.createElement('div');
     slideContent.classList.add('cert-slide-content');
-    
+
     const titleElement = document.createElement('h2');
-    titleElement.textContent = project.title;
+    titleElement.textContent = site.title;
     titleElement.style.textAlign = 'center';
-    titleElement.style.marginBottom = '15px';
+    titleElement.style.marginBottom = '20px';
     titleElement.style.color = '#333';
-    titleElement.style.fontSize = '20px';
-    titleElement.style.fontWeight = 'bold';
-    
-    // Add responsive styling for titles on smaller devices
-    titleElement.style.cssText += `
-      @media (max-width: 768px) {
-        font-size: 14px !important;
-        margin-bottom: 10px !important;
-      }
-      @media (max-width: 480px) {
-        font-size: 12px !important;
-        margin-bottom: 8px !important;
-      }
-    `;
-    
     slideContent.appendChild(titleElement);
 
     const img = document.createElement('img');
-    img.src = localImage; // Use local image instead of project.image1
+    img.src = site.image;
     img.style.cursor = 'pointer';
-    img.style.maxWidth = '100%';
-    img.style.height = 'auto';
-    img.style.display = 'block';
-    img.style.margin = '0 auto';
-    img.title = 'Click to view GitHub repository';
+    img.title = 'Click to visit ' + site.title;
     img.onerror = function() {
-      console.error('Failed to load image:', localImage);
-      
-      // Try fallback: if it was using project.image1, try findImageForTitle
-      if (localImage === project.image1) {
-        const fallbackImage = findImageForTitle(project.title);
-        console.log(`Trying fallback image for "${project.title}": ${fallbackImage}`);
-        
-        if (fallbackImage !== localImage) {
-          img.src = fallbackImage;
-          return; // Let the new image try to load
-        }
-      }
-      
-      // Create a placeholder if image fails to load
-      const placeholder = document.createElement('div');
-      placeholder.style.width = '300px';
-      placeholder.style.height = '200px';
-      placeholder.style.backgroundColor = '#f0f0f0';
-      placeholder.style.display = 'flex';
-      placeholder.style.alignItems = 'center';
-      placeholder.style.justifyContent = 'center';
-      placeholder.style.margin = '0 auto';
-      placeholder.style.border = '2px dashed #ccc';
-      placeholder.style.borderRadius = '8px';
-      placeholder.textContent = 'Image not available';
-      placeholder.style.cursor = 'pointer';
-      placeholder.onclick = () => window.open(project.githubUrl, '_blank');
-      img.parentNode.replaceChild(placeholder, img);
+      console.error('Failed to load image:', site.image);
     };
-    img.onclick = () => window.open(project.githubUrl, '_blank');
+    img.onclick = () => window.open(site.url, '_blank');
     slideContent.appendChild(img);
-    
-    const descElement = document.createElement('p');
-    descElement.textContent = project.description;
-    descElement.style.marginTop = '20px';
-    descElement.style.textAlign = 'justify';
-    descElement.style.lineHeight = '1';
-    descElement.style.fontSize = '12px';
-    descElement.style.color = '#555';
-    
-    // Add responsive styling for smaller devices
-    descElement.style.cssText += `
-      @media (max-width: 768px) {
-        font-size: 12px !important;
-        line-height: 1 !important;
-        text-align: left !important;
-        padding: 0 12px !important;
-      }
-      @media (max-width: 480px) {
-        font-size: 13px !important;
-        line-height: 1.4 !important;
-        padding: 0 5px !important;
-      }
-    `;
-    
-    slideContent.appendChild(descElement);
-    
-    // Add GitHub link button and Read More button
+
     const linkContainer = document.createElement('div');
-    linkContainer.classList.add('project-btn-container');
-    
-    const githubLink = document.createElement('a');
-    githubLink.href = project.githubUrl;
-    githubLink.target = '_blank';
-    
-    // Special handling for Bertelsmann nanodegree
-    if (project.title.includes('Bertelsmann')) {
-        githubLink.textContent = 'See Projects';
-        githubLink.href = '#'; // Since we're not linking to GitHub
-        githubLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Create and show the Bertelsmann projects div
-            showBertelsmannProjects();
-        });
-    } else {
-        githubLink.textContent = 'View on GitHub';
-    }
-    
-    githubLink.classList.add('project-btn', 'project-btn-github');
-    
-    const readMoreBtn = document.createElement('button');
-    readMoreBtn.textContent = 'Read More';
-    readMoreBtn.classList.add('project-btn', 'project-btn-readmore');
-    
-    linkContainer.appendChild(githubLink);
-    
-    // Add "See Demo" button for Coursera/Meta HTML and CSS project
-    if (project.title && project.title.toLowerCase().includes('coursera/meta html and css')) {
-        const demoLink = document.createElement('a');
-        demoLink.href = 'https://roylouisgarcia.github.io/meta-coursera-html-css-project/';
-        demoLink.target = '_blank';
-        demoLink.textContent = 'See Demo';
-        demoLink.classList.add('project-btn', 'project-btn-demo');
-        linkContainer.appendChild(demoLink);
-    }
-    
-    linkContainer.appendChild(readMoreBtn);
+    linkContainer.style.textAlign = 'center';
+    linkContainer.style.marginTop = '20px';
+
+    const siteLink = document.createElement('a');
+    siteLink.href = site.url;
+    siteLink.target = '_blank';
+    siteLink.rel = 'noopener';
+    siteLink.textContent = 'View Site';
+    siteLink.style.display = 'inline-block';
+    siteLink.style.padding = '10px 20px';
+    siteLink.style.backgroundColor = '#007bff';
+    siteLink.style.color = 'white';
+    siteLink.style.textDecoration = 'none';
+    siteLink.style.borderRadius = '5px';
+    siteLink.style.fontWeight = 'bold';
+    siteLink.style.transition = 'background-color 0.3s ease';
+    siteLink.onmouseover = () => siteLink.style.backgroundColor = '#0056b3';
+    siteLink.onmouseout = () => siteLink.style.backgroundColor = '#007bff';
+
+    linkContainer.appendChild(siteLink);
     slideContent.appendChild(linkContainer);
 
-    // Create the Read More content div (initially hidden)
-    const readMoreContent = document.createElement('div');
-    readMoreContent.classList.add('cert-read-more-content');
-    readMoreContent.style.display = 'none';
-    readMoreContent.style.marginTop = '20px';
-    readMoreContent.style.padding = '20px';
-    readMoreContent.style.backgroundColor = '#f8f9fa';
-    readMoreContent.style.border = '1px solid #dee2e6';
-    readMoreContent.style.borderRadius = '8px';
-    readMoreContent.style.lineHeight = '1.6';
-    
-    // Add responsive styling for smaller devices
-    readMoreContent.style.cssText += `
-      @media (max-width: 768px) {
-        padding: 15px 10px !important;
-        font-size: 14px !important;
-        line-height: 1.5 !important;
-      }
-      @media (max-width: 480px) {
-        padding: 10px 5px !important;
-        font-size: 13px !important;
-        line-height: 1.4 !important;
-      }
-    `;
-    
-    // Get additional info for this project
-    const additionalInfo = project.readMore ? formatReadMoreContent(project.readMore) : getAdditionalProjectInfo(project.title);
-    readMoreContent.innerHTML = additionalInfo;
-    
-    slideContent.appendChild(readMoreContent);
-    
-    // Add click event to toggle the read more content
-    readMoreBtn.onclick = function() {
-      if (readMoreContent.style.display === 'none') {
-        readMoreContent.style.display = 'block';
-        readMoreBtn.textContent = 'Show Less';
-      } else {
-        readMoreContent.style.display = 'none';
-        readMoreBtn.textContent = 'Read More';
-      }
-    };
-    
     slideDiv.appendChild(slideContent);
     slidesContainer.appendChild(slideDiv);
 
-    // Create thumbnail using the same local image
+    // Create thumbnail
     const thumb = document.createElement('img');
-    thumb.src = localImage; // Use local image for thumbnail too
+    thumb.src = site.image;
     thumb.classList.add('cert-thumb');
-    thumb.style.cursor = 'pointer';
-    thumb.title = project.title + ' - Click to view slide or Ctrl+Click for GitHub';
-    thumb.onerror = function() {
-      console.error('Failed to load thumbnail:', localImage);
-      
-      // Try fallback: if it was using project.image1, try findImageForTitle
-      if (localImage === project.image1) {
-        const fallbackImage = findImageForTitle(project.title);
-        console.log(`Trying fallback thumbnail for "${project.title}": ${fallbackImage}`);
-        
-        if (fallbackImage !== localImage) {
-          thumb.src = fallbackImage;
-          return; // Let the new image try to load
-        }
-      }
-      
-      // Create a simple text thumbnail if image fails
-      const textThumb = document.createElement('div');
-      textThumb.classList.add('cert-thumb');
-      textThumb.style.width = '80px';
-      textThumb.style.height = '60px';
-      textThumb.style.backgroundColor = '#f0f0f0';
-      textThumb.style.display = 'flex';
-      textThumb.style.alignItems = 'center';
-      textThumb.style.justifyContent = 'center';
-      textThumb.style.border = '2px solid #ccc';
-      textThumb.style.borderRadius = '5px';
-      textThumb.style.fontSize = '10px';
-      textThumb.style.color = '#666';
-      textThumb.style.cursor = 'pointer';
-      textThumb.title = project.title + ' - Click to view slide or Ctrl+Click for GitHub';
-      textThumb.textContent = project.title.substring(0, 8) + '...';
-      textThumb.onclick = (event) => {
-        if (event.ctrlKey || event.metaKey) {
-          window.open(project.githubUrl, '_blank');
-        } else {
-          setCurrentCertSlide(index);
-        }
-      };
-      thumb.parentNode.replaceChild(textThumb, thumb);
-    };
+    thumb.title = site.title + ' - Click to view slide or Ctrl+Click to visit site';
     thumb.onclick = (event) => {
       if (event.ctrlKey || event.metaKey) {
-        window.open(project.githubUrl, '_blank');
+        window.open(site.url, '_blank');
       } else {
-        setCurrentCertSlide(index);
+        setCurrentSitesSlide(index);
       }
     };
     thumbnailContainer.appendChild(thumb);
 
-    certSlides.push(slideDiv);
+    currentSitesSlides.push(slideDiv);
   });
 
-  console.log('Loaded', certSlides.length, 'certification slides');
-  updateCertSlideCounter();
-  
-  // Show first slide
-  if (certSlides.length > 0) {
-    showCertSlide(0);
+  updateCurrentSitesSlideCounter();
+
+  if (currentSitesSlides.length > 0) {
+    showCurrentSitesSlide(0);
   }
 }
 
-function showCertSlide(index) {
-  console.log('showCertSlide called with index:', index, 'certSlides.length:', certSlides.length);
-  
-  if (index >= certSlides.length) {
-    currentCertSlideIndex = 0;
+function showCurrentSitesSlide(index) {
+  if (index >= currentSitesSlides.length) {
+    currentSitesSlideIndex = 0;
   } else if (index < 0) {
-    currentCertSlideIndex = certSlides.length - 1;
+    currentSitesSlideIndex = currentSitesSlides.length - 1;
   } else {
-    currentCertSlideIndex = index;
+    currentSitesSlideIndex = index;
   }
 
-  console.log('Setting currentCertSlideIndex to:', currentCertSlideIndex);
-
-  certSlides.forEach((slide, i) => {
-    if (i === currentCertSlideIndex) {
-      slide.style.display = 'block';
-      slide.classList.add('active');
-    } else {
-      slide.style.display = 'none';
-      slide.classList.remove('active');
-    }
+  currentSitesSlides.forEach((slide, i) => {
+    slide.style.display = i === currentSitesSlideIndex ? 'block' : 'none';
   });
-  
-  // Update thumbnail highlighting
-  const thumbnails = document.querySelectorAll('.cert-thumb');
-  console.log('Found', thumbnails.length, 'certification thumbnails');
-  
+
+  const thumbnails = document.querySelectorAll('#currentSitesThumbnailContainer .cert-thumb');
   thumbnails.forEach((thumb, i) => {
-    if (i === currentCertSlideIndex) {
-      thumb.classList.add('current-cert-thumb');
-      console.log('Highlighting certification thumbnail', i);
-    } else {
-      thumb.classList.remove('current-cert-thumb');
-    }
+    thumb.classList.toggle('current-cert-thumb', i === currentSitesSlideIndex);
   });
-  
-  updateCertSlideCounter();
+
+  updateCurrentSitesSlideCounter();
 }
 
-function nextCertSlide() {
-  showCertSlide(currentCertSlideIndex + 1);
+function nextCurrentSitesSlide() {
+  showCurrentSitesSlide(currentSitesSlideIndex + 1);
 }
 
-function prevCertSlide() {
-  showCertSlide(currentCertSlideIndex - 1);
+function prevCurrentSitesSlide() {
+  showCurrentSitesSlide(currentSitesSlideIndex - 1);
 }
 
-function setCurrentCertSlide(index) {
-  // Close any open panels and modals
-  closeFeaturedSectionPanels();
-  
-  // Scroll to Featured heading
-  scrollToFeaturedHeading();
-  
-  showCertSlide(index);
+function setCurrentSitesSlide(index) {
+  showCurrentSitesSlide(index);
 }
 
-// Function to close all open panels and modals in the Featured section
-function closeFeaturedSectionPanels() {
-  // Close Bertelsmann modal if open
-  const bertelsmannModal = document.getElementById('bertelsmannProjectsModal');
-  if (bertelsmannModal) {
-    bertelsmannModal.remove();
-  }
-  
-  // Close professional details panel if open
-  if ($("#professionalDetails").is(":visible")) {
-    $("#professionalDetails").hide("fast");
-    $("#professionalDetailsbtn").text("CLICK HERE FOR MORE DETAILS");
-  }
-  
-  // Close personal details panel if open
-  if ($("#personalDetails").is(":visible")) {
-    $("#personalDetails").hide("fast");
-    $("#personalDetailsBtn").text("CLICK HERE FOR MORE DETAILS");
-  }
-  
-  // Close all open Read More content in Featured section
-  const readMoreContents = document.querySelectorAll('.cert-read-more-content');
-  readMoreContents.forEach(content => {
-    if (content.style.display === 'block') {
-      content.style.display = 'none';
-      // Find the corresponding Read More button and reset its text
-      const slide = content.closest('.cert-slide');
-      if (slide) {
-        const readMoreBtn = slide.querySelector('.project-btn-readmore');
-        if (readMoreBtn) {
-          readMoreBtn.textContent = 'Read More';
-        }
-      }
-    }
-  });
-}
-
-// Function to scroll to Featured heading
-function scrollToFeaturedHeading() {
-  const featuredHeader = $(".certifications .projectheader:contains('Featured')");
-  if (featuredHeader.length > 0) {
-    $('html, body').animate({
-      scrollTop: featuredHeader.offset().top - 100
-    }, 500);
-  }
-}
-
-function updateCertSlideCounter() {
-  const currentSlideEl = document.getElementById('certCurrentSlide');
-  const totalSlidesEl = document.getElementById('certTotalSlides');
+function updateCurrentSitesSlideCounter() {
+  const currentSlideEl = document.getElementById('currentSitesCurrentSlide');
+  const totalSlidesEl = document.getElementById('currentSitesTotalSlides');
   if (currentSlideEl && totalSlidesEl) {
-    currentSlideEl.innerText = currentCertSlideIndex + 1;
-    totalSlidesEl.innerText = certSlides.length.toString();
+    currentSlideEl.innerText = currentSitesSlideIndex + 1;
+    totalSlidesEl.innerText = currentSitesSlides.length.toString();
   }
 }
 
-// Initialize the certifications slideshow
-function initializeCertificationsSlideshow() {
-  console.log('Initializing certifications slideshow');
-  
-  // Load the data and slides
-  loadCertificationsData();
+// Initialize the Current Sites slideshow
+function initializeCurrentSitesSlideshow() {
+  loadCurrentSitesSlides();
+
+  const nextBtn = document.getElementById('currentSitesNextBtn');
+  const prevBtn = document.getElementById('currentSitesPrevBtn');
+  if (nextBtn) nextBtn.onclick = nextCurrentSitesSlide;
+  if (prevBtn) prevBtn.onclick = prevCurrentSitesSlide;
 }
 
 // Featured slideshow variables
@@ -1779,7 +1269,10 @@ const skillsData = [
             "penetration testing",
             "user account, password, authentication, directory and file system security",
             "audits and account clean ups",
-            "multilayered security and risk mitigation"
+            "defense-in-depth security architecture and multilayered risk mitigation",
+            "OWASP Top 10 web application security principles",
+            "Security Information and Event Management (SIEM) with Azure Sentinel and the Elastic Stack (ELK)",
+            "FERPA regulatory compliance and audit support"
         ]
     },
     {
@@ -1810,6 +1303,16 @@ const skillsData = [
             "Adapted the concept of 'Information Literacy for Lifelong Learning' (see <strong><a href='https://files.eric.ed.gov/fulltext/ED084368.pdf' target='_blank'>Malcolm Knowles book</a></strong>)",
             "Passing on knowledge to other people to enhance learning (see <strong>the power of Protege' Effect</strong> <a href='protege.pdf' target='_blank'>here</a>)",
             "Reviewed available massive open online courses and platforms by <a href='https://sites.google.com/site/reflection4learning/why-reflect' target='_blank'>reflecting as a learner</a> (also, see a study by Jack Mezirow on Reflection Triggers <a href='portfolioentries/otherpeopleswork/reflectiontriggers.pdf' target='_blank'>here</a>)"
+        ]
+    },
+    {
+        title: "Product & Founder",
+        icon: "🚀",
+        skills: [
+            "Own the full product lifecycle: concept, front-end/back-end development, security architecture, SEO, and content",
+            "Modern full-stack development with Next.js (App Router, Server Components, Server Actions), React, and TypeScript",
+            "Supabase (Postgres, Auth, Storage, Row-Level Security) and Vercel deployment",
+            "Shipped and maintain a live product ecosystem under one philosophy — see the <a href='#projects'>Current Sites</a> tab above (Circal, Digitally, DMSecurityX, and related tools)"
         ]
     }
 ];
