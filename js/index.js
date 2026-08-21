@@ -1679,6 +1679,9 @@ const interestsData = [
         description: "NOTE: I own lots of electronic books that I read via my Kindle Fire tablet. In terms of subject matters, they are almost the same as the books I actually own and carry around.",
         link: "http://www.librarything.com/catalog/roylouisgarcia",
         linkText: "Go to my Online List",
+        extraLinks: [
+            { link: "https://nostradmsx.com/my-audiobooks/", linkText: "Go to My Audiobooks" }
+        ],
         hasToggle: true,
         toggleText: "More Images Show/Hide"
     },
@@ -1786,6 +1789,22 @@ function loadInterestsSlides() {
             buttonsP.appendChild(linkA);
         }
 
+        // Add extra link buttons if any
+        if (interest.extraLinks) {
+            interest.extraLinks.forEach(extraLink => {
+                const extraA = document.createElement('a');
+                extraA.href = extraLink.link;
+                extraA.target = '_blank';
+
+                const extraBtn = document.createElement('button');
+                extraBtn.classList.add('totiebtn');
+                extraBtn.textContent = extraLink.linkText;
+
+                extraA.appendChild(extraBtn);
+                buttonsP.appendChild(extraA);
+            });
+        }
+
         // Add toggle button if applicable
         if (interest.hasToggle) {
             const toggleBtn = document.createElement('button');
@@ -1796,7 +1815,7 @@ function loadInterestsSlides() {
             buttonsP.appendChild(toggleBtn);
         }
 
-        if (interest.link || interest.hasToggle) {
+        if (interest.link || interest.extraLinks || interest.hasToggle) {
             panelInterests.appendChild(buttonsP);
         }
 
