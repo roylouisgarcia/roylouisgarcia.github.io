@@ -1,13 +1,27 @@
 /* Optimized Google Fonts - Reduced from 500KB+ to ~50KB */
-@import url("https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Permanent+Marker&family=Kalam:wght@400;700&family=Courier+Prime&family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Permanent+Marker&family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap");
 
 /* Font fallbacks for local fonts - using optimized Google Fonts instead */
-/* Replaced typewriter.ttf (??KB) with Courier Prime */
-/* Replaced HomemadeApple.ttf (108KB) with Kalam (Indie Flower was tried, then dropped as unused) */
-/* Replaced mystyle.ttf (??KB) with Kalam */
-/* Replaced comesinhandy.ttf (??KB) with Nothing You Could Do */
-/* Replaced letterpressed.ttf (322KB) with Permanent Marker */
-/* Added Roboto: declared as the body font below but was never actually loaded until now */
+/* Replaced typewriter.ttf, mystyle.ttf, comesinhandy.ttf with Nothing You Could Do / JetBrains Mono */
+/* Replaced HomemadeApple.ttf with Nothing You Could Do (Indie Flower and Kalam were both tried, then dropped) */
+/* Replaced letterpressed.ttf with Permanent Marker */
+
+/* "Ink & Gold" design system — palette + type consolidation */
+:root {
+  /* Color: one navy, one signature gold, one working blue (+ its gradient partner) */
+  --brand-navy: #1d2951;
+  --brand-gold: #e5cb12;
+  --accent-blue: #2e6da4;
+  --accent-blue-deep: #245580;
+
+  /* Type: Inter covers nav + body; JetBrains Mono covers typewriter mode and tab labels;
+     Nothing You Could Do and Permanent Marker remain the two script/decorative voices. */
+  --font-label: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-hand: "Nothing You Could Do", cursive;
+  --font-display: "Permanent Marker", cursive;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+}
 
 /* PERFORMANCE OPTIMIZATION: Lazy Loading Styles */
 img.lazy {
@@ -28,7 +42,7 @@ img[data-src] {
   min-height: 200px;
 }
 */ body {
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-body);
   font-size: 1.5em;
   /* ddfont-family: 'Roboto', sans-serif; */
   display: flex;
@@ -54,7 +68,7 @@ img.logoBody {
 }
 
 .typewriter {
-  font-family: "Courier Prime", "Courier New", "Lucida Console", Monaco, monospace;
+  font-family: var(--font-mono);
   font-size: 1.2em;
 }
 #nostraheader,
@@ -65,25 +79,25 @@ img.logoBody {
 
 #redboxheader,
 #redboxfooter {
-  background-color: #e5cb12;
+  background-color: var(--brand-gold);
   width: 100%;
 }
 p.title {
   font-size: 1.9em;
   /* font-family: 'Permanent Marker';     */
-  font-family: "Nothing You Could Do", cursive;
+  font-family: var(--font-hand);
   color: #ffffff;
   margin-top: 7px;
 }
 
 h3.handwritten {
-  font-family: "Nothing You Could Do", cursive;
+  font-family: var(--font-hand);
   font-weight: bolder;
   font-size: 1.4em;
 }
 
 .handwritten {
-  font-family: "Nothing You Could Do", cursive;
+  font-family: var(--font-hand);
   font-weight: bolder;
   font-size: 1em;
 }
@@ -102,7 +116,7 @@ h3.handwritten {
 }
 
 .postit {
-  color: #003153;
+  color: var(--brand-navy);
   line-height: 1;
   text-align: left;
   width: 275px;
@@ -112,62 +126,62 @@ h3.handwritten {
   padding-top: 0px;
   position: relative;
   border: 1px solid #e8e8e8;
-  border-top: 60px solid #e5cb12;
+  border-top: 60px solid var(--brand-gold);
   border-bottom-right-radius: 60px 5px;
   display: inline-block;
-  background: #e5cb12;
+  background: var(--brand-gold);
   /* Old browsers */
   background: -moz-linear-gradient(
     -45deg,
-    #e5cb12 81%,
-    #e5cb12 82%,
-    #e5cb12 82%,
-    #e5cb12 100%
+    var(--brand-gold) 81%,
+    var(--brand-gold) 82%,
+    var(--brand-gold) 82%,
+    var(--brand-gold) 100%
   );
   /* FF3.6+ */
   background: -webkit-gradient(
     linear,
     left top,
     right bottom,
-    color-stop(81%, #e5cb12),
-    color-stop(82%, #e5cb12),
-    color-stop(82%, #e5cb12),
-    color-stop(100%, #e5cb12)
+    color-stop(81%, var(--brand-gold)),
+    color-stop(82%, var(--brand-gold)),
+    color-stop(82%, var(--brand-gold)),
+    color-stop(100%, var(--brand-gold))
   );
   /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(
     -45deg,
-    #e5cb12 81%,
-    #e5cb12 82%,
-    #e5cb12 82%,
-    #e5cb12 100%
+    var(--brand-gold) 81%,
+    var(--brand-gold) 82%,
+    var(--brand-gold) 82%,
+    var(--brand-gold) 100%
   );
   /* Chrome10+,Safari5.1+ */
   background: -o-linear-gradient(
     -45deg,
-    #e5cb12 81%,
-    #e5cb12 82%,
-    #e5cb12 82%,
-    #e5cb12 100%
+    var(--brand-gold) 81%,
+    var(--brand-gold) 82%,
+    var(--brand-gold) 82%,
+    var(--brand-gold) 100%
   );
   /* Opera 11.10+ */
   background: -ms-linear-gradient(
     -45deg,
-    #e5cb12 81%,
-    #e5cb12 82%,
-    #e5cb12 82%,
-    #e5cb12 100%
+    var(--brand-gold) 81%,
+    var(--brand-gold) 82%,
+    var(--brand-gold) 82%,
+    var(--brand-gold) 100%
   );
   /* IE10+ */
   background: linear-gradient(
     135deg,
-    #e5cb12 81%,
-    #e5cb12 82%,
-    #e5cb12 82%,
-    #e5cb12 100%
+    var(--brand-gold) 81%,
+    var(--brand-gold) 82%,
+    var(--brand-gold) 82%,
+    var(--brand-gold) 100%
   );
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5cb12', endColorstr='#e5cb12', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='var(--brand-gold)', endColorstr='var(--brand-gold)', GradientType=1);
   /* IE6-9 fallback on horizontal gradient */
 }
 
@@ -190,7 +204,7 @@ h3.handwritten {
 
 /* Summary postit styling - 90% width and responsive */
 .postit-summary {
-  color: #003153;
+  color: var(--brand-navy);
   line-height: 1.4;
   text-align: left;
   width: 90%;
@@ -200,7 +214,7 @@ h3.handwritten {
   padding: 30px;
   position: relative;
   border: 1px solid #e8e8e8;
-  border-top: 60px solid #e5cb12;
+  border-top: 60px solid var(--brand-gold);
   border-bottom-right-radius: 60px 5px;
   display: block;
   background: #f9f9f9;
@@ -222,7 +236,7 @@ h3.handwritten {
 }
 
 .font-toggle-btn {
-  background: #007bff;
+  background: var(--accent-blue);
   color: white;
   border: none;
   padding: 8px 12px;
@@ -254,7 +268,7 @@ h3.handwritten {
 }
 
 .postit-summary h2 {
-  color: #003153;
+  color: var(--brand-navy);
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 1.8em;
@@ -442,12 +456,12 @@ h3.handwritten {
   justify-content: flex-end;
   align-items: flex-end;
   text-align: right;
-  font-family: "Courier Prime";
+  font-family: var(--font-mono);
   font-size: 1.3em;
   margin-bottom: 0px;
   padding-left: 10px;
   padding-right: 3px;
-  color: #003153;
+  color: var(--brand-navy);
   position: relative;
   z-index: 2;
 }
@@ -497,7 +511,7 @@ h3.handwritten {
 
 .folder-tab.active {
   background: linear-gradient(135deg, bisque 0%, #f4e8d0 50%, #e8d5b7 100%);
-  color: #003153;
+  color: var(--brand-navy);
   transform: translateY(-1px);
   z-index: 3;
   box-shadow: 
@@ -511,7 +525,7 @@ h3.handwritten {
 
 .folder-tab.active:hover {
   background: linear-gradient(135deg, #f8ecd4 0%, #f0e4c8 50%, #ead8bb 100%);
-  color: #003153;
+  color: var(--brand-navy);
 }
 
 .folder-tab.active:hover:before {
@@ -572,7 +586,7 @@ h3.handwritten {
 
 .btn:hover {
   background-color: bisque;
-  color: #003153;
+  color: var(--brand-navy);
 }
 
 .btnNonActive {
@@ -585,11 +599,11 @@ h3.handwritten {
 #link2Professional,
 #link2Personal,
 #link2CurrentSites {
-  font-family: "Courier Prime";
+  font-family: var(--font-mono);
   font-size: 0.7em;
   border-top: 1px;
   border-right: 1px;
-  border-color: #003153;
+  border-color: var(--brand-navy);
   border-style: dotted;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -604,11 +618,11 @@ h3.handwritten {
   padding-left: 50px;
   padding-right: 30px;
   padding-bottom: 30px;
-  color: #003153;
+  color: var(--brand-navy);
   border: none;
   margin: 0;
   position: relative;
-  font-family: "Courier Prime", "Nothing You Could Do", cursive, monospace;
+  font-family: var(--font-mono), var(--font-hand), monospace;
 }
 
 .projecttext p {
@@ -617,19 +631,19 @@ h3.handwritten {
 }
 
 .projecttext h3 {
-  font-family: "Kalam";
+  font-family: var(--font-mono);
   font-size: 1.1em;
   text-align: left;
 }
 
 .projectheader {
-  font-family: "Permanent Marker";
+  font-family: var(--font-display);
   font-size: 1.8em;
   text-align: left;
 }
 
 .projecttail {
-  font-family: "Courier Prime";
+  font-family: var(--font-mono);
   font-size: 0.9em;
   padding-top: 200px;
   padding-bottom: 30px;
@@ -692,7 +706,7 @@ h3.handwritten {
   max-width: 500px;
 }
 .writing {
-  font-family: "Kalam";
+  font-family: var(--font-mono);
   font-size: 1.2em;
   padding-top: 20px;
 }
@@ -724,9 +738,9 @@ h3.handwritten {
 }
 
 #about {
-  font-family: "Courier Prime";
+  font-family: var(--font-mono);
   font-size: 1.2em;
-  color: #003153;
+  color: var(--brand-navy);
 }
 
 .totiebtn {
@@ -734,7 +748,7 @@ h3.handwritten {
   color: rgb(0, 0, 0);
   padding: 10px;
   border-radius: 20px;
-  background-color: #f3c611;
+  background-color: var(--brand-gold);
   margin: 30px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition-duration: 0.4s;
@@ -747,18 +761,18 @@ a:visited {
 }
 
 .totiebtn a:hover {
-  color: #f3c611;
-  background-color: #1d2951;
+  color: var(--brand-gold);
+  background-color: var(--brand-navy);
 }
 
 .totiebtn:hover {
-  color: #f3c611;
-  background-color: #1d2951;
+  color: var(--brand-gold);
+  background-color: var(--brand-navy);
 }
 
 .totiebtnActive {
-  color: #f3c611;
-  background-color: #1d2951;
+  color: var(--brand-gold);
+  background-color: var(--brand-navy);
 }
 
 #nostradmsxdiv,
@@ -772,7 +786,7 @@ a:visited {
 
 .hartnell_img {
   max-width: 500px;
-  background-color: #003153;
+  background-color: var(--brand-navy);
   /*width: 100%;*/
   display: block;
   margin-left: auto;
@@ -804,12 +818,12 @@ a:visited {
 }
 
 a:hover {
-  color: #003153;
+  color: var(--brand-navy);
   background-color: darkorange;
 }
 
 .blue-text {
-  color: #1d2951;
+  color: var(--brand-navy);
 }
 
 h1 {
@@ -838,7 +852,7 @@ h4 {
 
 .devicons {
   font-size: 40px;
-  color: #e5cb12;
+  color: var(--brand-gold);
   text-shadow: 0.4px 0.4px 1px #0b0b0b;
 }
 
@@ -910,7 +924,7 @@ h4 {
 .adult .writing,
 .boy .writing,
 .teenager .writing {
-  font-family: "Nothing You Could Do", cursive;
+  font-family: var(--font-hand);
   color: #4a3429;
   font-size: 1.3em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
@@ -920,7 +934,7 @@ h4 {
 .adult .typewriter,
 .boy .typewriter,
 .teenager .typewriter {
-  font-family: "Courier Prime", "Courier New", monospace;
+  font-family: var(--font-mono);
   color: #2d2520;
   background: rgba(255, 255, 255, 0.1);
   padding: 15px;
@@ -980,12 +994,12 @@ h4 {
 }
 
 .jumbotron {
-  /*background-color: #1d2951;*/
-  background-color: #1d2951;
+  /*background-color: var(--brand-navy);*/
+  background-color: var(--brand-navy);
   /* background-image: url("/images/leather.png");  */
   color: #fff;
   padding: 100px 25px;
-  /**      font-family: Montserrat, sans-serif; **/
+  /**      font-family: var(--font-label); **/
   height: 10px;
   width: 100%;
 }
@@ -997,7 +1011,7 @@ h4 {
 
 #calgaryprojects,
 #redboxprojects {
-  background-color: #003153;
+  background-color: var(--brand-navy);
   color: chartreuse;
   padding: 70px;
   margin-top: 0px;
@@ -1042,12 +1056,12 @@ h4 {
 }
 
 .logo-small {
-  color: #1d2951;
+  color: var(--brand-navy);
   font-size: 50px;
 }
 
 .logo {
-  color: #1d2951;
+  color: var(--brand-navy);
   font-size: 200px;
 }
 
@@ -1084,15 +1098,15 @@ h4 {
 .carousel-control.right,
 .carousel-control.left {
   background-image: none;
-  color: #1d2951;
+  color: var(--brand-navy);
 }
 
 .carousel-indicators li {
-  border-color: #1d2951;
+  border-color: var(--brand-navy);
 }
 
 .carousel-indicators li.active {
-  background-color: #1d2951;
+  background-color: var(--brand-navy);
 }
 
 .item h4 {
@@ -1121,9 +1135,9 @@ h4 {
 }
 
 .panel-footer .btn:hover {
-  border: 1px solid #1d2951;
+  border: 1px solid var(--brand-navy);
   background-color: #fff !important;
-  color: #1d2951;
+  color: var(--brand-navy);
 }
 
 .panel-heading {
@@ -1165,7 +1179,7 @@ h4 {
 }
 
 .panel-heading h1 {
-  font-family: "Permanent Marker", serif;
+  font-family: var(--font-display);
   font-size: 1.8em;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -1233,7 +1247,7 @@ h4 {
 }
 
 .panel-interests h1 {
-  font-family: "Permanent Marker", serif;
+  font-family: var(--font-display);
   font-size: 1.8em;
   margin-bottom: 25px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -1325,7 +1339,7 @@ h4 {
 }
 
 #skills h2, #interests h2 {
-  color: #003153;
+  color: var(--brand-navy);
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 1.8em;
@@ -1335,7 +1349,7 @@ h4 {
 }
 
 #skills .handwritten, #interests .handwritten {
-  font-family: "Nothing You Could Do", cursive;
+  font-family: var(--font-hand);
   font-weight: bolder;
   font-size: 1em;
   line-height: 1.5;
@@ -1346,12 +1360,12 @@ h4 {
 /* Skills section panel styling with golden shade */
 #skills .panel-default {
   background-color: #f0e68c; /* Light golden yellow */
-  border: 1px solid #e5cb12;
+  border: 1px solid var(--brand-gold);
   box-shadow: 0 2px 6px rgba(229, 203, 18, 0.2);
 }
 
 #skills .panel-default .panel-heading {
-  background-color: #e5cb12; /* Golden yellow */
+  background-color: var(--brand-gold); /* Golden yellow */
   border-bottom: 1px solid #d4b010;
   color: #ffffff; /* White text for good readability */
 }
@@ -1455,13 +1469,13 @@ h4 {
 
 .panel-footer .btn {
   margin: 15px 0;
-  background-color: #1d2951;
+  background-color: var(--brand-navy);
   color: #fff;
 }
 
 .navbar {
   margin-bottom: 0;
-  background-color: #1d2951;
+  background-color: var(--brand-navy);
   /* background-image: url("/images/leather.png"); */
   z-index: 9999;
   border: 0;
@@ -1469,7 +1483,7 @@ h4 {
   line-height: 1.42857143 !important;
   letter-spacing: 4px;
   border-radius: 0;
-  font-family: Montserrat, sans-serif;
+  font-family: var(--font-label);
 }
 
 .navbar li a,
@@ -1479,8 +1493,8 @@ h4 {
 
 .navbar-nav li a:hover,
 .navbar-nav li.active a {
-  color: #1d2951 !important;
-  background-color: #e5cb12 !important;
+  color: var(--brand-navy) !important;
+  background-color: var(--brand-gold) !important;
 }
 
 .navbar-default .navbar-toggle {
@@ -1496,7 +1510,7 @@ footer .glyphicon {
 
 footer {
   color: #fff;
-  background-color: #1d2951;
+  background-color: var(--brand-navy);
   width: 100%;
   /* background-image: url("/images/leather.png");    */
 }
@@ -1649,7 +1663,7 @@ figure video {
   p.title {
     font-size: 1em;
     /* font-family: 'Permanent Marker';     */
-    font-family: "Nothing You Could Do", cursive;
+    font-family: var(--font-hand);
     color: #ffffff;
     margin-top: 7px;
     margin-left: 7px;
@@ -1725,22 +1739,22 @@ figure video {
     padding-right: 15px;
     padding-bottom: 20px;
     margin-bottom: 0px;
-    color: #003153;
-    font-family: "Courier Prime", "Nothing You Could Do", cursive, monospace;
+    color: var(--brand-navy);
+    font-family: var(--font-mono), var(--font-hand), monospace;
   }
   .projecttext h3 {
-    font-family: "Kalam";
+    font-family: var(--font-mono);
     font-size: 1.4em;
   }
 
   .projectheader {
-    font-family: "Permanent Marker";
+    font-family: var(--font-display);
     font-size: 1.4em;
     text-align: left;
   }
 
   .projecttail {
-    font-family: "Courier Prime";
+    font-family: var(--font-mono);
     font-size: 0.6em;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -1756,63 +1770,63 @@ figure video {
     padding-bottom: 10px;
     position: relative;
     border: 1px solid #e8e8e8;
-    border-top: 60px solid #e5cb12;
+    border-top: 60px solid var(--brand-gold);
     line-height: 1;
     border-bottom-right-radius: 60px 5px;
     display: inline-block;
-    background: #e5cb12;
+    background: var(--brand-gold);
     /* Old browsers */
     background: -moz-linear-gradient(
       -45deg,
-      #e5cb12 81%,
-      #e5cb12 82%,
-      #e5cb12 82%,
-      #e5cb12 100%
+      var(--brand-gold) 81%,
+      var(--brand-gold) 82%,
+      var(--brand-gold) 82%,
+      var(--brand-gold) 100%
     );
     /* FF3.6+ */
     background: -webkit-gradient(
       linear,
       left top,
       right bottom,
-      color-stop(81%, #e5cb12),
-      color-stop(82%, #e5cb12),
-      color-stop(82%, #e5cb12),
-      color-stop(100%, #e5cb12)
+      color-stop(81%, var(--brand-gold)),
+      color-stop(82%, var(--brand-gold)),
+      color-stop(82%, var(--brand-gold)),
+      color-stop(100%, var(--brand-gold))
     );
     /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(
       -45deg,
-      #e5cb12 81%,
-      #e5cb12 82%,
-      #e5cb12 82%,
-      #e5cb12 100%
+      var(--brand-gold) 81%,
+      var(--brand-gold) 82%,
+      var(--brand-gold) 82%,
+      var(--brand-gold) 100%
     );
     /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(
       -45deg,
-      #e5cb12 81%,
-      #e5cb12 82%,
-      #e5cb12 82%,
-      #e5cb12 100%
+      var(--brand-gold) 81%,
+      var(--brand-gold) 82%,
+      var(--brand-gold) 82%,
+      var(--brand-gold) 100%
     );
     /* Opera 11.10+ */
     background: -ms-linear-gradient(
       -45deg,
-      #e5cb12 81%,
-      #e5cb12 82%,
-      #e5cb12 82%,
-      #e5cb12 100%
+      var(--brand-gold) 81%,
+      var(--brand-gold) 82%,
+      var(--brand-gold) 82%,
+      var(--brand-gold) 100%
     );
     /* IE10+ */
     background: linear-gradient(
       135deg,
-      #e5cb12 81%,
-      #e5cb12 82%,
-      #e5cb12 82%,
-      #e5cb12 100%
+      var(--brand-gold) 81%,
+      var(--brand-gold) 82%,
+      var(--brand-gold) 82%,
+      var(--brand-gold) 100%
     );
     /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5cb12', endColorstr='#e5cb12', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='var(--brand-gold)', endColorstr='var(--brand-gold)', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
   }
   .postit:after {
@@ -1849,7 +1863,7 @@ figure video {
     margin-top: 50px;
   }
   .blue-text {
-    color: #1d2951;
+    color: var(--brand-navy);
     /*font-size: .4em;*/
   }
   #stomp {
@@ -1877,11 +1891,11 @@ figure video {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   .totiebtn:hover {
-    color: #003153;
+    color: var(--brand-navy);
     background-color: darkorange;
   }
   .totiebtnActive {
-    color: #003153;
+    color: var(--brand-navy);
     background-color: darkorange;
   }
   #associate,
@@ -1890,7 +1904,7 @@ figure video {
     width: 50px;
   }
   .typewriter {
-    font-family: "Courier Prime", "Courier New", "Lucida Console", Monaco, monospace;
+    font-family: var(--font-mono);
     font-size: 0.9em;
   }
   #hartnellprojects,
@@ -1963,8 +1977,8 @@ figure video {
 
 /* Professional Details Button Styling */
 #professionalDetailsbtn {
-  background: linear-gradient(135deg, #337ab7 0%, #2e6da4 100%);
-  border: 2px solid #2e6da4;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue) 100%);
+  border: 2px solid var(--accent-blue);
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -1978,14 +1992,14 @@ figure video {
 }
 
 #professionalDetailsbtn:hover {
-  background: linear-gradient(135deg, #2e6da4 0%, #1c4e7a 100%);
+  background: linear-gradient(135deg, var(--accent-blue) 0%, #1c4e7a 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .professional-details-btn {
-  background: linear-gradient(135deg, #337ab7 0%, #2e6da4 100%);
-  border: 2px solid #2e6da4;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue) 100%);
+  border: 2px solid var(--accent-blue);
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -1999,7 +2013,7 @@ figure video {
 }
 
 .professional-details-btn:hover {
-  background: linear-gradient(135deg, #2e6da4 0%, #1c4e7a 100%);
+  background: linear-gradient(135deg, var(--accent-blue) 0%, #1c4e7a 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
@@ -2149,8 +2163,8 @@ figure video {
   }
 }
 #professionalDetailsbtn {
-  background: linear-gradient(135deg, #337ab7 0%, #2e6da4 100%);
-  border: 2px solid #2e6da4;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue) 100%);
+  border: 2px solid var(--accent-blue);
   color: white;
   padding: 15px 30px;
   font-size: 16px;
@@ -2165,8 +2179,8 @@ figure video {
 }
 
 #professionalDetailsbtn:hover {
-  background: linear-gradient(135deg, #2e6da4 0%, #245580 100%);
-  border-color: #245580;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-deep) 100%);
+  border-color: var(--accent-blue-deep);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
@@ -2178,8 +2192,8 @@ figure video {
 
 /* Professional Details Button Class - Shared styling for both Professional and Personal buttons */
 .professional-details-btn {
-  background: linear-gradient(135deg, #337ab7 0%, #2e6da4 100%);
-  border: 2px solid #2e6da4;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue) 100%);
+  border: 2px solid var(--accent-blue);
   color: white;
   padding: 15px 30px;
   font-size: 16px;
@@ -2194,8 +2208,8 @@ figure video {
 }
 
 .professional-details-btn:hover {
-  background: linear-gradient(135deg, #2e6da4 0%, #245580 100%);
-  border-color: #245580;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-deep) 100%);
+  border-color: var(--accent-blue-deep);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
@@ -2258,14 +2272,14 @@ figure video {
 
 /* Professional Details Headings Styling */
 #professionalDetails h4 {
-  color: #2e6da4;
+  color: var(--accent-blue);
   font-size: 20px;
   font-weight: bold;
   margin-top: 25px;
   margin-bottom: 15px;
   padding: 10px 15px;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-left: 5px solid #337ab7;
+  border-left: 5px solid var(--accent-blue);
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-transform: uppercase;
@@ -2302,7 +2316,7 @@ figure video {
 }
 
 #professionalDetails li strong {
-  color: #2e6da4;
+  color: var(--accent-blue);
   font-weight: 600;
 }
 
@@ -2435,12 +2449,12 @@ figure video {
 .cert-thumb:hover {
   opacity: 1;
   transform: scale(1.1);
-  border-color: #007bff;
+  border-color: var(--accent-blue);
 }
 
 .current-cert-thumb {
   opacity: 1;
-  border-color: #007bff !important;
+  border-color: var(--accent-blue) !important;
   box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
 }
 
@@ -2493,7 +2507,7 @@ figure video {
 }
 
 .project-btn-github {
-  background-color: #007bff;
+  background-color: var(--accent-blue);
 }
 
 .project-btn-github:hover {
@@ -2622,7 +2636,7 @@ figure video {
 }
 
 .cert-thumb.current-cert-thumb {
-  border-color: #007bff;
+  border-color: var(--accent-blue);
   opacity: 1;
   transform: scale(1.1);
 }
@@ -2771,7 +2785,7 @@ figure video {
 }
 
 .featured-thumb.current-featured-thumb {
-  border-color: #007bff;
+  border-color: var(--accent-blue);
   opacity: 1;
   transform: scale(1.1);
 }
@@ -2931,7 +2945,7 @@ figure video {
     font-size: 1.4em;
     margin-bottom: 15px;
     font-weight: bold;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid var(--accent-blue);
     padding-bottom: 8px;
 }
 
@@ -2943,13 +2957,13 @@ figure video {
 }
 
 .hartnell-slide-description .linklight {
-    color: #3498db;
+    color: var(--accent-blue);
     text-decoration: none;
     font-weight: bold;
 }
 
 .hartnell-slide-description .linklight:hover {
-    color: #2980b9;
+    color: var(--accent-blue);
     text-decoration: underline;
 }
 
@@ -3043,7 +3057,7 @@ figure video {
 .hartnell-thumb.hartnell-current-thumb {
     opacity: 1;
     transform: scale(1.1);
-    border: 2px solid #3498db;
+    border: 2px solid var(--accent-blue);
     box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
 }
 
@@ -3228,7 +3242,7 @@ figure video {
 .skills-slides-wrapper {
     position: relative;
     min-height: 400px;
-    background: linear-gradient(135deg, #f0e68c 0%, #e5cb12 100%);
+    background: linear-gradient(135deg, #f0e68c 0%, var(--brand-gold) 100%);
 }
 
 .skills-slides {
@@ -3290,20 +3304,20 @@ figure video {
 
 .skills-panel ul li:before {
     content: "▶";
-    color: #e5cb12;
+    color: var(--brand-gold);
     font-weight: bold;
     position: absolute;
     left: -10px;
 }
 
 .skills-panel ul li a {
-    color: #3498db !important;
+    color: var(--accent-blue) !important;
     text-decoration: none;
     font-weight: bold;
 }
 
 .skills-panel ul li a:hover {
-    color: #2980b9 !important;
+    color: var(--accent-blue) !important;
     text-decoration: underline;
 }
 
@@ -3335,11 +3349,11 @@ figure video {
 .skills-thumb:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(229, 203, 18, 0.3);
-    border-color: #e5cb12;
+    border-color: var(--brand-gold);
 }
 
 .skills-thumb.skills-current-thumb {
-    background: linear-gradient(135deg, #f0e68c 0%, #e5cb12 100%);
+    background: linear-gradient(135deg, #f0e68c 0%, var(--brand-gold) 100%);
     border-color: #d4ac0d;
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(229, 203, 18, 0.4);
@@ -3586,7 +3600,7 @@ figure video {
 }
 
 .interests-panel .totiebtn {
-    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue) 100%);
     color: white;
     border: none;
     padding: 12px 24px;
@@ -3601,7 +3615,7 @@ figure video {
 }
 
 .interests-panel .totiebtn:hover {
-    background: linear-gradient(135deg, #2980b9 0%, #1f5582 100%);
+    background: linear-gradient(135deg, var(--accent-blue) 0%, #1f5582 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
 }
@@ -3619,7 +3633,7 @@ figure video {
     padding: 15px;
     background-color: #f8f9fa;
     border-radius: 8px;
-    border-left: 4px solid #3498db;
+    border-left: 4px solid var(--accent-blue);
 }
 
 .interests-thumbnail-container {
@@ -3650,11 +3664,11 @@ figure video {
 .interests-thumb:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
-    border-color: #3498db;
+    border-color: var(--accent-blue);
 }
 
 .interests-thumb.interests-current-thumb {
-    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue) 100%);
     border-color: #1f5582;
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
@@ -3874,7 +3888,7 @@ figure video {
 #about.handwritten-mode p,
 #about.handwritten-mode .writing,
 #about.handwritten-mode .postit-summary {
-  font-family: "Nothing You Could Do", cursive !important;
+  font-family: var(--font-hand) !important;
   font-weight: bolder;
 }
 
@@ -3882,7 +3896,7 @@ figure video {
 #about.typewriter-mode p,
 #about.typewriter-mode .writing,
 #about.typewriter-mode .postit-summary {
-  font-family: "Courier Prime", "Courier New", "Lucida Console", Monaco, monospace !important;
+  font-family: var(--font-mono) !important;
   font-weight: normal;
 }
 
