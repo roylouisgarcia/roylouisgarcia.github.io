@@ -659,7 +659,7 @@ const moocData = [
   },
   {
     title: "Video Pitch Adjuster GUI",
-    image: "https://github.com/roylouisgarcia/courses/raw/master/ss1.png",
+    image: "images/currentsites/video-pitch-shifter.png",
     githubUrl: "https://github.com/roylouisgarcia/videopitchshifter",
     description: "A user-friendly GUI application that uses FFMPEG to adjust the pitch of audio in video files. This application extracts audio from video, adjusts the pitch by a specified amount, and merges the adjusted audio back with the original video.",
     readMore: "Technologies Used: Python, Tkinter (GUI), FFMPEG (audio/video processing), subprocess module. Key Features: User-friendly graphical interface, audio extraction from video files, pitch adjustment capabilities, automatic audio-video merging, file selection dialogs. Learning Outcomes: GUI development with Tkinter, multimedia processing with FFMPEG, Python subprocess management, audio signal processing concepts."
