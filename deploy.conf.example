@@ -1,0 +1,7 @@
+# Copy this file to deploy.conf and fill in your real values.
+# deploy.conf is git-ignored -- it never gets committed.
+
+SSH_HOST="your.host.or.ip"
+SSH_PORT="22"
+SSH_USER="youruser"
+REMOTE_PATH="/path/to/public_html/"
