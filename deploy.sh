@@ -86,9 +86,13 @@ sed -E \
   -e "s#\"(css/style\.css)(\?v=[^\"]*)?\"#\"\1?v=${VERSION}\"#g" \
   -e "s#\"(js/index\.js)(\?v=[^\"]*)?\"#\"\1?v=${VERSION}\"#g" \
   "${SCRIPT_DIR}/index.html" > "${TMP_INDEX}"
+chmod 644 "${TMP_INDEX}"  # mktemp defaults to 600; rsync -a would otherwise
+                          # ship that restrictive mode and make the web
+                          # server unable to read index.html (403)
 
 rsync "${RSYNC_FLAGS[@]}" \
   -e "ssh -p ${SSH_PORT}" \
+  --chmod=F644 \
   "${TMP_INDEX}" \
   "${SSH_USER}@${SSH_HOST}:${REMOTE_PATH}index.html"
 
