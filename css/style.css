@@ -3308,6 +3308,12 @@ a.project-btn-gold:hover {
     border-color: #d4ac0d;
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(229, 203, 18, 0.4);
+    /* Same idea as the Projects tabs: the active thumbnail always sorts
+       first rather than leaving it wherever it naturally falls and
+       making the visitor scroll/scan to find it. Every other thumbnail
+       stays at the default order (0) and keeps its normal relative
+       order among itself. */
+    order: -1;
 }
 
 .skills-thumb-title {
@@ -3623,6 +3629,9 @@ a.project-btn-gold:hover {
     border-color: #1f5582;
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+    /* Same idea as the Projects tabs and Skills thumbnails: active always
+       sorts first instead of leaving it wherever it naturally falls. */
+    order: -1;
 }
 
 .interests-thumb-title {
