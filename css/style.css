@@ -476,12 +476,20 @@ h3.handwritten {
   padding: 8px 16px 4px 16px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  box-shadow: 
+  box-shadow:
     0 -2px 5px rgba(0,0,0,0.2),
     inset 0 1px 0 rgba(255,255,255,0.1);
   transition: all 0.3s ease;
   transform-origin: bottom center;
   cursor: pointer;
+  /* iOS/Android show a translucent tap-color flash on tap by default,
+     which can visually linger as a tint on a div-based button like this
+     one (the :focus outline fix alone didn't resolve it, so this targets
+     the actual tap-highlight mechanism instead). */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* These divs carry Bootstrap's .btn class, whose default :focus style is
@@ -558,6 +566,19 @@ h3.handwritten {
   position: relative;
   z-index: 1;
   font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Belt and suspenders alongside the tap-highlight-color fix above: pin
+   down exactly what the pressed (not JS-selected) state looks like, so
+   nothing -- Bootstrap's base .btn included -- can introduce a lingering
+   color change on tap. */
+.folder-tab:active {
+  color: white;
+}
+
+.folder-tab.active:active {
+  color: var(--brand-navy);
 }
 
 .tab-notch {
