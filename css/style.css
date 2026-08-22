@@ -1692,21 +1692,25 @@ figure video {
     height: 10px;
   }
   .foldertabs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3px;
+    max-width: 340px;
+    margin: 0 auto;
     text-align: center;
     font-size: 0.9em;
     margin-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
   }
-  
+
   .folder-tab {
-    margin: 1px;
-    padding: 6px 8px 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 8px 8px 6px 8px;
     font-size: 0.85em;
-    min-width: 65px;
   }
   
   .folder-tab:before {
@@ -1917,21 +1921,20 @@ figure video {
   }
 }
 
-/* Extra small devices - ensure all tabs fit in one row */
+/* Extra small devices - a little tighter, still a 2x2 grid */
 @media (max-width: 350px) {
   .foldertabs {
     font-size: 0.8em;
-    gap: 0;
+    gap: 2px;
+    max-width: 280px;
   }
-  
+
   .folder-tab {
-    margin: 0.5px;
-    padding: 4px 5px 3px 5px;
+    margin: 0;
+    padding: 6px 4px 4px 4px;
     font-size: 0.75em;
-    min-width: 52px;
-    flex: 1;
   }
-  
+
   .tab-label {
     font-size: 0.9em;
   }
