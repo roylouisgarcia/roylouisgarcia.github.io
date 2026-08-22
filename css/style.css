@@ -1704,6 +1704,14 @@ figure video {
     padding-right: 0px;
   }
 
+  /* Reorder visually only (DOM order is untouched, so desktop's single-row
+     layout -- which reads the markup order directly -- is unaffected):
+     row 1 = Academic, Professional; row 2 = Current, Personal. */
+  #link2Academic { order: 1; }
+  #link2Professional { order: 2; }
+  #link2CurrentSites { order: 3; }
+  #link2Personal { order: 4; }
+
   .folder-tab {
     display: flex;
     align-items: center;
