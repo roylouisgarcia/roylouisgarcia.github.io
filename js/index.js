@@ -1456,7 +1456,7 @@ const skillsData = [
             "Own the full product lifecycle: concept, front-end/back-end development, security architecture, SEO, and content",
             "Modern full-stack development with Next.js (App Router, Server Components, Server Actions), React, and TypeScript",
             "Supabase (Postgres, Auth, Storage, Row-Level Security) and Vercel deployment",
-            "Shipped and maintain a live product ecosystem under one philosophy — see the <a href='#projects'>Current Sites</a> tab above (Circal, Digitally, DMSecurityX, and related tools)"
+            "Shipped and maintain a live product ecosystem under one philosophy — see the <a href='#projects'>Current</a> tab above (Circal, Digitally, DMSecurityX, and related tools)"
         ]
     },
     {
