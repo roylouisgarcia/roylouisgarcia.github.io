@@ -1602,7 +1602,9 @@ function loadSkillsSlides() {
         // Create thumbnail
         const thumb = document.createElement('div');
         thumb.classList.add('skills-thumb');
-        thumb.title = skill.title;
+        // No title attribute: the label is already shown as visible text
+        // below, and a redundant title attribute is what triggers the
+        // native browser tooltip that can get stuck open after a tap.
         
         const thumbTitle = document.createElement('span');
         thumbTitle.classList.add('skills-thumb-title');
@@ -1868,7 +1870,9 @@ function loadInterestsSlides() {
         // Create thumbnail
         const thumb = document.createElement('div');
         thumb.classList.add('interests-thumb');
-        thumb.title = interest.title;
+        // No title attribute: same reasoning as the Skills thumbnails --
+        // the label is already visible text, and title only adds a
+        // native tooltip that can get stuck open on mobile.
         
         const thumbTitle = document.createElement('span');
         thumbTitle.classList.add('interests-thumb-title');
