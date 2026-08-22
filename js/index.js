@@ -1,3 +1,22 @@
+// Slideshow state, declared up front so it's never in the temporal dead
+// zone regardless of when/where an init function ends up getting called
+// from (a $(document).ready() callback can fire synchronously as soon as
+// it's registered if the document is already parsed -- which it is here,
+// since this script loads at the end of <body> -- so anything called from
+// early in this file must not depend on a `let`/`const` declared later on).
+let currentSitesSlideIndex = 0;
+let currentSitesSlides = [];
+let moocSlideIndex = 0;
+let moocSlides = [];
+let currentFeaturedSlideIndex = 0;
+let featuredSlides = [];
+let hartnellCurrentSlideIndex = 0;
+let hartnellSlides = [];
+let skillsCurrentSlideIndex = 0;
+let skillsSlides = [];
+let interestsCurrentSlideIndex = 0;
+let interestsSlides = [];
+
 $(document).ready(function(){
 
     // Set default state - all project tabs hidden
@@ -436,8 +455,7 @@ $(document).ready(function(){
      }
 
 // Current Sites slideshow functionality
-let currentSitesSlideIndex = 0;
-let currentSitesSlides = [];
+// (currentSitesSlideIndex/currentSitesSlides declared at the top of the file)
 
 // Current Sites data - screenshots from images/currentsites
 const currentSitesData = [
@@ -604,8 +622,7 @@ function initializeCurrentSitesSlideshow() {
 }
 
 // MOOC / Specialization slideshow functionality
-let moocSlideIndex = 0;
-let moocSlides = [];
+// (moocSlideIndex/moocSlides declared at the top of the file)
 
 const moocData = [
   {
@@ -841,8 +858,7 @@ function initializeMoocSlideshow() {
 initializeMoocSlideshow();
 
 // Featured slideshow variables
-let currentFeaturedSlideIndex = 0;
-let featuredSlides = [];
+// (currentFeaturedSlideIndex/featuredSlides declared at the top of the file)
 
 // Featured projects data - based on the original static grid layout
 const featuredProjectsData = [
@@ -1212,8 +1228,7 @@ initializeHartnellSlideshow();
 });
 
 // Hartnell Projects Slideshow
-let hartnellCurrentSlideIndex = 0;
-let hartnellSlides = [];
+// (hartnellCurrentSlideIndex/hartnellSlides declared at the top of the file)
 
 // Hartnell project data
 const hartnellProjects = [
@@ -1430,8 +1445,7 @@ function initializeHartnellSlideshow() {
 }
 
 // Skills Slideshow
-let skillsCurrentSlideIndex = 0;
-let skillsSlides = [];
+// (skillsCurrentSlideIndex/skillsSlides declared at the top of the file)
 
 // Skills data
 const skillsData = [
@@ -1658,8 +1672,7 @@ $(document).ready(function() {
 });
 
 // Interests Slideshow
-let interestsCurrentSlideIndex = 0;
-let interestsSlides = [];
+// (interestsCurrentSlideIndex/interestsSlides declared at the top of the file)
 
 // Interests data
 const interestsData = [
