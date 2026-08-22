@@ -109,6 +109,7 @@ $(document).ready(function(){
     $("#link2Professional").removeClass("active");
     $("#link2Personal").removeClass("active");
     $("#link2CurrentSites").removeClass("active");
+    updateMobileTabOrder('link2Academic');
   });
 
   $("#link2Professional").click(function(){
@@ -120,6 +121,7 @@ $(document).ready(function(){
     $("#link2Professional").addClass("active");
     $("#link2Personal").removeClass("active");
     $("#link2CurrentSites").removeClass("active");
+    updateMobileTabOrder('link2Professional');
   });
 
   $("#link2Personal").click(function(){
@@ -137,6 +139,7 @@ $(document).ready(function(){
     $("#link2Professional").removeClass("active");
     $("#link2Personal").addClass("active");
     $("#link2CurrentSites").removeClass("active");
+    updateMobileTabOrder('link2Personal');
   });
 
   $("#link2CurrentSites").click(function(){
@@ -154,8 +157,9 @@ $(document).ready(function(){
     $("#link2Professional").removeClass("active");
     $("#link2Personal").removeClass("active");
     $("#link2CurrentSites").addClass("active");
+    updateMobileTabOrder('link2CurrentSites');
   });
-    
+
   $("#associate").click(function () {
       $("#associate").css("opacity", "1");
       $("#bachelors").css("opacity", ".6");
@@ -406,6 +410,25 @@ $(document).ready(function(){
         hideLyricsProjects();
      }
 
+     // On the mobile 2x2 tab grid, the currently active tab always sits in
+     // grid position 3 (bottom-left) -- the other three keep their normal
+     // relative order across the remaining positions. Sets a data-pos
+     // attribute that a mobile-only media query maps to CSS `order`;
+     // outside that breakpoint the attribute is inert.
+     function updateMobileTabOrder(activeId){
+        var baseOrder = ['link2CurrentSites', 'link2Academic', 'link2Professional', 'link2Personal'];
+        var others = baseOrder.filter(function(id){ return id !== activeId; });
+        var positions = {};
+        positions[others[0]] = 1;
+        positions[others[1]] = 2;
+        positions[activeId] = 3;
+        positions[others[2]] = 4;
+        baseOrder.forEach(function(id){
+          var el = document.getElementById(id);
+          if (el) el.setAttribute('data-pos', positions[id]);
+        });
+     }
+
      function showAcademicTab(){
         $(".academic").show("fast", function(){});
         $(".professional").hide("fast", function(){});
@@ -415,6 +438,7 @@ $(document).ready(function(){
         $("#link2Professional").removeClass("active");
         $("#link2Personal").removeClass("active");
         $("#link2CurrentSites").removeClass("active");
+        updateMobileTabOrder('link2Academic');
         $("#hartnell").hide("fast", function () {});
         $("#csumb").hide("fast", function () {});
         $("#capella").hide("fast", function () {});
@@ -442,6 +466,7 @@ $(document).ready(function(){
         $("#link2Professional").removeClass("active");
         $("#link2Personal").removeClass("active");
         $("#link2CurrentSites").addClass("active");
+        updateMobileTabOrder('link2CurrentSites');
         $("#hartnell").hide("fast", function () {});
         $("#csumb").hide("fast", function () {});
         $("#capella").hide("fast", function () {});
