@@ -484,6 +484,20 @@ h3.handwritten {
   cursor: pointer;
 }
 
+/* These divs carry Bootstrap's .btn class, whose default :focus style is
+   a blue outline ring. On touch devices that state tends to stick after a
+   tap until something else takes focus -- reading as "whichever tab I
+   tapped last looks blue" regardless of which one is actually selected.
+   Replace it with an intentional ring instead of removing focus styling
+   outright (removing it entirely would hurt keyboard/screen-reader users). */
+.folder-tab:focus {
+  outline: none;
+  box-shadow:
+    0 -2px 5px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    0 0 0 2px var(--brand-gold);
+}
+
 .folder-tab:before {
   content: '';
   position: absolute;
@@ -514,9 +528,17 @@ h3.handwritten {
   color: var(--brand-navy);
   transform: translateY(-1px);
   z-index: 3;
-  box-shadow: 
+  box-shadow:
     0 -2px 5px rgba(0,0,0,0.1),
     inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+.folder-tab.active:focus {
+  outline: none;
+  box-shadow:
+    0 -2px 5px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    0 0 0 2px var(--brand-gold);
 }
 
 .folder-tab.active:before {
