@@ -71,4 +71,26 @@ rsync "${RSYNC_FLAGS[@]}" \
   "${SOURCES[@]}" \
   "${SSH_USER}@${SSH_HOST}:${REMOTE_PATH}"
 
+# The server sends a 7-day Cache-Control on css/js, so browsers (and any
+# CDN in front of the host) that already fetched css/style.css or
+# js/index.js once will keep serving that exact copy for up to a week,
+# even after this deploy replaces the file on disk -- unless the URL
+# itself changes. Rewrite the ?v= cache-busting query string on every
+# deploy so it always changes when the content does; this operates on a
+# generated copy, not the git-tracked index.html, so the committed file
+# never carries deploy-time cruft.
+VERSION="$(cat "${SCRIPT_DIR}/js/index.js" "${SCRIPT_DIR}/css/style.css" | md5sum | cut -c1-10)"
+TMP_INDEX="$(mktemp)"
+trap 'rm -f "${TMP_INDEX}"' EXIT
+sed -E \
+  -e "s#\"(css/style\.css)(\?v=[^\"]*)?\"#\"\1?v=${VERSION}\"#g" \
+  -e "s#\"(js/index\.js)(\?v=[^\"]*)?\"#\"\1?v=${VERSION}\"#g" \
+  "${SCRIPT_DIR}/index.html" > "${TMP_INDEX}"
+
+rsync "${RSYNC_FLAGS[@]}" \
+  -e "ssh -p ${SSH_PORT}" \
+  "${TMP_INDEX}" \
+  "${SSH_USER}@${SSH_HOST}:${REMOTE_PATH}index.html"
+
+echo "Deployed with cache-busting version ${VERSION}"
 echo "Done -- https://roy.deliberatelearners.com"

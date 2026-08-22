@@ -2498,11 +2498,17 @@ figure video {
   margin: 0 5px;
 }
 
-.project-btn-github {
+/* `a.` prefixed (not just `.class`) so these reliably beat the sitewide
+   a:visited / a:hover rules elsewhere in this file, which have higher
+   specificity than a single class and would otherwise silently override
+   these colors once a visitor's browser has that particular link marked
+   as visited -- a real, reproducible bug (not a Chrome/Firefox
+   difference; just circumstantial per-browser visited-link history). */
+a.project-btn-github {
   background-color: var(--accent-blue);
 }
 
-.project-btn-github:hover {
+a.project-btn-github:hover {
   background-color: #0056b3;
   text-decoration: none;
   color: white;
@@ -2516,22 +2522,22 @@ figure video {
   background-color: #218838;
 }
 
-.project-btn-demo {
+a.project-btn-demo {
   background-color: #fd7e14;
 }
 
-.project-btn-demo:hover {
+a.project-btn-demo:hover {
   background-color: #e55a00;
   text-decoration: none;
   color: white;
 }
 
-.project-btn-gold {
+a.project-btn-gold {
   background-color: var(--brand-gold);
   color: var(--brand-navy);
 }
 
-.project-btn-gold:hover {
+a.project-btn-gold:hover {
   background-color: var(--brand-navy);
   color: var(--brand-gold);
   text-decoration: none;
