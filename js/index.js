@@ -485,6 +485,13 @@ $(document).ready(function(){
 // Current Sites data - screenshots from images/currentsites
 const currentSitesData = [
   { title: "Deliberately Deliberate", image: "./images/currentsites/deliberatelydeliberate.jpg", url: "https://deliberatelydeliberate.com" },
+  {
+    title: "Bertelsmann Technology Scholarship - Enterprise Security Nanodegree",
+    image: "specialization/images/Bertelsmann_nanodegree_enterprisesecurity.jpg",
+    description: "Advanced enterprise security nanodegree program focusing on cybersecurity frameworks, threat assessment, and security architecture design. Comprehensive coverage of enterprise-level security protocols and implementation strategies. If you want a guide for turning a scholarship MOOC like this into real, applied skill instead of just a certificate, that's exactly what I built DeliberateLearners.com to teach.",
+    readMore: "Technologies Used: Microsoft Azure services (Virtual Networks, Entra, Sentinel, Intune, Defender for Endpoint), ELK Stack (Elasticsearch, Logstash, Kibana, Filebeat), SIEM/SOAR platforms, EDR/IDS technologies. Key Features: Network defenses with DMZs and VPNs, Zero Trust security architecture, defense-in-depth strategies, compliance alignment with NIST 800-61r2 and TIC 3.0. Learning Outcomes: Enterprise security frameworks, threat assessment methodologies, cloud security implementation, risk management practices.",
+    isBertelsmann: true
+  },
   { title: "NostradmsX - Personal Blog", image: "./images/currentsites/nostradmsx.jpg", url: "https://nostradmsx.com" },
   { title: "Deliberate Cybersecurity", image: "./images/currentsites/deliberatecybersecurity.jpg", url: "https://deliberatecybersecurity.com" },
   { title: "Deliberate Digital Legacy", image: "./images/currentsites/deliberate-digital-legacy.jpg", url: "https://deliberate-digital-legacy.com" },
@@ -537,22 +544,46 @@ function loadCurrentSitesSlides() {
     const img = document.createElement('img');
     img.src = site.image;
     img.style.cursor = 'pointer';
-    img.title = 'Click to visit ' + site.title;
+    img.title = site.isBertelsmann ? 'Click to see the projects' : 'Click to visit ' + site.title;
     img.onerror = function() {
       console.error('Failed to load image:', site.image);
     };
-    img.onclick = () => window.open(site.url, '_blank');
+    img.onclick = () => {
+      if (site.isBertelsmann) {
+        showBertelsmannProjects();
+      } else {
+        window.open(site.url, '_blank');
+      }
+    };
     slideContent.appendChild(img);
+
+    if (site.description) {
+      const descElement = document.createElement('p');
+      descElement.textContent = site.description;
+      descElement.style.marginTop = '20px';
+      descElement.style.textAlign = 'justify';
+      descElement.style.lineHeight = '1.6';
+      slideContent.appendChild(descElement);
+    }
 
     const linkContainer = document.createElement('div');
     linkContainer.style.textAlign = 'center';
     linkContainer.style.marginTop = '20px';
 
     const siteLink = document.createElement('a');
-    siteLink.href = site.url;
-    siteLink.target = '_blank';
-    siteLink.rel = 'noopener';
-    siteLink.textContent = 'View Site';
+    if (site.isBertelsmann) {
+      siteLink.href = '#';
+      siteLink.textContent = 'View Projects';
+      siteLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showBertelsmannProjects();
+      });
+    } else {
+      siteLink.href = site.url;
+      siteLink.target = '_blank';
+      siteLink.rel = 'noopener';
+      siteLink.textContent = 'View Site';
+    }
     siteLink.style.display = 'inline-block';
     siteLink.style.padding = '10px 20px';
     siteLink.style.backgroundColor = '#007bff';
@@ -561,11 +592,43 @@ function loadCurrentSitesSlides() {
     siteLink.style.borderRadius = '5px';
     siteLink.style.fontWeight = 'bold';
     siteLink.style.transition = 'background-color 0.3s ease';
+    siteLink.style.marginRight = '10px';
     siteLink.onmouseover = () => siteLink.style.backgroundColor = '#0056b3';
     siteLink.onmouseout = () => siteLink.style.backgroundColor = '#007bff';
 
     linkContainer.appendChild(siteLink);
+
+    let readMoreDetails = null;
+    let readMoreBtn = null;
+    if (site.readMore) {
+      readMoreBtn = document.createElement('button');
+      readMoreBtn.textContent = 'Read More';
+      readMoreBtn.classList.add('project-btn', 'project-btn-readmore');
+      linkContainer.appendChild(readMoreBtn);
+    }
+
     slideContent.appendChild(linkContainer);
+
+    if (site.readMore) {
+      readMoreDetails = document.createElement('div');
+      readMoreDetails.classList.add('cert-read-more-content');
+      readMoreDetails.style.display = 'none';
+      readMoreDetails.style.marginTop = '20px';
+      readMoreDetails.style.padding = '20px';
+      readMoreDetails.style.backgroundColor = '#f8f9fa';
+      readMoreDetails.style.border = '1px solid #dee2e6';
+      readMoreDetails.style.borderRadius = '8px';
+      readMoreDetails.style.lineHeight = '1.6';
+      readMoreDetails.style.textAlign = 'justify';
+      readMoreDetails.textContent = site.readMore;
+      slideContent.appendChild(readMoreDetails);
+
+      readMoreBtn.onclick = function() {
+        const isHidden = readMoreDetails.style.display === 'none';
+        readMoreDetails.style.display = isHidden ? 'block' : 'none';
+        readMoreBtn.textContent = isHidden ? 'Show Less' : 'Read More';
+      };
+    }
 
     slideDiv.appendChild(slideContent);
     slidesContainer.appendChild(slideDiv);
@@ -574,10 +637,16 @@ function loadCurrentSitesSlides() {
     const thumb = document.createElement('img');
     thumb.src = site.image;
     thumb.classList.add('cert-thumb');
-    thumb.title = site.title + ' - Click to view slide or Ctrl+Click to visit site';
+    thumb.title = site.isBertelsmann
+      ? site.title + ' - Click to view slide or Ctrl+Click to see the projects'
+      : site.title + ' - Click to view slide or Ctrl+Click to visit site';
     thumb.onclick = (event) => {
       if (event.ctrlKey || event.metaKey) {
-        window.open(site.url, '_blank');
+        if (site.isBertelsmann) {
+          showBertelsmannProjects();
+        } else {
+          window.open(site.url, '_blank');
+        }
       } else {
         setCurrentSitesSlide(index);
       }
@@ -650,13 +719,6 @@ function initializeCurrentSitesSlideshow() {
 // (moocSlideIndex/moocSlides declared at the top of the file)
 
 const moocData = [
-  {
-    title: "Bertelsmann Technology Scholarship - Enterprise Security Nanodegree",
-    image: "specialization/images/Bertelsmann_nanodegree_enterprisesecurity.jpg",
-    description: "Advanced enterprise security nanodegree program focusing on cybersecurity frameworks, threat assessment, and security architecture design. Comprehensive coverage of enterprise-level security protocols and implementation strategies.",
-    readMore: "Technologies Used: Microsoft Azure services (Virtual Networks, Entra, Sentinel, Intune, Defender for Endpoint), ELK Stack (Elasticsearch, Logstash, Kibana, Filebeat), SIEM/SOAR platforms, EDR/IDS technologies. Key Features: Network defenses with DMZs and VPNs, Zero Trust security architecture, defense-in-depth strategies, compliance alignment with NIST 800-61r2 and TIC 3.0. Learning Outcomes: Enterprise security frameworks, threat assessment methodologies, cloud security implementation, risk management practices.",
-    isBertelsmann: true
-  },
   {
     title: "Video Pitch Adjuster GUI",
     image: "images/currentsites/video-pitch-shifter.png",
