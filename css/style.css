@@ -799,7 +799,7 @@ h3.handwritten {
 }
 
 .totiebtn a,
-a:visited {
+.totiebtn a:visited {
   text-decoration: none;
   color: rgb(0, 0, 0);
 }
@@ -855,7 +855,7 @@ a:visited {
 }
 
 a.linklight,
-a:visited {
+a.linklight:visited {
   color: whitesmoke;
   text-decoration: none;
   background-color: darkslateblue;
