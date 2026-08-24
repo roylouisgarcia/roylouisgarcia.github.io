@@ -1,3 +1,7 @@
-documentation/*
+# Local scratch/generated files from the docslaunch pipeline (see
+# documentation/*.md's own docs) -- everything else in documentation/
+# is real content and gets tracked normally.
+documentation/index.html
+documentation/summary.txt
 claude_resume_command.txt
 deploy.conf

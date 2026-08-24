@@ -3,4 +3,4 @@
 # push-github.sh publishes to the public GitHub repo. One path per line;
 # comments start with #.
 
-docs/
+documentation/
