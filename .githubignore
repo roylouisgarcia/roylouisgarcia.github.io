@@ -4,3 +4,12 @@
 # comments start with #.
 
 documentation/
+
+# Internal working notes and one-off dev scripts -- not secrets, just not
+# meant for a visitor browsing the public portfolio source.
+optimization-guide.md
+optimization-progress.md
+color_chooser.py
+color_sucker.py
+colors.txt
+deploy-allowlist.txt
