@@ -1,0 +1,6 @@
+# Paths listed here are tracked normally by git and pushed in full to
+# `origin` (gitbox) -- they're just stripped out of the tree that
+# push-github.sh publishes to the public GitHub repo. One path per line;
+# comments start with #.
+
+docs/
