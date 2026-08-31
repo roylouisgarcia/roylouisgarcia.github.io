@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RhythmBrownBox v1 &mdash; documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<style>
+  :root{
+    --navy:#1d2951; --gold:#e5cb12; --blue:#2e6da4; --blue-deep:#245580;
+    --peru:#cd853f; --brown:#8b5a2b;
+    --ink:#20242e; --ink-soft:#4a5160; --ink-faint:#7b8494;
+    --paper:#f7f5f0; --card:#fffdf8; --rule:rgba(29,41,81,.14); --rule-strong:rgba(29,41,81,.28);
+    --code-bg:#1b2233; --code-ink:#e7ecf5;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+    --ink:#e9ecf3; --ink-soft:#b7bfce; --ink-faint:#828b9c;
+    --paper:#14171f; --card:#1b1f2a; --rule:rgba(233,236,243,.13); --rule-strong:rgba(233,236,243,.26);
+    --navy:#c9d3f0; --code-bg:#0f131d;
+  }}
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px; line-height:1.65;
+  }
+  a{color:var(--blue)}
+  code,pre,.mono{font-family:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,monospace}
+  .wrap{max-width:780px; margin:0 auto; padding:0 22px}
+
+  /* top nav */
+  .topnav{
+    background:var(--navy); color:#fff; position:sticky; top:0; z-index:20;
+    border-bottom:3px solid var(--gold);
+  }
+  .topnav .wrap{display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap; padding-top:12px; padding-bottom:12px}
+  .topnav a{color:#fff; text-decoration:none}
+  .topnav .home{font-weight:800; letter-spacing:-.01em; margin-right:auto}
+  .topnav .home span{color:var(--gold)}
+  .topnav .vlinks{display:flex; gap:6px}
+  .topnav .vlinks a{
+    font:600 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.06em;
+    padding:6px 10px; border-radius:6px; border:1px solid rgba(255,255,255,.25);
+  }
+  .topnav .vlinks a.cur{background:var(--gold); color:var(--navy); border-color:var(--gold)}
+  .topnav .demo-btn{
+    font:700 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.05em;
+    background:var(--blue); padding:7px 12px; border-radius:6px;
+  }
+  .topnav .demo-btn.off{background:transparent; border:1px dashed rgba(255,255,255,.4); color:rgba(255,255,255,.6)}
+
+  footer.pager{border-top:1px solid var(--rule); margin-top:44px}
+  footer.pager .wrap{display:flex; justify-content:space-between; gap:12px; padding:22px; font:600 13px/1.3 "JetBrains Mono",monospace}
+  footer.pager a{text-decoration:none}
+  footer.pager .spacer{flex:1}
+
+  .doc{padding:34px 0 8px}
+  .doc h1{font-size:1.9rem; line-height:1.15; letter-spacing:-.02em; margin:0 0 6px}
+  .doc .lede-tag{font:600 12px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.1em; color:var(--brown); margin-bottom:22px}
+  .doc h2{font-size:1.25rem; margin:34px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--rule)}
+  .doc h3{font-size:1.05rem; margin:22px 0 8px}
+  .doc p{margin:0 0 14px; max-width:64ch}
+  .doc ul,.doc ol{margin:0 0 14px; padding-left:1.3em}
+  .doc li{margin-bottom:6px; max-width:62ch}
+  .doc img{max-width:100%; height:auto; border:1px solid var(--rule-strong); border-radius:10px; margin:6px 0 18px; background:var(--card)}
+  .doc code{background:color-mix(in srgb,var(--navy) 8%,transparent); border:1px solid var(--rule); padding:.5px 5px; border-radius:4px; font-size:.86em}
+  .doc pre{background:var(--code-bg); color:var(--code-ink); padding:14px 16px; border-radius:10px; overflow-x:auto; margin:0 0 18px}
+  .doc pre code{background:none; border:0; padding:0; font-size:12.5px; color:inherit}
+  .doc .tablewrap{overflow-x:auto; margin:0 0 18px}
+  .doc table{border-collapse:collapse; width:100%; font-size:14px}
+  .doc th,.doc td{border:1px solid var(--rule); padding:8px 11px; text-align:left; vertical-align:top}
+  .doc thead th{background:color-mix(in srgb,var(--navy) 10%,transparent); font-weight:700}
+  .doc blockquote{margin:0 0 16px; padding:2px 0 2px 16px; border-left:3px solid var(--gold); color:var(--ink-soft)}
+</style>
+</head><body>
+<nav class="topnav"><div class="wrap"><a class="home" href="../../index.html">RhythmBrown<span>Box</span></a><div class="vlinks"><a class="cur" href="../../ver_1/documentation/index.html">v1</a><a class="" href="../../ver_2/documentation/index.html">v2</a><a class="" href="../../ver_3/documentation/index.html">v3</a></div><a class="demo-btn" href="../index.html">&#9654; Open demo</a></div></nav>
+<main class="wrap doc">
+<h1>RhythmBrownBox — Version 1</h1>
+<p class="lede-tag">Original build (freeCodeCamp era, pre-2026).</p>
+<p>Stack: HTML · CSS · vanilla JS · Web Audio API · NexusUI · Bootstrap 3 — no build step.
+License: MPL-2.0.</p>
+<h2>What it is</h2>
+<p>A browser step sequencer built as a portfolio deliverable and then used as a
+practice backing track for guitar. Four drum samples (hi-hat, rim, two kicks), an
+8-step × 4-track grid, a volume dial and a speed dial.</p>
+<p><img alt="v1 UI" src="screenshot.png" /></p>
+<h2>How it's built</h2>
+<ul>
+<li>One page: <code>index.html</code> + <code>main.css</code> + <code>main.js</code>. No modules, no tooling.</li>
+<li><strong>Web Audio API</strong> for sound — samples fetched with <code>XMLHttpRequest</code> +
+  <code>decodeAudioData</code>, played through <code>AudioBufferSourceNode → GainNode →
+  destination</code>.</li>
+<li><strong>Lookahead scheduler</strong>: a <code>setInterval</code> on the main thread wakes every 250 ms
+  and schedules the next ~375 ms of hits onto the precise audio clock. The right
+  shape — but a main-thread timer is throttled when the tab is backgrounded, so
+  the beat drifts.</li>
+<li><strong>NexusUI</strong> (vendored, 152 KB, no version marker) draws the dials and the
+  matrix as <code>&lt;canvas&gt;</code> widgets.</li>
+<li><strong>Bootstrap 3.3.7</strong> grid classes lay out the controls.</li>
+<li>All state is global <code>var</code>s (<code>seq</code>, <code>step</code>, <code>interval</code>, <code>matrix</code>).</li>
+</ul>
+<h2>Controls</h2>
+<p>Volume · Speed (labelled "Interval-second" — sets seconds-per-step directly, so
+turning it up makes the beat <em>slower</em>) · Reset · Mute · Random · Start (needed on
+iOS to unlock audio).</p>
+<h2>Known issues — the reasons v2 exists</h2>
+<ul>
+<li>Speed is unitless and inverted; no BPM.</li>
+<li>The pattern isn't saved anywhere; a refresh clears it.</li>
+<li><code>stopPlay()</code> is an empty function and its button is commented out — there is no
+  working Stop.</li>
+<li>The main-thread scheduler drifts in a background tab.</li>
+<li><code>.headear</code> CSS typo (the title never gets its rule), <code>width: 100x</code> (not a unit,
+  so the declaration is dropped), an unclosed <code>@media</code> block (browsers auto-close
+  it).</li>
+<li>The two kick samples are loaded into swapped variable names.</li>
+<li>Unused includes on every load: jQuery, Bootstrap JS, Font Awesome, devicon (via
+  RawGit — shut down in 2019), a key-less Google Maps script.</li>
+<li>The canvas widgets have no keyboard path and nothing a screen reader can
+  announce.</li>
+</ul>
+<h2>About this copy</h2>
+<p>Packaged as a single self-contained <code>index.html</code> for the portfolio: <code>main.css</code>,
+<code>nexusUI.js</code>, <code>main.js</code> and all five assets (4 × <code>.wav</code>, <code>bg.JPG</code>) are inlined.
+<strong>Application code is unchanged.</strong> Two plumbing-only changes:</p>
+<ol>
+<li>The unused RawGit / Maps / Font Awesome / jQuery / Bootstrap-JS includes are
+   dropped (two of them 404 today); Bootstrap's CSS is inlined so the layout
+   still works offline.</li>
+<li>NexusUI bootstraps itself on <code>setTimeout(fn, 0)</code>, which in a current browser
+   fires before <code>&lt;body&gt;</code> is parsed — it finds no <code>&lt;canvas&gt;</code> elements and the
+   dials and matrix stay blank (the original hosted demo does this now too). The
+   two scripts are moved to the end of <code>&lt;body&gt;</code> and a small retry shim re-runs
+   NexusUI's init once the canvases exist, then hands off. v1's look and
+   behaviour are otherwise untouched.</li>
+</ol>
+</main>
+<footer class="pager"><div class="wrap"><span></span><span class="spacer"></span><a href="../../index.html">RhythmBrownBox overview</a><span class="spacer"></span><a href="../../ver_2/documentation/index.html">v2 docs &rarr;</a></div></footer>
+</body></html>

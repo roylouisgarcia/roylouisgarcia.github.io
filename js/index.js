@@ -952,7 +952,8 @@ const featuredProjectsData = [
   {
     title: "Rhythm Brown Box",
     image: "./images/featured/drummachine.png",
-    url: "https://github.com/roylouisgarcia/rhythmbrownbox"
+    siteUrl: "./portfolioentries/personal/rhythmbrownbox/index.html",
+    githubUrl: "https://github.com/roylouisgarcia/rhythmbrownbox"
   },
   {
     title: "Recorded Bliss",
@@ -1009,6 +1010,12 @@ function loadFeaturedSlides() {
   featuredSlides = [];
 
   featuredProjectsData.forEach((project, index) => {
+    // "View Project" target: an on-site page when the project has one
+    // (siteUrl), otherwise whatever single url it provides. githubUrl, when
+    // present, renders a separate "View on GitHub" button alongside it.
+    const primaryUrl = project.siteUrl || project.url || null;
+    const anyUrl = primaryUrl || project.githubUrl || null;
+
     // Create slide
     const slideDiv = document.createElement('div');
     slideDiv.classList.add('featured-slides');
@@ -1059,41 +1066,52 @@ function loadFeaturedSlides() {
       placeholder.style.border = '2px dashed #ccc';
       placeholder.style.borderRadius = '8px';
       placeholder.textContent = 'Image not available';
-      if (project.url) {
+      if (anyUrl) {
         placeholder.style.cursor = 'pointer';
-        placeholder.onclick = () => window.open(project.url, '_blank');
+        placeholder.onclick = () => window.open(anyUrl, '_blank');
       }
       img.parentNode.replaceChild(placeholder, img);
     };
-    if (project.url) {
+    if (primaryUrl) {
       img.style.cursor = 'pointer';
       img.title = 'Click to view project';
-      img.onclick = () => window.open(project.url, '_blank');
+      img.onclick = () => window.open(primaryUrl, primaryUrl.startsWith('http') ? '_blank' : '_self');
     }
     slideContent.appendChild(img);
 
-    if (project.url) {
-      // Add link button
+    if (anyUrl) {
+      // Add link button(s)
       const linkContainer = document.createElement('div');
       linkContainer.style.textAlign = 'center';
       linkContainer.style.marginTop = '10px';
       linkContainer.style.marginBottom = '10px';
 
-      const projectLink = document.createElement('a');
-      projectLink.href = project.url;
-      projectLink.target = '_blank';
-      projectLink.textContent = 'View Project';
-      projectLink.style.display = 'inline-block';
-      projectLink.style.padding = '10px 20px';
-      projectLink.style.backgroundColor = '#007bff';
-      projectLink.style.color = 'white';
-      projectLink.style.textDecoration = 'none';
-      projectLink.style.borderRadius = '5px';
-      projectLink.style.transition = 'background-color 0.3s ease';
-      projectLink.onmouseover = () => projectLink.style.backgroundColor = '#0056b3';
-      projectLink.onmouseout = () => projectLink.style.backgroundColor = '#007bff';
+      const makeBtn = (label, href, bg, bgHover) => {
+        const a = document.createElement('a');
+        a.href = href;
+        if (href.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
+        a.textContent = label;
+        a.style.display = 'inline-block';
+        a.style.margin = '5px';
+        a.style.padding = '10px 20px';
+        a.style.backgroundColor = bg;
+        a.style.color = 'white';
+        a.style.textDecoration = 'none';
+        a.style.borderRadius = '5px';
+        a.style.fontWeight = 'bold';
+        a.style.transition = 'background-color 0.3s ease';
+        a.onmouseover = () => a.style.backgroundColor = bgHover;
+        a.onmouseout = () => a.style.backgroundColor = bg;
+        return a;
+      };
 
-      linkContainer.appendChild(projectLink);
+      if (primaryUrl) {
+        linkContainer.appendChild(makeBtn('View Project', primaryUrl, '#007bff', '#0056b3'));
+      }
+      if (project.githubUrl) {
+        linkContainer.appendChild(makeBtn('View on GitHub', project.githubUrl, '#24292e', '#000'));
+      }
+
       slideContent.appendChild(linkContainer);
     }
 
@@ -1105,7 +1123,7 @@ function loadFeaturedSlides() {
     thumb.src = project.image;
     thumb.classList.add('featured-thumb');
     thumb.style.cursor = 'pointer';
-    thumb.title = project.title + (project.url ? ' - Click to view slide or Ctrl+Click to open project' : ' - Click to view slide');
+    thumb.title = project.title + (anyUrl ? ' - Click to view slide or Ctrl+Click to open project' : ' - Click to view slide');
     thumb.onerror = function() {
       console.error('Failed to load thumbnail:', project.image);
       // Create a simple text thumbnail if image fails
@@ -1125,8 +1143,8 @@ function loadFeaturedSlides() {
       textThumb.title = thumb.title;
       textThumb.textContent = project.title.substring(0, 8) + '...';
       textThumb.onclick = (event) => {
-        if (project.url && (event.ctrlKey || event.metaKey)) {
-          window.open(project.url, '_blank');
+        if (anyUrl && (event.ctrlKey || event.metaKey)) {
+          window.open(anyUrl, '_blank');
         } else {
           setCurrentFeaturedSlide(index);
         }
@@ -1134,8 +1152,8 @@ function loadFeaturedSlides() {
       thumb.parentNode.replaceChild(textThumb, thumb);
     };
     thumb.onclick = (event) => {
-      if (project.url && (event.ctrlKey || event.metaKey)) {
-        window.open(project.url, '_blank');
+      if (anyUrl && (event.ctrlKey || event.metaKey)) {
+        window.open(anyUrl, '_blank');
       } else {
         setCurrentFeaturedSlide(index);
       }

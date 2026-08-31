@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RhythmBrownBox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<style>
+  :root{
+    --navy:#1d2951; --gold:#e5cb12; --blue:#2e6da4; --blue-deep:#245580;
+    --peru:#cd853f; --brown:#8b5a2b;
+    --ink:#20242e; --ink-soft:#4a5160; --ink-faint:#7b8494;
+    --paper:#f7f5f0; --card:#fffdf8; --rule:rgba(29,41,81,.14); --rule-strong:rgba(29,41,81,.28);
+    --code-bg:#1b2233; --code-ink:#e7ecf5;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+    --ink:#e9ecf3; --ink-soft:#b7bfce; --ink-faint:#828b9c;
+    --paper:#14171f; --card:#1b1f2a; --rule:rgba(233,236,243,.13); --rule-strong:rgba(233,236,243,.26);
+    --navy:#c9d3f0; --code-bg:#0f131d;
+  }}
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px; line-height:1.65;
+  }
+  a{color:var(--blue)}
+  code,pre,.mono{font-family:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,monospace}
+  .wrap{max-width:780px; margin:0 auto; padding:0 22px}
+
+  /* top nav */
+  .topnav{
+    background:var(--navy); color:#fff; position:sticky; top:0; z-index:20;
+    border-bottom:3px solid var(--gold);
+  }
+  .topnav .wrap{display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap; padding-top:12px; padding-bottom:12px}
+  .topnav a{color:#fff; text-decoration:none}
+  .topnav .home{font-weight:800; letter-spacing:-.01em; margin-right:auto}
+  .topnav .home span{color:var(--gold)}
+  .topnav .vlinks{display:flex; gap:6px}
+  .topnav .vlinks a{
+    font:600 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.06em;
+    padding:6px 10px; border-radius:6px; border:1px solid rgba(255,255,255,.25);
+  }
+  .topnav .vlinks a.cur{background:var(--gold); color:var(--navy); border-color:var(--gold)}
+  .topnav .demo-btn{
+    font:700 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.05em;
+    background:var(--blue); padding:7px 12px; border-radius:6px;
+  }
+  .topnav .demo-btn.off{background:transparent; border:1px dashed rgba(255,255,255,.4); color:rgba(255,255,255,.6)}
+
+  footer.pager{border-top:1px solid var(--rule); margin-top:44px}
+  footer.pager .wrap{display:flex; justify-content:space-between; gap:12px; padding:22px; font:600 13px/1.3 "JetBrains Mono",monospace}
+  footer.pager a{text-decoration:none}
+  footer.pager .spacer{flex:1}
+
+  .hero{padding:46px 0 26px}
+  .hero .kicker{font:600 12px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.14em; color:var(--brown); margin-bottom:12px}
+  .hero h1{font-size:2.5rem; line-height:1.05; letter-spacing:-.025em; margin:0 0 14px}
+  .hero h1 em{font-style:normal; color:var(--peru)}
+  .hero p{font-size:1.1rem; color:var(--ink-soft); max-width:56ch; margin:0}
+  .cards{display:grid; gap:16px; padding:8px 0 60px}
+  .card{border:1px solid var(--rule-strong); border-radius:14px; background:var(--card); padding:20px 22px; display:grid; gap:10px}
+  .card.planned{opacity:.72}
+  .card .head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+  .card .vno{font:800 1.35rem/1 "Inter",sans-serif; color:var(--navy)}
+  .card .tag{font:600 11px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.07em; color:#fff; background:var(--brown); padding:4px 9px; border-radius:999px}
+  .card.v2 .tag{background:var(--blue)}
+  .card.planned .tag{background:var(--ink-faint)}
+  .card p{margin:0; color:var(--ink-soft); font-size:14.5px; max-width:60ch}
+  .card .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:4px}
+  .card .btn{font:700 13px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.04em; text-decoration:none; padding:9px 14px; border-radius:8px}
+  .card .btn.demo{background:var(--blue); color:#fff}
+  .card .btn.docs{background:transparent; color:var(--navy); border:1px solid var(--rule-strong)}
+  .card .btn.disabled{background:transparent; color:var(--ink-faint); border:1px dashed var(--rule-strong); pointer-events:none}
+  .foot{border-top:1px solid var(--rule); padding:20px 0 50px; color:var(--ink-faint); font:13px/1.5 "JetBrains Mono",monospace}
+</style>
+</head><body>
+<header class="wrap hero">
+  <p class="kicker">Personal project &middot; browser drum machine</p>
+  <h1>RhythmBrown<em>Box</em></h1>
+  <p>A browser step-sequencer, shown as a three-stage evolution of the same idea &mdash;
+     from a 2016 portfolio piece to a dependency-free, tested, accessible rebuild.</p>
+</header>
+<main class="wrap"><div class="cards">
+<article class="card v1"><div class="head"><span class="vno">Version 1</span><span class="tag">original build</span></div><p>The original build &mdash; NexusUI canvas widgets, Bootstrap layout, a main-thread scheduler, no tooling. Kept exactly as it was.</p><div class="actions"><a class="btn demo" href="ver_1/index.html">&#9654; Open demo</a><a class="btn docs" href="ver_1/documentation/index.html">Documentation</a></div></article>
+<article class="card v2"><div class="head"><span class="vno">Version 2</span><span class="tag">2026 rebuild</span></div><p>A ground-up rebuild from a code audit: real BPM, saved &amp; shareable patterns, a Web&nbsp;Worker clock, a fifth (snare) track, native keyboard-and screen-reader-accessible controls, and zero dependencies.</p><div class="actions"><a class="btn demo" href="ver_2/index.html">&#9654; Open demo</a><a class="btn docs" href="ver_2/documentation/index.html">Documentation</a></div></article>
+<article class="card v3 planned"><div class="head"><span class="vno">Version 3</span><span class="tag">planned</span></div><p>Not started. Candidates: a roving-tabindex grid, swing, per-track lengths for polymeter.</p><div class="actions"><span class="btn disabled">demo: planned</span><a class="btn docs" href="ver_3/documentation/index.html">Documentation</a></div></article>
+</div></main>
+<div class="wrap"><p class="foot">
+  Each <span class="mono">ver_N/index.html</span> is one self-contained file &mdash; no server,
+  no build step. Working source lives outside this portfolio; these are packaged snapshots,
+  not git submodules.
+</p></div>
+</body></html>
