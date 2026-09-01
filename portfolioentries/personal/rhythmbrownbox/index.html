@@ -56,12 +56,12 @@
   footer.pager a{text-decoration:none}
   footer.pager .spacer{flex:1}
 
-  .hero{padding:46px 0 26px}
+  .hero{padding-block:46px 26px}  /* sides from .wrap; see note in DOC_STYLE */
   .hero .kicker{font:600 12px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.14em; color:var(--brown); margin-bottom:12px}
   .hero h1{font-size:2.5rem; line-height:1.05; letter-spacing:-.025em; margin:0 0 14px}
   .hero h1 em{font-style:normal; color:var(--peru)}
   .hero p{font-size:1.1rem; color:var(--ink-soft); max-width:56ch; margin:0}
-  .cards{display:grid; gap:16px; padding:8px 0 60px}
+  .cards{display:grid; gap:16px; padding-block:8px 60px}
   .card{border:1px solid var(--rule-strong); border-radius:14px; background:var(--card); padding:20px 22px; display:grid; gap:10px}
   .card.planned{opacity:.72}
   .card .head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
@@ -75,7 +75,7 @@
   .card .btn.demo{background:var(--blue); color:#fff}
   .card .btn.docs{background:transparent; color:var(--navy); border:1px solid var(--rule-strong)}
   .card .btn.disabled{background:transparent; color:var(--ink-faint); border:1px dashed var(--rule-strong); pointer-events:none}
-  .foot{border-top:1px solid var(--rule); padding:20px 0 50px; color:var(--ink-faint); font:13px/1.5 "JetBrains Mono",monospace}
+  .foot{border-top:1px solid var(--rule); padding-block:20px 50px; color:var(--ink-faint); font:13px/1.5 "JetBrains Mono",monospace}
 </style>
 </head><body>
 <header class="wrap hero">

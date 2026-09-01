@@ -56,7 +56,9 @@
   footer.pager a{text-decoration:none}
   footer.pager .spacer{flex:1}
 
-  .doc{padding:34px 0 8px}
+  .doc{padding-block:34px 8px}  /* sides come from .wrap -- do not use the
+                                   padding shorthand here, it would zero them
+                                   and the page goes edge-to-edge on mobile */
   .doc h1{font-size:1.9rem; line-height:1.15; letter-spacing:-.02em; margin:0 0 6px}
   .doc .lede-tag{font:600 12px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.1em; color:var(--brown); margin-bottom:22px}
   .doc h2{font-size:1.25rem; margin:34px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--rule)}
