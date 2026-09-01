@@ -40,7 +40,16 @@ if [[ ! -f "${ALLOWLIST_FILE}" ]]; then
   exit 1
 fi
 
-RSYNC_FLAGS=(-avz --delete)
+# Dev clutter that can sit inside an allowlisted directory but must never
+# reach the live site. --delete-excluded means these are also removed from
+# the server if a past deploy already shipped them -- same "only what's
+# meant to be there" intent as the allowlist itself.
+RSYNC_EXCLUDES=(
+  --exclude=claude_resume_command.txt
+  --exclude=.git
+)
+
+RSYNC_FLAGS=(-avz --delete --delete-excluded "${RSYNC_EXCLUDES[@]}")
 
 if [[ "${1:-}" == "--dry-run" || "${1:-}" == "-n" ]]; then
   RSYNC_FLAGS+=(--dry-run)
