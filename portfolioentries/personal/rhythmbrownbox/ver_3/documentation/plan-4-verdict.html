@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RhythmBrownBox v3 plan &mdash; part 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<style>
+  :root{
+    --navy:#1d2951; --gold:#e5cb12; --blue:#2e6da4; --blue-deep:#245580;
+    --peru:#cd853f; --brown:#8b5a2b;
+    --ink:#20242e; --ink-soft:#4a5160; --ink-faint:#7b8494;
+    --paper:#f7f5f0; --card:#fffdf8; --rule:rgba(29,41,81,.14); --rule-strong:rgba(29,41,81,.28);
+    --code-bg:#1b2233; --code-ink:#e7ecf5;
+    /* top nav: stays dark in both themes -- --navy is re-tinted for dark mode
+       below and must not drive the bar's background or its on-gold text */
+    --nav-bg:#1d2951; --nav-ink:#f4f2ec; --nav-ink-dim:rgba(244,242,236,.66);
+    --nav-border:rgba(244,242,236,.30);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+    --ink:#e9ecf3; --ink-soft:#b7bfce; --ink-faint:#828b9c;
+    --paper:#14171f; --card:#1b1f2a; --rule:rgba(233,236,243,.13); --rule-strong:rgba(233,236,243,.26);
+    --navy:#c9d3f0; --code-bg:#0f131d;
+  }}
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px; line-height:1.65;
+  }
+  a{color:var(--blue)}
+  code,pre,.mono{font-family:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,monospace}
+  .wrap{max-width:780px; margin:0 auto; padding:0 22px}
+
+  /* top nav */
+  .topnav{
+    background:var(--nav-bg); color:var(--nav-ink); position:sticky; top:0; z-index:20;
+    border-bottom:3px solid var(--gold);
+  }
+  .topnav .wrap{display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap; padding-top:12px; padding-bottom:12px}
+  .topnav a{color:var(--nav-ink); text-decoration:none}
+  .topnav .home{font-weight:800; letter-spacing:-.01em; margin-right:auto}
+  .topnav .home span{color:var(--gold)}
+  .topnav .vlinks{display:flex; gap:6px}
+  .topnav .vlinks a{
+    font:600 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.06em;
+    padding:6px 10px; border-radius:6px; border:1px solid var(--nav-border);
+  }
+  .topnav .vlinks a.cur{background:var(--gold); color:var(--nav-bg); border-color:var(--gold)}
+  .topnav .demo-btn{
+    font:700 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.05em;
+    background:var(--blue); color:#fff; padding:7px 12px; border-radius:6px;
+  }
+  .topnav .demo-btn.off{background:transparent; border:1px dashed var(--nav-border); color:var(--nav-ink-dim)}
+
+  footer.pager{border-top:1px solid var(--rule); margin-top:44px}
+  footer.pager .wrap{display:flex; justify-content:space-between; gap:12px; padding:22px; font:600 13px/1.3 "JetBrains Mono",monospace}
+  footer.pager a{text-decoration:none}
+  footer.pager .spacer{flex:1}
+
+  .doc{padding:34px 0 8px}
+  .doc h1{font-size:1.9rem; line-height:1.15; letter-spacing:-.02em; margin:0 0 6px}
+  .doc .lede-tag{font:600 12px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.1em; color:var(--brown); margin-bottom:22px}
+  .doc h2{font-size:1.25rem; margin:34px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--rule)}
+  .doc h3{font-size:1.05rem; margin:22px 0 8px}
+  .doc p{margin:0 0 14px; max-width:64ch}
+  .doc ul,.doc ol{margin:0 0 14px; padding-left:1.3em}
+  .doc li{margin-bottom:6px; max-width:62ch}
+  .doc img{max-width:100%; height:auto; border:1px solid var(--rule-strong); border-radius:10px; margin:6px 0 18px; background:var(--card)}
+  .doc code{background:color-mix(in srgb,var(--navy) 8%,transparent); border:1px solid var(--rule); padding:.5px 5px; border-radius:4px; font-size:.86em}
+  .doc pre{background:var(--code-bg); color:var(--code-ink); padding:14px 16px; border-radius:10px; overflow-x:auto; margin:0 0 18px}
+  .doc pre code{background:none; border:0; padding:0; font-size:12.5px; color:inherit}
+  .doc .tablewrap{overflow-x:auto; margin:0 0 18px}
+  .doc table{border-collapse:collapse; width:100%; font-size:14px}
+  .doc th,.doc td{border:1px solid var(--rule); padding:8px 11px; text-align:left; vertical-align:top}
+  .doc thead th{background:color-mix(in srgb,var(--navy) 10%,transparent); font-weight:700}
+  .doc blockquote{margin:0 0 16px; padding:2px 0 2px 16px; border-left:3px solid var(--gold); color:var(--ink-soft)}
+</style>
+</head><body>
+<nav class="topnav"><div class="wrap"><a class="home" href="https://roy.deliberatelearners.com/portfolioentries/personal/rhythmbrownbox/index.html">RhythmBrown<span>Box</span></a><div class="vlinks"><a class="" href="../../ver_1/documentation/index.html">v1</a><a class="" href="../../ver_2/documentation/index.html">v2</a><a class="cur" href="../../ver_3/documentation/index.html">v3</a></div><span class="demo-btn off">demo: planned</span></div></nav>
+<main class="wrap doc">
+<h1>RhythmBrownBox v3 plan — the verdict, and the FDD build</h1>
+<p class="lede-tag">Planning, August 2026. Part 4 of 4.</p>
+<p>Scoring the four branches from Parts <a href="plan-2-tdd-bdd.html">2</a> and <a href="plan-3-fdd-ddd.html">3</a>, and the plan v3 is actually built to.</p>
+<h2>The scorecard</h2>
+<p>Same axes as <a href="plan-1-spec.html">Part 1</a>. Hypothetical — no branch was fully
+built — but grounded in what v2 actually cost.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>TDD</th>
+<th>BDD</th>
+<th>FDD</th>
+<th>DDD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First runnable / green</td>
+<td>Fast (unit green)</td>
+<td>Slow (runner + step defs)</td>
+<td>Fast (walking skeleton)</td>
+<td>Slow (model + layers)</td>
+</tr>
+<tr>
+<td>Covers S1 / S4 / S5 naturally</td>
+<td>Weak</td>
+<td><strong>Strong</strong></td>
+<td>Strong</td>
+<td>Adapter-only</td>
+</tr>
+<tr>
+<td>Scheduler regression safety (S6 / S7)</td>
+<td><strong>Strong</strong></td>
+<td>Medium</td>
+<td>Medium (if noted)</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Non-shipping artefact cost</td>
+<td><strong>Lowest</strong></td>
+<td>Highest</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Shows something v1 / v2 didn't</td>
+<td>No — v2 did this</td>
+<td>Barely — v2 did this</td>
+<td><strong>Yes</strong></td>
+<td>Yes, but oversized</td>
+</tr>
+<tr>
+<td>Fit to a solo, ~6 KB app</td>
+<td>Good</td>
+<td>Heavy</td>
+<td><strong>Good</strong></td>
+<td>Overkill</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Reading it</h3>
+<ul>
+<li><strong>TDD</strong> and <strong>BDD</strong> both score well on merit and badly on novelty: v2's rebuild
+  was already a soft TDD core with Gherkin behaviour files. Running either as
+  v3's headline is a repeat.</li>
+<li><strong>DDD</strong> is the wrong size. S3, S4 and S5 — three of seven items — live entirely
+  in an adapter and get nothing from the model, while the ceremony cost is paid
+  in full. A model bigger than a 6 KB app is a portfolio anti-example.</li>
+<li><strong>FDD</strong> fits the shape of the work. v3 <em>is</em> a discrete feature set with shallow
+  domain depth; FDD's feature list is the backlog with no translation loss; each
+  feature is a vertical slice a reader can follow end to end; and it still lets
+  each slice borrow test-first for its own logic, so the S6 / S7 safety net is a
+  line in a design note rather than a missing piece.</li>
+</ul>
+<p><strong>v3 is built FDD.</strong> TDD lives on inside it, per feature, for the pure functions.</p>
+<h2>The FDD build plan</h2>
+<h3>1 · Features list</h3>
+<p>The v3 backlog, in FDD's
+<code>&lt;action&gt; the &lt;result&gt; &lt;of|for|by&gt; a(n) &lt;object&gt;</code> form, grouped into four build
+sets:</p>
+<p><strong>Set 1 — The sixth track</strong> (S1)</p>
+<ul>
+<li>Add a sixth, user-supplied sample track to the kit</li>
+<li>Load a sound file onto the custom track by picker or drag-and-drop</li>
+<li>Decode and hold the sample for the session</li>
+<li>Edit the display label of a track</li>
+<li>Warn when a custom sample is too large to share</li>
+</ul>
+<p><strong>Set 2 — The mixer</strong> (S2)</p>
+<ul>
+<li>Adjust the playback volume of a track</li>
+<li>Mute a track</li>
+<li>Route every track through its own gain into the master gain</li>
+<li>Migrate a saved pattern from the v2 format to the v3 format</li>
+</ul>
+<p><strong>Set 3 — Groove</strong> (S6, S7)</p>
+<ul>
+<li>Delay the off-beat steps of the pattern by a swing amount</li>
+<li>Set the step length of a track</li>
+<li>Realign independent-length tracks over their common period</li>
+<li>Keep the v2 timing exact at swing 0 and equal lengths</li>
+</ul>
+<p><strong>Set 4 — Layout &amp; access</strong> (S3, S4, S5)</p>
+<ul>
+<li>Centre the grid when it has fewer than eight columns</li>
+<li>Reflow the controls and grid for a phone-width screen</li>
+<li>Move focus across the grid with the arrow keys</li>
+<li>Announce a focused cell as track, step and state</li>
+</ul>
+<h3>2 · The shape (object model)</h3>
+<p>One page, and it stays one page:</p>
+<pre><code>Kit
+ └─ Track (×6)        slot · label · gain · muted · length · Step[]
+      └─ Sample       id · AudioBuffer · byteSize · builtIn?
+Transport             bpm · swing
+Persistence           (Kit, Transport) ⇄ save string   (v3 format)
+Audio                 Track.source → Track.gain → master gain → destination
+</code></pre>
+<p>The custom track is <code>slot 6</code>, <code>builtIn? = false</code>; the sample it holds is the only
+one that can be missing.</p>
+<h3>3 · Iteration</h3>
+<p>Design-by-feature, then build-by-feature, one set per branch:</p>
+<ol>
+<li><code>v3/set-1-custom-track</code> → PR</li>
+<li><code>v3/set-2-mixer</code> → PR</li>
+<li><code>v3/set-3-groove</code> → PR</li>
+<li><code>v3/set-4-layout-access</code> → PR</li>
+</ol>
+<p>Each feature inside a set:</p>
+<ol>
+<li><strong>Design walkthrough</strong> — a paragraph in the set's design note: which module,
+   which pure function, which DOM, what can go wrong.</li>
+<li><strong>Build</strong> — the vertical slice: a logic module + its Vitest tests + DOM
+   wiring.</li>
+<li><strong>Integrate</strong> — merged behind the walking skeleton; the app still runs at the
+   end of every feature.</li>
+</ol>
+<p>CI is unchanged from v2 (lint + test + build on push). "Done" for a set = its
+features are on <code>main</code>, the suite is green, and both the multi-file and
+single-file builds are produced.</p>
+<h3>4 · Walking skeleton (before Set 1)</h3>
+<p>Render the sixth row, silent, labelled "empty — drop a sound here"; teach the
+save reader to <em>accept</em> v3 fields without writing them yet; add the per-track
+gain nodes to the graph at unity. Nothing user-visible changes; every Set-1
+feature now has a place to attach.</p>
+<h3>5 · Sequencing rationale</h3>
+<ul>
+<li><strong>Set 1 first</strong> — the biggest unknown (file decode, drag events, session
+  storage) and the most visible win; do it while attention is highest.</li>
+<li><strong>Set 2 second</strong> — the format migration it carries is a prerequisite for saving
+  anything from Sets 3–4.</li>
+<li><strong>Set 3 third</strong> — highest regression risk; by now the suite is broad enough to
+  catch a scheduler slip.</li>
+<li><strong>Set 4 last</strong> — pure presentation and focus; nothing depends on it, and it is
+  the easiest to review against a real phone.</li>
+</ul>
+<h3>6 · Parking lot</h3>
+<p>Deferred, not forgotten: song mode, effects sends, a built-in extended kit, MIDI
+export. None block v3.</p>
+<h2>Definition of done for v3</h2>
+<p>Every feature in all four sets on <code>main</code>; the v2 suite plus the new per-feature
+tests green; verified at 360 px; a v2 save opens with defaults; a v3 save
+rejected safely by v2; the single-file build runs from <code>file://</code>.</p>
+<p>Back to the <strong><a href="index.html">v3 overview</a></strong>.</p>
+</main>
+<footer class="pager"><div class="wrap"><a href="plan-3-fdd-ddd.html">&larr; Part 3</a><span class="spacer"></span><a href="index.html">v3 plan</a><span class="spacer"></span><a href="../../index.html">RhythmBrownBox overview &rarr;</a></div></footer>
+</body></html>

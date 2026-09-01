@@ -10,6 +10,10 @@
     --ink:#20242e; --ink-soft:#4a5160; --ink-faint:#7b8494;
     --paper:#f7f5f0; --card:#fffdf8; --rule:rgba(29,41,81,.14); --rule-strong:rgba(29,41,81,.28);
     --code-bg:#1b2233; --code-ink:#e7ecf5;
+    /* top nav: stays dark in both themes -- --navy is re-tinted for dark mode
+       below and must not drive the bar's background or its on-gold text */
+    --nav-bg:#1d2951; --nav-ink:#f4f2ec; --nav-ink-dim:rgba(244,242,236,.66);
+    --nav-border:rgba(244,242,236,.30);
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
     --ink:#e9ecf3; --ink-soft:#b7bfce; --ink-faint:#828b9c;
@@ -28,24 +32,24 @@
 
   /* top nav */
   .topnav{
-    background:var(--navy); color:#fff; position:sticky; top:0; z-index:20;
+    background:var(--nav-bg); color:var(--nav-ink); position:sticky; top:0; z-index:20;
     border-bottom:3px solid var(--gold);
   }
   .topnav .wrap{display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap; padding-top:12px; padding-bottom:12px}
-  .topnav a{color:#fff; text-decoration:none}
+  .topnav a{color:var(--nav-ink); text-decoration:none}
   .topnav .home{font-weight:800; letter-spacing:-.01em; margin-right:auto}
   .topnav .home span{color:var(--gold)}
   .topnav .vlinks{display:flex; gap:6px}
   .topnav .vlinks a{
     font:600 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.06em;
-    padding:6px 10px; border-radius:6px; border:1px solid rgba(255,255,255,.25);
+    padding:6px 10px; border-radius:6px; border:1px solid var(--nav-border);
   }
-  .topnav .vlinks a.cur{background:var(--gold); color:var(--navy); border-color:var(--gold)}
+  .topnav .vlinks a.cur{background:var(--gold); color:var(--nav-bg); border-color:var(--gold)}
   .topnav .demo-btn{
     font:700 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.05em;
-    background:var(--blue); padding:7px 12px; border-radius:6px;
+    background:var(--blue); color:#fff; padding:7px 12px; border-radius:6px;
   }
-  .topnav .demo-btn.off{background:transparent; border:1px dashed rgba(255,255,255,.4); color:rgba(255,255,255,.6)}
+  .topnav .demo-btn.off{background:transparent; border:1px dashed var(--nav-border); color:var(--nav-ink-dim)}
 
   footer.pager{border-top:1px solid var(--rule); margin-top:44px}
   footer.pager .wrap{display:flex; justify-content:space-between; gap:12px; padding:22px; font:600 13px/1.3 "JetBrains Mono",monospace}
@@ -71,21 +75,40 @@
   .doc blockquote{margin:0 0 16px; padding:2px 0 2px 16px; border-left:3px solid var(--gold); color:var(--ink-soft)}
 </style>
 </head><body>
-<nav class="topnav"><div class="wrap"><a class="home" href="../../index.html">RhythmBrown<span>Box</span></a><div class="vlinks"><a class="" href="../../ver_1/documentation/index.html">v1</a><a class="" href="../../ver_2/documentation/index.html">v2</a><a class="cur" href="../../ver_3/documentation/index.html">v3</a></div><span class="demo-btn off">demo: planned</span></div></nav>
+<nav class="topnav"><div class="wrap"><a class="home" href="https://roy.deliberatelearners.com/portfolioentries/personal/rhythmbrownbox/index.html">RhythmBrown<span>Box</span></a><div class="vlinks"><a class="" href="../../ver_1/documentation/index.html">v1</a><a class="" href="../../ver_2/documentation/index.html">v2</a><a class="cur" href="../../ver_3/documentation/index.html">v3</a></div><span class="demo-btn off">demo: planned</span></div></nav>
 <main class="wrap doc">
 <h1>RhythmBrownBox — Version 3</h1>
-<p class="lede-tag">Planned. Not started.</p>
-
-<p>Candidate directions, carried over from v2's "still open" list:</p>
+<p class="lede-tag">Planned. In design. Not yet built.</p>
+<p>Scope is set; the build methodology was chosen by planning the same spec four ways first.</p>
+<h2>The spec</h2>
+<p>v3 adds, on top of v2:</p>
 <ul>
-<li>Roving-tabindex ARIA grid — one tab stop for the whole grid, arrow keys to
-  move within it (v2 makes every cell its own tab stop).</li>
-<li>Swing / shuffle.</li>
-<li>Per-track pattern lengths (polymeter — different-length rows playing against
-  each other).</li>
-<li>Possible reach: song mode (chained patterns), a fuller kit, simple effects.</li>
+<li><strong>A sixth track you load your own sample into</strong> — drag-and-drop or file-picker a
+  short <code>.wav</code> / <code>.mp3</code> / <code>.ogg</code>, with an editable label (tom, cymbal, synth…).</li>
+<li><strong>Per-track volume and mute</strong>, with the master Volume kept as the final stage.</li>
+<li><strong>A centred grid</strong> when the pattern is under eight columns.</li>
+<li><strong>A real mobile layout</strong> — controls in one column, the grid scrolling inside its
+  own box, 44 px touch targets, verified at 360 px.</li>
+<li><strong>A roving-tabindex grid</strong> — one tab stop, arrow keys to move (v2 makes every
+  cell its own tab stop).</li>
+<li><strong>Swing</strong> — 0–75 %, delaying the off-beat sixteenths.</li>
+<li><strong>Per-track pattern lengths</strong> — polymeter; a 12-step row against a 16-step row.</li>
 </ul>
-<p>This folder and its <code>documentation/</code> are placeholders until work begins.</p>
+<p>Non-goals: song mode, effects, a bigger built-in kit. Still MPL-2.0, still zero
+runtime dependencies, still shipped as both a multi-file and a single-file build.</p>
+<h2>The plan — a four-part series</h2>
+<p>The same spec, planned four ways, then one picked to build:</p>
+<ol>
+<li><a href="plan-1-spec.html">The spec, and a four-branch experiment</a></li>
+<li><a href="plan-2-tdd-bdd.html">The TDD and BDD branches</a></li>
+<li><a href="plan-3-fdd-ddd.html">The FDD and DDD branches</a></li>
+<li><a href="plan-4-verdict.html">The verdict, and the FDD build plan</a></li>
+</ol>
+<p><strong>Outcome:</strong> v3 is built <strong>Feature-Driven</strong>. v3 is a discrete feature set with
+shallow domain depth, so FDD's feature list is the backlog with no translation
+loss, and each feature is a vertical slice. TDD — which drove the v2 rebuild —
+lives on inside each feature for its pure logic.</p>
+<p>This folder's demo is a placeholder until the build begins.</p>
 </main>
 <footer class="pager"><div class="wrap"><a href="../../ver_2/documentation/index.html">&larr; v2 docs</a><span class="spacer"></span><a href="../../index.html">RhythmBrownBox overview</a><span class="spacer"></span><span></span></div></footer>
 </body></html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RhythmBrownBox v3 plan &mdash; part 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<style>
+  :root{
+    --navy:#1d2951; --gold:#e5cb12; --blue:#2e6da4; --blue-deep:#245580;
+    --peru:#cd853f; --brown:#8b5a2b;
+    --ink:#20242e; --ink-soft:#4a5160; --ink-faint:#7b8494;
+    --paper:#f7f5f0; --card:#fffdf8; --rule:rgba(29,41,81,.14); --rule-strong:rgba(29,41,81,.28);
+    --code-bg:#1b2233; --code-ink:#e7ecf5;
+    /* top nav: stays dark in both themes -- --navy is re-tinted for dark mode
+       below and must not drive the bar's background or its on-gold text */
+    --nav-bg:#1d2951; --nav-ink:#f4f2ec; --nav-ink-dim:rgba(244,242,236,.66);
+    --nav-border:rgba(244,242,236,.30);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+    --ink:#e9ecf3; --ink-soft:#b7bfce; --ink-faint:#828b9c;
+    --paper:#14171f; --card:#1b1f2a; --rule:rgba(233,236,243,.13); --rule-strong:rgba(233,236,243,.26);
+    --navy:#c9d3f0; --code-bg:#0f131d;
+  }}
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px; line-height:1.65;
+  }
+  a{color:var(--blue)}
+  code,pre,.mono{font-family:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,monospace}
+  .wrap{max-width:780px; margin:0 auto; padding:0 22px}
+
+  /* top nav */
+  .topnav{
+    background:var(--nav-bg); color:var(--nav-ink); position:sticky; top:0; z-index:20;
+    border-bottom:3px solid var(--gold);
+  }
+  .topnav .wrap{display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap; padding-top:12px; padding-bottom:12px}
+  .topnav a{color:var(--nav-ink); text-decoration:none}
+  .topnav .home{font-weight:800; letter-spacing:-.01em; margin-right:auto}
+  .topnav .home span{color:var(--gold)}
+  .topnav .vlinks{display:flex; gap:6px}
+  .topnav .vlinks a{
+    font:600 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.06em;
+    padding:6px 10px; border-radius:6px; border:1px solid var(--nav-border);
+  }
+  .topnav .vlinks a.cur{background:var(--gold); color:var(--nav-bg); border-color:var(--gold)}
+  .topnav .demo-btn{
+    font:700 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.05em;
+    background:var(--blue); color:#fff; padding:7px 12px; border-radius:6px;
+  }
+  .topnav .demo-btn.off{background:transparent; border:1px dashed var(--nav-border); color:var(--nav-ink-dim)}
+
+  footer.pager{border-top:1px solid var(--rule); margin-top:44px}
+  footer.pager .wrap{display:flex; justify-content:space-between; gap:12px; padding:22px; font:600 13px/1.3 "JetBrains Mono",monospace}
+  footer.pager a{text-decoration:none}
+  footer.pager .spacer{flex:1}
+
+  .doc{padding:34px 0 8px}
+  .doc h1{font-size:1.9rem; line-height:1.15; letter-spacing:-.02em; margin:0 0 6px}
+  .doc .lede-tag{font:600 12px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.1em; color:var(--brown); margin-bottom:22px}
+  .doc h2{font-size:1.25rem; margin:34px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--rule)}
+  .doc h3{font-size:1.05rem; margin:22px 0 8px}
+  .doc p{margin:0 0 14px; max-width:64ch}
+  .doc ul,.doc ol{margin:0 0 14px; padding-left:1.3em}
+  .doc li{margin-bottom:6px; max-width:62ch}
+  .doc img{max-width:100%; height:auto; border:1px solid var(--rule-strong); border-radius:10px; margin:6px 0 18px; background:var(--card)}
+  .doc code{background:color-mix(in srgb,var(--navy) 8%,transparent); border:1px solid var(--rule); padding:.5px 5px; border-radius:4px; font-size:.86em}
+  .doc pre{background:var(--code-bg); color:var(--code-ink); padding:14px 16px; border-radius:10px; overflow-x:auto; margin:0 0 18px}
+  .doc pre code{background:none; border:0; padding:0; font-size:12.5px; color:inherit}
+  .doc .tablewrap{overflow-x:auto; margin:0 0 18px}
+  .doc table{border-collapse:collapse; width:100%; font-size:14px}
+  .doc th,.doc td{border:1px solid var(--rule); padding:8px 11px; text-align:left; vertical-align:top}
+  .doc thead th{background:color-mix(in srgb,var(--navy) 10%,transparent); font-weight:700}
+  .doc blockquote{margin:0 0 16px; padding:2px 0 2px 16px; border-left:3px solid var(--gold); color:var(--ink-soft)}
+</style>
+</head><body>
+<nav class="topnav"><div class="wrap"><a class="home" href="https://roy.deliberatelearners.com/portfolioentries/personal/rhythmbrownbox/index.html">RhythmBrown<span>Box</span></a><div class="vlinks"><a class="" href="../../ver_1/documentation/index.html">v1</a><a class="" href="../../ver_2/documentation/index.html">v2</a><a class="cur" href="../../ver_3/documentation/index.html">v3</a></div><span class="demo-btn off">demo: planned</span></div></nav>
+<main class="wrap doc">
+<h1>RhythmBrownBox v3 plan — TDD and BDD</h1>
+<p class="lede-tag">Planning, August 2026. Part 2 of 4.</p>
+<p>Two test-first branches for the <a href="plan-1-spec.html">Part 1 spec</a>: unit-first, and scenario-first.</p>
+<h2>Branch A — TDD</h2>
+<p>Test-Driven Development: no production line without a failing unit test that
+demands it; red, green, refactor; let the design stay emergent.</p>
+<h3>Where the first commit lands</h3>
+<p>In <code>src/*.test.js</code>, against pure functions. v2's <code>scheduler</code>, <code>tempo</code>, <code>pattern</code>
+and <code>persistence</code> modules are already shaped this way, so the branch opens by
+extending their test lists:</p>
+<ul>
+<li><code>swing.js</code> — <code>swungOffset(step, swingPct, stepDur) → seconds</code>. Tests: 0 % is
+  identity; 50 % pushes odd-indexed steps by half a step; even steps never move;
+  clamp at 75 %.</li>
+<li><code>polymeter.js</code> — <code>trackStepAt(globalStep, trackLen) → localStep</code>;
+  <code>patternPeriod(lengths) → lcm</code>. Tests: equal lengths behave like v2; 12 against
+  16 realigns at 48; lengths 1 and 32 at the edges.</li>
+<li><code>persistence.js</code> — <code>migrateV2toV3(save)</code> fills six rows, default gains, default
+  mute, per-track length, swing 0. <code>parse(v3save)</code> round-trips. An over-long
+  custom sample drops from the URL payload with a flag set.</li>
+<li><code>mixer.js</code> — <code>trackGainValue(pct, muted) → 0..1</code>; graph wiring asserted against
+  a mock <code>AudioContext</code> (v2 already mocks it).</li>
+</ul>
+<h3>The artefacts</h3>
+<p>A test list per module (kept in the PR description), then the tests. Nothing
+else — no scenario files, no model doc.</p>
+<h3>Walking the spec</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Spec item</th>
+<th>TDD grip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S2 per-track volume</td>
+<td>Strong — pure gain math + graph wiring under a mock context</td>
+</tr>
+<tr>
+<td>S6 swing</td>
+<td>Strong — the whole thing is one pure function</td>
+</tr>
+<tr>
+<td>S7 polymeter</td>
+<td>Strong — LCM and index math, easy to pin</td>
+</tr>
+<tr>
+<td>S3 centred grid</td>
+<td>Weak — a layout rule; a unit test can assert a class or a computed count, not that it <em>looks</em> centred</td>
+</tr>
+<tr>
+<td>S1 upload</td>
+<td>Weak — <code>decodeAudioData</code>, <code>FileReader</code>, drag events; the decodable-file path unit-tests, the drag-drop UX does not</td>
+</tr>
+<tr>
+<td>S4 mobile</td>
+<td>Weak — viewport behaviour; unit tests say nothing</td>
+</tr>
+<tr>
+<td>S5 roving tabindex</td>
+<td>Partial — <code>nextFocusIndex(cur, key, rows, cols)</code> is pure and testable; the focus move and the SR text are not</td>
+</tr>
+</tbody>
+</table></div>
+<h3>What it catches early / leaves late</h3>
+<p><strong>Catches:</strong> every scheduler regression the moment it happens. S6 and S7 touch
+v2's hottest path and TDD is the tightest net possible there.</p>
+<p><strong>Leaves late:</strong> S1, S4 and half of S5. The branch reaches "all units green" with
+the upload flow and the mobile layout still unbuilt — nothing red is pointing at
+them.</p>
+<h3>Cost</h3>
+<p>Lowest artefact cost of the four. The risk is a false sense of doneness: a green
+suite over unshipped features.</p>
+<h2>Branch B — BDD</h2>
+<p>Behaviour-Driven Development: describe each capability as concrete scenarios in
+domain language first, agree they are right, then drive the code outside-in from
+step definitions.</p>
+<h3>Where the first commit lands</h3>
+<p>In <code>features/*.feature</code>, in Gherkin. v2 already carries feature files as
+<em>documentation</em>; this branch makes them executable — a runner plus step
+definitions over a real DOM (jsdom, or Playwright for the touch and focus
+scenarios).</p>
+<pre><code class="language-gherkin">Feature: Custom sample track
+
+  Scenario: Loading a sample by drag and drop
+    Given the custom track has no sample
+    And the custom track row shows &quot;drop a sound here&quot;
+    When I drop &quot;tom.wav&quot; onto the custom track
+    Then the custom track plays &quot;tom.wav&quot; on its active steps
+    And the row label can be edited
+
+  Scenario: Sharing a pattern that uses a large custom sample
+    Given the custom track uses a 2 MB sample
+    When I press Share
+    Then the copied link restores every track except the custom sample
+    And I am told the custom sample will not travel
+</code></pre>
+<pre><code class="language-gherkin">Feature: Playing on a phone
+
+  Scenario: The grid on a 360px screen
+    Given I open RhythmBrownBox at 360px wide
+    Then the controls stack in one column
+    And the step grid scrolls sideways within its own box
+    And the page itself never scrolls sideways
+    And every button is at least 44px tall
+</code></pre>
+<h3>The artefacts</h3>
+<p>Feature files (the spec, restated as behaviour), a step-definition layer, a
+runner in CI. The feature files double as the doc page — the trick v2 used, now
+backed by passing scenarios.</p>
+<h3>Walking the spec</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Spec item</th>
+<th>BDD grip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1 upload</td>
+<td>Strong — the drop, the empty state, the label edit, the share warning are all natural scenarios</td>
+</tr>
+<tr>
+<td>S4 mobile</td>
+<td>Strong — "at 360px …" is a first-class scenario, not an afterthought</td>
+</tr>
+<tr>
+<td>S5 roving tabindex</td>
+<td>Strong — "When I press ArrowRight / Then focus moves to the next step" reads directly</td>
+</tr>
+<tr>
+<td>S2 per-track volume</td>
+<td>Medium — "louder / muted" scenarios are easy; the exact gain curve is better as a unit test</td>
+</tr>
+<tr>
+<td>S6 swing</td>
+<td>Medium — "the off-beats are late" is describable; the exact offset wants a unit test underneath</td>
+</tr>
+<tr>
+<td>S7 polymeter</td>
+<td>Medium — "the hat and the kick drift apart then realign" is one good scenario; the LCM math sits under it</td>
+</tr>
+</tbody>
+</table></div>
+<h3>What it catches early / leaves late</h3>
+<p><strong>Catches:</strong> exactly the items TDD leaves late. S1, S4 and S5 are where BDD
+starts. The scenarios are also the Part 1 acceptance checklist, one-to-one.</p>
+<p><strong>Leaves thin:</strong> the numeric core. "Swing feels right" passing does not mean
+<code>swungOffset</code> is exact — you still want unit tests, so BDD here is TDD-plus, not
+TDD-instead.</p>
+<h3>Cost</h3>
+<p>Highest infrastructure cost of the four: a runner, step definitions and a
+browser-ish CI environment, all maintained. Scenario drift is real — one UI
+change can break twenty scenarios' wording at once. For a solo build the
+step-definition layer is a lot of scaffolding around a 6 KB app.</p>
+<h2>TDD vs BDD on this spec</h2>
+<p>They are not opposites; they cover different halves. TDD owns S2 / S6 / S7 (the
+numbers), BDD owns S1 / S4 / S5 (the interactions), and each is weak exactly
+where the other is strong. A real branch of either ends up borrowing the other.
+The honest read: <strong>v2 already did a soft version of both</strong>, so neither is the
+interesting choice for v3's write-up.</p>
+<p>Next: <strong><a href="plan-3-fdd-ddd.html">Part 3 — the FDD and DDD branches</a>.</strong></p>
+</main>
+<footer class="pager"><div class="wrap"><a href="plan-1-spec.html">&larr; Part 1</a><span class="spacer"></span><a href="index.html">v3 plan</a><span class="spacer"></span><a href="plan-3-fdd-ddd.html">Part 3 &rarr;</a></div></footer>
+</body></html>

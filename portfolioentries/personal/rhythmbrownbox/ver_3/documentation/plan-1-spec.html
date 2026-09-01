@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RhythmBrownBox v3 plan &mdash; part 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<style>
+  :root{
+    --navy:#1d2951; --gold:#e5cb12; --blue:#2e6da4; --blue-deep:#245580;
+    --peru:#cd853f; --brown:#8b5a2b;
+    --ink:#20242e; --ink-soft:#4a5160; --ink-faint:#7b8494;
+    --paper:#f7f5f0; --card:#fffdf8; --rule:rgba(29,41,81,.14); --rule-strong:rgba(29,41,81,.28);
+    --code-bg:#1b2233; --code-ink:#e7ecf5;
+    /* top nav: stays dark in both themes -- --navy is re-tinted for dark mode
+       below and must not drive the bar's background or its on-gold text */
+    --nav-bg:#1d2951; --nav-ink:#f4f2ec; --nav-ink-dim:rgba(244,242,236,.66);
+    --nav-border:rgba(244,242,236,.30);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+    --ink:#e9ecf3; --ink-soft:#b7bfce; --ink-faint:#828b9c;
+    --paper:#14171f; --card:#1b1f2a; --rule:rgba(233,236,243,.13); --rule-strong:rgba(233,236,243,.26);
+    --navy:#c9d3f0; --code-bg:#0f131d;
+  }}
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px; line-height:1.65;
+  }
+  a{color:var(--blue)}
+  code,pre,.mono{font-family:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,monospace}
+  .wrap{max-width:780px; margin:0 auto; padding:0 22px}
+
+  /* top nav */
+  .topnav{
+    background:var(--nav-bg); color:var(--nav-ink); position:sticky; top:0; z-index:20;
+    border-bottom:3px solid var(--gold);
+  }
+  .topnav .wrap{display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap; padding-top:12px; padding-bottom:12px}
+  .topnav a{color:var(--nav-ink); text-decoration:none}
+  .topnav .home{font-weight:800; letter-spacing:-.01em; margin-right:auto}
+  .topnav .home span{color:var(--gold)}
+  .topnav .vlinks{display:flex; gap:6px}
+  .topnav .vlinks a{
+    font:600 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.06em;
+    padding:6px 10px; border-radius:6px; border:1px solid var(--nav-border);
+  }
+  .topnav .vlinks a.cur{background:var(--gold); color:var(--nav-bg); border-color:var(--gold)}
+  .topnav .demo-btn{
+    font:700 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.05em;
+    background:var(--blue); color:#fff; padding:7px 12px; border-radius:6px;
+  }
+  .topnav .demo-btn.off{background:transparent; border:1px dashed var(--nav-border); color:var(--nav-ink-dim)}
+
+  footer.pager{border-top:1px solid var(--rule); margin-top:44px}
+  footer.pager .wrap{display:flex; justify-content:space-between; gap:12px; padding:22px; font:600 13px/1.3 "JetBrains Mono",monospace}
+  footer.pager a{text-decoration:none}
+  footer.pager .spacer{flex:1}
+
+  .doc{padding:34px 0 8px}
+  .doc h1{font-size:1.9rem; line-height:1.15; letter-spacing:-.02em; margin:0 0 6px}
+  .doc .lede-tag{font:600 12px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.1em; color:var(--brown); margin-bottom:22px}
+  .doc h2{font-size:1.25rem; margin:34px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--rule)}
+  .doc h3{font-size:1.05rem; margin:22px 0 8px}
+  .doc p{margin:0 0 14px; max-width:64ch}
+  .doc ul,.doc ol{margin:0 0 14px; padding-left:1.3em}
+  .doc li{margin-bottom:6px; max-width:62ch}
+  .doc img{max-width:100%; height:auto; border:1px solid var(--rule-strong); border-radius:10px; margin:6px 0 18px; background:var(--card)}
+  .doc code{background:color-mix(in srgb,var(--navy) 8%,transparent); border:1px solid var(--rule); padding:.5px 5px; border-radius:4px; font-size:.86em}
+  .doc pre{background:var(--code-bg); color:var(--code-ink); padding:14px 16px; border-radius:10px; overflow-x:auto; margin:0 0 18px}
+  .doc pre code{background:none; border:0; padding:0; font-size:12.5px; color:inherit}
+  .doc .tablewrap{overflow-x:auto; margin:0 0 18px}
+  .doc table{border-collapse:collapse; width:100%; font-size:14px}
+  .doc th,.doc td{border:1px solid var(--rule); padding:8px 11px; text-align:left; vertical-align:top}
+  .doc thead th{background:color-mix(in srgb,var(--navy) 10%,transparent); font-weight:700}
+  .doc blockquote{margin:0 0 16px; padding:2px 0 2px 16px; border-left:3px solid var(--gold); color:var(--ink-soft)}
+</style>
+</head><body>
+<nav class="topnav"><div class="wrap"><a class="home" href="https://roy.deliberatelearners.com/portfolioentries/personal/rhythmbrownbox/index.html">RhythmBrown<span>Box</span></a><div class="vlinks"><a class="" href="../../ver_1/documentation/index.html">v1</a><a class="" href="../../ver_2/documentation/index.html">v2</a><a class="cur" href="../../ver_3/documentation/index.html">v3</a></div><span class="demo-btn off">demo: planned</span></div></nav>
+<main class="wrap doc">
+<h1>RhythmBrownBox v3 — the spec, and a four-branch experiment</h1>
+<p class="lede-tag">Planning, August 2026. Part 1 of 4.</p>
+<p>One spec, planned four ways — TDD, BDD, FDD, DDD — then one of them picked to build.</p>
+<h2>Why do this</h2>
+<p>v2 was a ground-up rebuild driven by a code audit and an informal "agile / BDD /
+TDD" backlog: test-first on the pure logic, Gherkin <code>.feature</code> files for the DOM
+and audio behaviour. It worked, but the methodology was whatever got that
+increment done — never a deliberate choice.</p>
+<p>v3 has a small, bounded scope (below). That makes it a good place to run a
+deliberate experiment: take the <strong>same</strong> acceptance criteria and plan four
+branches, each driven by one methodology —</p>
+<ul>
+<li><strong>TDD</strong> — Test-Driven Development (unit-first; red, green, refactor)</li>
+<li><strong>BDD</strong> — Behaviour-Driven Development (scenario-first, outside-in)</li>
+<li><strong>FDD</strong> — Feature-Driven Development (feature-list-first; design- and build-by-feature)</li>
+<li><strong>DDD</strong> — Domain-Driven Design (model-first; ubiquitous language, layered)</li>
+</ul>
+<p>Parts 2 and 3 walk each branch hypothetically — where it puts the first commit,
+what its artefacts are, what it catches early and what it leaves late. Part 4
+scores them and picks one to actually build. It won't be TDD; v2 already tells
+that story.</p>
+<h2>The v3 spec</h2>
+<p>The same target for all four branches. v3 ships when every item here is true, on
+desktop and on a phone, with the v2 test suite still green.</p>
+<h3>S1 — Uploadable custom-sample track</h3>
+<p>A sixth track, below v2's five, whose sample the user supplies:</p>
+<ul>
+<li>Load a short audio file by file-picker <strong>or</strong> drag-and-drop onto the track.</li>
+<li><code>.wav</code>, <code>.mp3</code>, <code>.ogg</code> accepted; decoded once via <code>decodeAudioData</code>, held as an
+  <code>AudioBuffer</code> for the session.</li>
+<li>The track label is editable free text — "tom", "cymbal", "synth stab".</li>
+<li>Until a sample is loaded the row is present but silent, and says so.</li>
+<li>A loaded sample is offered for persistence (see S2). If it is too large for the
+  share URL, Share still works and warns that the custom sample will not travel.</li>
+</ul>
+<h3>S2 — Per-track volume and mute</h3>
+<ul>
+<li>Every track gets its own gain (0–100 %) and its own mute, independent of the
+  others.</li>
+<li>The existing master Volume stays as the final stage:
+  <code>source → track gain → master gain → destination</code>.</li>
+<li>The saved-pattern format bumps v2 → v3: it now carries six rows, per-track gain
+  and mute, per-track length (S7) and swing (S6). A v2 save loads with defaults
+  filled in; a v3 save opened by v2 falls back to an empty grid — the same way v2
+  already handles a save that is a row short.</li>
+</ul>
+<h3>S3 — Centred / responsive grid</h3>
+<ul>
+<li>The grid is laid out from its column count. At the full 16 / 32 it fills the
+  width; below 8 columns (short patterns, or the shortest track under S7) it
+  <strong>centres</strong> instead of pinning left.</li>
+<li>Cells keep a minimum size; the grid never shrinks cells to fit.</li>
+</ul>
+<h3>S4 — Mobile UX</h3>
+<ul>
+<li>Below one breakpoint the controls reflow to a single column; the step grid
+  scrolls sideways <strong>inside its own container</strong> — the page body never scrolls
+  horizontally.</li>
+<li>Every control is a touch target of at least 44 px. Nothing is hover-only.</li>
+<li>Transport (Start / Stop / Share) stays reachable without scrolling the grid
+  back into view.</li>
+<li>Verified at 360 px wide.</li>
+</ul>
+<h3>S5 — Roving-tabindex grid</h3>
+<ul>
+<li>The grid is one tab stop. Arrow keys move a roving focus from cell to cell;
+  Space or Enter toggles; Home / End jump within a row.</li>
+<li>Replaces v2, where each of up to 192 cells is its own tab stop.</li>
+<li>Screen-reader output names the focused cell as track + step + on/off.</li>
+</ul>
+<h3>S6 — Swing</h3>
+<ul>
+<li>A swing control, 0–75 %, delays every off-beat sixteenth (steps 2, 4, 6 …) by
+  that fraction of a step.</li>
+<li>Applied as a pure function inside the scheduler; 0 % is bit-for-bit the v2
+  timing.</li>
+</ul>
+<h3>S7 — Per-track pattern length (polymeter)</h3>
+<ul>
+<li>Each track has its own length (2–32). Rows loop independently, so a 12-step hat
+  plays against a 16-step kick and the pattern realigns every LCM steps.</li>
+<li>The global "pattern length" becomes the default applied to new or reset tracks.</li>
+</ul>
+<h3>Non-goals for v3</h3>
+<p>Song mode (chained patterns), effects, a larger built-in kit (S1 covers extra
+voices). Still MPL-2.0, still zero runtime dependencies, still shipped as <strong>both</strong>
+a multi-file <code>dist/</code> and a single self-contained <code>index.html</code>.</p>
+<h2>How the branches will be judged</h2>
+<p>Part 4 scores the four on the same axes:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First commit</td>
+<td>How long until something runs, or something is green?</td>
+</tr>
+<tr>
+<td>Covers S1 / S4 / S5</td>
+<td>Does the method naturally reach upload, mobile and focus — the interaction-heavy items — or leave them to the end?</td>
+</tr>
+<tr>
+<td>Regression safety</td>
+<td>What stops S6 / S7 from breaking the v2 scheduler?</td>
+</tr>
+<tr>
+<td>Artefact cost</td>
+<td>Feature lists, scenarios, step definitions, model docs — how much non-shipping material?</td>
+</tr>
+<tr>
+<td>Portfolio value</td>
+<td>Does the write-up show something v1 and v2 didn't already?</td>
+</tr>
+<tr>
+<td>Fit to a solo, small codebase</td>
+<td>Ceremony vs payoff at ~6 KB of app code</td>
+</tr>
+</tbody>
+</table></div>
+<p>Next: <strong><a href="plan-2-tdd-bdd.html">Part 2 — the TDD and BDD branches</a>.</strong></p>
+</main>
+<footer class="pager"><div class="wrap"><a href="index.html">&larr; v3 overview</a><span class="spacer"></span><a href="index.html">v3 plan</a><span class="spacer"></span><a href="plan-2-tdd-bdd.html">Part 2 &rarr;</a></div></footer>
+</body></html>

@@ -10,6 +10,10 @@
     --ink:#20242e; --ink-soft:#4a5160; --ink-faint:#7b8494;
     --paper:#f7f5f0; --card:#fffdf8; --rule:rgba(29,41,81,.14); --rule-strong:rgba(29,41,81,.28);
     --code-bg:#1b2233; --code-ink:#e7ecf5;
+    /* top nav: stays dark in both themes -- --navy is re-tinted for dark mode
+       below and must not drive the bar's background or its on-gold text */
+    --nav-bg:#1d2951; --nav-ink:#f4f2ec; --nav-ink-dim:rgba(244,242,236,.66);
+    --nav-border:rgba(244,242,236,.30);
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
     --ink:#e9ecf3; --ink-soft:#b7bfce; --ink-faint:#828b9c;
@@ -28,24 +32,24 @@
 
   /* top nav */
   .topnav{
-    background:var(--navy); color:#fff; position:sticky; top:0; z-index:20;
+    background:var(--nav-bg); color:var(--nav-ink); position:sticky; top:0; z-index:20;
     border-bottom:3px solid var(--gold);
   }
   .topnav .wrap{display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap; padding-top:12px; padding-bottom:12px}
-  .topnav a{color:#fff; text-decoration:none}
+  .topnav a{color:var(--nav-ink); text-decoration:none}
   .topnav .home{font-weight:800; letter-spacing:-.01em; margin-right:auto}
   .topnav .home span{color:var(--gold)}
   .topnav .vlinks{display:flex; gap:6px}
   .topnav .vlinks a{
     font:600 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.06em;
-    padding:6px 10px; border-radius:6px; border:1px solid rgba(255,255,255,.25);
+    padding:6px 10px; border-radius:6px; border:1px solid var(--nav-border);
   }
-  .topnav .vlinks a.cur{background:var(--gold); color:var(--navy); border-color:var(--gold)}
+  .topnav .vlinks a.cur{background:var(--gold); color:var(--nav-bg); border-color:var(--gold)}
   .topnav .demo-btn{
     font:700 12.5px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.05em;
-    background:var(--blue); padding:7px 12px; border-radius:6px;
+    background:var(--blue); color:#fff; padding:7px 12px; border-radius:6px;
   }
-  .topnav .demo-btn.off{background:transparent; border:1px dashed rgba(255,255,255,.4); color:rgba(255,255,255,.6)}
+  .topnav .demo-btn.off{background:transparent; border:1px dashed var(--nav-border); color:var(--nav-ink-dim)}
 
   footer.pager{border-top:1px solid var(--rule); margin-top:44px}
   footer.pager .wrap{display:flex; justify-content:space-between; gap:12px; padding:22px; font:600 13px/1.3 "JetBrains Mono",monospace}
@@ -83,7 +87,7 @@
 <main class="wrap"><div class="cards">
 <article class="card v1"><div class="head"><span class="vno">Version 1</span><span class="tag">original build</span></div><p>The original build &mdash; NexusUI canvas widgets, Bootstrap layout, a main-thread scheduler, no tooling. Kept exactly as it was.</p><div class="actions"><a class="btn demo" href="ver_1/index.html">&#9654; Open demo</a><a class="btn docs" href="ver_1/documentation/index.html">Documentation</a></div></article>
 <article class="card v2"><div class="head"><span class="vno">Version 2</span><span class="tag">2026 rebuild</span></div><p>A ground-up rebuild from a code audit: real BPM, saved &amp; shareable patterns, a Web&nbsp;Worker clock, a fifth (snare) track, native keyboard-and screen-reader-accessible controls, and zero dependencies.</p><div class="actions"><a class="btn demo" href="ver_2/index.html">&#9654; Open demo</a><a class="btn docs" href="ver_2/documentation/index.html">Documentation</a></div></article>
-<article class="card v3 planned"><div class="head"><span class="vno">Version 3</span><span class="tag">planned</span></div><p>Not started. Candidates: a roving-tabindex grid, swing, per-track lengths for polymeter.</p><div class="actions"><span class="btn disabled">demo: planned</span><a class="btn docs" href="ver_3/documentation/index.html">Documentation</a></div></article>
+<article class="card v3 planned"><div class="head"><span class="vno">Version 3</span><span class="tag">in design</span></div><p>In design. Adds an upload-your-own-sample track, per-track volume, swing, polymeter, a roving-tabindex grid and a real mobile layout &mdash; with the build methodology (FDD) chosen in a four-part write-up first.</p><div class="actions"><span class="btn disabled">demo: planned</span><a class="btn docs" href="ver_3/documentation/index.html">Documentation</a></div></article>
 </div></main>
 <div class="wrap"><p class="foot">
   Each <span class="mono">ver_N/index.html</span> is one self-contained file &mdash; no server,
