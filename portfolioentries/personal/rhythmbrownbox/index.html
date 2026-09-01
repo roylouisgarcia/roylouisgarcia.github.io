@@ -30,6 +30,16 @@
   code,pre,.mono{font-family:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,monospace}
   .wrap{max-width:780px; margin:0 auto; padding:0 22px}
 
+  /* breadcrumb: portfolio path, scrolls away above the sticky top nav */
+  .crumbs{border-bottom:1px solid var(--rule); background:var(--card)}
+  .crumbs .wrap{display:flex; flex-wrap:wrap; align-items:center; gap:3px 7px;
+    padding-top:11px; padding-bottom:11px;
+    font:600 11.5px/1.5 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.05em}
+  .crumbs a{color:var(--ink-faint); text-decoration:none}
+  .crumbs a:hover{color:var(--blue); text-decoration:underline}
+  .crumbs .sep{color:var(--ink-faint); opacity:.55}
+  .crumbs .cur{color:var(--brown)}
+
   /* top nav */
   .topnav{
     background:var(--nav-bg); color:var(--nav-ink); position:sticky; top:0; z-index:20;
@@ -56,14 +66,6 @@
   footer.pager a{text-decoration:none}
   footer.pager .spacer{flex:1}
 
-  .crumbs{border-bottom:1px solid var(--rule); background:var(--card)}
-  .crumbs .wrap{display:flex; flex-wrap:wrap; align-items:center; gap:3px 7px;
-    padding-top:11px; padding-bottom:11px;
-    font:600 11.5px/1.5 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.05em}
-  .crumbs a{color:var(--ink-faint); text-decoration:none}
-  .crumbs a:hover{color:var(--blue); text-decoration:underline}
-  .crumbs .sep{color:var(--ink-faint); opacity:.55}
-  .crumbs .cur{color:var(--brown)}
   .hero{padding-block:46px 26px}  /* sides from .wrap; see note in DOC_STYLE */
   .hero .kicker{font:600 12px/1 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.14em; color:var(--brown); margin-bottom:12px}
   .hero h1{font-size:2.5rem; line-height:1.05; letter-spacing:-.025em; margin:0 0 14px}
@@ -86,12 +88,7 @@
   .foot{border-top:1px solid var(--rule); padding-block:20px 50px; color:var(--ink-faint); font:13px/1.5 "JetBrains Mono",monospace}
 </style>
 </head><body>
-<nav class="crumbs" aria-label="Breadcrumb"><div class="wrap">
-  <a href="https://roy.deliberatelearners.com/">roy.deliberatelearners.com</a><span class="sep">&rsaquo;</span>
-  <a href="https://roy.deliberatelearners.com/#projects">Projects</a><span class="sep">&rsaquo;</span>
-  <a href="https://roy.deliberatelearners.com/#personal">Personal</a><span class="sep">&rsaquo;</span>
-  <span class="cur" aria-current="page">RhythmBrownBox</span>
-</div></nav>
+<nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><a href="https://roy.deliberatelearners.com/">roy.deliberatelearners.com</a><span class="sep">&rsaquo;</span><a href="https://roy.deliberatelearners.com/#projects">Projects</a><span class="sep">&rsaquo;</span><a href="https://roy.deliberatelearners.com/#personal">Personal</a><span class="sep">&rsaquo;</span><span class="cur" aria-current="page">RhythmBrownBox</span></div></nav>
 <header class="wrap hero">
   <p class="kicker">Personal project &middot; browser drum machine</p>
   <h1>RhythmBrown<em>Box</em></h1>

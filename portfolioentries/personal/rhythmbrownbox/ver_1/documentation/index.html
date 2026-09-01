@@ -30,6 +30,16 @@
   code,pre,.mono{font-family:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,monospace}
   .wrap{max-width:780px; margin:0 auto; padding:0 22px}
 
+  /* breadcrumb: portfolio path, scrolls away above the sticky top nav */
+  .crumbs{border-bottom:1px solid var(--rule); background:var(--card)}
+  .crumbs .wrap{display:flex; flex-wrap:wrap; align-items:center; gap:3px 7px;
+    padding-top:11px; padding-bottom:11px;
+    font:600 11.5px/1.5 "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.05em}
+  .crumbs a{color:var(--ink-faint); text-decoration:none}
+  .crumbs a:hover{color:var(--blue); text-decoration:underline}
+  .crumbs .sep{color:var(--ink-faint); opacity:.55}
+  .crumbs .cur{color:var(--brown)}
+
   /* top nav */
   .topnav{
     background:var(--nav-bg); color:var(--nav-ink); position:sticky; top:0; z-index:20;
@@ -77,6 +87,7 @@
   .doc blockquote{margin:0 0 16px; padding:2px 0 2px 16px; border-left:3px solid var(--gold); color:var(--ink-soft)}
 </style>
 </head><body>
+<nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><a href="https://roy.deliberatelearners.com/">roy.deliberatelearners.com</a><span class="sep">&rsaquo;</span><a href="https://roy.deliberatelearners.com/#projects">Projects</a><span class="sep">&rsaquo;</span><a href="https://roy.deliberatelearners.com/#personal">Personal</a><span class="sep">&rsaquo;</span><a href="https://roy.deliberatelearners.com/portfolioentries/personal/rhythmbrownbox/index.html">RhythmBrownBox</a><span class="sep">&rsaquo;</span><span class="cur" aria-current="page">Version 1</span></div></nav>
 <nav class="topnav"><div class="wrap"><a class="home" href="https://roy.deliberatelearners.com/portfolioentries/personal/rhythmbrownbox/index.html">RhythmBrown<span>Box</span></a><div class="vlinks"><a class="cur" href="../../ver_1/documentation/index.html">v1</a><a class="" href="../../ver_2/documentation/index.html">v2</a><a class="" href="../../ver_3/documentation/index.html">v3</a></div><a class="demo-btn" href="../index.html">&#9654; Open demo</a></div></nav>
 <main class="wrap doc">
 <h1>RhythmBrownBox — Version 1</h1>
