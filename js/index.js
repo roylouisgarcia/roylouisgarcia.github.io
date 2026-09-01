@@ -21,7 +21,15 @@ $(document).ready(function(){
 
     // Set default state - all project tabs hidden
     hideAllProjectTabs();
-    showCurrentSitesTab();
+    // Defer the initial "Current" tab render by a tick. This ready() callback
+    // runs synchronously during parse (the <script> sits at the end of
+    // <body>), and showCurrentSitesTab()'s .show(..., complete) callback can
+    // fire synchronously straight into loadCurrentSitesSlides(), which reads
+    // `currentSitesData` -- a const declared further down this file and still
+    // in the temporal dead zone at that moment. The ReferenceError it threw
+    // aborted the rest of this block, so the project-tab click handlers below
+    // never bound. One tick lets the whole file finish initializing first.
+    setTimeout(showCurrentSitesTab, 0);
 
  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
@@ -2466,3 +2474,32 @@ function getBertelsmannProjectImages(projectFolder) {
     const images = projectImages[projectFolder] || [];
     return images.map(filename => `${basePath}${projectFolder}/${filename}`);
 }
+
+// ---------------------------------------------------------------------------
+// Inbound deep link: "#personal"
+//
+// Standalone project pages (e.g. the RhythmBrownBox hub under
+// portfolioentries/personal/rhythmbrownbox/) link back here with
+// https://roy.deliberatelearners.com/#personal so a visitor lands on
+// Projects > Personal, where that project sits. The rest of the site only
+// acts on the URL hash when a nav-bar link is clicked, not on load, so a bare
+// "#projects" would show the default "Current" tab -- this opens the Personal
+// tab and scrolls the Projects section into view. Runs last (registered at
+// end of file), after the tab click handlers are bound in the first ready().
+$(document).ready(function () {
+    function goPersonal() {
+        var section = document.getElementById('projects');
+        if (!section || !document.getElementById('link2Personal')) return;
+        $('#specialization, .jumbotron-before-specialization').hide();
+        $('#link2Personal').trigger('click');
+        $('html, body').animate({ scrollTop: $(section).offset().top - 60 }, 700);
+    }
+    function checkHash() {
+        if ((window.location.hash || '').toLowerCase() === '#personal') goPersonal();
+    }
+    // Deferred so it runs after the initial "Current" tab render (also
+    // setTimeout'd in the first ready() above) -- otherwise that render fires
+    // last and clobbers the Personal tab this just selected.
+    setTimeout(checkHash, 0);
+    $(window).on('hashchange', checkHash);
+});
