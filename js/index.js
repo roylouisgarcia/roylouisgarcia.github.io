@@ -1,15 +1,7 @@
 // Slideshow state, declared up front so it's never in the temporal dead
-// zone regardless of when/where an init function ends up getting called
-// from (a $(document).ready() callback can fire synchronously as soon as
-// it's registered if the document is already parsed -- which it is here,
-// since this script loads at the end of <body> -- so anything called from
-// early in this file must not depend on a `let`/`const` declared later on).
-let currentSitesSlideIndex = 0;
-let currentSitesSlides = [];
+// zone regardless of when/where an init function ends up getting called from.
 let moocSlideIndex = 0;
 let moocSlides = [];
-let currentFeaturedSlideIndex = 0;
-let featuredSlides = [];
 let hartnellCurrentSlideIndex = 0;
 let hartnellSlides = [];
 let skillsCurrentSlideIndex = 0;
@@ -17,19 +9,427 @@ let skillsSlides = [];
 let interestsCurrentSlideIndex = 0;
 let interestsSlides = [];
 
+/* =========================================================================
+   PROJECTS SECTION -- capability tabs
+
+   Five folder tabs, each a data-driven slideshow (Academic keeps its own
+   school sub-tabs and is left alone). One config, PROJECT_TABS, names each
+   tab's content class, folder-tab id, URL hash, DOM id prefix, and data
+   array. A single generic slideshow engine (createSlideshow) serves all
+   the data-driven tabs, replacing the two near-identical engines that used
+   to drive "Current Sites" and "Featured Projects".
+
+   Data arrays (securityData / productData / consultingData / learningData)
+   are defined lower in this file; PROJECT_TABS only names them by string,
+   and nothing here runs until after the whole file has parsed (the initial
+   render is deferred a tick from $(document).ready), so forward references
+   resolve fine.
+   ========================================================================= */
+
+const PROJECT_TABS = [
+  { tab: 'link2Security',   section: 'security',   hash: '#security',   ids: 'security',   data: 'securityData' },
+  { tab: 'link2Product',    section: 'product',    hash: '#product',    ids: 'product',    data: 'productData' },
+  { tab: 'link2Consulting', section: 'consulting', hash: '#consulting', ids: 'consulting', data: 'consultingData' },
+  { tab: 'link2Academic',   section: 'academic',   hash: '#academic' },
+  { tab: 'link2Learning',   section: 'learning',   hash: '#learning',   ids: 'learning',   data: 'learningData' },
+];
+const PROJECT_TAB_ORDER = PROJECT_TABS.map(function (t) { return t.tab; });
+const DEFAULT_PROJECT_TAB = 'link2Security';
+const _slideshows = {};   // ids -> slideshow controller, built lazily
+
+// Map an inbound URL hash to a folder-tab id. `#personal` is a legacy alias
+// for Product -- the standalone RhythmBrownBox pages link back with it.
+function projectTabForHash(hash) {
+  const h = (hash || '').toLowerCase();
+  if (h === '#personal') return 'link2Product';
+  const m = PROJECT_TABS.filter(function (t) { return t.hash === h; })[0];
+  return m ? m.tab : null;
+}
+
+// Build a tab's slideshow the first time it is revealed. PROJECT_DATA is
+// defined lower in the file (with the data arrays); this only runs after
+// the deferred initial render, by which point it's assigned.
+function ensureSlideshow(ids) {
+  if (!ids || _slideshows[ids]) return;
+  const data = (typeof PROJECT_DATA !== 'undefined') ? PROJECT_DATA[ids] : null;
+  if (!Array.isArray(data)) return;
+  _slideshows[ids] = createSlideshow(ids, data);
+}
+
+// Show one project tab, hide the rest; keep folder-tab `active` state, the
+// Academic sub-panels, and the mobile grid order in sync.
+function showProjectTab(tabId) {
+  PROJECT_TABS.forEach(function (t) {
+    if (t.tab === tabId) {
+      $('.' + t.section).show('fast', function () { ensureSlideshow(t.ids); });
+      $('#' + t.tab).addClass('active');
+    } else {
+      $('.' + t.section).hide('fast');
+      $('#' + t.tab).removeClass('active');
+    }
+  });
+  $('#hartnell, #csumb, #capella').hide('fast');
+  $('#associate, #bachelors, #graduate').css('opacity', '1');
+  hideFeaturedProjects();
+  hideAcademicProjects();
+  hideProProjects();
+  hideLyricsProjects();
+  updateMobileTabOrder(tabId);
+}
+
+function hideAllProjectTabs() {
+  PROJECT_TABS.forEach(function (t) {
+    $('.' + t.section).hide('fast');
+    $('#' + t.tab).removeClass('active');
+  });
+  $('#hartnell, #csumb, #capella').hide('fast');
+  $('#associate, #bachelors, #graduate').css('opacity', '1');
+  hideFeaturedProjects();
+  hideAcademicProjects();
+  hideProProjects();
+  hideLyricsProjects();
+}
+
+// Hide helpers -- top-level so showProjectTab()/hideAllProjectTabs() (also
+// top-level) can call them. hideFeaturedProjects and hideProProjects both
+// close the NostradmsX / Red Box image showcases in the Consulting tab.
+function hideFeaturedProjects() {
+  $('#nostradmsxdiv, #redboxdiv').hide('fast');
+  $('#nostradmsxbtn, #redboxbtn').removeClass('totiebtnActive');
+}
+function hideProProjects() {
+  $('#nostradmsxdiv, #redboxdiv').hide('fast');
+  $('#nostradmsxbtn, #redboxbtn').removeClass('totiebtnActive');
+}
+function hideAcademicProjects() {
+  $('#hartnellprojects, #hartnellcourses, #csumbprojects, #csumbcourses, #capellaprojects, #capellacourses').hide('fast');
+  $('#hartnellcoursesbtn, #hartnellprojectsbtn, #csumbcoursesbtn, #csumbprojectsbtn, #capellacoursesbtn, #capellaprojectsbtn')
+    .removeClass('totiebtnActive');
+}
+function hideLyricsProjects() {
+  $('#angellyrics, #uulitinlyrics, #moonlyrics').hide('fast');
+}
+
+// Mobile tab grid order: the active tab always lands in the bottom-left
+// slot; the rest keep their relative order. Sets a data-pos attribute a
+// mobile-only media query maps to CSS `order` (inert on desktop).
+function updateMobileTabOrder(activeId) {
+  var others = PROJECT_TAB_ORDER.filter(function (id) { return id !== activeId; });
+  var slots = [1, 2, 3, 4, 5];
+  var activeSlot = PROJECT_TAB_ORDER.length <= 4 ? 3 : 4;
+  slots.splice(activeSlot - 1, 1);
+  var positions = {};
+  positions[activeId] = activeSlot;
+  others.forEach(function (id, i) { positions[id] = slots[i]; });
+  PROJECT_TAB_ORDER.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.setAttribute('data-pos', positions[id]);
+  });
+}
+
+/* ---- generic slideshow engine -----------------------------------------
+   `ids` is a DOM id prefix; a tab's markup provides:
+     #<ids>Slides  #<ids>Thumbs  #<ids>Current  #<ids>Total  #<ids>Prev  #<ids>Next
+   Each data item: { title, image, url | (siteUrl & githubUrl),
+                     description?, readMore?, isBertelsmann? }
+--------------------------------------------------------------------- */
+function createSlideshow(ids, data) {
+  const slidesEl = document.getElementById(ids + 'Slides');
+  const thumbsEl = document.getElementById(ids + 'Thumbs');
+  if (!slidesEl || !thumbsEl) {
+    console.error('Slideshow containers not found for "' + ids + '"');
+    return null;
+  }
+  const currentEl = document.getElementById(ids + 'Current');
+  const totalEl = document.getElementById(ids + 'Total');
+  slidesEl.innerHTML = '';
+  thumbsEl.innerHTML = '';
+
+  let index = 0;
+  const slides = [];
+
+  const styleBtn = function (a, bg, hover) {
+    a.style.cssText = 'display:inline-block;margin:5px;padding:10px 20px;background-color:' + bg +
+      ';color:#fff;text-decoration:none;border-radius:5px;font-weight:bold;transition:background-color .3s ease';
+    a.onmouseover = function () { a.style.backgroundColor = hover; };
+    a.onmouseout = function () { a.style.backgroundColor = bg; };
+  };
+
+  data.forEach(function (item, i) {
+    const primaryUrl = item.siteUrl || item.url || null;
+    const anyUrl = primaryUrl || item.githubUrl || null;
+    const openPrimary = function () {
+      if (item.isBertelsmann) { showBertelsmannProjects(); return; }
+      if (primaryUrl) window.open(primaryUrl, primaryUrl.indexOf('http') === 0 ? '_blank' : '_self');
+    };
+
+    const slide = document.createElement('div');
+    slide.className = 'cert-slides';
+    const content = document.createElement('div');
+    content.className = 'cert-slide-content';
+
+    const h = document.createElement('h2');
+    h.textContent = item.title;
+    h.style.cssText = 'text-align:center;margin-bottom:15px;color:#333;font-size:20px;font-weight:bold';
+    content.appendChild(h);
+
+    const img = document.createElement('img');
+    img.src = item.image;
+    img.alt = item.title;
+    img.style.cssText = 'max-width:100%;height:auto;display:block;margin:0 auto;cursor:pointer';
+    img.title = item.isBertelsmann ? 'Click to see the projects' : 'Click to view project';
+    img.onclick = openPrimary;
+    img.onerror = function () { console.error('Failed to load image:', item.image); };
+    content.appendChild(img);
+
+    if (item.description) {
+      const p = document.createElement('p');
+      p.textContent = item.description;
+      p.style.cssText = 'margin-top:20px;text-align:justify;line-height:1.6';
+      content.appendChild(p);
+    }
+
+    const btnRow = document.createElement('div');
+    btnRow.style.cssText = 'text-align:center;margin:15px 0';
+
+    if (item.isBertelsmann) {
+      const a = document.createElement('a');
+      a.href = '#';
+      a.textContent = 'View Projects';
+      a.onclick = function (e) { e.preventDefault(); showBertelsmannProjects(); };
+      styleBtn(a, '#007bff', '#0056b3');
+      btnRow.appendChild(a);
+    } else if (primaryUrl) {
+      const a = document.createElement('a');
+      a.href = primaryUrl;
+      if (primaryUrl.indexOf('http') === 0) { a.target = '_blank'; a.rel = 'noopener'; }
+      a.textContent = item.siteUrl ? 'View Project'
+        : (item.url && item.url.indexOf('github.com') > -1 ? 'View on GitHub' : 'View Site');
+      styleBtn(a, '#007bff', '#0056b3');
+      btnRow.appendChild(a);
+    }
+    if (item.githubUrl) {
+      const g = document.createElement('a');
+      g.href = item.githubUrl;
+      g.target = '_blank';
+      g.rel = 'noopener';
+      g.textContent = 'View on GitHub';
+      styleBtn(g, '#24292e', '#000');
+      btnRow.appendChild(g);
+    }
+
+    let moreEl = null;
+    if (item.readMore) {
+      const more = document.createElement('button');
+      more.textContent = 'Read More';
+      more.className = 'project-btn project-btn-readmore';
+      btnRow.appendChild(more);
+      moreEl = document.createElement('div');
+      moreEl.className = 'cert-read-more-content';
+      moreEl.style.cssText = 'display:none;margin-top:20px;padding:20px;background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;line-height:1.6;text-align:justify';
+      moreEl.textContent = item.readMore;
+      more.onclick = function () {
+        const hidden = moreEl.style.display === 'none';
+        moreEl.style.display = hidden ? 'block' : 'none';
+        more.textContent = hidden ? 'Show Less' : 'Read More';
+      };
+    }
+
+    if (btnRow.children.length) content.appendChild(btnRow);
+    if (moreEl) content.appendChild(moreEl);
+
+    slide.appendChild(content);
+    slidesEl.appendChild(slide);
+    slides.push(slide);
+
+    const thumb = document.createElement('img');
+    thumb.src = item.image;
+    thumb.className = 'cert-thumb';
+    thumb.alt = item.title;
+    thumb.title = item.title + (anyUrl ? ' - click to view, Ctrl+click to open' : ' - click to view');
+    thumb.onclick = function (e) {
+      if (anyUrl && (e.ctrlKey || e.metaKey)) { openPrimary(); return; }
+      show(i);
+    };
+    thumb.onerror = function () { console.error('Failed to load thumbnail:', item.image); };
+    thumbsEl.appendChild(thumb);
+  });
+
+  function show(n) {
+    if (!slides.length) return;
+    index = (n + slides.length) % slides.length;
+    slides.forEach(function (s, i) { s.style.display = i === index ? 'block' : 'none'; });
+    Array.prototype.forEach.call(thumbsEl.querySelectorAll('.cert-thumb'), function (t, i) {
+      t.classList.toggle('current-cert-thumb', i === index);
+    });
+    if (currentEl) currentEl.innerText = index + 1;
+    if (totalEl) totalEl.innerText = slides.length;
+  }
+
+  const prev = document.getElementById(ids + 'Prev');
+  const next = document.getElementById(ids + 'Next');
+  if (prev) prev.onclick = function () { show(index - 1); };
+  if (next) next.onclick = function () { show(index + 1); };
+
+  show(0);
+  return { show: show };
+}
+
+// =========================================================================
+// PROJECTS DATA -- one array per data-driven capability tab. Item shape:
+//   { title, image, url | (siteUrl & githubUrl),
+//     description?, readMore?, isBertelsmann? }
+// Phase 1 keeps each project's existing copy; the "stack / what it proves"
+// lines come in a later pass.
+// =========================================================================
+
+// --- Security -----------------------------------------------------------
+const securityData = [
+  {
+    title: "Bertelsmann Technology Scholarship - Enterprise Security Nanodegree",
+    image: "specialization/images/Bertelsmann_nanodegree_enterprisesecurity.jpg",
+    description: "Enterprise security nanodegree focused on cybersecurity frameworks, threat assessment, and security architecture design -- enterprise-level security protocols and implementation strategies. For a guide on turning a scholarship MOOC like this into applied skill rather than just a certificate, that's what I built DeliberateLearners.com to teach.",
+    readMore: "Technologies Used: Microsoft Azure services (Virtual Networks, Entra, Sentinel, Intune, Defender for Endpoint), ELK Stack (Elasticsearch, Logstash, Kibana, Filebeat), SIEM/SOAR platforms, EDR/IDS technologies. Key Features: Network defenses with DMZs and VPNs, Zero Trust security architecture, defense-in-depth strategies, compliance alignment with NIST 800-61r2 and TIC 3.0. Learning Outcomes: Enterprise security frameworks, threat assessment methodologies, cloud security implementation, risk management practices.",
+    isBertelsmann: true
+  },
+  {
+    title: "DMSecurityX",
+    image: "./images/currentsites/dmsecurityx-1.jpg",
+    url: "https://dmsecurityx.com",
+    description: "A security guidance product for small businesses and creators -- no-jargon, actionable. Product concept, security architecture, front and back end, and SEO all mine."
+  },
+  {
+    title: "Deliberate Cybersecurity",
+    image: "./images/currentsites/deliberatecybersecurity.jpg",
+    url: "https://deliberatecybersecurity.com",
+    description: "Free, plain-language security guidance -- the companion writing to DMSecurityX."
+  }
+];
+
+// --- Product & Full-Stack ----------------------------------------------
+const productData = [
+  {
+    title: "Deliberately Deliberate",
+    image: "./images/currentsites/deliberatelydeliberate.jpg",
+    url: "https://deliberatelydeliberate.com",
+    description: "The umbrella for a connected ecosystem of products and writing built on one idea: choose on purpose. I own the full lifecycle -- concept, front-end and back-end development, security architecture, SEO, and content."
+  },
+  {
+    title: "Digitally (MyDigitally)",
+    image: "./images/currentsites/mydigitally_1.jpg",
+    url: "https://mydigitally.app",
+    description: "A vault to document, protect, and sell your digital assets, with proof-of-ownership verification and estate-planning exports.",
+    readMore: "Built with Next.js 14 (App Router, Server Components), React 18, TypeScript, and Supabase (Postgres, Auth, Storage, Row-Level Security), deployed on Vercel. Solo build across product, security, front and back end, and SEO."
+  },
+  {
+    title: "Circal (TryCircal)",
+    image: "./images/currentsites/trycircal_calendar.jpg",
+    url: "https://trycircal.app",
+    description: "An energy-aware calendar that color-codes your day by predicted focus, built from sleep, meals, and body-clock data. Blueprints, Calendar, Insights, and Settings views."
+  },
+  {
+    title: "Deliberate Digital Legacy",
+    image: "./images/currentsites/deliberate-digital-legacy.jpg",
+    url: "https://deliberate-digital-legacy.com",
+    description: "Helping people secure and pass on their digital lives on purpose."
+  },
+  {
+    title: "Deliberate Learners",
+    image: "./images/currentsites/deliberatelearners.jpg",
+    url: "https://deliberatelearners.com",
+    description: "A learning product built on the idea that knowledge only sticks when applied against a real feedback loop."
+  },
+  {
+    title: "Deliberate Learners - Tools",
+    image: "./images/currentsites/deliberatelearners-tools.jpg",
+    url: "https://deliberatelearners.com/tools",
+    description: "The tools layer -- e.g. Watch and Recall, which locks a learner into producing for as long as they spent consuming."
+  },
+  {
+    title: "Rhythm Brown Box",
+    image: "./images/featured/drummachine.png",
+    siteUrl: "./portfolioentries/personal/rhythmbrownbox/index.html",
+    githubUrl: "https://github.com/roylouisgarcia/rhythmbrownbox",
+    description: "A browser drum machine shown across three versions. v2 is an audit-driven rebuild -- BDD/TDD, CI, WCAG, zero runtime dependencies -- and doubles as an engineering-rigor sample."
+  }
+];
+
+// --- Consulting -------------------------------------------------------
+const consultingData = [
+  {
+    title: "Recorded Bliss",
+    image: "./images/featured/recordedbliss.png",
+    url: "https://recordedbliss.com",
+    description: "An online TV / streaming site for a former Philippine professional singer -- site build plus music production, online advertising, and social media, including live and on-demand video."
+  },
+  {
+    title: "Heathwood Hardware Inc. (HHI)",
+    image: "./images/featured/hhi.png",
+    url: "https://github.com/roylouisgarcia/HeathWoodHardware",
+    description: "A hardware-store web application built for coursework -- inventory and storefront patterns."
+  }
+];
+
+// --- Learning & Tinkering -------------------------------------------
+const learningData = [
+  {
+    title: "Summer Beads",
+    image: "./images/featured/summerbeads.png",
+    description: "An early e-shop / design site -- gallery, catalog, and contact pages."
+  },
+  {
+    title: "Rock Paper Scissors",
+    image: "./images/featured/rockerpaperscissors.png",
+    url: "https://github.com/roylouisgarcia/rockpaperscissors",
+    description: "A small game built to practice state handling and DOM updates."
+  },
+  {
+    title: "Flames Calculator - Input",
+    image: "./images/featured/flames.png",
+    url: "https://github.com/roylouisgarcia/flames",
+    description: "A one-page game coded in several languages for learning -- the input screen."
+  },
+  {
+    title: "Flames Calculator - Results",
+    image: "./images/featured/flames2.png",
+    url: "https://github.com/roylouisgarcia/flames",
+    description: "The results screen of the same learning exercise."
+  },
+  {
+    title: "League of Legends - LUA template generator for LeaguePedia",
+    image: "./images/featured/form2lua.png",
+    description: "A form that generates LUA templates for a wiki -- string handling and template output."
+  },
+  {
+    title: "NostradmsX - Personal Blog",
+    image: "./images/currentsites/nostradmsx.jpg",
+    url: "https://nostradmsx.com",
+    description: "The build log -- developer notes and field notes behind everything above."
+  }
+];
+
+// ids -> data array, for ensureSlideshow(). `const` globals aren't window
+// properties, so PROJECT_TABS can't look them up by name; this map does.
+const PROJECT_DATA = {
+  security: securityData,
+  product: productData,
+  consulting: consultingData,
+  learning: learningData,
+};
+
 $(document).ready(function(){
 
     // Set default state - all project tabs hidden
     hideAllProjectTabs();
-    // Defer the initial "Current" tab render by a tick. This ready() callback
-    // runs synchronously during parse (the <script> sits at the end of
-    // <body>), and showCurrentSitesTab()'s .show(..., complete) callback can
-    // fire synchronously straight into loadCurrentSitesSlides(), which reads
-    // `currentSitesData` -- a const declared further down this file and still
-    // in the temporal dead zone at that moment. The ReferenceError it threw
-    // aborted the rest of this block, so the project-tab click handlers below
-    // never bound. One tick lets the whole file finish initializing first.
-    setTimeout(showCurrentSitesTab, 0);
+    // Defer the initial tab render a tick. This ready() callback runs
+    // synchronously during parse (script at end of <body>); the deferred
+    // render's .show(...complete) callback builds a slideshow that reads a
+    // data array (securityData etc.) declared lower in this file. One tick
+    // lets the whole file finish so those forward references resolve.
+    setTimeout(function () {
+      var t = projectTabForHash(window.location.hash);
+      showProjectTab(t || DEFAULT_PROJECT_TAB);
+    }, 0);
 
  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
@@ -53,12 +453,12 @@ $(document).ready(function(){
         $('.jumbotron-before-specialization').show('fast');
         // Hide all project tabs when going to specialization
         hideAllProjectTabs();
-      } else if (hash === '#projects') {
+      } else if (hash === '#projects' || projectTabForHash(hash)) {
         // Hide specialization section and its jumbotron when navigating to projects
         $('#specialization').hide('fast');
         $('.jumbotron-before-specialization').hide('fast');
-        // Show Featured tab when going to projects
-        showCurrentSitesTab();
+        showProjectTab(projectTabForHash(hash) || DEFAULT_PROJECT_TAB);
+        hash = '#projects';  // scroll target + address bar stay generic
       } else {
         // Hide specialization section and its jumbotron when navigating to other sections
         $('#specialization').hide('fast');
@@ -108,64 +508,9 @@ $(document).ready(function(){
         }); 
     });
     
-  $("#link2Academic").click(function(){
-    $(".academic").show("fast", function(){});
-    $(".professional").hide("fast", function(){});
-    $(".personal").hide("fast", function(){});
-    $(".currentsites").hide("fast", function(){});
-    $("#link2Academic").addClass("active");
-    $("#link2Professional").removeClass("active");
-    $("#link2Personal").removeClass("active");
-    $("#link2CurrentSites").removeClass("active");
-    updateMobileTabOrder('link2Academic');
-  });
-
-  $("#link2Professional").click(function(){
-    $(".academic").hide("fast", function(){});
-    $(".professional").show("fast", function(){});
-    $(".personal").hide("fast", function(){});
-    $(".currentsites").hide("fast", function(){});
-    $("#link2Academic").removeClass("active");
-    $("#link2Professional").addClass("active");
-    $("#link2Personal").removeClass("active");
-    $("#link2CurrentSites").removeClass("active");
-    updateMobileTabOrder('link2Professional');
-  });
-
-  $("#link2Personal").click(function(){
-    $(".academic").hide("fast", function(){});
-    $(".professional").hide("fast", function(){});
-    $(".personal").show("fast", function(){
-      // Initialize the featured slideshow if not already done
-      if (!window.featuredInitialized) {
-        initializeFeaturedSlideshow();
-        window.featuredInitialized = true;
-      }
-    });
-    $(".currentsites").hide("fast", function(){});
-    $("#link2Academic").removeClass("active");
-    $("#link2Professional").removeClass("active");
-    $("#link2Personal").addClass("active");
-    $("#link2CurrentSites").removeClass("active");
-    updateMobileTabOrder('link2Personal');
-  });
-
-  $("#link2CurrentSites").click(function(){
-    $(".academic").hide("fast", function(){});
-    $(".professional").hide("fast", function(){});
-    $(".personal").hide("fast", function(){});
-    $(".currentsites").show("fast", function(){
-      // Initialize the Current Sites slideshow if not already done
-      if (!window.currentSitesInitialized) {
-        initializeCurrentSitesSlideshow();
-        window.currentSitesInitialized = true;
-      }
-    });
-    $("#link2Academic").removeClass("active");
-    $("#link2Professional").removeClass("active");
-    $("#link2Personal").removeClass("active");
-    $("#link2CurrentSites").addClass("active");
-    updateMobileTabOrder('link2CurrentSites');
+  // Bind the five capability folder-tabs (config: PROJECT_TABS, top of file).
+  PROJECT_TABS.forEach(function (t) {
+    $('#' + t.tab).on('click', function () { showProjectTab(t.tab); });
   });
 
   $("#associate").click(function () {
@@ -326,402 +671,35 @@ $(document).ready(function(){
    }
     
     function defaultProjects(){
-        $(".academic").hide("slow", function(){}); // Hide Academic by default now
-        $(".professional").hide("slow", function(){});
-        $(".personal").hide("slow", function(){});
-        $("#link2Academic").addClass("btnNonActive"); // Academic button inactive by default
-        $("#link2Professional").addClass("btnNonActive");
-        $("#link2Personal").addClass("btnNonActive"); 
-        $("#hartnell").hide("fast", function () {});
-        $("#csumb").hide("fast", function () {});
-        $("#capella").hide("fast", function () {});
-        $("#associate").css("opacity", "1");
-        $("#bachelors").css("opacity", "1");
-        $("#graduate").css("opacity", "1"); 
-        hideFeaturedProjects();
-        hideAcademicProjects();
+        hideAllProjectTabs();
+        PROJECT_TABS.forEach(function (t) {
+          if (t.tab !== 'link2Academic') $('#' + t.tab).addClass('btnNonActive');
+        });
+        $("#link2Academic").addClass("btnNonActive");
         hideProProjects();
         hideLyricsProjects();
         hideSpecializationSection();
     }
-    
+
     function hideSpecializationSection(){
         $("#specialization").hide("fast", function(){});
         $(".jumbotron-before-specialization").hide("fast", function(){});
     }
-    
-     function hideFeaturedProjects(){
-        $("#nostradmsxdiv").hide("fast", function(){});
-        $("#redboxdiv").hide("fast", function(){});
-        $("#nostradmsxbtn").removeClass("totiebtnActive", function(){});
-        $("#redboxbtn").removeClass("totiebtnActive", function(){});    
-     }
-    
-    function hideAcademicProjects(){
-        $("#hartnellprojects").hide("fast", function(){});
-        $("#hartnellcourses").hide("fast", function(){});
-        $("#csumbprojects").hide("fast", function(){});
-        $("#csumbcourses").hide("fast", function(){}); 
-        $("#capellaprojects").hide("fast", function(){});
-        $("#capellacourses").hide("fast", function(){});
-        $("#hartnellcoursesbtn").removeClass("totiebtnActive", function(){});
-        $("#hartnellprojectsbtn").removeClass("totiebtnActive", function(){});     
-        $("#csumbcoursesbtn").removeClass("totiebtnActive", function(){});
-        $("#csumbprojectsbtn").removeClass("totiebtnActive", function(){});             
-        $("#capellacoursesbtn").removeClass("totiebtnActive", function(){});
-        $("#capellaprojectsbtn").removeClass("totiebtnActive", function(){});             
 
-    }
-    
-     function hideProProjects(){
-        $("#nostradmsxdiv").hide("fast", function(){});
-        $("#redboxdiv").hide("fast", function(){});
-        $("#nostradmsxbtn").removeClass("totiebtnActive", function(){});
-        $("#redboxbtn").removeClass("totiebtnActive", function(){});    
-     }
-
-     // Click outside handler for professional project showcases
+     // Click outside handler for the NostradmsX / Red Box image showcases.
      $(document).on('click', function(e) {
-        // Check if click is outside the showcase divs and buttons
         if (!$(e.target).closest('#nostradmsxdiv, #redboxdiv, #nostradmsxbtn, #redboxbtn').length) {
-            // If either showcase is currently visible, hide them
             if ($("#nostradmsxdiv").is(":visible") || $("#redboxdiv").is(":visible")) {
                 hideProProjects();
             }
         }
      });
-    
-     function hideLyricsProjects(){    
-       $("#angellyrics").hide("fast", function(){});
-       $("#uulitinlyrics").hide("fast", function(){});
-       $("#moonlyrics").hide("fast", function(){});
-     }
 
-     function hideAllProjectTabs(){
-        $(".academic").hide("fast", function(){});
-        $(".professional").hide("fast", function(){});
-        $(".personal").hide("fast", function(){});
-        $(".currentsites").hide("fast", function(){});
-        $("#link2Academic").removeClass("active");
-        $("#link2Professional").removeClass("active");
-        $("#link2Personal").removeClass("active");
-        $("#link2CurrentSites").removeClass("active");
-        $("#hartnell").hide("fast", function () {});
-        $("#csumb").hide("fast", function () {});
-        $("#capella").hide("fast", function () {});
-        $("#associate").css("opacity", "1");
-        $("#bachelors").css("opacity", "1");
-        $("#graduate").css("opacity", "1");
-        hideFeaturedProjects();
-        hideAcademicProjects();
-        hideProProjects();
-        hideLyricsProjects();
-     }
+     // Kept as a thin wrapper -- other code (and the Academic school sub-tabs)
+     // still call showAcademicTab().
+     function showAcademicTab(){ showProjectTab('link2Academic'); }
 
-     // On the mobile 2x2 tab grid, the currently active tab always sits in
-     // grid position 3 (bottom-left) -- the other three keep their normal
-     // relative order across the remaining positions. Sets a data-pos
-     // attribute that a mobile-only media query maps to CSS `order`;
-     // outside that breakpoint the attribute is inert.
-     function updateMobileTabOrder(activeId){
-        var baseOrder = ['link2CurrentSites', 'link2Academic', 'link2Professional', 'link2Personal'];
-        var others = baseOrder.filter(function(id){ return id !== activeId; });
-        var positions = {};
-        positions[others[0]] = 1;
-        positions[others[1]] = 2;
-        positions[activeId] = 3;
-        positions[others[2]] = 4;
-        baseOrder.forEach(function(id){
-          var el = document.getElementById(id);
-          if (el) el.setAttribute('data-pos', positions[id]);
-        });
-     }
 
-     function showAcademicTab(){
-        $(".academic").show("fast", function(){});
-        $(".professional").hide("fast", function(){});
-        $(".personal").hide("fast", function(){});
-        $(".currentsites").hide("fast", function(){});
-        $("#link2Academic").addClass("active");
-        $("#link2Professional").removeClass("active");
-        $("#link2Personal").removeClass("active");
-        $("#link2CurrentSites").removeClass("active");
-        updateMobileTabOrder('link2Academic');
-        $("#hartnell").hide("fast", function () {});
-        $("#csumb").hide("fast", function () {});
-        $("#capella").hide("fast", function () {});
-        $("#associate").css("opacity", "1");
-        $("#bachelors").css("opacity", "1");
-        $("#graduate").css("opacity", "1");
-        hideFeaturedProjects();
-        hideAcademicProjects();
-        hideProProjects();
-        hideLyricsProjects();
-     }
-
-     function showCurrentSitesTab(){
-        $(".academic").hide("fast", function(){});
-        $(".professional").hide("fast", function(){});
-        $(".personal").hide("fast", function(){});
-        $(".currentsites").show("fast", function(){
-          // Initialize the Current Sites slideshow if not already done
-          if (!window.currentSitesInitialized) {
-            initializeCurrentSitesSlideshow();
-            window.currentSitesInitialized = true;
-          }
-        });
-        $("#link2Academic").removeClass("active");
-        $("#link2Professional").removeClass("active");
-        $("#link2Personal").removeClass("active");
-        $("#link2CurrentSites").addClass("active");
-        updateMobileTabOrder('link2CurrentSites');
-        $("#hartnell").hide("fast", function () {});
-        $("#csumb").hide("fast", function () {});
-        $("#capella").hide("fast", function () {});
-        $("#associate").css("opacity", "1");
-        $("#bachelors").css("opacity", "1");
-        $("#graduate").css("opacity", "1");
-        hideFeaturedProjects();
-        hideAcademicProjects();
-        hideProProjects();
-        hideLyricsProjects();
-     }
-
-// Current Sites slideshow functionality
-// (currentSitesSlideIndex/currentSitesSlides declared at the top of the file)
-
-// Current Sites data - screenshots from images/currentsites
-const currentSitesData = [
-  { title: "Deliberately Deliberate", image: "./images/currentsites/deliberatelydeliberate.jpg", url: "https://deliberatelydeliberate.com" },
-  {
-    title: "Bertelsmann Technology Scholarship - Enterprise Security Nanodegree",
-    image: "specialization/images/Bertelsmann_nanodegree_enterprisesecurity.jpg",
-    description: "Advanced enterprise security nanodegree program focusing on cybersecurity frameworks, threat assessment, and security architecture design. Comprehensive coverage of enterprise-level security protocols and implementation strategies. If you want a guide for turning a scholarship MOOC like this into real, applied skill instead of just a certificate, that's exactly what I built DeliberateLearners.com to teach.",
-    readMore: "Technologies Used: Microsoft Azure services (Virtual Networks, Entra, Sentinel, Intune, Defender for Endpoint), ELK Stack (Elasticsearch, Logstash, Kibana, Filebeat), SIEM/SOAR platforms, EDR/IDS technologies. Key Features: Network defenses with DMZs and VPNs, Zero Trust security architecture, defense-in-depth strategies, compliance alignment with NIST 800-61r2 and TIC 3.0. Learning Outcomes: Enterprise security frameworks, threat assessment methodologies, cloud security implementation, risk management practices.",
-    isBertelsmann: true
-  },
-  { title: "NostradmsX - Personal Blog", image: "./images/currentsites/nostradmsx.jpg", url: "https://nostradmsx.com" },
-  { title: "Deliberate Cybersecurity", image: "./images/currentsites/deliberatecybersecurity.jpg", url: "https://deliberatecybersecurity.com" },
-  { title: "Deliberate Digital Legacy", image: "./images/currentsites/deliberate-digital-legacy.jpg", url: "https://deliberate-digital-legacy.com" },
-  { title: "Deliberate Learners", image: "./images/currentsites/deliberatelearners.jpg", url: "https://deliberatelearners.com" },
-  { title: "Deliberate Learners - Tools", image: "./images/currentsites/deliberatelearners-tools.jpg", url: "https://deliberatelearners.com/tools" },
-  { title: "DMSecurityX", image: "./images/currentsites/dmsecurityx-1.jpg", url: "https://dmsecurityx.com" },
-  { title: "DMSecurityX", image: "./images/currentsites/dmsecurityx-2.jpg", url: "https://dmsecurityx.com" },
-  { title: "DMSecurityX", image: "./images/currentsites/dmsecurityx-3.jpg", url: "https://dmsecurityx.com" },
-  { title: "TryCircal - Blueprints", image: "./images/currentsites/trycircal_blueprints.jpg", url: "https://trycircal.app" },
-  { title: "TryCircal - Calendar", image: "./images/currentsites/trycircal_calendar.jpg", url: "https://trycircal.app" },
-  { title: "TryCircal - Insights", image: "./images/currentsites/trycircal_insights.jpg", url: "https://trycircal.app" },
-  { title: "TryCircal - Settings", image: "./images/currentsites/trycircal_settings.jpg", url: "https://trycircal.app" },
-  { title: "MyDigitally", image: "./images/currentsites/mydigitally_1.jpg", url: "https://mydigitally.app" },
-  { title: "MyDigitally", image: "./images/currentsites/mydigitally_2.jpg", url: "https://mydigitally.app" },
-  { title: "MyDigitally", image: "./images/currentsites/mydigitally_3.jpg", url: "https://mydigitally.app" },
-  { title: "MyDigitally", image: "./images/currentsites/mydigitally_4.jpg", url: "https://mydigitally.app" },
-  { title: "MyDigitally", image: "./images/currentsites/mydigitally_5.jpg", url: "https://mydigitally.app" }
-];
-
-// Load Current Sites slides dynamically
-function loadCurrentSitesSlides() {
-  const slidesContainer = document.getElementById('currentSitesSlides');
-  const thumbnailContainer = document.getElementById('currentSitesThumbnailContainer');
-
-  if (!slidesContainer || !thumbnailContainer) {
-    console.error('Current Sites slideshow containers not found');
-    return;
-  }
-
-  // Clear existing content
-  slidesContainer.innerHTML = '';
-  thumbnailContainer.innerHTML = '';
-  currentSitesSlides = [];
-
-  currentSitesData.forEach((site, index) => {
-    // Create slide
-    const slideDiv = document.createElement('div');
-    slideDiv.classList.add('cert-slides');
-
-    const slideContent = document.createElement('div');
-    slideContent.classList.add('cert-slide-content');
-
-    const titleElement = document.createElement('h2');
-    titleElement.textContent = site.title;
-    titleElement.style.textAlign = 'center';
-    titleElement.style.marginBottom = '20px';
-    titleElement.style.color = '#333';
-    slideContent.appendChild(titleElement);
-
-    const img = document.createElement('img');
-    img.src = site.image;
-    img.style.cursor = 'pointer';
-    img.title = site.isBertelsmann ? 'Click to see the projects' : 'Click to visit ' + site.title;
-    img.onerror = function() {
-      console.error('Failed to load image:', site.image);
-    };
-    img.onclick = () => {
-      if (site.isBertelsmann) {
-        showBertelsmannProjects();
-      } else {
-        window.open(site.url, '_blank');
-      }
-    };
-    slideContent.appendChild(img);
-
-    if (site.description) {
-      const descElement = document.createElement('p');
-      descElement.textContent = site.description;
-      descElement.style.marginTop = '20px';
-      descElement.style.textAlign = 'justify';
-      descElement.style.lineHeight = '1.6';
-      slideContent.appendChild(descElement);
-    }
-
-    const linkContainer = document.createElement('div');
-    linkContainer.style.textAlign = 'center';
-    linkContainer.style.marginTop = '20px';
-
-    const siteLink = document.createElement('a');
-    if (site.isBertelsmann) {
-      siteLink.href = '#';
-      siteLink.textContent = 'View Projects';
-      siteLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        showBertelsmannProjects();
-      });
-    } else {
-      siteLink.href = site.url;
-      siteLink.target = '_blank';
-      siteLink.rel = 'noopener';
-      siteLink.textContent = 'View Site';
-    }
-    siteLink.style.display = 'inline-block';
-    siteLink.style.padding = '10px 20px';
-    siteLink.style.backgroundColor = '#007bff';
-    siteLink.style.color = 'white';
-    siteLink.style.textDecoration = 'none';
-    siteLink.style.borderRadius = '5px';
-    siteLink.style.fontWeight = 'bold';
-    siteLink.style.transition = 'background-color 0.3s ease';
-    siteLink.style.marginRight = '10px';
-    siteLink.onmouseover = () => siteLink.style.backgroundColor = '#0056b3';
-    siteLink.onmouseout = () => siteLink.style.backgroundColor = '#007bff';
-
-    linkContainer.appendChild(siteLink);
-
-    let readMoreDetails = null;
-    let readMoreBtn = null;
-    if (site.readMore) {
-      readMoreBtn = document.createElement('button');
-      readMoreBtn.textContent = 'Read More';
-      readMoreBtn.classList.add('project-btn', 'project-btn-readmore');
-      linkContainer.appendChild(readMoreBtn);
-    }
-
-    slideContent.appendChild(linkContainer);
-
-    if (site.readMore) {
-      readMoreDetails = document.createElement('div');
-      readMoreDetails.classList.add('cert-read-more-content');
-      readMoreDetails.style.display = 'none';
-      readMoreDetails.style.marginTop = '20px';
-      readMoreDetails.style.padding = '20px';
-      readMoreDetails.style.backgroundColor = '#f8f9fa';
-      readMoreDetails.style.border = '1px solid #dee2e6';
-      readMoreDetails.style.borderRadius = '8px';
-      readMoreDetails.style.lineHeight = '1.6';
-      readMoreDetails.style.textAlign = 'justify';
-      readMoreDetails.textContent = site.readMore;
-      slideContent.appendChild(readMoreDetails);
-
-      readMoreBtn.onclick = function() {
-        const isHidden = readMoreDetails.style.display === 'none';
-        readMoreDetails.style.display = isHidden ? 'block' : 'none';
-        readMoreBtn.textContent = isHidden ? 'Show Less' : 'Read More';
-      };
-    }
-
-    slideDiv.appendChild(slideContent);
-    slidesContainer.appendChild(slideDiv);
-
-    // Create thumbnail
-    const thumb = document.createElement('img');
-    thumb.src = site.image;
-    thumb.classList.add('cert-thumb');
-    thumb.title = site.isBertelsmann
-      ? site.title + ' - Click to view slide or Ctrl+Click to see the projects'
-      : site.title + ' - Click to view slide or Ctrl+Click to visit site';
-    thumb.onclick = (event) => {
-      if (event.ctrlKey || event.metaKey) {
-        if (site.isBertelsmann) {
-          showBertelsmannProjects();
-        } else {
-          window.open(site.url, '_blank');
-        }
-      } else {
-        setCurrentSitesSlide(index);
-      }
-    };
-    thumbnailContainer.appendChild(thumb);
-
-    currentSitesSlides.push(slideDiv);
-  });
-
-  updateCurrentSitesSlideCounter();
-
-  if (currentSitesSlides.length > 0) {
-    showCurrentSitesSlide(0);
-  }
-}
-
-function showCurrentSitesSlide(index) {
-  if (index >= currentSitesSlides.length) {
-    currentSitesSlideIndex = 0;
-  } else if (index < 0) {
-    currentSitesSlideIndex = currentSitesSlides.length - 1;
-  } else {
-    currentSitesSlideIndex = index;
-  }
-
-  currentSitesSlides.forEach((slide, i) => {
-    slide.style.display = i === currentSitesSlideIndex ? 'block' : 'none';
-  });
-
-  const thumbnails = document.querySelectorAll('#currentSitesThumbnailContainer .cert-thumb');
-  thumbnails.forEach((thumb, i) => {
-    thumb.classList.toggle('current-cert-thumb', i === currentSitesSlideIndex);
-  });
-
-  updateCurrentSitesSlideCounter();
-}
-
-function nextCurrentSitesSlide() {
-  showCurrentSitesSlide(currentSitesSlideIndex + 1);
-}
-
-function prevCurrentSitesSlide() {
-  showCurrentSitesSlide(currentSitesSlideIndex - 1);
-}
-
-function setCurrentSitesSlide(index) {
-  showCurrentSitesSlide(index);
-}
-
-function updateCurrentSitesSlideCounter() {
-  const currentSlideEl = document.getElementById('currentSitesCurrentSlide');
-  const totalSlidesEl = document.getElementById('currentSitesTotalSlides');
-  if (currentSlideEl && totalSlidesEl) {
-    currentSlideEl.innerText = currentSitesSlideIndex + 1;
-    totalSlidesEl.innerText = currentSitesSlides.length.toString();
-  }
-}
-
-// Initialize the Current Sites slideshow
-function initializeCurrentSitesSlideshow() {
-  loadCurrentSitesSlides();
-
-  const nextBtn = document.getElementById('currentSitesNextBtn');
-  const prevBtn = document.getElementById('currentSitesPrevBtn');
-  if (nextBtn) nextBtn.onclick = nextCurrentSitesSlide;
-  if (prevBtn) prevBtn.onclick = prevCurrentSitesSlide;
-}
 
 // MOOC / Specialization slideshow functionality
 // (moocSlideIndex/moocSlides declared at the top of the file)
@@ -952,295 +930,6 @@ function initializeMoocSlideshow() {
 // browser considered the document "ready".
 initializeMoocSlideshow();
 
-// Featured slideshow variables
-// (currentFeaturedSlideIndex/featuredSlides declared at the top of the file)
-
-// Featured projects data - based on the original static grid layout
-const featuredProjectsData = [
-  {
-    title: "Rhythm Brown Box",
-    image: "./images/featured/drummachine.png",
-    siteUrl: "./portfolioentries/personal/rhythmbrownbox/index.html",
-    githubUrl: "https://github.com/roylouisgarcia/rhythmbrownbox"
-  },
-  {
-    title: "Recorded Bliss",
-    image: "./images/featured/recordedbliss.png",
-    url: "https://recordedbliss.com"
-  },
-  {
-    title: "Summer Beads",
-    image: "./images/featured/summerbeads.png",
-    url: null
-  },
-  {
-    title: "Rock Paper Scissors",
-    image: "./images/featured/rockerpaperscissors.png",
-    url: "https://github.com/roylouisgarcia/rockpaperscissors"
-  },
-  {
-    title: "Heathwood Hardware Inc. (HHI)",
-    image: "./images/featured/hhi.png",
-    url: "https://github.com/roylouisgarcia/HeathWoodHardware"
-  },
-  {
-    title: "Flames Calculator - Input",
-    image: "./images/featured/flames.png",
-    url: "https://github.com/roylouisgarcia/flames"
-  },
-  {
-    title: "Flames Calculator - Results ",
-    image: "./images/featured/flames2.png",
-    url: "https://github.com/roylouisgarcia/flames"
-  },
-  {
-    title: "League of Legends - LUA template generator for LeaguePedia",
-    image: "./images/featured/form2lua.png",
-    url: null
-  }
-];
-
-// Load featured slides dynamically
-function loadFeaturedSlides() {
-  const slidesContainer = document.getElementById('featuredSlides');
-  const thumbnailContainer = document.getElementById('featuredThumbnailContainer');
-  
-  if (!slidesContainer || !thumbnailContainer) {
-    console.error('Featured slideshow containers not found');
-    return;
-  }
-
-  console.log('Loading featured slides:', featuredProjectsData.length, 'projects');
-
-  // Clear existing content
-  slidesContainer.innerHTML = '';
-  thumbnailContainer.innerHTML = '';
-  featuredSlides = [];
-
-  featuredProjectsData.forEach((project, index) => {
-    // "View Project" target: an on-site page when the project has one
-    // (siteUrl), otherwise whatever single url it provides. githubUrl, when
-    // present, renders a separate "View on GitHub" button alongside it.
-    const primaryUrl = project.siteUrl || project.url || null;
-    const anyUrl = primaryUrl || project.githubUrl || null;
-
-    // Create slide
-    const slideDiv = document.createElement('div');
-    slideDiv.classList.add('featured-slides');
-
-    // Create slide content
-    const slideContent = document.createElement('div');
-    slideContent.classList.add('featured-slide-content');
-    
-    const titleElement = document.createElement('h2');
-    titleElement.textContent = project.title;
-    titleElement.style.textAlign = 'center';
-    titleElement.style.marginBottom = '15px';
-    titleElement.style.color = '#333';
-    titleElement.style.fontSize = '20px';
-    titleElement.style.fontWeight = 'bold';
-    
-    // Add responsive styling for titles on smaller devices
-    titleElement.style.cssText += `
-      @media (max-width: 768px) {
-        font-size: 14px !important;
-        margin-bottom: 10px !important;
-      }
-      @media (max-width: 480px) {
-        font-size: 12px !important;
-        margin-bottom: 8px !important;
-      }
-    `;
-    
-    slideContent.appendChild(titleElement);
-
-    const img = document.createElement('img');
-    img.src = project.image;
-    img.style.maxWidth = '100%';
-    img.style.height = 'auto';
-    img.style.display = 'block';
-    img.style.margin = '0 auto';
-    img.onerror = function() {
-      console.error('Failed to load image:', project.image);
-      // Create a placeholder if image fails to load
-      const placeholder = document.createElement('div');
-      placeholder.style.width = '300px';
-      placeholder.style.height = '200px';
-      placeholder.style.backgroundColor = '#f0f0f0';
-      placeholder.style.display = 'flex';
-      placeholder.style.alignItems = 'center';
-      placeholder.style.justifyContent = 'center';
-      placeholder.style.margin = '0 auto';
-      placeholder.style.border = '2px dashed #ccc';
-      placeholder.style.borderRadius = '8px';
-      placeholder.textContent = 'Image not available';
-      if (anyUrl) {
-        placeholder.style.cursor = 'pointer';
-        placeholder.onclick = () => window.open(anyUrl, '_blank');
-      }
-      img.parentNode.replaceChild(placeholder, img);
-    };
-    if (primaryUrl) {
-      img.style.cursor = 'pointer';
-      img.title = 'Click to view project';
-      img.onclick = () => window.open(primaryUrl, primaryUrl.startsWith('http') ? '_blank' : '_self');
-    }
-    slideContent.appendChild(img);
-
-    if (anyUrl) {
-      // Add link button(s)
-      const linkContainer = document.createElement('div');
-      linkContainer.style.textAlign = 'center';
-      linkContainer.style.marginTop = '10px';
-      linkContainer.style.marginBottom = '10px';
-
-      const makeBtn = (label, href, bg, bgHover) => {
-        const a = document.createElement('a');
-        a.href = href;
-        if (href.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
-        a.textContent = label;
-        a.style.display = 'inline-block';
-        a.style.margin = '5px';
-        a.style.padding = '10px 20px';
-        a.style.backgroundColor = bg;
-        a.style.color = 'white';
-        a.style.textDecoration = 'none';
-        a.style.borderRadius = '5px';
-        a.style.fontWeight = 'bold';
-        a.style.transition = 'background-color 0.3s ease';
-        a.onmouseover = () => a.style.backgroundColor = bgHover;
-        a.onmouseout = () => a.style.backgroundColor = bg;
-        return a;
-      };
-
-      if (primaryUrl) {
-        linkContainer.appendChild(makeBtn('View Project', primaryUrl, '#007bff', '#0056b3'));
-      }
-      if (project.githubUrl) {
-        linkContainer.appendChild(makeBtn('View on GitHub', project.githubUrl, '#24292e', '#000'));
-      }
-
-      slideContent.appendChild(linkContainer);
-    }
-
-    slideDiv.appendChild(slideContent);
-    slidesContainer.appendChild(slideDiv);
-
-    // Create thumbnail
-    const thumb = document.createElement('img');
-    thumb.src = project.image;
-    thumb.classList.add('featured-thumb');
-    thumb.style.cursor = 'pointer';
-    thumb.title = project.title + (anyUrl ? ' - Click to view slide or Ctrl+Click to open project' : ' - Click to view slide');
-    thumb.onerror = function() {
-      console.error('Failed to load thumbnail:', project.image);
-      // Create a simple text thumbnail if image fails
-      const textThumb = document.createElement('div');
-      textThumb.classList.add('featured-thumb');
-      textThumb.style.width = '80px';
-      textThumb.style.height = '60px';
-      textThumb.style.backgroundColor = '#f0f0f0';
-      textThumb.style.display = 'flex';
-      textThumb.style.alignItems = 'center';
-      textThumb.style.justifyContent = 'center';
-      textThumb.style.border = '2px solid #ccc';
-      textThumb.style.borderRadius = '5px';
-      textThumb.style.fontSize = '10px';
-      textThumb.style.color = '#666';
-      textThumb.style.cursor = 'pointer';
-      textThumb.title = thumb.title;
-      textThumb.textContent = project.title.substring(0, 8) + '...';
-      textThumb.onclick = (event) => {
-        if (anyUrl && (event.ctrlKey || event.metaKey)) {
-          window.open(anyUrl, '_blank');
-        } else {
-          setCurrentFeaturedSlide(index);
-        }
-      };
-      thumb.parentNode.replaceChild(textThumb, thumb);
-    };
-    thumb.onclick = (event) => {
-      if (anyUrl && (event.ctrlKey || event.metaKey)) {
-        window.open(anyUrl, '_blank');
-      } else {
-        setCurrentFeaturedSlide(index);
-      }
-    };
-    thumbnailContainer.appendChild(thumb);
-
-    featuredSlides.push(slideDiv);
-  });
-
-  console.log('Loaded', featuredSlides.length, 'featured slides');
-  updateFeaturedSlideCounter();
-  
-  // Show first slide
-  if (featuredSlides.length > 0) {
-    showFeaturedSlide(0);
-  }
-}
-
-function showFeaturedSlide(index) {
-  console.log('showFeaturedSlide called with index:', index, 'featuredSlides.length:', featuredSlides.length);
-  
-  if (index >= featuredSlides.length) {
-    currentFeaturedSlideIndex = 0;
-  } else if (index < 0) {
-    currentFeaturedSlideIndex = featuredSlides.length - 1;
-  } else {
-    currentFeaturedSlideIndex = index;
-  }
-
-  console.log('Setting currentFeaturedSlideIndex to:', currentFeaturedSlideIndex);
-
-  featuredSlides.forEach((slide, i) => {
-    slide.style.display = i === currentFeaturedSlideIndex ? 'block' : 'none';
-  });
-  
-  // Update thumbnail highlighting
-  const thumbnails = document.querySelectorAll('.featured-thumb');
-  console.log('Found', thumbnails.length, 'featured thumbnails');
-  
-  thumbnails.forEach((thumb, i) => {
-    if (i === currentFeaturedSlideIndex) {
-      thumb.classList.add('current-featured-thumb');
-      console.log('Highlighting featured thumbnail', i);
-    } else {
-      thumb.classList.remove('current-featured-thumb');
-    }
-  });
-  
-  updateFeaturedSlideCounter();
-}
-
-function nextFeaturedSlide() {
-  showFeaturedSlide(currentFeaturedSlideIndex + 1);
-}
-
-function prevFeaturedSlide() {
-  showFeaturedSlide(currentFeaturedSlideIndex - 1);
-}
-
-function setCurrentFeaturedSlide(index) {
-  showFeaturedSlide(index);
-}
-
-function updateFeaturedSlideCounter() {
-  const currentSlideEl = document.getElementById('featuredCurrentSlide');
-  const totalSlidesEl = document.getElementById('featuredTotalSlides');
-  if (currentSlideEl && totalSlidesEl) {
-    currentSlideEl.innerText = currentFeaturedSlideIndex + 1;
-    totalSlidesEl.innerText = featuredSlides.length.toString();
-  }
-}
-
-// Initialize the featured slideshow
-function initializeFeaturedSlideshow() {
-  console.log('Initializing featured slideshow');
-  
-  // Load the featured slides
-  loadFeaturedSlides();
-}
 
 });
 
@@ -2476,30 +2165,24 @@ function getBertelsmannProjectImages(projectFolder) {
 }
 
 // ---------------------------------------------------------------------------
-// Inbound deep link: "#personal"
-//
-// Standalone project pages (e.g. the RhythmBrownBox hub under
-// portfolioentries/personal/rhythmbrownbox/) link back here with
-// https://roy.deliberatelearners.com/#personal so a visitor lands on
-// Projects > Personal, where that project sits. The rest of the site only
-// acts on the URL hash when a nav-bar link is clicked, not on load, so a bare
-// "#projects" would show the default "Current" tab -- this opens the Personal
-// tab and scrolls the Projects section into view. Runs last (registered at
-// end of file), after the tab click handlers are bound in the first ready().
+// Inbound deep links: #security #product #consulting #academic #learning
+// (and the legacy alias #personal -> Product, still used by the standalone
+// RhythmBrownBox pages). The rest of the site only acts on the URL hash when
+// a nav-bar link is clicked; this handles it on load / hashchange too --
+// open the matching Projects tab and scroll the section into view. Runs last
+// so it wins over the first ready()'s deferred default-tab render.
 $(document).ready(function () {
-    function goPersonal() {
+    function goToProjectTab(tabId) {
         var section = document.getElementById('projects');
-        if (!section || !document.getElementById('link2Personal')) return;
+        if (!section || !document.getElementById(tabId)) return;
         $('#specialization, .jumbotron-before-specialization').hide();
-        $('#link2Personal').trigger('click');
+        showProjectTab(tabId);
         $('html, body').animate({ scrollTop: $(section).offset().top - 60 }, 700);
     }
     function checkHash() {
-        if ((window.location.hash || '').toLowerCase() === '#personal') goPersonal();
+        var tabId = projectTabForHash(window.location.hash);
+        if (tabId) goToProjectTab(tabId);
     }
-    // Deferred so it runs after the initial "Current" tab render (also
-    // setTimeout'd in the first ready() above) -- otherwise that render fires
-    // last and clobbers the Personal tab this just selected.
     setTimeout(checkHash, 0);
     $(window).on('hashchange', checkHash);
 });
