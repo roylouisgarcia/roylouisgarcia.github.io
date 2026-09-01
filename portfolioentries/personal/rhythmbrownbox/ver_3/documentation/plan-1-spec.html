@@ -83,19 +83,19 @@
 <h2>Why do this</h2>
 <p>v2 was a ground-up rebuild driven by a code audit and an informal "agile / BDD /
 TDD" backlog: test-first on the pure logic, Gherkin <code>.feature</code> files for the DOM
-and audio behaviour. It worked, but the methodology was whatever got that
+and audio behavior. It worked, but the methodology was whatever got that
 increment done — never a deliberate choice.</p>
 <p>v3 has a small, bounded scope (below). That makes it a good place to run a
 deliberate experiment: take the <strong>same</strong> acceptance criteria and plan four
 branches, each driven by one methodology —</p>
 <ul>
 <li><strong>TDD</strong> — Test-Driven Development (unit-first; red, green, refactor)</li>
-<li><strong>BDD</strong> — Behaviour-Driven Development (scenario-first, outside-in)</li>
+<li><strong>BDD</strong> — Behavior-Driven Development (scenario-first, outside-in)</li>
 <li><strong>FDD</strong> — Feature-Driven Development (feature-list-first; design- and build-by-feature)</li>
 <li><strong>DDD</strong> — Domain-Driven Design (model-first; ubiquitous language, layered)</li>
 </ul>
 <p>Parts 2 and 3 walk each branch hypothetically — where it puts the first commit,
-what its artefacts are, what it catches early and what it leaves late. Part 4
+what its artifacts are, what it catches early and what it leaves late. Part 4
 scores them and picks one to actually build. It won't be TDD; v2 already tells
 that story.</p>
 <h2>The v3 spec</h2>
@@ -123,11 +123,11 @@ desktop and on a phone, with the v2 test suite still green.</p>
   filled in; a v3 save opened by v2 falls back to an empty grid — the same way v2
   already handles a save that is a row short.</li>
 </ul>
-<h3>S3 — Centred / responsive grid</h3>
+<h3>S3 — Centered / responsive grid</h3>
 <ul>
 <li>The grid is laid out from its column count. At the full 16 / 32 it fills the
   width; below 8 columns (short patterns, or the shortest track under S7) it
-  <strong>centres</strong> instead of pinning left.</li>
+  <strong>centers</strong> instead of pinning left.</li>
 <li>Cells keep a minimum size; the grid never shrinks cells to fit.</li>
 </ul>
 <h3>S4 — Mobile UX</h3>
@@ -187,7 +187,7 @@ a multi-file <code>dist/</code> and a single self-contained <code>index.html</co
 <td>What stops S6 / S7 from breaking the v2 scheduler?</td>
 </tr>
 <tr>
-<td>Artefact cost</td>
+<td>Artifact cost</td>
 <td>Feature lists, scenarios, step definitions, model docs — how much non-shipping material?</td>
 </tr>
 <tr>

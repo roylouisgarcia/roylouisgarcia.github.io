@@ -26,7 +26,7 @@ extending their test lists:
 - `mixer.js` — `trackGainValue(pct, muted) → 0..1`; graph wiring asserted against
   a mock `AudioContext` (v2 already mocks it).
 
-### The artefacts
+### The artifacts
 
 A test list per module (kept in the PR description), then the tests. Nothing
 else — no scenario files, no model doc.
@@ -38,9 +38,9 @@ else — no scenario files, no model doc.
 | S2 per-track volume | Strong — pure gain math + graph wiring under a mock context |
 | S6 swing | Strong — the whole thing is one pure function |
 | S7 polymeter | Strong — LCM and index math, easy to pin |
-| S3 centred grid | Weak — a layout rule; a unit test can assert a class or a computed count, not that it *looks* centred |
+| S3 centered grid | Weak — a layout rule; a unit test can assert a class or a computed count, not that it *looks* centered |
 | S1 upload | Weak — `decodeAudioData`, `FileReader`, drag events; the decodable-file path unit-tests, the drag-drop UX does not |
-| S4 mobile | Weak — viewport behaviour; unit tests say nothing |
+| S4 mobile | Weak — viewport behavior; unit tests say nothing |
 | S5 roving tabindex | Partial — `nextFocusIndex(cur, key, rows, cols)` is pure and testable; the focus move and the SR text are not |
 
 ### What it catches early / leaves late
@@ -54,12 +54,12 @@ them.
 
 ### Cost
 
-Lowest artefact cost of the four. The risk is a false sense of doneness: a green
+Lowest artifact cost of the four. The risk is a false sense of doneness: a green
 suite over unshipped features.
 
 ## Branch B — BDD
 
-Behaviour-Driven Development: describe each capability as concrete scenarios in
+Behavior-Driven Development: describe each capability as concrete scenarios in
 domain language first, agree they are right, then drive the code outside-in from
 step definitions.
 
@@ -98,9 +98,9 @@ Feature: Playing on a phone
     And every button is at least 44px tall
 ```
 
-### The artefacts
+### The artifacts
 
-Feature files (the spec, restated as behaviour), a step-definition layer, a
+Feature files (the spec, restated as behavior), a step-definition layer, a
 runner in CI. The feature files double as the doc page — the trick v2 used, now
 backed by passing scenarios.
 

@@ -1,7 +1,7 @@
 # RhythmBrownBox v3 plan — FDD and DDD
 
 **Planning, August 2026. Part 3 of 4.**
-Two model-first branches for the [Part 1 spec](plan-1-spec.html): organised by feature, and organised by domain.
+Two model-first branches for the [Part 1 spec](plan-1-spec.html): organized by feature, and organized by domain.
 
 ## Branch C — FDD
 
@@ -21,7 +21,7 @@ In two short documents, then a walking skeleton.
 - Edit the display label of a track
 - Adjust the playback volume of a track
 - Mute a track
-- Centre the grid when it has fewer than eight columns
+- Center the grid when it has fewer than eight columns
 - Reflow the controls and grid for a phone-width screen
 - Move focus across the grid with the arrow keys
 - Delay the off-beat steps of the pattern by a swing amount
@@ -37,7 +37,7 @@ and from a save string.
 **3 — A walking skeleton:** the sixth row rendered, silent, wired to nothing — so
 every later feature has somewhere to land.
 
-### The artefacts
+### The artifacts
 
 The features list (also the progress board — each feature is *not started /
 designing / building / done*), the one-page model, and a short design note per
@@ -55,7 +55,7 @@ sitting:
 | **1 · The sixth track** | add track, load file, edit label, large-sample warning | S1 |
 | **2 · The mixer** | per-track volume, per-track mute, format migration | S2 |
 | **3 · Groove** | swing, per-track length | S6, S7 |
-| **4 · Layout & access** | centre short grid, phone reflow, roving focus | S3, S4, S5 |
+| **4 · Layout & access** | center short grid, phone reflow, roving focus | S3, S4, S5 |
 
 ### What it catches early / leaves late
 
@@ -96,7 +96,7 @@ In a `domain/` module with no imports from the DOM or Web Audio:
 - **Adapters:** `WebAudioSink`, `DomView`, `LocalStoragePatternStore`,
   `UrlPatternShare`.
 
-### The artefacts
+### The artifacts
 
 A ubiquitous-language glossary, a model / context document, the layer
 boundaries, plus tests (the pure domain is trivially unit-testable — this is

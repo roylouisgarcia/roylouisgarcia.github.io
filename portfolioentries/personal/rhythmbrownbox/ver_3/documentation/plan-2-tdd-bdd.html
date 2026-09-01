@@ -100,7 +100,7 @@ extending their test lists:</p>
 <li><code>mixer.js</code> — <code>trackGainValue(pct, muted) → 0..1</code>; graph wiring asserted against
   a mock <code>AudioContext</code> (v2 already mocks it).</li>
 </ul>
-<h3>The artefacts</h3>
+<h3>The artifacts</h3>
 <p>A test list per module (kept in the PR description), then the tests. Nothing
 else — no scenario files, no model doc.</p>
 <h3>Walking the spec</h3>
@@ -125,8 +125,8 @@ else — no scenario files, no model doc.</p>
 <td>Strong — LCM and index math, easy to pin</td>
 </tr>
 <tr>
-<td>S3 centred grid</td>
-<td>Weak — a layout rule; a unit test can assert a class or a computed count, not that it <em>looks</em> centred</td>
+<td>S3 centered grid</td>
+<td>Weak — a layout rule; a unit test can assert a class or a computed count, not that it <em>looks</em> centered</td>
 </tr>
 <tr>
 <td>S1 upload</td>
@@ -134,7 +134,7 @@ else — no scenario files, no model doc.</p>
 </tr>
 <tr>
 <td>S4 mobile</td>
-<td>Weak — viewport behaviour; unit tests say nothing</td>
+<td>Weak — viewport behavior; unit tests say nothing</td>
 </tr>
 <tr>
 <td>S5 roving tabindex</td>
@@ -149,10 +149,10 @@ v2's hottest path and TDD is the tightest net possible there.</p>
 the upload flow and the mobile layout still unbuilt — nothing red is pointing at
 them.</p>
 <h3>Cost</h3>
-<p>Lowest artefact cost of the four. The risk is a false sense of doneness: a green
+<p>Lowest artifact cost of the four. The risk is a false sense of doneness: a green
 suite over unshipped features.</p>
 <h2>Branch B — BDD</h2>
-<p>Behaviour-Driven Development: describe each capability as concrete scenarios in
+<p>Behavior-Driven Development: describe each capability as concrete scenarios in
 domain language first, agree they are right, then drive the code outside-in from
 step definitions.</p>
 <h3>Where the first commit lands</h3>
@@ -184,8 +184,8 @@ scenarios).</p>
     And the page itself never scrolls sideways
     And every button is at least 44px tall
 </code></pre>
-<h3>The artefacts</h3>
-<p>Feature files (the spec, restated as behaviour), a step-definition layer, a
+<h3>The artifacts</h3>
+<p>Feature files (the spec, restated as behavior), a step-definition layer, a
 runner in CI. The feature files double as the doc page — the trick v2 used, now
 backed by passing scenarios.</p>
 <h3>Walking the spec</h3>

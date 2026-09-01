@@ -7,7 +7,7 @@ One spec, planned four ways — TDD, BDD, FDD, DDD — then one of them picked t
 
 v2 was a ground-up rebuild driven by a code audit and an informal "agile / BDD /
 TDD" backlog: test-first on the pure logic, Gherkin `.feature` files for the DOM
-and audio behaviour. It worked, but the methodology was whatever got that
+and audio behavior. It worked, but the methodology was whatever got that
 increment done — never a deliberate choice.
 
 v3 has a small, bounded scope (below). That makes it a good place to run a
@@ -15,12 +15,12 @@ deliberate experiment: take the **same** acceptance criteria and plan four
 branches, each driven by one methodology —
 
 - **TDD** — Test-Driven Development (unit-first; red, green, refactor)
-- **BDD** — Behaviour-Driven Development (scenario-first, outside-in)
+- **BDD** — Behavior-Driven Development (scenario-first, outside-in)
 - **FDD** — Feature-Driven Development (feature-list-first; design- and build-by-feature)
 - **DDD** — Domain-Driven Design (model-first; ubiquitous language, layered)
 
 Parts 2 and 3 walk each branch hypothetically — where it puts the first commit,
-what its artefacts are, what it catches early and what it leaves late. Part 4
+what its artifacts are, what it catches early and what it leaves late. Part 4
 scores them and picks one to actually build. It won't be TDD; v2 already tells
 that story.
 
@@ -52,11 +52,11 @@ A sixth track, below v2's five, whose sample the user supplies:
   filled in; a v3 save opened by v2 falls back to an empty grid — the same way v2
   already handles a save that is a row short.
 
-### S3 — Centred / responsive grid
+### S3 — Centered / responsive grid
 
 - The grid is laid out from its column count. At the full 16 / 32 it fills the
   width; below 8 columns (short patterns, or the shortest track under S7) it
-  **centres** instead of pinning left.
+  **centers** instead of pinning left.
 - Cells keep a minimum size; the grid never shrinks cells to fit.
 
 ### S4 — Mobile UX
@@ -104,7 +104,7 @@ Part 4 scores the four on the same axes:
 | First commit | How long until something runs, or something is green? |
 | Covers S1 / S4 / S5 | Does the method naturally reach upload, mobile and focus — the interaction-heavy items — or leave them to the end? |
 | Regression safety | What stops S6 / S7 from breaking the v2 scheduler? |
-| Artefact cost | Feature lists, scenarios, step definitions, model docs — how much non-shipping material? |
+| Artifact cost | Feature lists, scenarios, step definitions, model docs — how much non-shipping material? |
 | Portfolio value | Does the write-up show something v1 and v2 didn't already? |
 | Fit to a solo, small codebase | Ceremony vs payoff at ~6 KB of app code |
 

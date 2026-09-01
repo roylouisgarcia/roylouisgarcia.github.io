@@ -13,14 +13,14 @@ built — but grounded in what v2 actually cost.
 | First runnable / green | Fast (unit green) | Slow (runner + step defs) | Fast (walking skeleton) | Slow (model + layers) |
 | Covers S1 / S4 / S5 naturally | Weak | **Strong** | Strong | Adapter-only |
 | Scheduler regression safety (S6 / S7) | **Strong** | Medium | Medium (if noted) | Strong |
-| Non-shipping artefact cost | **Lowest** | Highest | Low | High |
+| Non-shipping artifact cost | **Lowest** | Highest | Low | High |
 | Shows something v1 / v2 didn't | No — v2 did this | Barely — v2 did this | **Yes** | Yes, but oversized |
 | Fit to a solo, ~6 KB app | Good | Heavy | **Good** | Overkill |
 
 ### Reading it
 
 - **TDD** and **BDD** both score well on merit and badly on novelty: v2's rebuild
-  was already a soft TDD core with Gherkin behaviour files. Running either as
+  was already a soft TDD core with Gherkin behavior files. Running either as
   v3's headline is a repeat.
 - **DDD** is the wrong size. S3, S4 and S5 — three of seven items — live entirely
   in an adapter and get nothing from the model, while the ceremony cost is paid
@@ -65,7 +65,7 @@ sets:
 
 **Set 4 — Layout & access** (S3, S4, S5)
 
-- Centre the grid when it has fewer than eight columns
+- Center the grid when it has fewer than eight columns
 - Reflow the controls and grid for a phone-width screen
 - Move focus across the grid with the arrow keys
 - Announce a focused cell as track, step and state
@@ -110,7 +110,7 @@ single-file builds are produced.
 
 ### 4 · Walking skeleton (before Set 1)
 
-Render the sixth row, silent, labelled "empty — drop a sound here"; teach the
+Render the sixth row, silent, labeled "empty — drop a sound here"; teach the
 save reader to *accept* v3 fields without writing them yet; add the per-track
 gain nodes to the graph at unity. Nothing user-visible changes; every Set-1
 feature now has a place to attach.

@@ -10,7 +10,7 @@ v3 adds, on top of v2:
 - **A sixth track you load your own sample into** — drag-and-drop or file-picker a
   short `.wav` / `.mp3` / `.ogg`, with an editable label (tom, cymbal, synth…).
 - **Per-track volume and mute**, with the master Volume kept as the final stage.
-- **A centred grid** when the pattern is under eight columns.
+- **A centered grid** when the pattern is under eight columns.
 - **A real mobile layout** — controls in one column, the grid scrolling inside its
   own box, 44 px touch targets, verified at 360 px.
 - **A roving-tabindex grid** — one tab stop, arrow keys to move (v2 makes every
