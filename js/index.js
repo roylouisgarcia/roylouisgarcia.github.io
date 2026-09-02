@@ -390,21 +390,6 @@ const personalData = [
     description: "A GUI that uses FFMPEG to shift the pitch of a video's audio."
   },
   {
-    title: "Summer Beads",
-    image: "./images/featured/summerbeads.png",
-    stack: "HTML · CSS",
-    shows: "Laying out an early e-shop -- gallery, catalog, and contact.",
-    description: "One of my first design sites."
-  },
-  {
-    title: "Rock Paper Scissors",
-    image: "./images/featured/rockerpaperscissors.png",
-    url: "https://github.com/roylouisgarcia/rockpaperscissors",
-    stack: "JavaScript · DOM",
-    shows: "Practising state handling and DOM updates on a small game.",
-    description: "A browser rock-paper-scissors."
-  },
-  {
     title: "Flames Calculator - Input",
     image: "./images/featured/flames.png",
     url: "https://github.com/roylouisgarcia/flames",
@@ -419,13 +404,6 @@ const personalData = [
     stack: "HTML · CSS · JS",
     shows: "Building the results screen of the same exercise.",
     description: "FLAMES -- the results screen."
-  },
-  {
-    title: "League of Legends - LUA template generator for LeaguePedia",
-    image: "./images/featured/form2lua.png",
-    stack: "JavaScript",
-    shows: "Generating structured LUA wiki templates from a form -- string handling and templating.",
-    description: "A form-to-template generator for a fan wiki."
   }
 ];
 
