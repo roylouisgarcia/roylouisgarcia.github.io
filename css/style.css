@@ -3890,6 +3890,28 @@ a.project-btn-gold:hover {
   margin: 25px 0;
 }
 
+/* Fluid type for the life-stage narrative cards -- scales smoothly with
+   viewport instead of jumping at fixed breakpoints. Overrides the older
+   stepped `.typewriter` / `.writing` !important media rules. */
+#about .boy.typewriter,
+#about .teenager.typewriter,
+#about .adult.typewriter {
+  font-size: clamp(13px, 10.5px + 0.6vw, 17px) !important;
+}
+
+#about .boy .writing,
+#about .teenager .writing,
+#about .adult .writing {
+  font-size: clamp(16px, 12.5px + 1.1vw, 22px) !important;
+  line-height: 1.45 !important;
+}
+
+#about .boy p,
+#about .teenager p,
+#about .adult p {
+  line-height: 1.65;
+}
+
 #about .boy .teentoys,
 #about .teenager .teentoys,
 #about .adult .teentoys {
