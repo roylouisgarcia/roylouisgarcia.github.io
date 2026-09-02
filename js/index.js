@@ -19,29 +19,25 @@ let interestsSlides = [];
    the data-driven tabs, replacing the two near-identical engines that used
    to drive "Current Sites" and "Featured Projects".
 
-   Data arrays (securityData / productData / consultingData / learningData)
-   are defined lower in this file; PROJECT_TABS only names them by string,
-   and nothing here runs until after the whole file has parsed (the initial
-   render is deferred a tick from $(document).ready), so forward references
-   resolve fine.
+   Data arrays (securityData / productData / personalData) are defined lower
+   in this file, keyed into PROJECT_DATA; nothing here runs until after the
+   whole file has parsed (the initial render is deferred a tick from
+   $(document).ready), so forward references resolve fine.
    ========================================================================= */
 
 const PROJECT_TABS = [
-  { tab: 'link2Security',   section: 'security',   hash: '#security',   ids: 'security',   data: 'securityData' },
-  { tab: 'link2Product',    section: 'product',    hash: '#product',    ids: 'product',    data: 'productData' },
-  { tab: 'link2Consulting', section: 'consulting', hash: '#consulting', ids: 'consulting', data: 'consultingData' },
-  { tab: 'link2Academic',   section: 'academic',   hash: '#academic' },
-  { tab: 'link2Learning',   section: 'learning',   hash: '#learning',   ids: 'learning',   data: 'learningData' },
+  { tab: 'link2Security', section: 'security', hash: '#security', ids: 'security', data: 'securityData' },
+  { tab: 'link2Product',  section: 'product',  hash: '#product',  ids: 'product',  data: 'productData' },
+  { tab: 'link2Academic', section: 'academic', hash: '#academic' },
+  { tab: 'link2Personal', section: 'personal', hash: '#personal', ids: 'personal', data: 'personalData' },
 ];
 const PROJECT_TAB_ORDER = PROJECT_TABS.map(function (t) { return t.tab; });
 const DEFAULT_PROJECT_TAB = 'link2Security';
 const _slideshows = {};   // ids -> slideshow controller, built lazily
 
-// Map an inbound URL hash to a folder-tab id. `#personal` is a legacy alias
-// for Product -- the standalone RhythmBrownBox pages link back with it.
+// Map an inbound URL hash to a folder-tab id.
 function projectTabForHash(hash) {
   const h = (hash || '').toLowerCase();
-  if (h === '#personal') return 'link2Product';
   const m = PROJECT_TABS.filter(function (t) { return t.hash === h; })[0];
   return m ? m.tab : null;
 }
@@ -70,9 +66,7 @@ function showProjectTab(tabId) {
   });
   $('#hartnell, #csumb, #capella').hide('fast');
   $('#associate, #bachelors, #graduate').css('opacity', '1');
-  hideFeaturedProjects();
   hideAcademicProjects();
-  hideProProjects();
   hideLyricsProjects();
   updateMobileTabOrder(tabId);
 }
@@ -84,23 +78,12 @@ function hideAllProjectTabs() {
   });
   $('#hartnell, #csumb, #capella').hide('fast');
   $('#associate, #bachelors, #graduate').css('opacity', '1');
-  hideFeaturedProjects();
   hideAcademicProjects();
-  hideProProjects();
   hideLyricsProjects();
 }
 
 // Hide helpers -- top-level so showProjectTab()/hideAllProjectTabs() (also
-// top-level) can call them. hideFeaturedProjects and hideProProjects both
-// close the NostradmsX / Red Box image showcases in the Consulting tab.
-function hideFeaturedProjects() {
-  $('#nostradmsxdiv, #redboxdiv').hide('fast');
-  $('#nostradmsxbtn, #redboxbtn').removeClass('totiebtnActive');
-}
-function hideProProjects() {
-  $('#nostradmsxdiv, #redboxdiv').hide('fast');
-  $('#nostradmsxbtn, #redboxbtn').removeClass('totiebtnActive');
-}
+// top-level) can call them.
 function hideAcademicProjects() {
   $('#hartnellprojects, #hartnellcourses, #csumbprojects, #csumbcourses, #capellaprojects, #capellacourses').hide('fast');
   $('#hartnellcoursesbtn, #hartnellprojectsbtn, #csumbcoursesbtn, #csumbprojectsbtn, #capellacoursesbtn, #capellaprojectsbtn')
@@ -334,12 +317,6 @@ const productData = [
     description: "Helping people secure and pass on their digital lives on purpose."
   },
   {
-    title: "Deliberate Learners",
-    image: "./images/currentsites/deliberatelearners.jpg",
-    url: "https://deliberatelearners.com",
-    description: "A learning product built on the idea that knowledge only sticks when applied against a real feedback loop."
-  },
-  {
     title: "Deliberate Learners - Tools",
     image: "./images/currentsites/deliberatelearners-tools.jpg",
     url: "https://deliberatelearners.com/tools",
@@ -354,24 +331,27 @@ const productData = [
   }
 ];
 
-// --- Consulting -------------------------------------------------------
-const consultingData = [
+// --- Personal --------------------------------------------------------
+const personalData = [
   {
-    title: "Recorded Bliss",
-    image: "./images/featured/recordedbliss.png",
-    url: "https://recordedbliss.com",
-    description: "An online TV / streaming site for a former Philippine professional singer -- site build plus music production, online advertising, and social media, including live and on-demand video."
+    title: "NostradmsX",
+    image: "./images/currentsites/nostradmsx.jpg",
+    url: "https://nostradmsx.com",
+    description: "My personal blog and build log -- developer notes and field notes behind the products above."
   },
   {
-    title: "Heathwood Hardware Inc. (HHI)",
-    image: "./images/featured/hhi.png",
-    url: "https://github.com/roylouisgarcia/HeathWoodHardware",
-    description: "A hardware-store web application built for coursework -- inventory and storefront patterns."
-  }
-];
-
-// --- Learning & Tinkering -------------------------------------------
-const learningData = [
+    title: "Deliberate Learners",
+    image: "./images/currentsites/deliberatelearners.jpg",
+    url: "https://deliberatelearners.com",
+    description: "A learning product built on the idea that knowledge only sticks when applied against a real feedback loop -- and its first tool, Watch and Recall."
+  },
+  {
+    title: "Video Pitch Adjuster GUI",
+    image: "images/currentsites/video-pitch-shifter.png",
+    githubUrl: "https://github.com/roylouisgarcia/videopitchshifter",
+    description: "A GUI that uses FFMPEG to shift the pitch of a video's audio -- extract, adjust, remux. Python + Tkinter + subprocess.",
+    readMore: "Technologies Used: Python, Tkinter (GUI), FFMPEG (audio/video processing), subprocess module. Key Features: User-friendly graphical interface, audio extraction from video files, pitch adjustment capabilities, automatic audio-video merging, file selection dialogs. Learning Outcomes: GUI development with Tkinter, multimedia processing with FFMPEG, Python subprocess management, audio signal processing concepts."
+  },
   {
     title: "Summer Beads",
     image: "./images/featured/summerbeads.png",
@@ -399,12 +379,6 @@ const learningData = [
     title: "League of Legends - LUA template generator for LeaguePedia",
     image: "./images/featured/form2lua.png",
     description: "A form that generates LUA templates for a wiki -- string handling and template output."
-  },
-  {
-    title: "NostradmsX - Personal Blog",
-    image: "./images/currentsites/nostradmsx.jpg",
-    url: "https://nostradmsx.com",
-    description: "The build log -- developer notes and field notes behind everything above."
   }
 ];
 
@@ -413,8 +387,7 @@ const learningData = [
 const PROJECT_DATA = {
   security: securityData,
   product: productData,
-  consulting: consultingData,
-  learning: learningData,
+  personal: personalData,
 };
 
 $(document).ready(function(){
@@ -486,16 +459,6 @@ $(document).ready(function(){
     //     $(".books").toggle("fast", function(){}); 
     // });
     
-    $("#professionalDetailsbtn").click(function(){
-        $("#professionalDetails").toggle("fast", function(){
-            // Update button text based on visibility
-            if ($("#professionalDetails").is(":visible")) {
-                $("#professionalDetailsbtn").text("HIDE DETAILS");
-            } else {
-                $("#professionalDetailsbtn").text("CLICK HERE FOR MORE DETAILS");
-            }
-        }); 
-    });
     
     $("#personalDetailsBtn").click(function(){
         $("#personalDetails").toggle("fast", function(){
@@ -616,20 +579,8 @@ $(document).ready(function(){
        // Close courses panel if it's open
        $("#capellacourses").hide("fast");
        $("#capellacoursesbtn").removeClass("totiebtnActive");
-    });    
-    $("#nostradmsxbtn").click(function(){
-       $("#nostradmsxdiv").show("fast", function(){});
-       $("#redboxdiv").hide("fast", function(){});
-       $("#nostradmsxbtn").addClass("totiebtnActive", function(){});
-       $("#redboxbtn").removeClass("totiebtnActive", function(){});    
     });
-    $("#redboxbtn").click(function(){
-       $("#nostradmsxdiv").hide("fast", function(){});
-       $("#redboxdiv").show("fast", function(){});
-       $("#redboxbtn").addClass("totiebtnActive", function(){});
-       $("#nostradmsxbtn").removeClass("totiebtnActive", function(){});          
-    });
-    
+
    $("#btn_angel").click(function(){
        $("#angellyrics").show("fast", function(){});
        $("#uulitinlyrics").hide("fast", function(){});
@@ -672,11 +623,7 @@ $(document).ready(function(){
     
     function defaultProjects(){
         hideAllProjectTabs();
-        PROJECT_TABS.forEach(function (t) {
-          if (t.tab !== 'link2Academic') $('#' + t.tab).addClass('btnNonActive');
-        });
-        $("#link2Academic").addClass("btnNonActive");
-        hideProProjects();
+        PROJECT_TABS.forEach(function (t) { $('#' + t.tab).addClass('btnNonActive'); });
         hideLyricsProjects();
         hideSpecializationSection();
     }
@@ -685,15 +632,6 @@ $(document).ready(function(){
         $("#specialization").hide("fast", function(){});
         $(".jumbotron-before-specialization").hide("fast", function(){});
     }
-
-     // Click outside handler for the NostradmsX / Red Box image showcases.
-     $(document).on('click', function(e) {
-        if (!$(e.target).closest('#nostradmsxdiv, #redboxdiv, #nostradmsxbtn, #redboxbtn').length) {
-            if ($("#nostradmsxdiv").is(":visible") || $("#redboxdiv").is(":visible")) {
-                hideProProjects();
-            }
-        }
-     });
 
      // Kept as a thin wrapper -- other code (and the Academic school sub-tabs)
      // still call showAcademicTab().
@@ -705,13 +643,6 @@ $(document).ready(function(){
 // (moocSlideIndex/moocSlides declared at the top of the file)
 
 const moocData = [
-  {
-    title: "Video Pitch Adjuster GUI",
-    image: "images/currentsites/video-pitch-shifter.png",
-    githubUrl: "https://github.com/roylouisgarcia/videopitchshifter",
-    description: "A user-friendly GUI application that uses FFMPEG to adjust the pitch of audio in video files. This application extracts audio from video, adjusts the pitch by a specified amount, and merges the adjusted audio back with the original video.",
-    readMore: "Technologies Used: Python, Tkinter (GUI), FFMPEG (audio/video processing), subprocess module. Key Features: User-friendly graphical interface, audio extraction from video files, pitch adjustment capabilities, automatic audio-video merging, file selection dialogs. Learning Outcomes: GUI development with Tkinter, multimedia processing with FFMPEG, Python subprocess management, audio signal processing concepts."
-  },
   {
     title: "Coursera/Meta HTML and CSS in Depth",
     image: "https://raw.githubusercontent.com/roylouisgarcia/meta-coursera-html-css-project/main/images/readme_wholepicture.jpg",
@@ -2165,12 +2096,11 @@ function getBertelsmannProjectImages(projectFolder) {
 }
 
 // ---------------------------------------------------------------------------
-// Inbound deep links: #security #product #consulting #academic #learning
-// (and the legacy alias #personal -> Product, still used by the standalone
-// RhythmBrownBox pages). The rest of the site only acts on the URL hash when
-// a nav-bar link is clicked; this handles it on load / hashchange too --
-// open the matching Projects tab and scroll the section into view. Runs last
-// so it wins over the first ready()'s deferred default-tab render.
+// Inbound deep links: #security #product #academic #personal. The rest of the
+// site only acts on the URL hash when a nav-bar link is clicked; this handles
+// it on load / hashchange too -- open the matching Projects tab and scroll the
+// section into view. Runs last so it wins over the first ready()'s deferred
+// default-tab render.
 $(document).ready(function () {
     function goToProjectTab(tabId) {
         var section = document.getElementById('projects');

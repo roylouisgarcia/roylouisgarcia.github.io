@@ -467,10 +467,6 @@ h3.handwritten {
   position: relative;
   z-index: 2;
 }
-/* Five tabs with long labels -- ease the type down a notch so the row is
-   less likely to wrap on mid-width screens. */
-.foldertabs-5 { font-size: 1.15em; }
-.foldertabs-5 .folder-tab { padding: 8px 12px 4px 12px; }
 
 .folder-tab {
   position: relative;
@@ -645,9 +641,8 @@ h3.handwritten {
 
 #link2Security,
 #link2Product,
-#link2Consulting,
 #link2Academic,
-#link2Learning {
+#link2Personal {
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: 1.1em;
@@ -996,9 +991,8 @@ h4 {
 
 .security,
 .product,
-.consulting,
 .academic,
-.learning {
+.personal {
   display: none;
   background-image: url("/images/spacewar.jpg");
   background-repeat: repeat;
@@ -1739,9 +1733,6 @@ figure video {
     padding-left: 0px;
     padding-right: 0px;
   }
-  /* Five tabs: 2 + 2 + 1, the last row spanning full width. */
-  .foldertabs-5 .folder-tab[data-pos="5"] { grid-column: 1 / -1; }
-
   /* Reorder visually only (DOM order is untouched, so desktop's single-row
      layout -- which reads the markup order directly -- is unaffected).
      data-pos is set by updateMobileTabOrder() in js/index.js whenever a
@@ -1751,7 +1742,6 @@ figure video {
   .folder-tab[data-pos="2"] { order: 2; }
   .folder-tab[data-pos="3"] { order: 3; }
   .folder-tab[data-pos="4"] { order: 4; }
-  .folder-tab[data-pos="5"] { order: 5; }
 
   .folder-tab {
     display: flex;
