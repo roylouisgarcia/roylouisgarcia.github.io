@@ -2429,26 +2429,6 @@ figure video {
   max-width: 100%;
 }
 
-.certifications-slideshow-wrapper::after {
-  content: "🔗 Click to visit site";
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 12px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.certifications-slideshow-wrapper:hover::after {
-  opacity: 1;
-}
-
 .cert-slides {
   display: none;
   padding: 20px;
@@ -2491,14 +2471,7 @@ figure video {
 .cert-slides img {
   max-width: 100%;
   height: auto;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   border-radius: 8px;
-}
-
-.cert-slides img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .cert-nav-btn {

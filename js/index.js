@@ -172,11 +172,6 @@ function createSlideshow(ids, data) {
 
   data.forEach(function (item, i) {
     const primaryUrl = item.siteUrl || item.url || null;
-    const anyUrl = primaryUrl || item.githubUrl || null;
-    const openPrimary = function () {
-      if (item.isBertelsmann) { showBertelsmannProjects(); return; }
-      if (primaryUrl) window.open(primaryUrl, primaryUrl.indexOf('http') === 0 ? '_blank' : '_self');
-    };
 
     const slide = document.createElement('div');
     slide.className = 'cert-slides';
@@ -195,9 +190,7 @@ function createSlideshow(ids, data) {
       const img = document.createElement('img');
       img.src = item.image;
       img.alt = item.title;
-      img.style.cssText = 'max-width:100%;height:auto;display:block;margin:0 auto;cursor:pointer';
-      img.title = item.isBertelsmann ? 'Click to see the projects' : 'Click to view project';
-      img.onclick = openPrimary;
+      img.style.cssText = 'max-width:100%;height:auto;display:block;margin:0 auto';
       img.onerror = function () { console.error('Failed to load image:', item.image); };
       content.appendChild(img);
     }
@@ -306,10 +299,7 @@ function createSlideshow(ids, data) {
         .split(/\s+/).filter(Boolean).slice(0, 3).map(function (w) { return w[0]; }).join('').toUpperCase();
     }
     thumb.setAttribute('aria-label', 'Show slide ' + (i + 1) + ': ' + item.title);
-    thumb.onclick = function (e) {
-      if (anyUrl && (e.ctrlKey || e.metaKey)) { openPrimary(); return; }
-      show(i);
-    };
+    thumb.onclick = function () { show(i); };
     thumbsEl.appendChild(thumb);
   });
 
