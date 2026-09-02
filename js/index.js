@@ -335,7 +335,7 @@ const productData = [
 const personalData = [
   {
     title: "NostradmsX",
-    image: "./images/currentsites/nostradmsx.jpg",
+    image: "./images/currentsites/nostradmsx.jpg?v=2",
     url: "https://nostradmsx.com",
     description: "My personal blog and build log -- developer notes and field notes behind the products above."
   },
