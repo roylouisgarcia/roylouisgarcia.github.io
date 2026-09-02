@@ -298,8 +298,7 @@ const securityData = [
     title: "DMSecurityX",
     image: "./images/currentsites/dmsecurityx-1.jpg",
     url: "https://dmsecurityx.com",
-    stack: "Next.js · TypeScript · Supabase · Vercel",
-    shows: "Taking a real product from security architecture through build, content, and SEO, and keeping it running.",
+    shows: "Taking a security-guidance product from architecture through content and SEO, and keeping it running.",
     description: "A security-guidance product for small businesses and creators: no jargon, actionable steps."
   },
   {
@@ -317,7 +316,7 @@ const productData = [
     title: "Deliberately Deliberate",
     image: "./images/currentsites/deliberatelydeliberate.jpg",
     url: "https://deliberatelydeliberate.com",
-    stack: "Next.js · React · TypeScript · Supabase · Vercel",
+    stack: "Hand-coded static site, migrating to WordPress + Elementor Pro",
     shows: "Running a multi-product ecosystem end to end: concept, front and back end, security architecture, SEO, and content.",
     description: "The umbrella for a connected set of products and writing built on one idea: choose on purpose."
   },
@@ -333,7 +332,7 @@ const productData = [
     title: "Circal (TryCircal)",
     image: "./images/currentsites/trycircal_calendar.jpg",
     url: "https://trycircal.app",
-    stack: "Next.js · TypeScript · Supabase",
+    stack: "Next.js 15 (App Router) · NextAuth v5 · Prisma · Supabase (Postgres) · Tailwind · Vercel",
     shows: "Turning sleep, meal, and body-clock signals into a daily focus prediction.",
     description: "An energy-aware calendar that color-codes your day by predicted focus. Blueprints, Calendar, Insights, and Settings views."
   },
@@ -341,15 +340,15 @@ const productData = [
     title: "Deliberate Digital Legacy",
     image: "./images/currentsites/deliberate-digital-legacy.jpg",
     url: "https://deliberate-digital-legacy.com",
-    stack: "Next.js · Supabase",
-    shows: "Building the product side of digital-estate planning end to end.",
+    stack: "Single hand-coded HTML file · CSS Grid · no JS, no build",
+    shows: "Shipping a zero-dependency marketing site; companion app scoped (iOS port planned).",
     description: "Helping people secure and pass on their digital lives on purpose."
   },
   {
     title: "Deliberate Learners - Tools",
     image: "./images/currentsites/deliberatelearners-tools.jpg",
     url: "https://deliberatelearners.com/tools",
-    stack: "JavaScript · Web APIs",
+    stack: "Vanilla JS · Web APIs, no framework",
     shows: "Enforcing a learning rule in the browser -- Watch and Recall makes you produce for as long as you consumed.",
     description: "The tools layer of Deliberate Learners."
   },
@@ -370,7 +369,7 @@ const personalData = [
     title: "NostradmsX",
     image: "./images/currentsites/nostradmsx.jpg?v=2",
     url: "https://nostradmsx.com",
-    stack: "Static site",
+    stack: "WordPress (self-hosted) · Yoast SEO",
     shows: "Writing up the reasoning and trade-offs behind every product on this page.",
     description: "My personal blog: half build log, half field notes."
   },
@@ -378,7 +377,7 @@ const personalData = [
     title: "Deliberate Learners",
     image: "./images/currentsites/deliberatelearners.jpg",
     url: "https://deliberatelearners.com",
-    stack: "JavaScript · Web APIs",
+    stack: "Vanilla JS · Web APIs, no framework",
     shows: "Turning a personal learning method into a product built around a real feedback loop.",
     description: "Built on the idea that consuming isn't learning until you produce against it -- and its first tool, Watch and Recall."
   },
