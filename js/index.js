@@ -307,10 +307,18 @@ function createSlideshow(ids, data) {
 // --- Security -----------------------------------------------------------
 const securityData = [
   {
-    title: "Student Information Systems Analyst - CSUMB",
-    stack: "PeopleSoft 8.9 · role-based access control · dev/prod change control · FERPA",
-    shows: "Paid security work: PeopleSoft 8.9 security design and implementation, security role administration, dev-to-production security migration, and authoring a FERPA compliance training course.",
-    description: "Staff analyst role at California State University, Monterey Bay -- owning the security side of the student information system that holds every student's records."
+    title: "Deliberate Cybersecurity",
+    image: "./images/currentsites/deliberatecybersecurity.jpg",
+    url: "https://deliberatecybersecurity.com",
+    shows: "Turning security practice into plain-language guidance people actually follow.",
+    description: "The editorial companion to DMSecurityX -- free, plain-language security writing."
+  },
+  {
+    title: "DMSecurityX",
+    image: "./images/currentsites/dmsecurityx-1.jpg",
+    url: "https://dmsecurityx.com",
+    shows: "Taking a security-guidance product from architecture through content and SEO, and keeping it running.",
+    description: "A security-guidance product for small businesses and creators: no jargon, actionable steps."
   },
   {
     title: "Bertelsmann Technology Scholarship - Enterprise Security Nanodegree",
@@ -322,25 +330,18 @@ const securityData = [
     isBertelsmann: true
   },
   {
+    title: "Student Information Systems Analyst - CSUMB",
+    image: "./images/currentsites/sis-analyst-csumb.jpg",
+    stack: "PeopleSoft 8.9 · role-based access control · dev/prod change control · FERPA",
+    shows: "Paid security work: PeopleSoft 8.9 security design and implementation, security role administration, dev-to-production security migration, and authoring a FERPA compliance training course.",
+    description: "Staff analyst role at California State University, Monterey Bay -- owning the security side of the student information system that holds every student's records."
+  },
+  {
     title: "Raspberry Pi / Kali Linux Pentest Lab",
     image: "images/personal/raspberrypi.png",
     stack: "Raspberry Pi 3 Model B · Kali Linux · headless SSH · GPIO I/O",
     shows: "Running a self-hosted, low-power penetration-testing lab -- headless Kali over SSH, always on hand, plus hardware I/O experiments.",
     description: "A pocket-sized full computer that runs off a phone charger: Kali's pentest toolset kept close, and a sandbox for physical-computing projects."
-  },
-  {
-    title: "DMSecurityX",
-    image: "./images/currentsites/dmsecurityx-1.jpg",
-    url: "https://dmsecurityx.com",
-    shows: "Taking a security-guidance product from architecture through content and SEO, and keeping it running.",
-    description: "A security-guidance product for small businesses and creators: no jargon, actionable steps."
-  },
-  {
-    title: "Deliberate Cybersecurity",
-    image: "./images/currentsites/deliberatecybersecurity.jpg",
-    url: "https://deliberatecybersecurity.com",
-    shows: "Turning security practice into plain-language guidance people actually follow.",
-    description: "The editorial companion to DMSecurityX -- free, plain-language security writing."
   }
 ];
 
