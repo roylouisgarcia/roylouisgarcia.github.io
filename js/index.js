@@ -334,6 +334,7 @@ const productData = [
     title: "Digitally (MyDigitally)",
     image: "./images/currentsites/mydigitally_1.jpg",
     url: "https://mydigitally.app",
+    articleUrl: "https://nostradmsx.com/the-encrypted-credential-vault-zero-knowledge-security-at-mydigitally-app/",
     stack: "Next.js 14 (App Router, RSC) · React 18 · TypeScript · Supabase (Postgres, Auth, Storage, RLS) · Vercel",
     shows: "Building a full-stack app with row-level security, proof-of-ownership verification, and estate-planning exports -- solo.",
     description: "A vault to document, protect, and sell your digital assets."
