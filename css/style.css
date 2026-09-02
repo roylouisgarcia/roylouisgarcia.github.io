@@ -2510,6 +2510,18 @@ figure video {
   opacity: 0.7;
 }
 
+.cert-thumb-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-navy);
+  color: var(--brand-gold);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
 .cert-thumb:hover {
   opacity: 1;
   transform: scale(1.1);

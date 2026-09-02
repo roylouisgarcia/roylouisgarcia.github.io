@@ -156,14 +156,16 @@ function createSlideshow(ids, data) {
     h.style.cssText = 'text-align:center;margin-bottom:15px;color:#333;font-size:20px;font-weight:bold';
     content.appendChild(h);
 
-    const img = document.createElement('img');
-    img.src = item.image;
-    img.alt = item.title;
-    img.style.cssText = 'max-width:100%;height:auto;display:block;margin:0 auto;cursor:pointer';
-    img.title = item.isBertelsmann ? 'Click to see the projects' : 'Click to view project';
-    img.onclick = openPrimary;
-    img.onerror = function () { console.error('Failed to load image:', item.image); };
-    content.appendChild(img);
+    if (item.image) {
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = item.title;
+      img.style.cssText = 'max-width:100%;height:auto;display:block;margin:0 auto;cursor:pointer';
+      img.title = item.isBertelsmann ? 'Click to see the projects' : 'Click to view project';
+      img.onclick = openPrimary;
+      img.onerror = function () { console.error('Failed to load image:', item.image); };
+      content.appendChild(img);
+    }
 
     if (item.description) {
       const p = document.createElement('p');
@@ -251,10 +253,19 @@ function createSlideshow(ids, data) {
     slidesEl.appendChild(slide);
     slides.push(slide);
 
-    const thumb = document.createElement('img');
-    thumb.src = item.image;
-    thumb.className = 'cert-thumb';
-    thumb.alt = item.title;
+    let thumb;
+    if (item.image) {
+      thumb = document.createElement('img');
+      thumb.src = item.image;
+      thumb.alt = item.title;
+    } else {
+      // Imageless card (e.g. a work role) -- show an initials tile, not a broken img.
+      thumb = document.createElement('div');
+      thumb.className = 'cert-thumb-text';
+      thumb.textContent = item.title.replace(/[^A-Za-z0-9 ]/g, ' ')
+        .split(/\s+/).filter(Boolean).slice(0, 3).map(function (w) { return w[0]; }).join('').toUpperCase();
+    }
+    thumb.classList.add('cert-thumb');
     thumb.title = item.title + (anyUrl ? ' - click to view, Ctrl+click to open' : ' - click to view');
     thumb.onclick = function (e) {
       if (anyUrl && (e.ctrlKey || e.metaKey)) { openPrimary(); return; }
@@ -296,6 +307,12 @@ function createSlideshow(ids, data) {
 // --- Security -----------------------------------------------------------
 const securityData = [
   {
+    title: "Student Information Systems Analyst - CSUMB",
+    stack: "PeopleSoft 8.9 · role-based access control · dev/prod change control · FERPA",
+    shows: "Paid security work: PeopleSoft 8.9 security design and implementation, security role administration, dev-to-production security migration, and authoring a FERPA compliance training course.",
+    description: "Staff analyst role at California State University, Monterey Bay -- owning the security side of the student information system that holds every student's records."
+  },
+  {
     title: "Bertelsmann Technology Scholarship - Enterprise Security Nanodegree",
     image: "specialization/images/Bertelsmann_nanodegree_enterprisesecurity.jpg",
     stack: "Azure (Sentinel, Entra, Intune, Defender for Endpoint) · ELK · SIEM/SOAR · EDR/IDS",
@@ -303,6 +320,13 @@ const securityData = [
     description: "An enterprise security nanodegree taken for the hands-on cloud-security labs: threat assessment, security architecture, and incident response across an Azure + ELK environment.",
     readMore: "Technologies Used: Microsoft Azure services (Virtual Networks, Entra, Sentinel, Intune, Defender for Endpoint), ELK Stack (Elasticsearch, Logstash, Kibana, Filebeat), SIEM/SOAR platforms, EDR/IDS technologies. Key Features: Network defenses with DMZs and VPNs, Zero Trust security architecture, defense-in-depth strategies, compliance alignment with NIST 800-61r2 and TIC 3.0. Learning Outcomes: Enterprise security frameworks, threat assessment methodologies, cloud security implementation, risk management practices.",
     isBertelsmann: true
+  },
+  {
+    title: "Raspberry Pi / Kali Linux Pentest Lab",
+    image: "images/personal/raspberrypi.png",
+    stack: "Raspberry Pi 3 Model B · Kali Linux · headless SSH · GPIO I/O",
+    shows: "Running a self-hosted, low-power penetration-testing lab -- headless Kali over SSH, always on hand, plus hardware I/O experiments.",
+    description: "A pocket-sized full computer that runs off a phone charger: Kali's pentest toolset kept close, and a sandbox for physical-computing projects."
   },
   {
     title: "DMSecurityX",
