@@ -1251,15 +1251,75 @@ function initializeHartnellSlideshow() {
 // (skillsCurrentSlideIndex/skillsSlides declared at the top of the file)
 
 // Skills data
+// Ordered security-first, then full-stack, then supporting skills -- matches
+// the way Projects is now organized. Terms are kept literal so an ATS or a
+// recruiter scanning for "IAM", "RBAC", "Next.js", etc. finds them verbatim.
 const skillsData = [
     {
-        title: "Product & Founder",
+        title: "Security & Identity / Access Management",
+        icon: "🔒",
+        skills: [
+            "Identity & Access Management (IAM) and Role-Based Access Control (RBAC): mapping business roles to permission sets on the principle of least privilege",
+            "User lifecycle management — provisioning, changes, and deprovisioning",
+            "Access governance &amp; compliance: access-certification audits, matrix reporting, FERPA regulatory support",
+            "Row-level security and PII protection on systems of record",
+            "Application security: OWASP Top 10, authentication and session security, dependency hygiene",
+            "Defense-in-depth and Zero Trust architecture; DMZ / VPN network defense",
+            "SIEM / SOAR with Azure Sentinel and the Elastic Stack (ELK); EDR / IDS",
+            "Incident response aligned to NIST 800-61r2; penetration testing with Kali Linux"
+        ]
+    },
+    {
+        title: "Full-Stack Product Development",
         icon: "🚀",
         skills: [
-            "Own the full product lifecycle: concept, front-end/back-end development, security architecture, SEO, and content",
-            "Modern full-stack development with Next.js (App Router, Server Components, Server Actions), React, and TypeScript",
-            "Supabase (Postgres, Auth, Storage, Row-Level Security) and Vercel deployment",
-            "Shipped and maintain a live product ecosystem under one philosophy — see the <a href='#projects'>Current</a> tab above (Circal, Digitally, DMSecurityX, and related tools)"
+            "Own the full product lifecycle: concept, front and back end, security architecture, SEO, and content — mostly solo",
+            "Next.js (App Router, React Server Components, Server Actions), React, and TypeScript",
+            "Supabase (Postgres, Auth, Storage, Row-Level Security), Prisma, NextAuth; deployed on Vercel",
+            "Third-party integration: OAuth, Google Calendar API, REST",
+            "Engineering rigor: BDD / TDD, CI, WCAG accessibility, zero-dependency builds",
+            "Shipped and maintain a live product ecosystem — see the <a href='#product'>Product &amp; Full-Stack</a> and <a href='#security'>Security</a> tabs above (Digitally, Circal, DMSecurityX, and related tools)"
+        ]
+    },
+    {
+        title: "Cloud & Infrastructure",
+        icon: "☁️",
+        skills: [
+            "Microsoft Azure: Entra ID, Intune, Defender for Endpoint, Sentinel, Virtual Networks",
+            "Some AWS cloud services; Vercel for application hosting",
+            "Linux and Windows Server administration; hardware installation, upgrades, and patching",
+            "Account and access-control-list (ACL) management; security-policy implementation",
+            "Change-management procedures that ease audit and compliance"
+        ]
+    },
+    {
+        title: "Web Development & SEO",
+        icon: "🌐",
+        skills: [
+            "Static and dynamic web design and development",
+            "Usability testing and accessibility standards (WCAG)",
+            "Search engine optimization and web analytics",
+            "Customization of open-source platforms: WordPress, Joomla, Drupal; cPanel, Shopify",
+            "Social media for branding and marketing"
+        ]
+    },
+    {
+        title: "Programming",
+        icon: "💻",
+        skills: [
+            "Procedural, object-oriented, modular, and functional programming",
+            "Efficient, reusable code; time-saving tooling and IDE extensions",
+            "Continuous adoption of newer language features and practices",
+            "Across coursework and projects: JavaScript / TypeScript, Python, PHP, Java (Android), C++, Lua, Bash"
+        ]
+    },
+    {
+        title: "Data & Analytics",
+        icon: "📊",
+        skills: [
+            "Exploring datasets to produce business intelligence for decisions",
+            "Social media data mining to optimize site and channel strategy",
+            "Sentiment analysis, data visualization, business metrics and insights"
         ]
     },
     {
@@ -1272,62 +1332,7 @@ const skillsData = [
             "Passing on knowledge to other people to enhance learning (see <strong>the power of Protege' Effect</strong> <a href='protege.pdf' target='_blank'>here</a>)",
             "Reviewed available massive open online courses and platforms by <a href='https://sites.google.com/site/reflection4learning/why-reflect' target='_blank'>reflecting as a learner</a> (also, see a study by Jack Mezirow on Reflection Triggers <a href='portfolioentries/otherpeopleswork/reflectiontriggers.pdf' target='_blank'>here</a>)"
         ]
-    },
-    {
-        title: "Web Development",
-        icon: "🌐",
-        skills: [
-            "Static and Dynamic Web Design and Development",
-            "Usability Testings, Accessibility Standards, and Sentiment Analysis",
-            "Customization of vanilla open source solutions",
-            "Using existing social media for branding and marketing",
-            "Search Engine Optimization and Knowledge of Web Analytics",
-            "WordPress, Joomla, Drupal, CPanel, Shopify and some AWS Cloud Services"
-        ]
-    },
-    {
-        title: "Programming",
-        icon: "💻",
-        skills: [
-            "knowledge and experience with time-saving programming tools/IDE extensions",
-            "efficient programming using reusable codes from programming cookbooks",
-            "progressive learner of newer programming practices",
-            "procedural, object-oriented, modular and functional programming"
-        ]
-    },
-    {
-        title: "Computer Security",
-        icon: "🔒",
-        skills: [
-            "penetration testing",
-            "user account, password, authentication, directory and file system security",
-            "audits and account clean ups",
-            "defense-in-depth security architecture and multilayered risk mitigation",
-            "OWASP Top 10 web application security principles",
-            "Security Information and Event Management (SIEM) with Azure Sentinel and the Elastic Stack (ELK)",
-            "FERPA regulatory compliance and audit support"
-        ]
-    },
-    {
-        title: "Data Science",
-        icon: "📊",
-        skills: [
-            "exploration of datasets to produce business intelligence to help create business decisions",
-            "using existing social media data mining to optimize website and social media strategies",
-            "using various tools for sentiment analysis, data visualization, business metrics, insights, etc.."
-        ]
-    },
-    {
-        title: "Network Administration",
-        icon: "🖧",
-        skills: [
-            "maintained Linux and Windows servers",
-            "managing account creation and maintenance, access control list (ACLs), and implementing security policies",
-            "promotes change management procedures to ease audit and compliance requirements",
-            "Installation of hardware equipments and software upgrades and patches"
-        ]
     }
-	
 ];
 
 // Load Skills slides dynamically
