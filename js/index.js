@@ -217,6 +217,15 @@ function createSlideshow(ids, data) {
       styleBtn(g, '#24292e', '#000');
       btnRow.appendChild(g);
     }
+    if (item.articleUrl) {
+      const r = document.createElement('a');
+      r.href = item.articleUrl;
+      r.target = '_blank';
+      r.rel = 'noopener';
+      r.textContent = item.articleLabel || 'Read the Article';
+      styleBtn(r, '#6f42c1', '#59359a');
+      btnRow.appendChild(r);
+    }
 
     let moreEl = null;
     if (item.readMore) {
@@ -278,6 +287,7 @@ function createSlideshow(ids, data) {
 // =========================================================================
 // PROJECTS DATA -- one array per data-driven capability tab. Item shape:
 //   { title, image, url | (siteUrl & githubUrl),
+//     articleUrl?, articleLabel?,
 //     stack?, shows?, description?, readMore?, isBertelsmann? }
 // `stack` (tech) and `shows` (what it demonstrates / the role) render as a
 // small scannable block on each slide -- the line a recruiter reads.
@@ -385,6 +395,7 @@ const personalData = [
     title: "Video Pitch Adjuster GUI",
     image: "images/currentsites/video-pitch-shifter.png",
     githubUrl: "https://github.com/roylouisgarcia/videopitchshifter",
+    articleUrl: "https://nostradmsx.com/a-singers-dilemma-solved-by-nostradmsx-video-pitch-shifter/",
     stack: "Python · Tkinter · FFMPEG · subprocess",
     shows: "Wrapping a media pipeline -- extract, pitch-shift, remux -- in a desktop GUI.",
     description: "A GUI that uses FFMPEG to shift the pitch of a video's audio."
