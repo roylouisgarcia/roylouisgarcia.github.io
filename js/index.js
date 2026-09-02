@@ -343,6 +343,7 @@ const productData = [
     title: "Circal (TryCircal)",
     image: "./images/currentsites/trycircal_calendar.jpg",
     url: "https://trycircal.app",
+    articleUrl: "https://nostradmsx.com/name-change-from-mycalendone-to-circal/",
     stack: "Next.js 15 (App Router) · NextAuth v5 · Prisma · Supabase (Postgres) · Tailwind · Vercel",
     shows: "Turning sleep, meal, and body-clock signals into a daily focus prediction.",
     description: "An energy-aware calendar that color-codes your day by predicted focus. Blueprints, Calendar, Insights, and Settings views."
