@@ -97,12 +97,13 @@ p.title {
 }
 
 /* Section epigraph (the line under TOOLS / SKILLS / INTERESTS) -- mono,
-   to match the rest of the site. */
+   to match the rest of the site. !important + clamp so the blanket
+   `h3` mobile rules don't inflate it. */
 .section-epigraph {
   font-family: var(--font-mono);
   font-weight: 400;
-  font-size: 0.9em;
-  line-height: 1.6;
+  font-size: clamp(12px, 10px + 0.5vw, 14px) !important;
+  line-height: 1.6 !important;
   max-width: 640px;
   margin: 8px auto 0;
   color: #5a6280;
