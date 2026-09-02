@@ -377,7 +377,7 @@ const securityData = [
   },
   {
     title: "Raspberry Pi / Kali Linux Pentest Lab",
-    image: "images/personal/raspberrypi.png",
+    image: "images/personal/raspberrypi.jpg",
     stack: "Raspberry Pi 3 Model B · Kali Linux · headless SSH · GPIO I/O",
     shows: "Running a self-hosted, low-power penetration-testing lab -- headless Kali over SSH, always on hand, plus hardware I/O experiments.",
     description: "A pocket-sized full computer that runs off a phone charger: Kali's pentest toolset kept close, and a sandbox for physical-computing projects."
@@ -430,7 +430,7 @@ const productData = [
   },
   {
     title: "Rhythm Brown Box",
-    image: "./images/featured/drummachine.png",
+    image: "./images/featured/drummachine.jpg",
     siteUrl: "./portfolioentries/personal/rhythmbrownbox/index.html",
     githubUrl: "https://github.com/roylouisgarcia/rhythmbrownbox",
     stack: "ES modules · Vite · Vitest · Web Audio API · Web Worker · zero runtime deps",
@@ -459,7 +459,7 @@ const personalData = [
   },
   {
     title: "Video Pitch Adjuster GUI",
-    image: "images/currentsites/video-pitch-shifter.png",
+    image: "images/currentsites/video-pitch-shifter.jpg",
     githubUrl: "https://github.com/roylouisgarcia/videopitchshifter",
     articleUrl: "https://nostradmsx.com/a-singers-dilemma-solved-by-nostradmsx-video-pitch-shifter/",
     stack: "Python · Tkinter · FFMPEG · subprocess",
@@ -468,7 +468,7 @@ const personalData = [
   },
   {
     title: "Flames Calculator - Input",
-    image: "./images/featured/flames.png",
+    image: "./images/featured/flames.jpg",
     url: "https://github.com/roylouisgarcia/flames",
     stack: "HTML · CSS · JS (ported across several languages)",
     shows: "Coding the same one-page game several ways to compare the languages.",
@@ -476,7 +476,7 @@ const personalData = [
   },
   {
     title: "Flames Calculator - Results",
-    image: "./images/featured/flames2.png",
+    image: "./images/featured/flames2.jpg",
     url: "https://github.com/roylouisgarcia/flames",
     stack: "HTML · CSS · JS",
     shows: "Building the results screen of the same exercise.",
@@ -1577,7 +1577,7 @@ const interestsData = [
     {
         title: "My Radiohead Tribute page",
         icon: "🎵",
-        mainImage: "images/interests/radiohead.png",
+        mainImage: "images/interests/radiohead.jpg",
         additionalImages: [],
         description: "",
         link: "https://roylouisgarcia.github.io/radioheadtribute/",
@@ -1588,7 +1588,7 @@ const interestsData = [
     {
         title: "Recorded Bliss",
         icon: "🎧",
-        mainImage: "images/interests/rr.png",
+        mainImage: "images/interests/rr.jpg",
         additionalImages: [],
         description: "",
         link: "https://recordedbliss.com/",
@@ -1850,7 +1850,6 @@ function preloadCriticalImages() {
     // Preload hero/above-the-fold images for immediate display
     const criticalImages = [
         'images/boy.jpg',
-        'images/teenager.png',
         'images/me.jpg'
     ];
     
