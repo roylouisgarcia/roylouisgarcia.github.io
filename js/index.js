@@ -975,97 +975,9 @@ $(document).on('mousedown touchstart', function(event) {
   }
 });
 
-// Font toggle functionality
 $(document).ready(function() {
-  // About section font toggle
-  $('#about-font-toggle').on('click', function() {
-    var $aboutSection = $('#about');
-    var $toggleBtn = $(this);
-    var $toggleText = $toggleBtn.find('.toggle-text');
-    
-    // Add transition class to all text elements in about section
-    $aboutSection.addClass('transitioning');
-    
-    if ($aboutSection.hasClass('typewriter-mode')) {
-      // Switch to handwritten mode
-      $aboutSection.removeClass('typewriter-mode').addClass('handwritten-mode');
-      
-      // Apply handwritten class to all text elements within about section
-      $aboutSection.find('h3, p, .writing, .typewriter').removeClass('typewriter').addClass('handwritten');
-      $aboutSection.find('.postit-summary').removeClass('typewriter').addClass('handwritten');
-      
-      $toggleText.text('Typewriter');
-    } else {
-      // Switch to typewriter mode
-      $aboutSection.removeClass('handwritten-mode').addClass('typewriter-mode');
-      
-      // Apply typewriter class to all text elements within about section
-      $aboutSection.find('h3, p, .writing, .handwritten').removeClass('handwritten').addClass('typewriter');
-      $aboutSection.find('.postit-summary').removeClass('handwritten').addClass('typewriter');
-      
-      $toggleText.text('Handwritten');
-    }
-    
-    // Remove transition class after animation
-    setTimeout(function() {
-      $aboutSection.removeClass('transitioning');
-    }, 300);
-  });
-  
-  // Generic function to add font toggles to other handwritten elements
-  function addFontToggle(selector, containerId) {
-    var $container = $(containerId);
-    var $element = $(selector);
-    
-    if ($element.length && $container.length) {
-      // Create toggle button
-      var toggleHtml = '<div class="font-toggle-container">' +
-                      '<button class="font-toggle-btn generic-font-toggle" data-target="' + selector + '" title="Toggle between handwritten and typewriter font">' +
-                      '<i class="fa fa-font"></i> <span class="toggle-text">Typewriter</span>' +
-                      '</button>' +
-                      '</div>';
-      
-      // Add toggle button to container
-      $container.prepend(toggleHtml);
-    }
-  }
-  
-  // Handle generic font toggles
-  $(document).on('click', '.generic-font-toggle', function() {
-    var targetSelector = $(this).data('target');
-    var $target = $(targetSelector);
-    var $toggleText = $(this).find('.toggle-text');
-    
-    // Add transition class
-    $target.addClass('transitioning');
-    
-    if ($target.hasClass('handwritten')) {
-      // Switch to typewriter
-      $target.removeClass('handwritten').addClass('typewriter');
-      $toggleText.text('Handwritten');
-    } else {
-      // Switch to handwritten
-      $target.removeClass('typewriter').addClass('handwritten');
-      $toggleText.text('Typewriter');
-    }
-    
-    // Remove transition class after animation
-    setTimeout(function() {
-      $target.removeClass('transitioning');
-    }, 300);
-  });
-  
-  // Add font toggles to Skills and Interests sections
-  if ($('#skills .handwritten').length) {
-    addFontToggle('#skills .handwritten', '#skills');
-  }
-  
-  if ($('#interests .handwritten').length) {
-    addFontToggle('#interests .handwritten', '#interests');
-  }
-
   // Hartnell Projects Slideshow functionality
-initializeHartnellSlideshow();
+  initializeHartnellSlideshow();
 });
 
 // Hartnell Projects Slideshow

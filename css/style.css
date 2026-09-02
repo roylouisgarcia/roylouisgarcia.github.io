@@ -221,50 +221,66 @@ h3.handwritten {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Font toggle button styling */
-.font-toggle-container {
-  position: absolute;
-  top: -50px;
-  right: 20px;
-  z-index: 10;
+/* About hero -- one consistent monospace voice, compact. */
+#about-summary {
+  font-family: var(--font-mono);
+  color: var(--brand-navy);
 }
 
-.font-toggle-container-below {
-  text-align: right;
-  margin-top: 10px;
-  margin-right: 20px;
+#about-summary h2 {
+  font-family: var(--font-mono);
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 0 0 2px;
+  color: var(--brand-navy);
 }
 
-.font-toggle-btn {
-  background: var(--accent-blue);
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+#about-summary .about-tagline {
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--accent-blue);
+  margin: 0 0 14px;
 }
 
-.font-toggle-btn:hover {
-  background: #0056b3;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+#about-summary .about-lead {
+  font-size: 0.92em;
+  line-height: 1.55;
+  margin: 0 0 14px;
 }
 
-.font-toggle-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+#about-summary .about-facts {
+  border-left: 3px solid var(--brand-gold);
+  padding: 6px 0 6px 12px;
+  margin: 0 0 14px;
 }
 
-.font-toggle-btn i {
-  margin-right: 5px;
+#about-summary .about-facts p {
+  font-size: 0.82em;
+  line-height: 1.5;
+  margin: 4px 0;
 }
 
-/* Font transition effects */
-.postit-summary.transitioning {
-  transition: font-family 0.3s ease;
+#about-summary .af-label {
+  display: inline-block;
+  min-width: 5.5em;
+  margin-right: 6px;
+  color: #8b7355;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.72em;
+  font-weight: 700;
+}
+
+#about-summary .about-contact {
+  font-size: 0.85em;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  #about-summary .about-facts p { font-size: 0.9em; }
+  #about-summary .about-lead { font-size: 1em; }
 }
 
 .postit-summary h2 {
@@ -379,51 +395,15 @@ h3.handwritten {
   .polaroid-item {
     flex: 0 0 calc(33.333% - 10px);
   }
-  
-  /* Font toggle responsive adjustments */
-  .font-toggle-container {
-    top: -45px;
-    right: 10px;
-  }
-  
-  .font-toggle-container-below {
-    margin-top: 8px;
-    margin-right: 15px;
-  }
-  
-  .font-toggle-btn {
-    padding: 6px 10px;
-    font-size: 11px;
-  }
 }
 
 @media (max-width: 480px) {
   .polaroid-group {
     gap: 8px;
   }
-  
+
   .polaroid-item {
     flex: 0 0 calc(33.333% - 6px);
-  }
-  
-  /* Font toggle mobile adjustments */
-  .font-toggle-container {
-    top: -40px;
-    right: 5px;
-  }
-  
-  .font-toggle-container-below {
-    margin-top: 6px;
-    margin-right: 10px;
-  }
-  
-  .font-toggle-btn {
-    padding: 4px 8px;
-    font-size: 10px;
-  }
-  
-  .font-toggle-btn i {
-    margin-right: 3px;
   }
 }
 
@@ -3902,28 +3882,6 @@ a.project-btn-gold:hover {
 #capellacourses,
 #capellaprojects {
     display: none;
-}
-
-/* Font Toggle Functionality for About Section */
-#about.transitioning * {
-  transition: font-family 0.3s ease-in-out;
-}
-
-/* About section mode classes */
-#about.handwritten-mode h3,
-#about.handwritten-mode p,
-#about.handwritten-mode .writing,
-#about.handwritten-mode .postit-summary {
-  font-family: var(--font-hand) !important;
-  font-weight: bolder;
-}
-
-#about.typewriter-mode h3,
-#about.typewriter-mode p,
-#about.typewriter-mode .writing,
-#about.typewriter-mode .postit-summary {
-  font-family: var(--font-mono) !important;
-  font-weight: normal;
 }
 
 /* Maintain specific styling for different text types */
