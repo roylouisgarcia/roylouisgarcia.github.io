@@ -90,16 +90,22 @@ p.title {
   margin-top: 7px;
 }
 
-h3.handwritten {
-  font-family: var(--font-hand);
-  font-weight: bolder;
-  font-size: 1.4em;
-}
-
 .handwritten {
   font-family: var(--font-hand);
   font-weight: bolder;
   font-size: 1em;
+}
+
+/* Section epigraph (the line under TOOLS / SKILLS / INTERESTS) -- mono,
+   to match the rest of the site. */
+.section-epigraph {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.9em;
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 8px auto 0;
+  color: #5a6280;
 }
 
 .polaroid {
@@ -1374,15 +1380,6 @@ h4 {
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   letter-spacing: 2px;
-}
-
-#skills .handwritten, #interests .handwritten {
-  font-family: var(--font-hand);
-  font-weight: bolder;
-  font-size: 1em;
-  line-height: 1.5;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 /* Skills section panel styling with golden shade */
