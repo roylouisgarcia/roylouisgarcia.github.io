@@ -1542,6 +1542,21 @@ footer {
   max-height: 100px;
 }
 
+.footer-contact {
+  margin: 8px 0 4px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.footer-contact a {
+  color: var(--brand-gold);
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
 .slideanim {
   visibility: hidden;
 }
