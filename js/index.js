@@ -332,9 +332,10 @@ const securityData = [
   {
     title: "Student Information Systems Analyst - CSUMB",
     image: "./images/currentsites/sis-analyst-csumb.jpg",
-    stack: "PeopleSoft 8.9 · role-based access control · dev/prod change control · FERPA",
-    shows: "Paid security work: PeopleSoft 8.9 security design and implementation, security role administration, dev-to-production security migration, and authoring a FERPA compliance training course.",
-    description: "Staff analyst role at California State University, Monterey Bay -- owning the security side of the student information system that holds every student's records."
+    stack: "IAM / RBAC · access governance · least privilege · user lifecycle · dev/prod change control · FERPA",
+    shows: "Access-governance work on a system of record: role-based access control design, user provisioning and deprovisioning, access-certification audits, row-level security over student PII, and controlled dev-to-production release of security config.",
+    description: "Staff analyst role at California State University, Monterey Bay -- owning identity and access management for the PeopleSoft ERP that holds every student's records.",
+    readMore: "Identity & Access Management (IAM) and Role-Based Access Control (RBAC): mapped business roles to permission sets on the principle of least privilege, and ran the full user lifecycle -- provisioning, changes, and deprovisioning. Access governance & compliance: prepared the system for audits with access-certification matrix reports against FERPA and institutional policy. Data privacy: implemented row-level security so managers saw only their own records, protecting student PII. Change control: promoted security configuration from development to production through a controlled release process. Support: Tier-3 escalation point for complex access and permission anomalies, resolved from root cause."
   },
   {
     title: "Raspberry Pi / Kali Linux Pentest Lab",
