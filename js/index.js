@@ -172,6 +172,23 @@ function createSlideshow(ids, data) {
       content.appendChild(p);
     }
 
+    // Scannable "stack + what it shows" line -- the thing a recruiter reads.
+    if (item.stack || item.shows) {
+      const meta = document.createElement('div');
+      meta.className = 'project-meta';
+      [['Stack', item.stack], ['Shows', item.shows]].forEach(function (pair) {
+        if (!pair[1]) return;
+        const row = document.createElement('p');
+        const label = document.createElement('span');
+        label.className = 'pm-label';
+        label.textContent = pair[0];
+        row.appendChild(label);
+        row.appendChild(document.createTextNode(' ' + pair[1]));
+        meta.appendChild(row);
+      });
+      if (meta.children.length) content.appendChild(meta);
+    }
+
     const btnRow = document.createElement('div');
     btnRow.style.cssText = 'text-align:center;margin:15px 0';
 
@@ -261,9 +278,9 @@ function createSlideshow(ids, data) {
 // =========================================================================
 // PROJECTS DATA -- one array per data-driven capability tab. Item shape:
 //   { title, image, url | (siteUrl & githubUrl),
-//     description?, readMore?, isBertelsmann? }
-// Phase 1 keeps each project's existing copy; the "stack / what it proves"
-// lines come in a later pass.
+//     stack?, shows?, description?, readMore?, isBertelsmann? }
+// `stack` (tech) and `shows` (what it demonstrates / the role) render as a
+// small scannable block on each slide -- the line a recruiter reads.
 // =========================================================================
 
 // --- Security -----------------------------------------------------------
@@ -271,7 +288,9 @@ const securityData = [
   {
     title: "Bertelsmann Technology Scholarship - Enterprise Security Nanodegree",
     image: "specialization/images/Bertelsmann_nanodegree_enterprisesecurity.jpg",
-    description: "Enterprise security nanodegree focused on cybersecurity frameworks, threat assessment, and security architecture design -- enterprise-level security protocols and implementation strategies. For a guide on turning a scholarship MOOC like this into applied skill rather than just a certificate, that's what I built DeliberateLearners.com to teach.",
+    stack: "Azure (Sentinel, Entra, Intune, Defender for Endpoint) · ELK · SIEM/SOAR · EDR/IDS",
+    shows: "Zero Trust architecture, DMZ/VPN network defense, defense-in-depth, and compliance alignment to NIST 800-61r2 and TIC 3.0.",
+    description: "An enterprise security nanodegree taken to build hands-on cloud-security skill: threat assessment, security architecture design, and incident-response practice across a full Azure + ELK environment.",
     readMore: "Technologies Used: Microsoft Azure services (Virtual Networks, Entra, Sentinel, Intune, Defender for Endpoint), ELK Stack (Elasticsearch, Logstash, Kibana, Filebeat), SIEM/SOAR platforms, EDR/IDS technologies. Key Features: Network defenses with DMZs and VPNs, Zero Trust security architecture, defense-in-depth strategies, compliance alignment with NIST 800-61r2 and TIC 3.0. Learning Outcomes: Enterprise security frameworks, threat assessment methodologies, cloud security implementation, risk management practices.",
     isBertelsmann: true
   },
@@ -279,13 +298,17 @@ const securityData = [
     title: "DMSecurityX",
     image: "./images/currentsites/dmsecurityx-1.jpg",
     url: "https://dmsecurityx.com",
-    description: "A security guidance product for small businesses and creators -- no-jargon, actionable. Product concept, security architecture, front and back end, and SEO all mine."
+    stack: "Next.js · TypeScript · Supabase · Vercel",
+    shows: "Threat-modeling a real product end to end, then shipping and maintaining it solo -- architecture, build, content, SEO.",
+    description: "A security-guidance product for small businesses and creators: no jargon, actionable steps."
   },
   {
     title: "Deliberate Cybersecurity",
     image: "./images/currentsites/deliberatecybersecurity.jpg",
     url: "https://deliberatecybersecurity.com",
-    description: "Free, plain-language security guidance -- the companion writing to DMSecurityX."
+    stack: "Static site · SEO",
+    shows: "Turning security practice into plain-language guidance people actually follow.",
+    description: "The editorial companion to DMSecurityX -- free, plain-language security writing."
   }
 ];
 
@@ -295,39 +318,50 @@ const productData = [
     title: "Deliberately Deliberate",
     image: "./images/currentsites/deliberatelydeliberate.jpg",
     url: "https://deliberatelydeliberate.com",
-    description: "The umbrella for a connected ecosystem of products and writing built on one idea: choose on purpose. I own the full lifecycle -- concept, front-end and back-end development, security architecture, SEO, and content."
+    stack: "Next.js · React · TypeScript · Supabase · Vercel",
+    shows: "Owning a multi-product ecosystem solo: concept, front and back end, security architecture, SEO, and content.",
+    description: "The umbrella for a connected set of products and writing built on one idea: choose on purpose."
   },
   {
     title: "Digitally (MyDigitally)",
     image: "./images/currentsites/mydigitally_1.jpg",
     url: "https://mydigitally.app",
-    description: "A vault to document, protect, and sell your digital assets, with proof-of-ownership verification and estate-planning exports.",
-    readMore: "Built with Next.js 14 (App Router, Server Components), React 18, TypeScript, and Supabase (Postgres, Auth, Storage, Row-Level Security), deployed on Vercel. Solo build across product, security, front and back end, and SEO."
+    stack: "Next.js 14 (App Router, RSC) · React 18 · TypeScript · Supabase (Postgres, Auth, Storage, RLS) · Vercel",
+    shows: "A full-stack app with row-level security, proof-of-ownership verification, and estate-planning export flows -- solo build.",
+    description: "A vault to document, protect, and sell your digital assets."
   },
   {
     title: "Circal (TryCircal)",
     image: "./images/currentsites/trycircal_calendar.jpg",
     url: "https://trycircal.app",
-    description: "An energy-aware calendar that color-codes your day by predicted focus, built from sleep, meals, and body-clock data. Blueprints, Calendar, Insights, and Settings views."
+    stack: "Next.js · TypeScript · Supabase",
+    shows: "Modelling predicted focus from sleep, meal, and body-clock data and surfacing it across four product views.",
+    description: "An energy-aware calendar that color-codes your day by predicted focus. Blueprints, Calendar, Insights, and Settings views."
   },
   {
     title: "Deliberate Digital Legacy",
     image: "./images/currentsites/deliberate-digital-legacy.jpg",
     url: "https://deliberate-digital-legacy.com",
+    stack: "Next.js · Supabase",
+    shows: "A digital-estate planning product -- inventory, access, and handoff.",
     description: "Helping people secure and pass on their digital lives on purpose."
   },
   {
     title: "Deliberate Learners - Tools",
     image: "./images/currentsites/deliberatelearners-tools.jpg",
     url: "https://deliberatelearners.com/tools",
-    description: "The tools layer -- e.g. Watch and Recall, which locks a learner into producing for as long as they spent consuming."
+    stack: "JavaScript · Web APIs",
+    shows: "Watch and Recall -- an in-browser tool that enforces produce-time equal to the consume-time it tracked.",
+    description: "The tools layer of Deliberate Learners."
   },
   {
     title: "Rhythm Brown Box",
     image: "./images/featured/drummachine.png",
     siteUrl: "./portfolioentries/personal/rhythmbrownbox/index.html",
     githubUrl: "https://github.com/roylouisgarcia/rhythmbrownbox",
-    description: "A browser drum machine shown across three versions. v2 is an audit-driven rebuild -- BDD/TDD, CI, WCAG, zero runtime dependencies -- and doubles as an engineering-rigor sample."
+    stack: "ES modules · Vite · Vitest · Web Audio API · Web Worker · zero runtime deps",
+    shows: "An audit-driven rebuild: BDD/TDD, CI, WCAG AA, dependency hygiene, and a self-contained single-file build.",
+    description: "A browser drum machine shown across three versions -- a deliberate engineering-rigor sample."
   }
 ];
 
@@ -337,48 +371,63 @@ const personalData = [
     title: "NostradmsX",
     image: "./images/currentsites/nostradmsx.jpg?v=2",
     url: "https://nostradmsx.com",
-    description: "My personal blog and build log -- developer notes and field notes behind the products above."
+    stack: "Static site",
+    shows: "The build log -- the reasoning and trade-offs behind every product on this page.",
+    description: "My personal blog: half build log, half field notes."
   },
   {
     title: "Deliberate Learners",
     image: "./images/currentsites/deliberatelearners.jpg",
     url: "https://deliberatelearners.com",
-    description: "A learning product built on the idea that knowledge only sticks when applied against a real feedback loop -- and its first tool, Watch and Recall."
+    stack: "JavaScript · Web APIs",
+    shows: "A learning method turned into a product -- knowledge that sticks because it's tested against a real feedback loop.",
+    description: "Built on the idea that consuming isn't learning until you produce against it -- and its first tool, Watch and Recall."
   },
   {
     title: "Video Pitch Adjuster GUI",
     image: "images/currentsites/video-pitch-shifter.png",
     githubUrl: "https://github.com/roylouisgarcia/videopitchshifter",
-    description: "A GUI that uses FFMPEG to shift the pitch of a video's audio -- extract, adjust, remux. Python + Tkinter + subprocess.",
-    readMore: "Technologies Used: Python, Tkinter (GUI), FFMPEG (audio/video processing), subprocess module. Key Features: User-friendly graphical interface, audio extraction from video files, pitch adjustment capabilities, automatic audio-video merging, file selection dialogs. Learning Outcomes: GUI development with Tkinter, multimedia processing with FFMPEG, Python subprocess management, audio signal processing concepts."
+    stack: "Python · Tkinter · FFMPEG · subprocess",
+    shows: "Wrapping a media pipeline (extract → pitch-shift → remux) in a desktop GUI.",
+    description: "A GUI that uses FFMPEG to shift the pitch of a video's audio."
   },
   {
     title: "Summer Beads",
     image: "./images/featured/summerbeads.png",
-    description: "An early e-shop / design site -- gallery, catalog, and contact pages."
+    stack: "HTML · CSS",
+    shows: "An early e-shop layout -- gallery, catalog, and contact.",
+    description: "One of my first design sites."
   },
   {
     title: "Rock Paper Scissors",
     image: "./images/featured/rockerpaperscissors.png",
     url: "https://github.com/roylouisgarcia/rockpaperscissors",
-    description: "A small game built to practice state handling and DOM updates."
+    stack: "JavaScript · DOM",
+    shows: "State handling and DOM updates -- a small game built to practice both.",
+    description: "A browser rock-paper-scissors."
   },
   {
     title: "Flames Calculator - Input",
     image: "./images/featured/flames.png",
     url: "https://github.com/roylouisgarcia/flames",
-    description: "A one-page game coded in several languages for learning -- the input screen."
+    stack: "HTML · CSS · JS (ported across several languages)",
+    shows: "The same one-page game coded several ways, to compare the languages.",
+    description: "A FLAMES relationship-name game -- the input screen."
   },
   {
     title: "Flames Calculator - Results",
     image: "./images/featured/flames2.png",
     url: "https://github.com/roylouisgarcia/flames",
-    description: "The results screen of the same learning exercise."
+    stack: "HTML · CSS · JS",
+    shows: "The results screen of the same exercise.",
+    description: "FLAMES -- the results screen."
   },
   {
     title: "League of Legends - LUA template generator for LeaguePedia",
     image: "./images/featured/form2lua.png",
-    description: "A form that generates LUA templates for a wiki -- string handling and template output."
+    stack: "JavaScript",
+    shows: "Generating structured LUA wiki templates from a form -- string handling and templating.",
+    description: "A form-to-template generator for a fan wiki."
   }
 ];
 
