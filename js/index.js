@@ -141,6 +141,28 @@ function createSlideshow(ids, data) {
   let index = 0;
   const slides = [];
 
+  // --- accessibility: name the carousel region, add a polite status line
+  // screen readers announce on each slide change, and wire arrow keys.
+  const region = slidesEl.closest('.certifications-slideshow-container');
+  let statusEl = null;
+  if (region) {
+    region.setAttribute('role', 'group');
+    region.setAttribute('aria-roledescription', 'carousel');
+    if (!region.getAttribute('aria-label')) {
+      const hdr = region.parentElement && region.parentElement.querySelector('.projectheader');
+      region.setAttribute('aria-label', (hdr ? hdr.textContent.trim() : ids) + ' projects');
+    }
+    statusEl = document.createElement('div');
+    statusEl.className = 'sr-only';
+    statusEl.setAttribute('aria-live', 'polite');
+    region.appendChild(statusEl);
+    region.addEventListener('keydown', function (e) {
+      if (!e.target.closest('.cert-nav-btn, .cert-thumb')) return;
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
+    });
+  }
+
   const styleBtn = function (a, bg, hover) {
     a.style.cssText = 'display:inline-block;margin:5px;padding:10px 20px;background-color:' + bg +
       ';color:#fff;text-decoration:none;border-radius:5px;font-weight:bold;transition:background-color .3s ease';
@@ -158,6 +180,9 @@ function createSlideshow(ids, data) {
 
     const slide = document.createElement('div');
     slide.className = 'cert-slides';
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    slide.setAttribute('aria-label', (i + 1) + ' of ' + data.length);
     const content = document.createElement('div');
     content.className = 'cert-slide-content';
 
@@ -263,43 +288,56 @@ function createSlideshow(ids, data) {
     slidesEl.appendChild(slide);
     slides.push(slide);
 
-    let thumb;
+    // Thumbnail is a real <button> -- focusable, Enter/Space activatable,
+    // and named for screen readers.
+    const thumb = document.createElement('button');
+    thumb.type = 'button';
+    thumb.className = 'cert-thumb';
     if (item.image) {
-      thumb = document.createElement('img');
-      thumb.src = item.image;
-      thumb.alt = item.title;
+      const timg = document.createElement('img');
+      timg.src = item.image;
+      timg.alt = '';
+      timg.onerror = function () { console.error('Failed to load thumbnail:', item.image); };
+      thumb.appendChild(timg);
     } else {
       // Imageless card (e.g. a work role) -- show an initials tile, not a broken img.
-      thumb = document.createElement('div');
-      thumb.className = 'cert-thumb-text';
+      thumb.classList.add('cert-thumb-text');
       thumb.textContent = item.title.replace(/[^A-Za-z0-9 ]/g, ' ')
         .split(/\s+/).filter(Boolean).slice(0, 3).map(function (w) { return w[0]; }).join('').toUpperCase();
     }
-    thumb.classList.add('cert-thumb');
-    thumb.title = item.title + (anyUrl ? ' - click to view, Ctrl+click to open' : ' - click to view');
+    thumb.setAttribute('aria-label', 'Show slide ' + (i + 1) + ': ' + item.title);
     thumb.onclick = function (e) {
       if (anyUrl && (e.ctrlKey || e.metaKey)) { openPrimary(); return; }
       show(i);
     };
-    thumb.onerror = function () { console.error('Failed to load thumbnail:', item.image); };
     thumbsEl.appendChild(thumb);
   });
 
   function show(n) {
     if (!slides.length) return;
     index = (n + slides.length) % slides.length;
-    slides.forEach(function (s, i) { s.style.display = i === index ? 'block' : 'none'; });
+    slides.forEach(function (s, i) {
+      const on = i === index;
+      s.style.display = on ? 'block' : 'none';
+      s.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
     Array.prototype.forEach.call(thumbsEl.querySelectorAll('.cert-thumb'), function (t, i) {
-      t.classList.toggle('current-cert-thumb', i === index);
+      const on = i === index;
+      t.classList.toggle('current-cert-thumb', on);
+      if (on) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
     });
     if (currentEl) currentEl.innerText = index + 1;
     if (totalEl) totalEl.innerText = slides.length;
+    if (statusEl) {
+      const t = data[index] && data[index].title ? ': ' + data[index].title : '';
+      statusEl.textContent = 'Slide ' + (index + 1) + ' of ' + slides.length + t;
+    }
   }
 
   const prev = document.getElementById(ids + 'Prev');
   const next = document.getElementById(ids + 'Next');
-  if (prev) prev.onclick = function () { show(index - 1); };
-  if (next) next.onclick = function () { show(index + 1); };
+  if (prev) { prev.type = 'button'; prev.setAttribute('aria-label', 'Previous slide'); prev.onclick = function () { show(index - 1); }; }
+  if (next) { next.type = 'button'; next.setAttribute('aria-label', 'Next slide'); next.onclick = function () { show(index + 1); }; }
 
   show(0);
   return { show: show };
@@ -1357,11 +1395,29 @@ function loadSkillsSlides() {
 
     console.log('Loading Skills slides:', skillsData.length, 'skills');
 
+    // Accessibility: name the region and add a polite status line.
+    const skillsRegion = slidesContainer.closest('.skills-slideshow-container');
+    if (skillsRegion) {
+        skillsRegion.setAttribute('role', 'group');
+        skillsRegion.setAttribute('aria-roledescription', 'carousel');
+        skillsRegion.setAttribute('aria-label', 'Skills');
+        if (!document.getElementById('skillsStatus')) {
+            const st = document.createElement('div');
+            st.id = 'skillsStatus';
+            st.className = 'sr-only';
+            st.setAttribute('aria-live', 'polite');
+            skillsRegion.appendChild(st);
+        }
+    }
+
     skillsData.forEach((skill, index) => {
         // Create slide div
         const slideDiv = document.createElement('div');
         slideDiv.classList.add('skills-slides');
         slideDiv.style.display = 'none'; // Explicitly hide all slides initially
+        slideDiv.setAttribute('role', 'group');
+        slideDiv.setAttribute('aria-roledescription', 'slide');
+        slideDiv.setAttribute('aria-label', (index + 1) + ' of ' + skillsData.length + ': ' + skill.title);
 
         // Create panel structure similar to original
         const panel = document.createElement('div');
@@ -1392,17 +1448,19 @@ function loadSkillsSlides() {
         slideDiv.appendChild(panel);
         slidesContainer.appendChild(slideDiv);
 
-        // Create thumbnail
-        const thumb = document.createElement('div');
+        // Create thumbnail -- a real <button> so it takes keyboard focus and
+        // activates with Enter/Space. No title attribute: the label is already
+        // visible text below, and a redundant title is what triggers the
+        // native tooltip that can get stuck open after a tap.
+        const thumb = document.createElement('button');
+        thumb.type = 'button';
         thumb.classList.add('skills-thumb');
-        // No title attribute: the label is already shown as visible text
-        // below, and a redundant title attribute is what triggers the
-        // native browser tooltip that can get stuck open after a tap.
-        
+        thumb.setAttribute('aria-label', 'Show ' + skill.title + ' skills');
+
         const thumbTitle = document.createElement('span');
         thumbTitle.classList.add('skills-thumb-title');
         thumbTitle.textContent = skill.title;
-        
+
         thumb.appendChild(thumbTitle);
         thumb.onclick = () => setSkillsCurrentSlide(index);
         thumbnailContainer.appendChild(thumb);
@@ -1428,26 +1486,27 @@ function showSkillsSlide(index) {
     console.log('Setting skillsCurrentSlideIndex to:', skillsCurrentSlideIndex);
 
     skillsSlides.forEach((slide, i) => {
-        if (i === skillsCurrentSlideIndex) {
-            slide.style.display = 'flex';
-        } else {
-            slide.style.display = 'none';
-        }
+        const on = i === skillsCurrentSlideIndex;
+        slide.style.display = on ? 'flex' : 'none';
+        slide.setAttribute('aria-hidden', on ? 'false' : 'true');
     });
-    
+
     // Update thumbnail highlighting
     const thumbnails = document.querySelectorAll('.skills-thumb');
     console.log('Found', thumbnails.length, 'Skills thumbnails');
-    
+
     thumbnails.forEach((thumb, i) => {
-        if (i === skillsCurrentSlideIndex) {
-            thumb.classList.add('skills-current-thumb');
-            console.log('Highlighting Skills thumbnail', i);
-        } else {
-            thumb.classList.remove('skills-current-thumb');
-        }
+        const on = i === skillsCurrentSlideIndex;
+        thumb.classList.toggle('skills-current-thumb', on);
+        if (on) thumb.setAttribute('aria-current', 'true'); else thumb.removeAttribute('aria-current');
     });
-    
+
+    const skillsStatus = document.getElementById('skillsStatus');
+    if (skillsStatus && skillsData[skillsCurrentSlideIndex]) {
+        skillsStatus.textContent = 'Slide ' + (skillsCurrentSlideIndex + 1) + ' of ' +
+            skillsSlides.length + ': ' + skillsData[skillsCurrentSlideIndex].title;
+    }
+
     updateSkillsSlideCounter();
 }
 
