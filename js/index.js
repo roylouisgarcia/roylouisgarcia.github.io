@@ -64,8 +64,18 @@ function showProjectTab(tabId) {
       $('#' + t.tab).removeClass('active');
     }
   });
-  $('#hartnell, #csumb, #capella').hide('fast');
-  $('#associate, #bachelors, #graduate').css('opacity', '1');
+  $('#hartnell, #csumb').hide('fast');
+  // Academic opens on the graduate degree (M.S., Information Assurance &
+  // Security) -- the most job-relevant credential -- rather than a blank
+  // panel that needs a click to reveal anything.
+  if (tabId === 'link2Academic') {
+    $('#capella').show('fast');
+    $('#graduate').css('opacity', '1');
+    $('#associate, #bachelors').css('opacity', '.6');
+  } else {
+    $('#capella').hide('fast');
+    $('#associate, #bachelors, #graduate').css('opacity', '1');
+  }
   hideAcademicProjects();
   hideLyricsProjects();
   updateMobileTabOrder(tabId);

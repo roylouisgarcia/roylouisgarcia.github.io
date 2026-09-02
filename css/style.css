@@ -305,6 +305,19 @@ h3.handwritten {
   margin-top: 0px;
 }
 
+.acad-proves {
+  max-width: 640px;
+  margin: 6px auto 16px;
+  padding: 8px 14px;
+  border-left: 3px solid var(--brand-gold);
+  background: rgba(29, 41, 81, 0.03);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--brand-navy);
+  text-align: left;
+}
+
 .polaroid img {
   width: 130px;
   height: 89px;
