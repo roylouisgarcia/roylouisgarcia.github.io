@@ -1781,7 +1781,9 @@ figure video {
   }
   
   .container-fluid {
-    padding: 10px 10px;
+    /* 15px horizontal to cancel Bootstrap's .row {margin: 0 -15px};
+       10px left ~5px of the row bleeding past the viewport edge. */
+    padding: 10px 15px;
     width: 100%;
   }
   .projecttext {
